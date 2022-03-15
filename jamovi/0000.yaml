@@ -1,0 +1,23 @@
+---
+title: jmvScaffold
+name: jmvScaffold
+version: 0.0.1
+jms: '1.0'
+authors:
+  - Marcello Gallucci
+maintainer: Marcello Gallucci <mcfanda@gmail.com>
+date: 2019-1-1
+type: R
+description: A suite for noting
+analyses:
+  - title: jmvScaffold
+    name: jmvScaffold
+    menuGroup: Tests
+    menuTitle: jmvScaffold
+    description: |
+      Something here
+    ns: jmvScaffold
+usesNative: true
+minApp: 2.3.1
+
+...

@@ -1,0 +1,176 @@
+---
+name:  jmvScaffold
+title: jmvScaffold
+jrs: '1.0'
+
+
+items:
+
+  - name: storage
+    type: Table
+    visible: false
+    clearWith:
+        - dep
+        - regression
+    columns:
+        - name: nothing
+
+  - name: info
+    title: Some Info
+    type: Table
+    columns:
+       - name: info
+         type: text
+         title: ""
+       - name: specs
+         type: text
+         title: ""
+         
+    clearWith:
+        - dep
+
+  - name: main
+    type: Group
+    title: Main Results
+    items:
+           - name: means
+             title: Means
+             type: Table
+             description: a table of R
+             clearWith:
+                         - dep
+             columns:
+                    - name: source
+                      title: Source
+                      type: text
+                    - name: mean
+                      title: Mean<sub>ciao</sub>
+                      type: number
+                    - name: sd
+                      type: number
+                      title: SD
+
+           - name: correlations
+             title: correlations
+             visible: (correlations)
+             type: Table
+             description: a table of R
+             clearWith:
+                         - dep
+                         - somevars
+             columns:
+                    - name: source
+                      title: Source
+                      type: text
+
+
+  - name: mediansarray
+    title: Array with keys
+    type: Array
+    description: an array of keyed tables
+    visible: (focused)
+    items: (focused)
+    template:
+        title:  "Some title:  ___key___"
+        type: Table
+        clearWith: 
+                  - dep
+
+        columns:
+        - name: source
+          title: Source
+          type: text
+        - name: median
+          title: Median
+          type: number
+
+
+  - name: regressionsarray
+    title: Array with keys and two children tables
+    type: Array
+    description: an array of keyed tables
+    visible: false
+    items: (focused)
+    template:
+        title:  Individual Analyses (Predictor ___key___ )  
+        type: Group
+        items:
+
+            - title:  "Anova title:  ___key___"
+              type: Table
+              name: anova
+              clearWith: 
+                  - dep
+
+              columns:
+                - name: source
+                  title: Source
+                  type: text  
+                - name: ss
+                  title: SS<sub>ciao</sub>
+                  type: number
+                - name: df
+                  title: df
+                  type: number
+                - name: f
+                  title: F
+                  type: number
+                - name: p
+                  title: p.
+                  type: number
+                  format: zto,pvalue
+                  
+            - title:  "Regression title:  ___key___"
+              type: Table
+              name: regression
+              clearWith: 
+                  - dep
+
+              columns:
+                - name: source
+                  title: Source
+                  type: text  
+                - name: estimate
+                  title: Estimate
+                  type: number
+                - name: se
+                  title: SE
+                  type: number
+                - name:  t
+                  title: t
+                  type: number
+                - name:  p
+                  title: p
+                  type: number
+                  format: zto,pvalue
+
+
+  - name: randomarray
+    title: Array without keys
+    type: Array
+    description: an array of N tables
+    template:
+        title:  "Some title:  ___key___"
+        type: Table
+        clearWith: 
+                  - dep
+
+        columns:
+        - name: source
+          title: Source<sub>ciao</sub>
+          type: text
+        - name: value
+          title: A number
+          type: number
+
+
+
+  - name: residuals
+    title: Residuals Vales
+    type: Output            
+    varTitle: '`TEST_${ dep }`'
+    varDescription: test values
+    clearWith:
+        - dep
+
+

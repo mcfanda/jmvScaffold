@@ -1,0 +1,99 @@
+---
+name: jmvScaffold
+title: jmvScaffold
+menuGroup: Tests
+version: '0.0.1'
+jas: '1.2'
+export: true
+completeWhenFilled: true
+description:
+    main: |
+           Something here
+    R:
+        dontrun: true
+        usage: |
+            some code here
+            
+
+
+options:
+    - name: data
+      type: Data
+      description:
+          R: the data as a data frame
+
+    - name: dep
+      title: Dependent Variable
+      type: Variable
+      default:
+      suggested:
+        - continuous
+        - ordinal
+      permitted:
+        - numeric
+      description:
+          R: >
+            a string naming the dependent variable from `data`, variable
+            must be numeric
+
+    - name: somevars
+      title: Some Variables
+      type: Variables
+      default:
+      suggested:
+        - continuous
+        - nominal
+      permitted:
+        - numeric
+      description:
+          R: >
+            a string naming the dependent variable from `data`, variable
+            must be numeric
+
+    - name: correlations
+      title: Correlations
+      type: Bool
+      default: false
+      description:
+          R: >
+            `TRUE` or `FALSE` (default), shows correlation table
+    - name: regression
+      title: Regression
+      type: Bool
+      default: false
+      description:
+          R: >
+            `TRUE` or `FALSE` (default), shows correlation table
+
+
+    - name: focused
+      title: Focal variable
+      type: Terms
+      default:
+
+    - name: test
+      title: Test option
+      type: Bool
+      default: false
+
+    - name: msg1
+      title: Send a message at init
+      type: Bool
+      default: false
+
+    - name: msg2
+      title: Send a message at run
+      type: Bool
+      default: false
+
+    - name: msg3
+      title: Send a message at init and change it at run
+      type: Bool
+      default: false
+ 
+    - name: residuals
+      title: Residuals
+      type: Output            
+
+...
+

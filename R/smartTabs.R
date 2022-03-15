@@ -1,0 +1,446 @@
+SmartTable <- R6::R6Class("SmartTable",
+                 inherit = Dispatch,
+                 cloneable=FALSE,
+                 class=FALSE,
+                 public=list(
+                        name=NULL,
+                        table=NULL,
+                        nickname=NULL,
+                        expandable=FALSE,
+                        expandSuperTitle=NULL,
+                        expandFromBegining=TRUE,
+                        activated=NULL,
+                        key=NULL,
+                        keys_sep=NULL,
+                        keys_raise=TRUE,
+                        spaceBy=NULL,
+                        spaceAt=NULL,
+                        combineBelow=NULL,
+                        initialize=function(table,estimator=NULL) {
+                            self$name       <-  table$name
+                            self$table      <-  table
+                            self$nickname   <-  make.names(gsub('"','',gsub("/","_",table$path,fixed = TRUE),fixed=TRUE))
+                            private$.estimator  <-   estimator
+                            private$.init_function<-paste0("init_",self$nickname)
+                            private$.run_function<-paste0("run_",self$nickname)
+                            self$activated<-self$table$visible
+
+                            if ("key" %in% names(table) )
+                                  if (is.something(table$key))
+                                           self$key<-table$key
+                            
+                            if (inherits(self,"SmartArray"))
+                               ginfo("SmartArray",self$nickname,"initialized..")
+                            else
+                              ginfo("SmartTable",self$nickname,"initialized..")
+                            
+
+                        },
+                        initTable=function() {
+                          private$.phase<-"init"
+                          private$.update()
+                          self$title
+                          ginfo("SmartTable",self$nickname,"init")
+                        },
+                        runTable=function() {
+                          private$.phase<-"run"
+                          private$.update()
+                          ginfo("SmartTable",self$nickname,"run")
+                          
+                        },
+                        
+
+                        initFunction=function(aObject) {
+                             private$.init_function<-aObject
+                          },
+                        runFunction=function(aObject) {
+                          private$.run_function<-aObject
+                        },
+                        
+                        ci=function(alist,ciwidth=95,ciformat="{}% Confidence Intervals") {
+                          if (is.null(names(alist))) {
+                               .names<-alist
+                               .labels<-rep("",length(alist))
+                          } else {
+                            .names<-names(alist)
+                            .labels<-alist
+                            
+                          }
+                    
+                          for (i in seq_along(alist)) {
+                            label <-paste(.labels[[i]],ciformat)
+                            name  <-.names[[i]]
+                            l<-paste0(name,".ci.lower")
+                            u<-paste0(name,".ci.upper")
+                            if (l %in% names(self$table$columns))
+                                    self$table$getColumn(l)$setSuperTitle(jmvcore::format(label, ciwidth))
+                            if (u %in% names(self$table$columns))
+                                    self$table$getColumn(u)$setSuperTitle(jmvcore::format(label, ciwidth))
+                          }
+                          
+                          
+                        }
+
+                 ), ## end of public
+                    active=list(
+
+                      title=function(aname) {
+
+                        if (missing(aname)) {
+                          
+                                  test<-grep("___key___",self$table$title,fixed = TRUE)
+                                  if (length(test)>0 & is.something(self$key)) {
+                                      if (is.something(self$keys_sep))
+                                         key<-jmvcore::stringifyTerm(self$key,sep=self$keys_sep,raise=self$keys_raise)
+                                      else
+                                         key<-jmvcore::stringifyTerm(self$key,raise=self$keys_raise)
+                                      
+                                      
+                                      aname<-gsub("___key___",key,self$table$title)
+                                      self$table$setTitle(aname)
+                                      
+                                  }
+                                  return()
+                        }
+                        self$table$setTitle(aname)
+                        
+                        
+                      },
+                        superTitle=function(alist) {
+                          
+                          if (missing(alist))
+                              return(private$.superTitle)
+                          
+                          if (!is.list(alist))
+                             stop("SuperTitle must be a list")
+                          .names<-names(self$table$columns)
+                          for (stn in names(alist)) {
+                            where<-grep(stn,.names,fixed=T)
+                            if (length(where)>0)
+                               for (i in where) {
+                                  self$table$getColumn(.names[[i]])$setSuperTitle(alist[[stn]])
+                               }
+                          }
+                        }
+                      
+                    ), #end of active
+                    private=list(
+                              .estimator=NULL,
+                              .init_function=NULL,
+                              .run_function=NULL,
+                              .superTitle=NULL,
+                              .phase="init",
+                              
+                              .update=function() {
+                                
+                                if (private$.stop()) {
+                                  return()
+                                }
+                                self$table$setVisible(TRUE)
+                                rtable<-private$.getData()
+                                if (self$expandable) private$.expand(rtable)
+                                private$.fill(self$table,rtable)
+                                private$.spaceBy()
+                              },
+                              
+                              .stop=function() {
+
+                                if (private$.phase=="init") {
+                                  fun<-private$.init_function
+                                  filled<-FALSE
+                                } else {
+                                  fun<-private$.run_function
+                                  filled<-!self$table$isNotFilled()
+                                }
+                                if (!self$activated)
+                                   return(TRUE)
+
+                                if (is.null(fun)) 
+                                  return(TRUE)
+                                
+                                if (is.character(fun) & !(fun %in% names(private$.estimator))  )
+                                  return(TRUE)
+                                
+                                return(filled)
+
+                              },
+                              
+                              .getData=function(when) {
+                                
+                                ## check in which phase we are
+                                if (private$.phase=="init")
+                                    fun<-private$.init_function
+                                else
+                                    fun<-private$.run_function
+                                
+                                 ### check how to retrieve the data
+                                if (inherits(fun,"character") ) {
+                                  
+                                  output<-private$.estimator[[fun]]()
+                                  
+                                  rtable<-output$obj
+                                  error<-output$error
+                                  warning<-output$warning
+                                  
+                                  if (error!=FALSE) {
+                                    ginfo("Error in ",fun,error)
+                                    self$table$setError(error)
+                                    return()
+                                  }
+                                  
+                                  if (warning!=FALSE) {
+                                    if ("notes" %in% names(self$table)) {
+                                        len<-length(self$table$notes)
+                                        self$table$setNote(len+1,warning)
+                                    } 
+                                  }
+                                  
+                                }
+                                else 
+                                  rtable<-fun
+                                
+                                rtable
+                              },
+                              .fill=function(jtable,rtable) {
+                              
+                                maxrow<-jtable$rowCount
+                                
+                                .insert<-function(i,w) {
+                                  if (i>maxrow)
+                                      jtable$addRow(rowKey=i,w)
+                                  else
+                                      jtable$setRow(rowNo=i,w)
+                                }
+                                
+                                rlist <-private$.listify(rtable)
+        
+                                for (i in seq_along(rlist)) {
+                                  t<-rlist[[i]]
+                                  t[which(is.na(t))]<-""
+                                  t[which(t==".")]<-NA
+                                  .insert(i,t)
+                                }
+
+                              },
+                              .expand=function(rtable) {
+                                
+                                
+                                   rtable<-framefy(rtable)
+                                
+                                  .titles   <-  names(rtable)
+                                  .names    <- make.names(.titles,unique = T)
+                                  .types<-unlist(lapply(rtable,class))
+                                  .types<-gsub("numeric","number",.types)
+                                  .types<-gsub("integer","number",.types)
+                                  .types<-gsub("factor","text",.types)
+                                
+                                  .present  <-  names(self$table$columns)
+                                  .names   <-  setdiff(.names,.present)
+
+                               if (self$expandFromBegining) {
+                                  for (i in seq_along(.names)) {
+                                    cb<-ifelse(i %in% self$combineBelow,TRUE,FALSE)
+                                    self$table$addColumn(index=i,
+                                                         name = .names[[i]], 
+                                                         title = .titles[[i]], 
+                                                         superTitle = self$expandSuperTitle, 
+                                                         type=.types[i],
+                                                         combineBelow=cb)
+                                  }
+                               } else {
+                                 for (i in seq_along(.names)) {
+                                   self$table$addColumn(name = .names[[i]], title = .titles[[i]], superTitle = self$expandSuperTitle, type=.types[i])
+                                 }
+                               }
+                              },
+                              
+                          .spaceBy=function() {
+                                
+                            
+                                for (sb in self$spaceBy) {
+                                  col<-self$table$asDF[[sb]]
+                                  rows<-unlist(lapply(unlist(unique(col)),function(x) min(which(col==x))))
+                                  for (j in rows)
+                                    self$table$addFormat(rowNo=j,col=1,jmvcore::Cell.BEGIN_GROUP)
+                                }
+                                
+                            for (j in self$spaceAt) {
+                                self$table$addFormat(rowNo=j,col=1,jmvcore::Cell.BEGIN_GROUP)
+                            }
+                            
+                          },
+                          
+                          .listify = function(adata) {
+                            
+                            if (is.null(adata)) {
+                              if ("notes" %in% names(self$table)) {
+                                  len<-length(self$table$notes)
+                                  self$table$setNote(len+1,"No result found")
+                              }
+                              return()
+                            }
+                            .keys<-attr(adata,"keys")
+                            res<-NULL
+                            if (inherits(adata,"data.frame")) {
+                              res <- lapply(1:dim(adata)[1], function(a) {
+                                al<-as.list(adata[a, ])
+                                names(al)<-names(adata)
+                                al
+                              })
+                              names(res) <- rownames(adata)
+                              attr(res,"keys")<-.keys
+                              return(res)
+                            }
+                            if (inherits(adata,"list")) {
+                              res<-adata
+                              if (!is.null(names(res)))
+                                res<-list(res)
+                              attr(res,"keys")<-.keys
+                              return(res)
+                            }
+                            self$table$setError(paste("SmartTabs input table should be list of named lists or data.frame, found ", paste(class(adata),collapse = ",")))
+                          }            
+                          
+                              
+
+                              
+                              
+                          ) #end of private
+                              
+
+) ## end of class
+ 
+SmartArray <- R6::R6Class("SmartArray",
+                          inherit = SmartTable,
+                          cloneable=FALSE,
+                          class=TRUE,
+                        
+                          public=list(
+                            children=NULL,
+                            initialize=function(tables,estimator=NULL) {
+                              
+                              super$initialize(tables,estimator)
+                              itemNames<-try_hard(tables$itemNames)$obj
+                              itemKeys<-try_hard(tables$itemKeys)$obj
+                              if (is.something(itemKeys)) self$children<-itemKeys else self$children<-itemNames
+                              ginfo("Array with children",self$children)
+
+                            },
+                            initTable=function() {
+                              
+                              if (private$.stop())
+                                 return()
+
+                              ginfo("Array",self$nickname,"inited...")
+                             
+                              self$table$setVisible(TRUE)
+                              self$title
+                              rtables<-private$.getData()
+                              
+                              if (!is.something(self$table$items)) {
+                                
+                               
+                                for (i in seq_along(rtables)) {
+                                  
+                                  .keys<-attr(rtables,"keys")
+                                  if (is.something(.keys))
+                                     .key<-.keys[[i]]
+                                  else 
+                                     .key<-i
+                                  
+                                  self$table$addItem(key = .key)
+
+                                }
+                                
+                                self$children<-seq_along(rtables)
+
+                              }
+                              
+                              for (i in seq_along(self$table$items)) {
+                                
+
+                                jtable  <-  self$table$items[[i]]
+                                if (inherits(jtable,"Group")) {
+                                  
+                                  aSmartArray<-SmartArray$new(jtable,self)
+                                  aSmartArray$key<-jtable$key
+                                  aSmartArray$activated<-self$activated
+                                  aSmartArray$expandable<-self$expandable
+                                  aSmartArray$expandSuperTitle<-self$expandSuperTitle
+                                  aSmartArray$initFunction(rtables[[i]])
+                                  aSmartArray$initTable()
+                                 
+                                } else { 
+                                
+                                ### if we are here, children are tables
+                                   rtable <- rtables[[i]]
+                                   aSmartTable<-SmartTable$new(jtable,self)
+                                   aSmartTable$expandable<-self$expandable
+                                   aSmartTable$expandFromBegining<-self$expandFromBegining
+                                   aSmartTable$expandSuperTitle<-self$expandSuperTitle
+                                   aSmartTable$keys_sep<-self$keys_sep
+                                   aSmartTable$keys_raise<-self$keys_raise
+                                   
+                                   
+                                    if (is.something(self$combineBelow))
+                                           if (length(self$combineBelow)==1)
+                                                 aSmartTable$combineBelow<-self$combineBelow
+                                           else
+                                                  aSmartTable$combineBelow<-self$combineBelow[[i]]
+                                
+                                   aSmartTable$activated<-self$activated
+                                   if (is.something(private$.ci)) {
+                                       aSmartTable$ci(private$.ci,private$.ciwidth,private$.ciformat)
+                                    }
+                                   aSmartTable$initFunction(rtable)
+                                   aSmartTable$initTable()
+                                }
+                              }
+                              
+                            },
+                            
+                            runTable=function() {
+                              
+                              private$.phase<-"run"
+                              
+                              if (private$.stop())
+                                return()
+
+                              ginfo("Array",self$nickname,"run")
+                              
+                              rtables<-private$.getData()
+
+                              for (i in seq_along(self$children)) {
+                                
+                                key     <-  self$children[[i]]
+                                rtable <-  rtables[[i]]
+                                jtable  <-  self$table$items[[i]]
+                                if (inherits(jtable,"Group")) {
+                                    aSmartArray<-SmartArray$new(jtable,self)
+                                    aSmartArray$runFunction(rtable)
+                                    aSmartArray$runTable()
+                                } else {
+                                    private$.fill(jtable,rtable)
+                                }                            
+                              }
+                            },
+                            
+                            ci=function(alist,ciwidth=95,ciformat="{}% Confidence Intervals"){
+                              
+                              private$.ci<-alist
+                              private$.ciwidth<-ciwidth
+                              private$.ciformat<-ciformat
+                              
+                            }
+                            
+                            
+      ), ## end of public
+      private=list(
+        .ci=NULL,
+        .ciwidth=NULL,
+        .ciformat=NULL
+        
+        
+        
+      ) #end of private
+) # end of class
