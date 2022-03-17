@@ -8,7 +8,7 @@
 
 # jamovi
 build/
-build*/
+build/*
 temp/
 jamovisource/
 *.jmo
