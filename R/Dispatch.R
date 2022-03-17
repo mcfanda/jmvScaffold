@@ -1,73 +1,44 @@
 
 Dispatch <- R6::R6Class(
   "Dispatch",
-  class=FALSE, ## this and the next 
+  class=TRUE, ## this and the next 
   cloneable=FALSE, ## should improve performance https://r6.r-lib.org/articles/Performance.html ###
   public=list(
-    vars=NULL,
-    options=NULL,
-    initialize=function(options,vars) {
-      self$vars<-vars
-      self$options<-options
-    },
-    ####### eval option that may not exist ####
-    
-    option=function(val,spec=NULL) {
-      
-        res<-hasName(self$options,val)
-        if (res) {
-          if (is.logical(self$options[[val]]))
-              res<-self$options[[val]]
-          else
-              res<-is.something(self$options[[val]])
-
-          if (!is.null(spec))
-              res<-(spec %in% self$options[[val]])
-        }
-        res      
-      
-    },
-    
-    ### this requires that sooner or later something is a Dispatch object ###
-    absorbe_issues=function(obj) {
-
-      if (!is.something(obj))
-         return()
-      if (inherits(obj,"Dispatch")) {
-              wars<-obj$warnings
-              errs<-obj$errors
-              for (tablename in names(wars)) {
-                      table<-wars[[tablename]]
-                      for (t in table) 
-                              self$warnings<-list(table=tablename,message=t)
-              }
-              for (tablename in names(errs)) {
-                table<-errs[[tablename]]
-                for (t in table) 
-                  self$errors<-list(table=tablename,message=t)
-              }
-
-       } else
-            for (aobj in obj) 
-                 self$absorbe_issues(aobj)
+    tables=NULL,
+    initialize=function(results) { 
+    self$tables<-results
     }
-    
   ),
   active=list(
         warnings=function(obj) {
 
-              if (missing(obj))
-                           return(private$.warnings)
-              if (is.null(obj$message))
-                           return()
-              if (obj$message==FALSE)
-                           return()
-              obj<-fromb64(obj,self$vars)
-              table<-private$.warnings[[obj$table]]
-              msg<-private$.translate(obj$message)
-              table[[length(table)+1]]<-msg
-              table<-unique(table)
-              private$.warnings[[obj$table]]<-table
+              if (missing(obj)) return()
+              if (is.null(obj$message)) return()
+              if (is.null(obj$topic)) stop("warnings messages should have a topic (a table path)")
+          
+              obj<-fromb64(obj)
+              path<-stringr::str_split(obj$topic,"_")[[1]]
+              tableobj<-self$tables
+              found<-FALSE
+              for (aname in path)
+                 if (hasName(tableobj,aname)) {
+                       found<-TRUE
+                       tableobj<-tableobj[[aname]]
+                 }
+              
+               if (!found) stop("a message was sent to a non-existing result object ",obj$topic)
+               state<-as.list(tableobj$state)
+
+               if (!hasName(obj,"id")) obj$id<-jmvcore::toB64(obj$message)
+               
+               if (!inherits(tableobj,"Table")) 
+                     what<-obj$id
+               else
+                     what<-length(state$notes)+1
+                              
+               state$notes[[what]]<-obj
+               tableobj$setState(state)
+
           },
         errors=function(obj) {
           
@@ -75,13 +46,13 @@ Dispatch <- R6::R6Class(
             return(private$.errors)
 
           if (!is.list(obj))
-             stop("Errors require a named list with table and message")
+             stop("Errors require a named list with topic and message")
           
-          if (!hasName(obj,"table"))
-              stop("Errors require a named list with table and message")
+          if (!hasName(obj,"topic"))
+              stop("Errors require a named list with topic and message")
   
           if (!hasName(obj,"message"))
-            stop("Errors require a named list with table and message")
+            stop("Errors require a named list with topic and message")
           
           if (is.null(obj$message))
             return()
@@ -90,12 +61,15 @@ Dispatch <- R6::R6Class(
             return()
           
           obj<-fromb64(obj,self$vars)
-          table<-private$.errors[[obj$table]]
-          table[[length(table)+1]]<-obj$message
-          table<-unique(table)
-          private$.errors[[obj$table]]<-table
+          topic<-private$.errors[[obj$topic]]
+          topic[[length(topic)+1]]<-obj$message
+          topic<-unique(topic)
+          private$.errors[[obj$topic]]<-topic
 
-        }
+        },
+        warnings_topics=function() {return(names(private$.warnings))},
+        errors_topics=function() {return(names(private$.errors))}
+        
         
   ),
   
@@ -103,9 +77,9 @@ Dispatch <- R6::R6Class(
      .warnings=list(),
      .errors=list(),
      .translate=function(msg) {
-         
+      
        for (w in TRANSWARNS) {
-         if (length(grep(w$original,msg,fixed = T))>0)
+         if (is.there(w$original,msg))
              return(w$new)
        }
        return(msg)

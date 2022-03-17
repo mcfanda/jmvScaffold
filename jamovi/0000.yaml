@@ -1,12 +1,11 @@
 ---
 title: jmvScaffold
 name: jmvScaffold
-version: 0.0.1
+version: 0.0.2
 jms: '1.0'
 authors:
   - Marcello Gallucci
 maintainer: Marcello Gallucci <mcfanda@gmail.com>
-date: 2019-1-1
 type: R
 description: A suite for noting
 analyses:

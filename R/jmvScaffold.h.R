@@ -110,8 +110,8 @@ jmvScaffoldResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
     "jmvScaffoldResults",
     inherit = jmvcore::Group,
     active = list(
-        storage = function() private$.items[["storage"]],
         info = function() private$.items[["info"]],
+        pure = function() private$.items[["pure"]],
         main = function() private$.items[["main"]],
         mediansarray = function() private$.items[["mediansarray"]],
         regressionsarray = function() private$.items[["regressionsarray"]],
@@ -124,16 +124,6 @@ jmvScaffoldResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                 options=options,
                 name="",
                 title="jmvScaffold")
-            self$add(jmvcore::Table$new(
-                options=options,
-                name="storage",
-                visible=FALSE,
-                clearWith=list(
-                    "dep",
-                    "regression"),
-                columns=list(
-                    list(
-                        `name`="nothing"))))
             self$add(jmvcore::Table$new(
                 options=options,
                 name="info",
@@ -149,6 +139,21 @@ jmvScaffoldResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
                         `title`="")),
                 clearWith=list(
                     "dep")))
+            self$add(jmvcore::Table$new(
+                options=options,
+                name="pure",
+                title="Clean on test",
+                columns=list(
+                    list(
+                        `name`="info", 
+                        `type`="text", 
+                        `title`=""),
+                    list(
+                        `name`="specs", 
+                        `type`="text", 
+                        `title`="")),
+                clearWith=list(
+                    "test")))
             self$add(R6::R6Class(
                 inherit = jmvcore::Group,
                 active = list(
@@ -196,7 +201,7 @@ jmvScaffoldResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$add(jmvcore::Array$new(
                 options=options,
                 name="mediansarray",
-                title="Array with keys",
+                title="Median Array with keys",
                 visible="(focused)",
                 items="(focused)",
                 template=jmvcore::Table$new(
@@ -216,7 +221,7 @@ jmvScaffoldResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$add(jmvcore::Array$new(
                 options=options,
                 name="regressionsarray",
-                title="Array with keys and two children tables",
+                title="Regression Array with keys and two children tables",
                 visible=FALSE,
                 items="(focused)",
                 template=R6::R6Class(
@@ -290,7 +295,7 @@ jmvScaffoldResults <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class
             self$add(jmvcore::Array$new(
                 options=options,
                 name="randomarray",
-                title="Array without keys",
+                title="Random Array without keys",
                 template=jmvcore::Table$new(
                     options=options,
                     title="Some title:  ___key___",
@@ -359,8 +364,8 @@ jmvScaffoldBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #' @param msg3 .
 #' @return A results object containing:
 #' \tabular{llllll}{
-#'   \code{results$storage} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$info} \tab \tab \tab \tab \tab a table \cr
+#'   \code{results$pure} \tab \tab \tab \tab \tab a table \cr
 #'   \code{results$main$means} \tab \tab \tab \tab \tab a table of R \cr
 #'   \code{results$main$correlations} \tab \tab \tab \tab \tab a table of R \cr
 #'   \code{results$mediansarray} \tab \tab \tab \tab \tab an array of keyed tables \cr
@@ -371,9 +376,9 @@ jmvScaffoldBase <- if (requireNamespace("jmvcore", quietly=TRUE)) R6::R6Class(
 #'
 #' Tables can be converted to data frames with \code{asDF} or \code{\link{as.data.frame}}. For example:
 #'
-#' \code{results$storage$asDF}
+#' \code{results$info$asDF}
 #'
-#' \code{as.data.frame(results$storage)}
+#' \code{as.data.frame(results$info)}
 #'
 #' @export
 jmvScaffold <- function(
