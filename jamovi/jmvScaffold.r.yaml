@@ -6,14 +6,6 @@ jrs: '1.0'
 
 items:
 
-  - name: storage
-    type: Table
-    visible: false
-    clearWith:
-        - dep
-        - regression
-    columns:
-        - name: nothing
 
   - name: info
     title: Some Info
@@ -28,6 +20,23 @@ items:
          
     clearWith:
         - dep
+
+
+  - name: pure
+    title: Clean on test
+    type: Table
+    columns:
+       - name: info
+         type: text
+         title: ""
+       - name: specs
+         type: text
+         title: ""
+         
+    clearWith:
+        - test
+
+
 
   - name: main
     type: Group
@@ -65,7 +74,7 @@ items:
 
 
   - name: mediansarray
-    title: Array with keys
+    title: Median Array with keys
     type: Array
     description: an array of keyed tables
     visible: (focused)
@@ -86,7 +95,7 @@ items:
 
 
   - name: regressionsarray
-    title: Array with keys and two children tables
+    title: Regression Array with keys and two children tables
     type: Array
     description: an array of keyed tables
     visible: false
@@ -146,7 +155,7 @@ items:
 
 
   - name: randomarray
-    title: Array without keys
+    title: Random Array without keys
     type: Array
     description: an array of N tables
     template:

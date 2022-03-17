@@ -14,8 +14,8 @@ jmvScaffoldClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             if (!is.something(self$options$somevars))
                 return()
             
-            private$.estimator<-Estimate$new(self$options)
-            private$.estimator$setStorage(self$results$storage)
+            dispatcher<-Dispatch$new(self$results)
+            private$.estimator<-Estimate$new(self$options,dispatcher)
             
             aSmartTab<-SmartTable$new(self$results$info,private$.estimator)
             private$.smartTabs<-append_list(private$.smartTabs,aSmartTab)
@@ -25,7 +25,6 @@ jmvScaffoldClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
 
             aSmartTab<-SmartTable$new(self$results$main$correlations,private$.estimator)
             aSmartTab$expandable<-TRUE
-            aSmartTab$expandFromBegining<-FALSE
             private$.smartTabs<-append_list(private$.smartTabs,aSmartTab)
             
             aSmartArray<-SmartArray$new(self$results$mediansarray,private$.estimator)
@@ -43,11 +42,15 @@ jmvScaffoldClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             for (i in seq_along(private$.smartTabs)) 
                 private$.smartTabs[[i]]$initTable()
             
+
+            table<-self$results$pure
+            table$addRow("1",list(info="ciao1"))
+            table$addRow("2",list(info="ciao2"))
+            
         },
         .run = function() {
             
             ginfo("Module phase: run")
-            
             if (!is.something(self$options$dep))
                 return()
             if (!is.something(self$options$somevars))
@@ -58,7 +61,13 @@ jmvScaffoldClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
             for (i in seq_along(private$.smartTabs)) 
                 private$.smartTabs[[i]]$runTable()
             
+            
 
+            ### a pure 
+            table<-self$results$pure
+            table$setRow(rowKey="1",list(specs="cccccc"))
+            table$setRow(rowKey="2",list(specs="ciao"))
+            
             if (self$options$residuals && self$results$residuals$isNotFilled()) {
                 ginfo("Saving residuals")
                 p<-self$data[[dep]]-mean(self$data[[dep]])
