@@ -1,0 +1,19 @@
+name: "jmvScaffold-website"
+output_dir: "../../docs"
+navbar:
+  title: "jmvScaffold"
+  left:
+  - text: "Help"
+    href:  help.html
+  - text: "Examples"
+    href:  examples.html
+  right: 
+  - text: "View on Github"
+    href: https://github.com/jmvScaffold
+output:
+  html_document:
+    css: style.css
+    theme: flatly
+
+    
+
