@@ -1,7 +1,7 @@
 
 install_module<-function(what) {
   library(what,character.only=TRUE)
-  s<-sessionInfo()
+  s<-utils::sessionInfo()
   pkg<-s$otherPkgs[[what]]
   pv<-pkg$Version
   zf<-yaml::read_yaml("jamovi/0000.yaml")

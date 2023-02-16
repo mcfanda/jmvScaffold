@@ -1,0 +1,27 @@
+---
+title: "Releases Notes"
+output: 
+  html_document:
+    includes:
+         in_header: ganalytics.txt
+    toc: true
+    toc_float:
+         collapsed: false
+editor_options: 
+  chunk_output_type: console
+---
+
+
+# Releases and changes
+
+
+```{r, echo=FALSE,results='asis', warning=FALSE,message=FALSE}
+library(mcdocs)
+mcdocs_init()
+
+```
+
+
+
+
+`r #¯issues()`
