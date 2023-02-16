@@ -21,7 +21,7 @@ mcdocs_init()
 
 ```
 
-Help page
+Help page for jmvScaffold package
 
 
 `r #¯issues()`
