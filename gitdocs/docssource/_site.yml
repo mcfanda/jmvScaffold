@@ -4,7 +4,7 @@ navbar:
   title: "jmvScaffold"
   left:
   - text: "Help"
-    href:  help.html
+    href:  index.html
   - text: "Examples"
     href:  examples.html
   right: 

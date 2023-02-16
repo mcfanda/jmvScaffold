@@ -1,5 +1,5 @@
 ---
-title: "Releases Notes"
+title: "Help"
 output: 
   html_document:
     includes:
@@ -21,7 +21,7 @@ mcdocs_init()
 
 ```
 
-
+Help page
 
 
 `r #¯issues()`
