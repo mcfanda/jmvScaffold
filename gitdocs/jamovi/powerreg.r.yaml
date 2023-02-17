@@ -1,0 +1,11 @@
+---
+name:  powerReg
+title: Regression analysis
+jrs:   '1.1'
+
+items:
+    - name:  text
+      title: Regression analysis
+      type:  Preformatted
+
+...

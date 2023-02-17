@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Results | jmvScaffold: R functions to develop jamovi modules</title>
+  <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Results | jmvScaffold: R functions to develop jamovi modules" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="It provise some explanations about using the package to develop jamovi modules" />
+  <meta name="github-repo" content="mcfanda/jmvScaffold" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Results | jmvScaffold: R functions to develop jamovi modules" />
+  
+  <meta name="twitter:description" content="It provise some explanations about using the package to develop jamovi modules" />
+  
+
+<meta name="author" content="Marcello Gallucci" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="interface.html"/>
+<link rel="next" href="final-words.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#create-a-module"><i class="fa fa-check"></i><b>1.3</b> Create a module</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#defining-the-analysis"><i class="fa fa-check"></i><b>1.4</b> Defining the analysis</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#jamovi-analysis"><i class="fa fa-check"></i><b>1.5</b> jamovi analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="interface.html"><a href="interface.html"><i class="fa fa-check"></i><b>2</b> Interface</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="interface.html"><a href="interface.html#options-.a.yaml"><i class="fa fa-check"></i><b>2.1</b> Options (.a.yaml)</a></li>
+<li class="chapter" data-level="2.2" data-path="interface.html"><a href="interface.html#layout-.u.yaml"><i class="fa fa-check"></i><b>2.2</b> Layout (.u.yaml)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="results.html"><a href="results.html#preparing-the-results"><i class="fa fa-check"></i><b>3.1</b> Preparing the results</a></li>
+<li class="chapter" data-level="3.2" data-path="results.html"><a href="results.html#defining-the-result-tables-.r.yaml"><i class="fa fa-check"></i><b>3.2</b> Defining the result tables (.r.yaml)</a></li>
+<li class="chapter" data-level="3.3" data-path="results.html"><a href="results.html#r-code-for-jamovi"><i class="fa fa-check"></i><b>3.3</b> R code for jamovi</a></li>
+<li class="chapter" data-level="3.4" data-path="results.html"><a href="results.html#initialize-the-tables"><i class="fa fa-check"></i><b>3.4</b> Initialize the tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>4</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">jmvScaffold: R functions to develop jamovi modules</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="results" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Results<a href="results.html#results" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="results.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mcdocs)</span>
+<span id="cb13-2"><a href="results.html#cb13-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>knit_engines<span class="sc">$</span><span class="fu">get</span>(<span class="st">&quot;yaml&quot;</span>)</span></code></pre></div>
+<div id="preparing-the-results" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Preparing the results<a href="results.html#preparing-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Results in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> are organized in tables (and some other widget type). Tables are
+&lt;a href=‘<a href="https://r6.r-lib.org/articles/Introduction.html" class="uri">https://r6.r-lib.org/articles/Introduction.html</a>’ target=’_blank<code>&gt;R6 classes&lt;/a&gt; with many different properties and options, which allow the programmer to fine-tune the look and feel of the results in almost every details. The full information about &lt;span class="jamovi"&gt;&lt;a href="http://www.jamovi.org" target="_blank"&gt;jamovi&lt;/a&gt;&lt;/span&gt; results widgets can be found at the  &lt;a href='https://dev.jamovi.org/api_results-definition.html' target='_blank</code>&gt;jamovi hub</a>.</p>
+<p><code>jmvScaffold</code> provides a R6 class, named <code>SmartTables</code>, which interface the programmer with the jamovi results API. With that, you can do a lot of things without touching the jamovi results classes. Before that, however, we need to declare what our tables should be. In our little project, we need at least one table for the regression results.</p>
+<p>It is a good idea, I suggest, to see how the R table would look like. In R, we would obtain the results of a linear regression with <code>lm()</code> command from <code>stats::</code> package, so we basically need to run this</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="results.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
+<span id="cb14-2"><a href="results.html#cb14-2" aria-hidden="true" tabindex="-1"></a>data     <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">50</span>),<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">50</span>))</span>
+<span id="cb14-3"><a href="results.html#cb14-3" aria-hidden="true" tabindex="-1"></a>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(y<span class="sc">~</span>x,<span class="at">data=</span>data)</span>
+<span id="cb14-4"><a href="results.html#cb14-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
+<span id="cb14-5"><a href="results.html#cb14-5" aria-hidden="true" tabindex="-1"></a>.coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
+<span id="cb14-6"><a href="results.html#cb14-6" aria-hidden="true" tabindex="-1"></a>.coeffs</span></code></pre></div>
+<pre><code>##                Estimate Std. Error    t value  Pr(&gt;|t|)
+## (Intercept) -0.04691999  0.1434221 -0.3271462 0.7449797
+## x            0.06420510  0.1551427  0.4138455 0.6808306</code></pre>
+<p>Because we do not want spaces in the table heads, we can rename the table names to obtain a solid table, as a dataset.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="results.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
+<span id="cb16-2"><a href="results.html#cb16-2" aria-hidden="true" tabindex="-1"></a>.coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(.coeffs)</span>
+<span id="cb16-3"><a href="results.html#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(.coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb16-4"><a href="results.html#cb16-4" aria-hidden="true" tabindex="-1"></a>.coeffs</span></code></pre></div>
+<pre><code>##                    coef        se          t         p
+## (Intercept) -0.04691999 0.1434221 -0.3271462 0.7449797
+## x            0.06420510 0.1551427  0.4138455 0.6808306</code></pre>
+<p>now that we know how our table will look like we should get into the R programming.</p>
+<p>As a side note, I would suggest to always use R commands prefixed with their package, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
+</div>
+<div id="defining-the-result-tables-.r.yaml" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Defining the result tables (.r.yaml)<a href="results.html#defining-the-result-tables-.r.yaml" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>All results tables (and other widgets) are defined in the <code>.r.yaml</code>. Here we need a table that will represent the R table we have seen before. So we need the following code.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb18-1"><a href="results.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb18-2"><a href="results.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
+<span id="cb18-3"><a href="results.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
+<span id="cb18-4"><a href="results.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jrs</span><span class="kw">:</span><span class="at">   </span><span class="st">&#39;1.1&#39;</span></span>
+<span id="cb18-5"><a href="results.html#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="results.html#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> coefficients</span></span>
+<span id="cb18-7"><a href="results.html#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Parameter Estimates (Coefficients)</span></span>
+<span id="cb18-8"><a href="results.html#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb18-9"><a href="results.html#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb18-10"><a href="results.html#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> source</span></span>
+<span id="cb18-11"><a href="results.html#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Names&quot;</span></span>
+<span id="cb18-12"><a href="results.html#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb18-13"><a href="results.html#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> coef</span></span>
+<span id="cb18-14"><a href="results.html#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Estimate&quot;</span></span>
+<span id="cb18-15"><a href="results.html#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb18-16"><a href="results.html#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> se</span></span>
+<span id="cb18-17"><a href="results.html#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> SE</span></span>
+<span id="cb18-18"><a href="results.html#cb18-18" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb18-19"><a href="results.html#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> t</span></span>
+<span id="cb18-20"><a href="results.html#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;t&quot;</span></span>
+<span id="cb18-21"><a href="results.html#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb18-22"><a href="results.html#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span>
+<span id="cb18-23"><a href="results.html#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> p</span></span>
+<span id="cb18-24"><a href="results.html#cb18-24" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;p&quot;</span></span>
+<span id="cb18-25"><a href="results.html#cb18-25" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb18-26"><a href="results.html#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto,pvalue</span></span>
+<span id="cb18-27"><a href="results.html#cb18-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-28"><a href="results.html#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
+<p>So, a widget of type <code>Table</code>, with columns defined by a <code>name</code>, a <code>title</code> and a <code>format</code>. Details of all widgets definitions can be found in the &lt;a href=‘<a href="https://dev.jamovi.org/api_results-definition.html" class="uri">https://dev.jamovi.org/api_results-definition.html</a>’ target=’_blank`&gt;jamovi hub</a></p>
+<p>Compiling the module after defining the table in the <code>.r.R</code> file produces the table in the output (still empty)</p>
+<p><img src="pics/c3_results1.png" width="392" /></p>
+</div>
+<div id="r-code-for-jamovi" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> R code for jamovi<a href="results.html#r-code-for-jamovi" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When we first compiled our module, jamovi compiler produced to two R files and put them in the <code>./R</code> folder.</p>
+<p><img src="pics/c3_r_files.png" width="340" /></p>
+<p>The <code>.h.R</code> file can be ignored, the jamovi compiler produces it every time we install the module. The important file is the <code>.b.R</code> file, where all the action takes place. The <code>.b.R</code> file contains a R6 class named <code>[analysisname]Class</code>, in our case <code>myRegressionClass</code>. The class contains (at least) two private functions, the <code>.init()</code> function and the <code>.run()</code> function. Those are the functions that we need to customize.</p>
+<p>Before we dive into it, let’s spend two words about how jamovi process works.
+When the user opens the analysis, or whenever the GUI is update, jamovi runs your R module in the <code>.b.R</code> file. It calls the <code>.init()</code> function first and then the <code>.run()</code> function. Actually, the <code>.init()</code> function can be absent, but my suggestion is to define it for all analyses, because in the <code>.init()</code> function the tables are formated and prepared to be filled. They are filled in the <code>.run()</code> function.</p>
+<p>A working <code>.b.R</code> file, that does not do anything, is the following:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="results.html#cb19-1" aria-hidden="true" tabindex="-1"></a>myRegressionClass <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&#39;jmvcore&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>)) R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
+<span id="cb19-2"><a href="results.html#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;myRegressionClass&quot;</span>,</span>
+<span id="cb19-3"><a href="results.html#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">inherit =</span> myRegressionBase,</span>
+<span id="cb19-4"><a href="results.html#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">private =</span> <span class="fu">list</span>(</span>
+<span id="cb19-5"><a href="results.html#cb19-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">.init =</span> <span class="cf">function</span>() {</span>
+<span id="cb19-6"><a href="results.html#cb19-6" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-7"><a href="results.html#cb19-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># `self$data` contains the data</span></span>
+<span id="cb19-8"><a href="results.html#cb19-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># `self$options` contains the options</span></span>
+<span id="cb19-9"><a href="results.html#cb19-9" aria-hidden="true" tabindex="-1"></a>            <span class="co"># `self$results` contains the results object (to populate)</span></span>
+<span id="cb19-10"><a href="results.html#cb19-10" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-11"><a href="results.html#cb19-11" aria-hidden="true" tabindex="-1"></a>        },</span>
+<span id="cb19-12"><a href="results.html#cb19-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">.run =</span> <span class="cf">function</span>() {</span>
+<span id="cb19-13"><a href="results.html#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="results.html#cb19-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># `self$data` contains the data</span></span>
+<span id="cb19-15"><a href="results.html#cb19-15" aria-hidden="true" tabindex="-1"></a>            <span class="co"># `self$options` contains the options</span></span>
+<span id="cb19-16"><a href="results.html#cb19-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># `self$results` contains the results object (to populate)</span></span>
+<span id="cb19-17"><a href="results.html#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="results.html#cb19-18" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb19-19"><a href="results.html#cb19-19" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb19-20"><a href="results.html#cb19-20" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<p>Here is where jmvScaffold comes handy. First, we want to be sure to have installed the jmvScaffold classes. To do that, in R we simply run this code (recall from <a href="index.html#getstarted">1.2</a> that we installed the <code>jmvScaffold</code> R package)</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="results.html#cb20-1" aria-hidden="true" tabindex="-1"></a>jmvScaffold<span class="sc">::</span><span class="fu">copy_files</span>()</span></code></pre></div>
+<p>which copies in the present module <code>./R</code> folder the necessary files.</p>
+<p><img src="pics/c3_r_files2.png" width="338" /></p>
+</div>
+<div id="initialize-the-tables" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Initialize the tables<a href="results.html#initialize-the-tables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ciao</p>
+
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="results.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mcdocs)</span>
+<span id="cb21-2"><a href="results.html#cb21-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>knit_engines<span class="sc">$</span><span class="fu">get</span>(<span class="st">&quot;yaml&quot;</span>)</span></code></pre></div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="interface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-output.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+# (APPENDIX) Appendix {-} 
+
+```{r results='hide'}
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+```
+
+
+# Appendix A {#appendixa}
+
+`r jamovi` classifies data variables in three classes: 
+
+`r knitr::include_graphics("pics/a_vartypes.png")`
+
+* __Nominal__ : categorical factor, it is passed to the R engine as a factor. Its behavior in jamovi interface depends on the `Data Type` property. We have  
+
+    * `Data Type`: `integer` it can be inserted in input field that permit numerical variable and nominal variables
+    * `Data Type`: `text` it can be inserted in input field that permit nominal variables
+    * `Data Type`: `decimal` it does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
+    
+* __Continuous__ : numerical variable, it is passed to the R engine as a number. It can be input in the variable field that permit numerical variable. The data type property behaves like this:
+
+    * `Data Type`: `integer` it rounds the values to the closer integer
+    * `Data Type`: `decimal` allows for floating points
+    * `Data Type`: `text` it does not exist, setting `Data Type` to `text` transforms the variable into a nominal variable
+    
+* __Ordinal__ : numerical variable, it is passed to the R engine as a ordered factor. It can be input in the variable field that permit numerical and ordinal variables variable. The data type property behaves like this:
+
+    * `Data Type`: `integer` it can be inserted in input field that permit numerical variable and nominal variables
+    * `Data Type`: `text` it can be inserted in input field that permit nominal variables
+    * `Data Type`: `decimal` it does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
+
+* __ID__ : something cool which I do not know about.

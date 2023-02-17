@@ -4,26 +4,26 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Minimal Book Example</title>
-  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <title>jmvScaffold: R functions to develop jamovi modules</title>
+  <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Minimal Book Example" />
+  <meta property="og:title" content="jmvScaffold: R functions to develop jamovi modules" />
   <meta property="og:type" content="book" />
   
-  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
-  <meta name="github-repo" content="rstudio/bookdown-demo" />
+  <meta property="og:description" content="It provise some explanations about using the package to develop jamovi modules" />
+  <meta name="github-repo" content="mcfanda/jmvScaffold" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Minimal Book Example" />
+  <meta name="twitter:title" content="jmvScaffold: R functions to develop jamovi modules" />
   
-  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="twitter:description" content="It provise some explanations about using the package to develop jamovi modules" />
   
 
-<meta name="author" content="Yihui Xie" />
+<meta name="author" content="Marcello Gallucci" />
 
 
-<meta name="date" content="2023-02-16" />
+<meta name="date" content="2023-01-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 
-<link rel="next" href="intro.html"/>
+<link rel="next" href="interface.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -119,30 +119,9 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
-<style type="text/css">
-/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
 </head>
 
 <body>
@@ -158,20 +137,30 @@ div.csl-indent {
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Prerequisites</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="methods.html"><a href="methods.html#math-example"><i class="fa fa-check"></i><b>4.1</b> math example</a></li>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#create-a-module"><i class="fa fa-check"></i><b>1.3</b> Create a module</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#defining-the-analysis"><i class="fa fa-check"></i><b>1.4</b> Defining the analysis</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#jamovi-analysis"><i class="fa fa-check"></i><b>1.5</b> jamovi analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a>
+<li class="chapter" data-level="2" data-path="interface.html"><a href="interface.html"><i class="fa fa-check"></i><b>2</b> Interface</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="2.1" data-path="interface.html"><a href="interface.html#options-.a.yaml"><i class="fa fa-check"></i><b>2.1</b> Options (.a.yaml)</a></li>
+<li class="chapter" data-level="2.2" data-path="interface.html"><a href="interface.html#layout-.u.yaml"><i class="fa fa-check"></i><b>2.2</b> Layout (.u.yaml)</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="results.html"><a href="results.html#preparing-the-results"><i class="fa fa-check"></i><b>3.1</b> Preparing the results</a></li>
+<li class="chapter" data-level="3.2" data-path="results.html"><a href="results.html#defining-the-result-tables-.r.yaml"><i class="fa fa-check"></i><b>3.2</b> Defining the result tables (.r.yaml)</a></li>
+<li class="chapter" data-level="3.3" data-path="results.html"><a href="results.html#r-code-for-jamovi"><i class="fa fa-check"></i><b>3.3</b> R code for jamovi</a></li>
+<li class="chapter" data-level="3.4" data-path="results.html"><a href="results.html#initialize-the-tables"><i class="fa fa-check"></i><b>3.4</b> Initialize the tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>4</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -184,7 +173,7 @@ div.csl-indent {
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Minimal Book Example</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">jmvScaffold: R functions to develop jamovi modules</a>
           </h1>
         </div>
 
@@ -193,20 +182,105 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">A Minimal Book Example</h1>
-<p class="author"><em>Yihui Xie</em></p>
-<p class="date"><em>2023-02-16</em></p>
+<h1 class="title">jmvScaffold: R functions to develop jamovi modules</h1>
+<p class="author"><em>Marcello Gallucci</em></p>
+<p class="date"><em>2023</em></p>
 </div>
-<div id="prerequisites" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Prerequisites<a href="index.html#prerequisites" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>This is a <em>sample</em> book written in <strong>Markdown</strong>. You can use anything that Pandoc’s Markdown supports, e.g., a math equation <span class="math inline">\(a^2 + b^2 = c^2\)</span>.</p>
-<p>The <strong>bookdown</strong> package can be installed from CRAN or Github:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="index.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bookdown&quot;</span>)</span>
-<span id="cb1-2"><a href="index.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># or the development version</span></span>
-<span id="cb1-3"><a href="index.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;rstudio/bookdown&quot;)</span></span></code></pre></div>
-<p>Remember each Rmd file contains one and only one chapter, and a chapter is defined by the first-level heading <code>#</code>.</p>
-<p>To compile this example to PDF, you need XeLaTeX. You are recommended to install TinyTeX (which includes XeLaTeX): <a href="https://yihui.name/tinytex/" class="uri">https://yihui.name/tinytex/</a>.</p>
+<div id="index" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction<a href="index.html#index" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="preface" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><span class="draft"> Draft version, mistakes may be around </span></p>
+<p>Here you can find references and description of the functions and techniques in the R package <a href="https://github.com/mcfanda/jmvScaffold">jmvScaffold</a>, which provides several functions and R6 classes for the development of
+<span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> modules. Much of the <a href="https://www.jamovi.org">jamovi</a> module development information
+can be found in the <a href="https://dev.jamovi.org/">jamovi developer’s hub</a>.</p>
+<p>This documentation assumes that the reader is familiar with the basic of jamovi module development, but one may get away without that, and be able to develop a <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> module only reading these pages.</p>
+<p>We should note that developing a <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> module does not require any of this material. This material, furthermore, will
+not make your coding easier than just using <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> functions as described in <a href="https://dev.jamovi.org/">jamovi developer’s hub</a>. However, when your module starts to get a bit complicated, offering several analyses and sub-modules, or when you want your module to do more sophisticate actions, or more refined style, this material may come handy.</p>
+<p>A final word to end the preface: Here we assume that we want to build a jamovi module, store it to (github)[<a href="https://github.com" class="uri">https://github.com</a>], and then publish it in the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> library. If you do not have the second or the third aim (you may want to build a module only for yourself), you can skip the parts related with them.</p>
+</div>
+<div id="getstarted" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Getting Started<a href="index.html#getstarted" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First, you need to get ready for developing a module, so you want to consult <a href="https://dev.jamovi.org/tuts0101-getting-started.html">jamovi developer’s hub getting started section</a>. In a nutshell, you need:</p>
+<ul>
+<li><p>To install <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span></p></li>
+<li><p>To install <code>jmvtools</code> R package, provided by the jamovi core developing group.</p></li>
+</ul>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="index.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;jmvtools&#39;</span>, <span class="at">repos=</span><span class="fu">c</span>(<span class="st">&#39;https://repo.jamovi.org&#39;</span>, <span class="st">&#39;https://cran.r-project.org&#39;</span>))</span></code></pre></div>
+<ul>
+<li>To install <code>jmvScaffold</code> R package (check out if you need some dependency)</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="index.html#cb3-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;mcfanda/jmvScaffold&quot;</span>)</span></code></pre></div>
+<p>We will see that your module will not need to install <code>jmvScaffold</code> to work, you just need it to program.</p>
+</div>
+<div id="create-a-module" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Create a module<a href="index.html#create-a-module" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A module in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> is a R package that works also in jamovi. As such, it needs to have all the charateristics
+of a R package, plus the additional information and coding required to interface the R package to <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>. Thus,
+to obtain a working module we need to make steps both for the R package and for the jamovi interface.</p>
+<p>We now create a new module, named <code>COOLj</code>. At the end of this material, the <code>COOLj</code> module will look like</p>
+<p>!TODO SAY what it does!</p>
+<p><a href="https://github.com/mcfanda/testme">this</a>. First, we create its folder (so be sure you are in a parent folder) and the folders structure with <code>jmvtool</code></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="index.html#cb4-1" aria-hidden="true" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">create</span>(<span class="st">&#39;COOLj&#39;</span>)</span></code></pre></div>
+<p>This should produce, in the <code>COOLj</code> folder, this structure.</p>
+<p><img src="pics/c1_create_folders.png" width="345" /></p>
+<p>If you use (RStudio)[<a href="https://posit.co/" class="uri">https://posit.co/</a>], its a good idea to create a project in the <code>COOLj</code> folder, because working with
+RStudio projects make our lives much easier.</p>
+<p>We now need to fill the <code>DESCRIPTION</code> file as for any R package. Here an example</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="index.html#cb5-1" aria-hidden="true" tabindex="-1"></a>Package<span class="sc">:</span> COOLj</span>
+<span id="cb5-2"><a href="index.html#cb5-2" aria-hidden="true" tabindex="-1"></a>Type<span class="sc">:</span> Package</span>
+<span id="cb5-3"><a href="index.html#cb5-3" aria-hidden="true" tabindex="-1"></a>Title<span class="sc">:</span> Simple example of jmvScaffold</span>
+<span id="cb5-4"><a href="index.html#cb5-4" aria-hidden="true" tabindex="-1"></a>Version<span class="sc">:</span> <span class="dv">0</span>.<span class="fl">0.1</span></span>
+<span id="cb5-5"><a href="index.html#cb5-5" aria-hidden="true" tabindex="-1"></a>Author<span class="sc">:</span> mcfanda</span>
+<span id="cb5-6"><a href="index.html#cb5-6" aria-hidden="true" tabindex="-1"></a>Maintainer<span class="sc">:</span> Mcfanda <span class="sc">&lt;</span>yourself<span class="sc">@</span>somewhere.net<span class="sc">&gt;</span></span>
+<span id="cb5-7"><a href="index.html#cb5-7" aria-hidden="true" tabindex="-1"></a>Description<span class="sc">:</span> This is an example of</span>
+<span id="cb5-8"><a href="index.html#cb5-8" aria-hidden="true" tabindex="-1"></a>    jmvScaffold</span>
+<span id="cb5-9"><a href="index.html#cb5-9" aria-hidden="true" tabindex="-1"></a>License<span class="sc">:</span> GPL</span>
+<span id="cb5-10"><a href="index.html#cb5-10" aria-hidden="true" tabindex="-1"></a>Encoding<span class="sc">:</span> UTF<span class="dv">-8</span></span>
+<span id="cb5-11"><a href="index.html#cb5-11" aria-hidden="true" tabindex="-1"></a>LazyData<span class="sc">:</span> true</span>
+<span id="cb5-12"><a href="index.html#cb5-12" aria-hidden="true" tabindex="-1"></a>Imports<span class="sc">:</span> <span class="fu">jmvcore</span> (<span class="sc">&gt;=</span> <span class="dv">0</span>.<span class="fl">8.5</span>), R6</span></code></pre></div>
+<p>This describe your package in R. Now we need to define a description for <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, filling the file
+<code>./jamovi/0000.yaml</code></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb6-1"><a href="index.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Simple example of jmvScaffold</span></span>
+<span id="cb6-2"><a href="index.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> COOLj</span></span>
+<span id="cb6-3"><a href="index.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.0.1</span></span>
+<span id="cb6-4"><a href="index.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jms</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0&#39;</span></span>
+<span id="cb6-5"><a href="index.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">authors</span><span class="kw">:</span></span>
+<span id="cb6-6"><a href="index.html#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> Mcfanda</span></span>
+<span id="cb6-7"><a href="index.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">maintainer</span><span class="kw">:</span><span class="at"> mcfanda &lt;yourself@somewhere.net&gt;</span></span>
+<span id="cb6-8"><a href="index.html#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;2023-1-1&#39;</span></span>
+<span id="cb6-9"><a href="index.html#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> R</span></span>
+<span id="cb6-10"><a href="index.html#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">: </span><span class="ch">&gt;-</span></span>
+<span id="cb6-11"><a href="index.html#cb6-11" aria-hidden="true" tabindex="-1"></a>      This is an example of jmvScaffold</span>
+<span id="cb6-12"><a href="index.html#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="fu">analyses</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
+<span id="cb6-13"><a href="index.html#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="fu">usesNative</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb6-14"><a href="index.html#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="fu">minApp</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0.8</span></span></code></pre></div>
+<p>We will get back to this file later on.</p>
+</div>
+<div id="defining-the-analysis" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Defining the analysis<a href="index.html#defining-the-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A module can do several things, but at least it should execute one analysis. By <code>analysis</code> I mean a set of stats
+that would produce some results, such as t-test, a correlation, a machine learning classification algorithm. In this example
+we want to develop a module that deal with linear models. We start simply, and aim at producing a linear regression.
+We make it more complex later on. By default, <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> comes with a nice command <code>Regression-&gt;Linear Regression</code>, or with the <a href="https://gamlj.github.io/">GAMLj module</a> for regressions and many other linear models. Here we set this aim for demonstrative purposes.</p>
+</div>
+<div id="jamovi-analysis" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> jamovi analysis<a href="index.html#jamovi-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We want to call this <code>analysis</code> <code>myRegression</code>. so, we create a file named <code>myRegression</code> in the <code>./jamovi/</code> folder.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="index.html#cb7-1" aria-hidden="true" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">addAnalysis</span>(<span class="at">name=</span><span class="st">&#39;myRegression&#39;</span>, <span class="at">title=</span><span class="st">&#39;Regression analysis&#39;</span>)</span></code></pre></div>
+<p>The option <code>name</code> decides the name of the R function that will be produced, and the option <code>title</code> decides how
+the function will be labelled in the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> menu (it can be changed later on if needed).</p>
+<p>Running the command produces several files. In the <code>./jamovi/</code> folder we have</p>
+<p><img src="pics/c1_jamovi_files.png" width="331" /></p>
+<p>In them, the jamovi input and output features are defined.</p>
+<ul>
+<li><p>In __*.a.yaml__ the input options are defined (see API here <a href="https://dev.jamovi.org/api_analysis-definition.html#options">jamovi hub</a>)</p></li>
+<li><p>In __*.u.yaml__ the input layout is of the user interface is defined (see API here <a href="https://dev.jamovi.org/api_ui-definition.html">jamovi hub</a>)</p></li>
+<li><p>In __*.r.yaml__ the output results tables are defined (see API here <a href="https://dev.jamovi.org/api_results-definition.html">jamovi hub</a>)</p></li>
+</ul>
+<p>We should fill them all.</p>
 
+</div>
 </div>
             </section>
 
@@ -214,7 +288,7 @@ div.csl-indent {
         </div>
       </div>
 
-<a href="intro.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="interface.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -245,7 +319,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/index.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -268,20 +342,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

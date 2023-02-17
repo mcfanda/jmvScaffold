@@ -1,0 +1,240 @@
+# Results
+
+```{r results='hide'}
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+```
+
+## Preparing the results
+
+Results in `r jamovi` are organized in tables (and some other widget type). Tables are 
+`r ext_url("R6 classes","https://r6.r-lib.org/articles/Introduction.html")`
+with many different properties and options, which allow the programmer to fine-tune the look and feel of the results in almost every details. The full information about `r jamovi` results widgets can be found at the 
+`r ext_url("jamovi hub","https://dev.jamovi.org/api_results-definition.html")`.
+
+`jmvScaffold` provides a R6 class, named `SmartTables`, which interface the programmer with the jamovi results API. With that, you can do a lot of things without touching the jamovi results classes. Before that, however, we need to declare what our tables should be. In our little project, we need at least one table for the regression results. 
+
+It is a good idea, I suggest, to see how the R table would look like. In R, we would obtain the results of a linear regression with `lm()` command from `stats::` package, so we basically need to run this
+
+```{r }
+# data will arrive from jamovi, here we fake one dataset
+ data     <- data.frame(y=rnorm(50),x=rnorm(50))
+ model    <- stats::lm(y~x,data=data)
+.summary <- summary(model)
+ coeffs   <- .summary$coefficients
+ coeffs
+
+```
+
+Because we do not want spaces in the table heads, we can rename the table names to obtain a solid table, as a dataset.
+
+
+```{r }
+# data will arrive from jamovi, here we fake one dataset
+ coeffs <- as.data.frame(coeffs)
+ names(coeffs)<-c("coef","se","t","p")
+ coeffs
+
+```
+
+now that we know how our table will look like we should get into the R programming.
+
+As a side note, I would suggest to always use R commands prefixed with their package, such as `stats::lm` rather than `lm`. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.
+
+## Defining the result tables (.r.yaml)
+
+All results tables (and other widgets) are defined in the `.r.yaml`. Here we need a table that will represent the R table we have seen before. So we need the following code.
+
+```{yaml}
+---
+name:  myRegression
+title: Regression analysis
+jrs:   '1.1'
+
+           - name: coefficients
+             title:  Parameter Estimates (Coefficients)
+             type: Table
+             columns:
+                    - name: source
+                      title: "Names"
+                      type: text
+                    - name: coef
+                      title: "Estimate"
+                      type: number
+                    - name: se
+                      title: SE
+                      type: number
+                    - name: t
+                      title: "t"
+                      type: number
+                      format: zto
+                    - name: p
+                      title: "p"
+                      type: number
+                      format: zto,pvalue
+
+---
+```
+
+So, a widget of type `Table`, with columns defined by a `name`, a `title` and a `format`. Details of all widgets definitions can be found in the `r ext_url("jamovi hub","https://dev.jamovi.org/api_results-definition.html")`
+
+Compiling the module after defining the table in the `.r.R` file produces the table in the output (still empty)
+
+`r knitr::include_graphics("pics/c3_results1.png")`
+
+## R code for jamovi
+
+When we first compiled our module, jamovi compiler produced to two R files and put them in the `./R` folder.
+
+`r knitr::include_graphics("pics/c3_r_files.png")`
+
+The `.h.R` file can be ignored, the jamovi compiler produces it every time we install the module. The important file is the `.b.R` file, where all the action takes place. The `.b.R` file contains a R6 class named `[analysisname]Class`, in our case `myRegressionClass`. The class contains (at least) two private functions, the `.init()` function and the `.run()` function. Those are the functions that we need to customize.
+
+Before we dive into it, let's spend two words about how jamovi process works.
+When the user opens the analysis, or whenever the GUI is update, jamovi runs your R module in the `.b.R` file. It calls the `.init()` function first and then the `.run()` function. Actually, the `.init()` function can be absent, but my suggestion is to define it for all analyses, because in the `.init()` function the tables are formated and prepared to be filled. They are filled in the `.run()` function.
+
+A working `.b.R` file, that does not do anything, is the following:
+
+```{r eval=FALSE}
+
+myRegressionClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
+    "myRegressionClass",
+    inherit = myRegressionBase,
+    private = list(
+        .init = function() {
+            
+            # `self$data` contains the data
+            # `self$options` contains the options
+            # `self$results` contains the results object (to populate)
+            
+        },
+        .run = function() {
+
+            # `self$data` contains the data
+            # `self$options` contains the options
+            # `self$results` contains the results object (to populate)
+
+        }
+    )
+)
+
+```
+
+Here is where `jmvScaffold` comes handy. First, we want to be sure to have installed the jmvScaffold classes. To do that, in R we simply run this code (recall from \@ref(getstarted) that we installed the `jmvScaffold` R package)
+
+```{r eval=FALSE}
+
+jmvScaffold::copy_files()
+
+```
+
+which copies in the present module `./R` folder the necessary files. 
+
+`r knitr::include_graphics("pics/c3_r_files2.png")`
+
+## Initialize a table
+
+Table objects are passed to the R package with the property `self$results`. This property is a `named list`, so we can refer to our table as `self$table$coefficients`. In the `.init()` function, we should create a `SmartTable` object initialized with the table it is going to handle. We simply write this code. 
+
+```{r eval=FALSE}
+
+myRegressionClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
+    "myRegressionClass",
+    inherit = myRegressionBase,
+    private = list(
+        .regtab=NULL,
+        .init = function() {
+            
+           private$.regtab<-SmartTable$new(self$results$coefficients)
+           private$.regtab$initTable()
+
+        },
+        .run = function() {
+
+            # `self$data` contains the data
+            # `self$options` contains the options
+            # `self$results` contains the results object (to populate)
+
+        }
+    )
+)
+
+```
+
+which define a `SmartTable`, it intialize it and save it in a private variable `.regtab` for later use. By now, the intialization does not do anything, but creating the SmartTable object. 
+
+## Filling a table
+
+We can now fill it in the `.run()` function. First, recall the options we defined in the `.a.yalm file`. The will all be available in R as a `named list` named `self$options`. So we can get them to define our regression models.
+
+We should get the option `dep` to know which is our dependent variable, then we call the option `covs`. In the `.run()` function, we can write. 
+
+```{r eval=FALSE}
+
+        .run = function() {
+          
+          dep   <- self$options$dep
+          covs  <- self$options$covs
+          
+        }
+
+```
+
+`dep` is a string containing the variable name, whereas `covs` is a list, so we need to manipulated it to make it a formula to pass it to `lm()`.  This can be done easely with `jmvcore` R package, which provides very useful functions (see `r `ext_url("jmvcore Package","https://cran.r-project.org/web/packages/jmvcore/index.html")` for details.
+
+```{r eval=FALSE}
+
+        .run = function() {
+          
+          dep   <- self$options$dep
+          covs  <- self$options$covs
+          
+         if (!is.something(dep)==0 & is.something(covs)==0)
+                return()
+         
+          formula <- jmvcore::composeFormula(dep,covs)
+          
+        }
+
+```
+
+Notice the function `is.something()`. It is provided by `jmvScaffold` and it is useful to evaluate options, because options can be of very different classes, and we just want to know if they are set or not. `is.something` does that.
+
+A this point, we should compute the regression and build a R table to pass to our `SmartTable` object defined before.
+
+
+```{r eval=FALSE}
+
+myRegressionClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
+    "myRegressionClass",
+    inherit = myRegressionBase,
+    private = list(
+        .regtab=NULL,
+        .init = function() {
+            
+           private$.regtab<-SmartTable$new(self$results$coefficients)
+           private$.regtab$initTable()
+        },
+        .run = function() {
+          
+            dep      <- self$options$dep
+            covs     <- self$options$covs
+            
+            if (!is.something(dep)==0 & is.something(covs)==0)
+                return()
+            
+            formula  <- jmvcore::composeFormula(dep,covs)
+            model    <- stats::lm(formula,data=data)
+           .summary  <- summary(model)
+            coeffs   <- .summary$coefficients
+            coeffs   <- as.data.frame(coeffs)
+            names(coeffs)  <- c("coef","se","t","p")
+            print(coeffs)
+            private$.regtab$runSource(coeffs)
+
+        }
+    )
+)
+
+```
+

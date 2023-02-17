@@ -1,0 +1,5 @@
+```{r results='hide'}
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+```
+

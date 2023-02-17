@@ -1,3 +1,7 @@
+j_DEBUG <- FALSE
+j_INFO  <- FALSE
+t_INFO  <- FALSE
+
 #### Helper functions used by Scaffold (not exported)
 
 tinfo <- function(...) {
