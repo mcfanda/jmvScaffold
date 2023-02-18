@@ -6,11 +6,11 @@ I use it for developing my modules [GAMLj](https://github.com/gamlj/gamlj), [jAM
 
 # Reference page 
 
-There is a [manual page](https://mcfanda.github.io/jmvScaffold/docs/index.html) with the classes and functions API
+There is a [manual page](https://mcfanda.github.io/jmvScaffold/index.html) with the classes and functions API
 
 # How to page
 
-There is a [how to page](https://mcfanda.github.io/jmvScaffold/docs/booklet.html) that exemplifies how to use the classes and functions. 
+There is a [how to page](https://mcfanda.github.io/jmvScaffold/booklet.html) that exemplifies how to use the classes and functions. 
 
 
 Those pages are  more like a personal memo on how to use the functions, but it may help others too.
