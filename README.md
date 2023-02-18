@@ -6,7 +6,7 @@ I use it for developing my modules [GAMLj](https://github.com/gamlj/gamlj), [jAM
 
 # Reference page 
 
-There is a [manual page](https://mcfanda.github.io/jmvScaffold/index.html) with the classes and functions API
+There is a [manual page](https://mcfanda.github.io/jmvScaffold/reference) with the classes and functions API
 
 # How to page
 
