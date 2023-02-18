@@ -18,4 +18,3 @@ copy_files<-function() {
     
 }
 
-copy_files()

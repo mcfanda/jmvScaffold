@@ -7,32 +7,85 @@
 ###  arrayname_key_tablename
 ###  arrayname_!_tablename
 
-
+#' SmartTable R6 Class
+#' @description A programmer interface to init and polutate \code{\link[jmvcore]{jmvcore::Table}}
+#' 
+#' @export
 
 SmartTable <- R6::R6Class("SmartTable",
                           cloneable=FALSE,
                           class=TRUE,
                           public=list(
+                            #' @field name the name of the \code{\link[jmvcore]{jmvcore::Table}}
                             name=NULL,
+                            #' @field table \code{\link[jmvcore]{jmvcore::Table}}
                             table=NULL,
+                            #' @field topics the different topics
                             topics=NULL,
+                            #' @field nickname the unique identifier of the table used by other classes
+                            #' to dispatch messages to the table or to interact with it
                             nickname=NULL,
+                            #' @field expandOnInit if TRUE, the jamovi table is expanded columnwise
+                            #' if the data.frame passed in the init are more than the ones defined
+                            #' in .r.yaml file. If FALSE (default) additional columns passed on init
+                            #' are ignored
                             expandOnInit=FALSE,
+                            #' @field expandOnRun if TRUE, the jamovi table is expanded columnwise
+                            #' if the data.frame passed in to the run function are more than the ones defined
+                            #' in .r.yaml file.  If FALSE (default) additional columns passed on run
+                            #' are ignored.
                             expandOnRun=FALSE,
+                            #' @field expandSuperTitle a character string. If not NULL, the expanded columns are
+                            #'  supertitled with the string
                             expandSuperTitle=NULL,
+                            #' @field expandFrom from which column should the table be expanded
                             expandFrom=1,
+                            #' @field activated SmartTable are populated (run) if their source
+                            #' is not NULL and they are visible. jamovi tables with `visible: false`
+                            #' in the .r.yaml file can be make visible and activated with this option TRUE 
                             activated=NULL,
+                            #' @field key This should be explained in a vignette
                             key=NULL,
+                            #' @field keys_sep This should be explained in a vignette
                             keys_sep=NULL,
+                            #' @field keys_raise This should be explained in a vignette
                             keys_raise=TRUE,
+                            #' @field spaceBy a vector of columns names, \code{\link[jmvcore]{jmvcore::Table}} columns can add extra space
+                            #' between rows to enhance readability.  Passing one or more column names put an extra padding
+                            #' when a new value is fond in the column.
                             spaceBy=NULL,
+                            #' @field spaceAt a vector of rows indices, \code{\link[jmvcore]{jmvcore::Table}} columns can add extra space
+                            #' between rows to enhance readability.  An extra space will be added after the rows with the provided
+                            #' indices.
                             spaceAt=NULL,
+                            #' @field spaceMethod I do not remeber what this does, but it was cool
                             spaceMethod="cb",
+                            #' @field indent a vector of row indices. Indent (shift a bit on the right) the value of 
+                            #' the first column of each row index provided
                             indent=NULL,
+                            #' @field combineBelow a vector of column names or column indices. \code{\link[jmvcore]{jmvcore::Table}} columns can hide repeated consecutive 
+                            #' values in a column by setting `combineBelow:` column property in r.yaml file. This option allows
+                            #' to set this properties programmatically on execution. The special key `new!` means that all new
+                            #' columns created at init or run time should be combineBelow.
                             combineBelow=0,
+                            #' @field ci_info this requires a vignette
                             ci_info=list(),
+                            #' @field columnTitles a named list of the form list(name=label). Change the title of
+                            #' a jamovi table column named `name` to `label`. 
                             columnTitles=list(),
-
+                            
+                            #' @description Initialize the SmartTable object
+                            #' @param  table A jamovi table of class \code{\link[jmvcore]{jmvcore::Table}}
+                            #' @param  estimator optional [R6][R6::R6Class]. If set, SmartTable inquires
+                            #' the R6 class for init and run functions to initialize and populate the jamovi Table.
+                            #' the R6 class should provide functions using the convention `init_[nickname]` where
+                            #' the `nickname` is the unique identifier given to the jamovi table. The unique identifiers can be
+                            #' * __tablename__:            the name of the \code{\link[jmvcore]{jmvcore::Table}} in jamovi .r.yaml file
+                            #' * __groupname_tablename__:  the name of the \code{\link[jmvcore]{jmvcore::Group}} parenting the table and the table name
+                            #' * __arrayname_tablename__:  the name of the \code{\link[jmvcore]{jmvcore::Array}}  parenting the table and the table name
+                            #' 
+                            #' @md
+                            
                             initialize=function(table,estimator=NULL) {
                               
                               OK<-FALSE
@@ -78,6 +131,9 @@ SmartTable <- R6::R6Class("SmartTable",
                               
 
                             },
+                            #' @description Initialize the table. Check if data are passed, check if
+                            #' the table needs to be expanded columnwise, if rows should be added and if
+                            #' messages are broadcast to go into errors or warnings. Show the table.
                             initTable=function() {
                               
                               private$.phase<-"init"
@@ -112,7 +168,9 @@ SmartTable <- R6::R6Class("SmartTable",
                               
                               tinfo("TABLES: table",self$nickname,"inited")
                             },
-                            
+                            #' @description Populates the table. Check if data are passed, check if
+                            #' the table need to be expanded columnwise, if rows should be added and if
+                            #' messages are broadcast to go into errors or warnings. Show the table.
                             runTable=function() {
                             
                               tinfo("TABLES: table",self$nickname,"checked for run")
@@ -144,6 +202,14 @@ SmartTable <- R6::R6Class("SmartTable",
                               tinfo("TABLES: table",self$nickname,"run")
                               
                             },
+                            #' @description insert a superTitle over the confidence interval columns
+                            #' @param aroot the root of the name of the confidence bounds columns. If one names the
+                            #' confidence bounds columns as `some.ci.lower` and `some.ci.upper`, and sets 
+                            #' `aroot` as `some`, the two columns will be superTitled with `width % Confidence Intervals`.
+                            #' @param width the width of the CI to appear in the superTitle
+                            #' @param label add labels to the superTitle
+                            #' @param format default is `"{}% Confidence Intervals"`, can be changed to pass different
+                            #' superTitle formats
                             
                             ci=function(aroot,width=95,label=NULL,format="{}% Confidence Intervals"){
                               
@@ -153,7 +219,8 @@ SmartTable <- R6::R6Class("SmartTable",
 
                             },
                             
-
+                            #' @description 
+                            #' this should probabily fo to private
                             setTopics=function() {
 
                               .names<-stringr::str_split(self$nickname,"_")[[1]]
@@ -170,6 +237,8 @@ SmartTable <- R6::R6Class("SmartTable",
                               }
                               
                             },
+                            #' @description this should probabily fo to private
+                            #' @param the Dispatcher class object to dispatch messages
                             retrieveNotes=function(dispatcher=NULL) {
 
                                   notes<-self$table$state$notes
@@ -192,7 +261,7 @@ SmartTable <- R6::R6Class("SmartTable",
                                     }
                               
                             },
-                            
+                            #' @description set a note (footnote) to be displayed under  the table
                             setNotes=function(dispatcher=NULL) {
                               
                                 if (is.something(dispatcher)) {
@@ -207,6 +276,7 @@ SmartTable <- R6::R6Class("SmartTable",
 
                                 }
                             },
+                            #' @description Change the title of the jamovi table programmatically
                             setColumnTitle=function(name,title) {
                               
                                 self$columnTitles[[name]]<-title
@@ -215,6 +285,15 @@ SmartTable <- R6::R6Class("SmartTable",
                             
                           ), ## end of public
                           active=list(
+                            #' @field  initSource
+                            #' If `estimator` is not passed to initialize()
+                            #' set the source of the init() data used to initialize the table.
+                            #' if can be:
+                            #' 
+                            #' * a data.frame
+                            #' * a list of named lists
+                            #' * a function returning a data.frame or a list of named lists
+                            #' @md
                             initSource= function(value) {
                               
                               if (missing(value)) 
@@ -222,6 +301,16 @@ SmartTable <- R6::R6Class("SmartTable",
                               else 
                                 private$.init_source<-value 
                             },
+                            #' @field  runSource
+                            #' If `estimator` is not passed to initialize()
+                            #' set the source of the run() data used to initialize the table.
+                            #' if can be:
+                            #' 
+                            #' * a data.frame
+                            #' * a list of named lists
+                            #' * a function returning a data.frame or a list of named lists
+                            #' @md
+                            
                             runSource= function(value) {
                               
                               if (missing(value)) 
@@ -230,7 +319,11 @@ SmartTable <- R6::R6Class("SmartTable",
                                 private$.run_source<-value 
                               
                             },
-                            
+                            #' @field  activateOnData
+                            #' If TRUE, check if the table got some data. For tables with 
+                            #' `visible: false` is the r.yaml file, makes them visible
+                            #' if data are passed to it                             #' 
+
                             activateOnData=function(value) {
                               
                               if (missing(value)) {
@@ -239,6 +332,8 @@ SmartTable <- R6::R6Class("SmartTable",
                               private$.activateOnData<-value
                               
                             },
+                            #' @field  title
+                            #' a string. Set the title of the jamovi table
                             title=function(aname) {
                               
                               if (missing(aname)) {
@@ -261,6 +356,10 @@ SmartTable <- R6::R6Class("SmartTable",
                               
                               
                             },
+                            #' @field  superTitle
+                            #' a named list list(name=value). Set the superTitle
+                            #' of `name` column to `value`
+                            #' 
                             superTitle=function(alist) {
                               
                               if (missing(alist))
@@ -278,6 +377,8 @@ SmartTable <- R6::R6Class("SmartTable",
                                   }
                               }
                             },
+                            #' @field  setColumnVisible
+                            #' a list of column names to set visible
                             setColumnVisible=function(varnames) {
                               
                               if (missing(varnames))
@@ -286,6 +387,12 @@ SmartTable <- R6::R6Class("SmartTable",
                               for (name in varnames)
                                 self$table$getColumn(name)$setVisible(TRUE)
                             },
+                            #' @field  hideOn
+                            #' a named list list(name=value)
+                            #' for columns in names(list(name=value))
+                            #' hide the column if all its cells are equal to 
+                            #' value. Value it is typically `Inf`, `NA` or `NaN`
+                            #' 
                             hideOn=function(alist) {
                               
                               if (missing(alist))
@@ -623,6 +730,14 @@ SmartTable <- R6::R6Class("SmartTable",
                           
 ) ## end of class
 
+#' SmartArray R6 Class
+#' @description A programmer interface to init and populutate \code{\link[jmvcore]{jmvcore::Array}}.
+#' 
+#' It works exactly like \link[jmvScaffold]{SmartTable} class, but it passes
+#' all settings to the children tables
+#' 
+#' @export
+
 
 SmartArray <- R6::R6Class("SmartArray",
                           inherit = SmartTable,
@@ -640,8 +755,6 @@ SmartArray <- R6::R6Class("SmartArray",
                                 if (hasName(tables,"itemNames"))
                                   self$children<-tables$itemNames 
                                 
-
-                              
                             },
                             initTable=function() {
                               
@@ -731,7 +844,7 @@ SmartArray <- R6::R6Class("SmartArray",
                               }
                               
                             },
-                              
+                            #' @description set a note (footnote) to be displayed under the table
                             setNotes=function(dispatcher=NULL) {
                                for (child in self$childrenObjs)
                                     child$setNotes(dispatcher)

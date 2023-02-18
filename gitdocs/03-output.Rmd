@@ -55,8 +55,8 @@ jrs:   '1.1'
              title:  Parameter Estimates (Coefficients)
              type: Table
              columns:
-                    - name: source
-                      title: "Names"
+                    - name: var
+                      title: "Variable"
                       type: text
                     - name: coef
                       title: "Estimate"
@@ -80,7 +80,7 @@ So, a widget of type `Table`, with columns defined by a `name`, a `title` and a 
 
 Compiling the module after defining the table in the `.r.R` file produces the table in the output (still empty)
 
-`r knitr::include_graphics("pics/c3_results1.png")`
+`r knitr::include_graphics("pics/c3_output1.png")`
 
 ## R code for jamovi
 
@@ -189,7 +189,7 @@ We should get the option `dep` to know which is our dependent variable, then we 
           dep   <- self$options$dep
           covs  <- self$options$covs
           
-         if (!is.something(dep)==0 & is.something(covs)==0)
+          if (!is.something(dep) | !is.something(covs))
                 return()
          
           formula <- jmvcore::composeFormula(dep,covs)
@@ -217,24 +217,129 @@ myRegressionClass <- if (requireNamespace('jmvcore', quietly=TRUE)) R6::R6Class(
         },
         .run = function() {
           
+            data     <- self$data
             dep      <- self$options$dep
             covs     <- self$options$covs
             
-            if (!is.something(dep)==0 & is.something(covs)==0)
+            if (!is.something(dep) | !is.something(covs))
                 return()
             
             formula  <- jmvcore::composeFormula(dep,covs)
             model    <- stats::lm(formula,data=data)
-           .summary  <- summary(model)
+            .summary  <- summary(model)
             coeffs   <- .summary$coefficients
-            coeffs   <- as.data.frame(coeffs)
+            coeffs   <-  as.data.frame(coeffs)
             names(coeffs)  <- c("coef","se","t","p")
-            print(coeffs)
-            private$.regtab$runSource(coeffs)
+            
+            private$.regtab$runSource <- coeffs
+            private$.regtab$runTable()
+            
 
         }
     )
 )
 
 ```
+
+What matters here is that we have passed out result table `coeffs` to the `SmartTable` with the command `private$.regtab$runSource <- coeffs` and tell the table to update with the command `private$.regtab$runTable()`. We can now install the module in jamovi and check if it works. 
+
+`r knitr::include_graphics("pics/c3_input1.png")`
+
+`r knitr::include_graphics("pics/c3_output2.png")`
+
+It does work! However, the `Variable` column is empty. We want to fill it with the names of the covariates. So we simply add the code necessary to add a column to our R data.frame.
+
+```{r eval=FALSE}
+
+        .run = function() {
+          
+            data     <- self$data
+            dep      <- self$options$dep
+            covs     <- self$options$covs
+            
+            if (!is.something(dep) | !is.something(covs))
+                return()
+            
+            formula    <- jmvcore::composeFormula(dep,covs)
+            model      <- stats::lm(formula,data=data)
+            .summary   <- summary(model)
+            coeffs     <- .summary$coefficients
+            coeffs     <-  as.data.frame(coeffs)
+            names(coeffs)  <- c("coef","se","t","p")
+            coeffs$var <-  rownames(coeffs) 
+            
+            private$.regtab$runSource <- coeffs
+            private$.regtab$runTable()
+            
+        }
+
+```
+
+
+We have now a decent table with the results. 
+
+`r knitr::include_graphics("pics/c3_output3.png")`
+
+It goes without saying that one can add any number of covariates, and the table will update automatically.
+
+`r knitr::include_graphics("pics/c3_output4.png")`
+
+## Passing data to SmartTables
+
+The `SmartTable` object accept tables in several different formats, so one can use different strategies depending on their need. 
+
+* passing a data.frame to `$runSource`
+* passing a function that returns a data.frame to `$runSource`
+* passing a list of named list, where each list represents a row and the names are the name of the columns
+* passing a function that returns a list of named list
+* initializing the SmartTable with an R6 object (see later on for a detailed explanation)
+
+We can try these strategies (but the last) with some simple code, passing some number to our coefficients table 
+
+```{r eval=FALSE}
+
+        .run = function() {
+
+            ## passing a function
+            fun<-function()  {
+                var=c("a,","b","c")
+                coef=1:3
+                se=4:6
+                t=7:9
+                p=10:12
+                return(data.frame(var,estimate,se,t,p))
+            }
+            
+            private$.regtab$runSource <- fun
+            private$.regtab$runTable()
+            
+        }
+
+
+```
+```{r eval=FALSE}
+
+        .run = function() {
+          
+            ## passing a list of named list
+            alist<-list(
+                list(var="a",coef=1,se=4,t=7,p=10),
+                list(var="b",coef=2,se=5,t=8,p=11),
+                list(var="b",coef=3,se=6,t=9,p=12)
+            )
+
+
+            private$.regtab$runSource <- alist
+            private$.regtab$runTable()
+            
+        }
+
+
+```
+
+The possibility to pass results to a SmartTable in different ways gives the programmer flexibility to populate tables from different sources. Nonetheless, when the module gets very complex, even this flexibility cannot be enough. When things get complex, the last method may result the best: associating the tables to a R6 class that it is automatically called by the tables themselves. Sound complex but it is not.
+
+## Automatic filling of tables.
+
+When a SmartTable is initialized, it can be associated with an R6 class that provides the functions to run the table. When the table is run with the `$runTable()` function, it calls the R6 and inquires if the class has a function called `run_[tablename]`. If it is there, it execute the function and the table is filled with the return of the function. 
 

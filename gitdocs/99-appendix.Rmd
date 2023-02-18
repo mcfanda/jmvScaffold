@@ -3,6 +3,7 @@
 ```{r results='hide'}
 library(mcdocs)
 knitr::knit_engines$get("yaml")
+
 ```
 
 
@@ -31,3 +32,4 @@ knitr::knit_engines$get("yaml")
     * `Data Type`: `decimal` it does not exist. Setting `Data Type` to `decimal` makes the variable a `continuous type`
 
 * __ID__ : something cool which I do not know about.
+

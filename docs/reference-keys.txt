@@ -1,4 +1,4 @@
-index
+booklet
 preface
 getstarted
 create-a-module
@@ -11,6 +11,9 @@ results
 preparing-the-results
 defining-the-result-tables-.r.yaml
 r-code-for-jamovi
-initialize-the-tables
+initialize-a-table
+filling-a-table
+passing-data-to-smarttables
+automatic-filling-of-tables.
 final-words
 appendixa
