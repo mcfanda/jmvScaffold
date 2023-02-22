@@ -1,0 +1,191 @@
+# Failing and Debuging
+
+```{r results='hide', echo=FALSE}
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+```
+
+## Introduction
+
+Before we dive into more sophisticated topics, such as formatting Tables and dispatching notes, we should briefely consider that sooner or later our code will fail and we need to debug it. Debugging a module in `r jamovi` may be difficult, because you do see the errors in the jamovi output, but it is often difficult to understand when the error comes from, especially if your code is complex and you have many different tables. `r ext_url("jmvScaffold","reference/index.html")` offers some methods and functions to help us out.
+
+First, when we copied the files from the `jmvScaffold` package into the module `.R/` function, one file copied was named `jScafFunctions.R`. The file head contains three constants
+
+```{r eval=FALSE}
+j_DEBUG <- TRUE
+j_INFO  <- TRUE
+t_INFO  <- TRUE
+
+```
+
+we want to set them all to `TRUE`. After re-installing and opening jamovi from command line,  
+
+In linux
+
+```{bash, eval=FALSE  }
+prompt:$ flatpack run org.jamovi.jamovi 
+```
+
+In windows
+
+AAAAA
+
+we can now see in console all the calls to the tables and the process to fill them. For example:
+
+`r knitr::include_graphics("pics/c6_debug1.png")`
+
+shows a listing made by the module we are building. The table `coefficients` is group `main` is checked for running. It is then run.
+The same goes for `anova` in `main` and the other tables. The array `means` is initialized (it says `inited`) and run, etc. 
+
+## Automatic Errors
+
+This is useful when something fail so we can see where the problem is. Let's make our code fail, by making a mistake in the  `run_main_coefficients` function in the `Runner.R` (see `coeff` rather than `coeffs`).
+
+```{r eval=FALSE}
+
+    run_main_coefficients=function() {
+      
+      .summary         <-   summary(self$model)
+      coeffs           <-  .summary$coefficients
+      coeffs           <-   as.data.frame(coeffs)
+      names(coeffs)    <-   c("coef","se","t","p")
+      coeff$var       <-   rownames(coeffs) ## misspelled name 
+      
+      return(coeffs)
+    },
+
+```
+
+Running the module now produces an error in the corresponding table. 
+
+`r knitr::include_graphics("pics/c6_output1.png")`
+
+Notice that the module did not fail completely, only the table affected by the error was not filled. We now know that there's something wrong in the function running the table. We can also check the console to gather some more information.
+
+`r knitr::include_graphics("pics/c6_debug2.png")`
+
+From the listing we can see that the error was in `run_main_coefficients` and the object 'coeff' not found. When errors are more complicated, the console listing gives more information than the jamovi table, but one of the two should be enough to get you going in finding the bug.
+
+If the error is outside the tables, such as in the `.b.R`, you get an error at the beginning of the output.
+
+`r knitr::include_graphics("pics/c6_output2.png")`
+
+## Automatic Warnings
+
+`SmartTables` automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the `run_main_coefficients` function.
+
+
+```{r eval=FALSE}
+
+    run_main_coefficients=function() {
+      
+      .summary         <-   summary(self$model)
+      coeffs           <-  .summary$coefficients
+      coeffs           <-   as.data.frame(coeffs)
+      names(coeffs)    <-   c("coef","se","t","p")
+      coeffs$var       <-   rownames(coeffs) ## misspelled name 
+      warning("something fishy is going on")
+      return(coeffs)
+    },
+
+```
+
+`r knitr::include_graphics("pics/c6_output3.png")`
+
+So, you do not have to worry about capturing warnings, they are automatically displayed. See below for other strategies to pass messages and warnings to the jamovi tables.
+
+If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them.
+
+## Code-generated Warnings and Messages
+
+Very often, you want to pass messages to the tables from outside their filling function. You may, for instance, add a note saying that there are missing values in the data, and the user should be careful in interpreting the results. Other times, you may have a recap table at the beginning of the output, and you want to send a footnote to it to signal that something happens worth mentioning. As an example, assume that a warning is generated in our `runner$Estimate()`, which does not communicate directly to any table.
+
+To broadcast message from anywere in your module to any table, we need another R6 class offered by `jmvScaffold`: a `Dispatch`.
+
+This class has a very simple interface: accepts warnings or error and send them to SmartTable that are associated with it. We declare it in the `Runner.R` but it can be create in different places, or even more than one `Dispatch` object can cohesist in the same module.
+
+In our `Runner` we create a `Dispatch`, initialized with the module results object.
+
+```{r eval=FALSE}
+
+Runner <- R6::R6Class(
+  "Runner",
+  class=TRUE, 
+  cloneable=FALSE,
+  inherit = Scaffold,
+  public=list(
+    analysis=NULL,
+    model=NULL,
+    dispatcher=NULL,
+    
+    initialize=function(obj) {
+      self$analysis<-obj
+      ## here we create the dispatcher
+      self$dispatcher<-Dispatch$new(obj$results)
+    },
+    
+ ...
+ ## other code
+```
+
+and in the same file, we alter the `Estimate()` function to produce a message
+
+```{r eval=FALSE}
+
+### other code here
+
+    estimate=function() {
+      
+      formula  <- jmvcore::composeFormula(self$analysis$options$dep,self$analysis$options$covs)
+      self$model    <- stats::lm(formula,data=self$analysis$data)
+      
+      self$dispatcher$warnings<-list(topic="main_coefficients",
+                                     message="Something great happened in the estimate function")
+
+    },
+### other code here
+    
+```
+
+The `$dispatcher$warnings` accepts a list with two fields: `topic` is the nickname of the table that should receive the message,
+`message` is the message. Running this code, we obtain:
+
+`r knitr::include_graphics("pics/c6_output4.png")`
+
+You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the `Estimate()` function, from different parts of the code. One can add any number of notes.
+
+Finally, you can also send and error from anywhere in the code to a table, using the property `error`.
+
+```{r eval=FALSE}
+
+    estimate=function() {
+      
+      formula  <- jmvcore::composeFormula(self$analysis$options$dep,self$analysis$options$covs)
+      self$model    <- stats::lm(formula,data=self$analysis$data)
+      
+      self$dispatcher$errors<-list(topic="main_coefficients",
+                                   message="Something bad happened in the estimate function")
+    },
+
+```
+
+`r knitr::include_graphics("pics/c6_output5.png")`
+
+If you want to send an error message that would stop completely the execution of the analysis, you can add
+the field `final=TRUE` to the list passed to `dispatcher$errors`.
+
+
+`r knitr::include_graphics("pics/c6_output6.png")`
+
+`SmartTable`s show the warnings and errors they have received when their `$runTable()` function is executed. This means that, by default, if a message is sent to the table after that it is executed, the message will not show. This is a rare case, because usually the filling functions that may fail and influence other tables are executed in the early stage of the process. Nonetheless, if you really need to send message between tables that cannot be timely ordered, just send the messages anyway and issue the `SmartTable` command `$retrieveNotes()` at the end of the `.run()` function. In our example, we could do that for all tables.
+
+```{r eval=FALSE}
+  # for all tables
+  lapply(private$.tables,function(x) x$retrieveNotes())
+  ## for one table only, the third we defined
+  private$.tables[[3]]$retrieveNotes()
+
+```
+
+Now the order of broadcast does not matter anymore.
+

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Failing and Debuging | jmvScaffold: R functions to develop jamovi modules</title>
+  <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Failing and Debuging | jmvScaffold: R functions to develop jamovi modules" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="It provise some explanations about using the package to develop jamovi modules" />
+  <meta name="github-repo" content="mcfanda/jmvScaffold" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Failing and Debuging | jmvScaffold: R functions to develop jamovi modules" />
+  
+  <meta name="twitter:description" content="It provise some explanations about using the package to develop jamovi modules" />
+  
+
+<meta name="author" content="Marcello Gallucci" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="dynamic-tables-appearance.html"/>
+<link rel="next" href="formatting-tables.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">jmvScaffold howto</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="booklet.html"><a href="booklet.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="booklet.html"><a href="booklet.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
+<li class="chapter" data-level="1.2" data-path="booklet.html"><a href="booklet.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
+<li class="chapter" data-level="1.3" data-path="booklet.html"><a href="booklet.html#createmodule"><i class="fa fa-check"></i><b>1.3</b> Create a module</a></li>
+<li class="chapter" data-level="1.4" data-path="booklet.html"><a href="booklet.html#defining-the-analysis"><i class="fa fa-check"></i><b>1.4</b> Defining the analysis</a></li>
+<li class="chapter" data-level="1.5" data-path="booklet.html"><a href="booklet.html#jamovi-analysis"><i class="fa fa-check"></i><b>1.5</b> jamovi analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="interface.html"><a href="interface.html"><i class="fa fa-check"></i><b>2</b> Interface</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="interface.html"><a href="interface.html#options-.a.yaml"><i class="fa fa-check"></i><b>2.1</b> Options (.a.yaml)</a></li>
+<li class="chapter" data-level="2.2" data-path="interface.html"><a href="interface.html#layout-.u.yaml"><i class="fa fa-check"></i><b>2.2</b> Layout (.u.yaml)</a></li>
+<li class="chapter" data-level="2.3" data-path="interface.html"><a href="interface.html#compile"><i class="fa fa-check"></i><b>2.3</b> Compiling the jamovi module</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> Results</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#preparing-the-results"><i class="fa fa-check"></i><b>3.1</b> Preparing the results</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#defining-the-result-tables-.r.yaml"><i class="fa fa-check"></i><b>3.2</b> Defining the result tables (.r.yaml)</a></li>
+<li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#r-code-for-jamovi"><i class="fa fa-check"></i><b>3.3</b> R code for jamovi</a></li>
+<li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#initialize-a-table"><i class="fa fa-check"></i><b>3.4</b> Initialize a table</a></li>
+<li class="chapter" data-level="3.5" data-path="chapter3.html"><a href="chapter3.html#populating-a-table"><i class="fa fa-check"></i><b>3.5</b> Populating a table</a></li>
+<li class="chapter" data-level="3.6" data-path="chapter3.html"><a href="chapter3.html#passing-data-to-smarttables"><i class="fa fa-check"></i><b>3.6</b> Passing data to SmartTables</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter3.html"><a href="chapter3.html#automatic-filling-of-tables."><i class="fa fa-check"></i><b>3.7</b> Automatic filling of tables.</a></li>
+<li class="chapter" data-level="3.8" data-path="chapter3.html"><a href="chapter3.html#r6-classes-to-run-complex-modules"><i class="fa fa-check"></i><b>3.8</b> R6 classes to run complex modules</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html"><i class="fa fa-check"></i><b>4</b> Advanced Results Objects</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#groups-jmvcoregroup"><i class="fa fa-check"></i><b>4.2</b> Groups (jmvcore::Group)</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#arrays-of-tables-jmvcorearray"><i class="fa fa-check"></i><b>4.3</b> Arrays of tables (jmvcore::Array)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#array-known-number-of-tables"><i class="fa fa-check"></i><b>4.3.1</b> Array: known number of tables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#array-unknown-number-of-tables"><i class="fa fa-check"></i><b>4.3.2</b> Array: Unknown number of tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#other-results-objects"><i class="fa fa-check"></i><b>4.4</b> Other Results objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html"><i class="fa fa-check"></i><b>5</b> Dynamic Tables Appearance</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-table-on-option-change"><i class="fa fa-check"></i><b>5.2</b> Showing table on option change</a></li>
+<li class="chapter" data-level="5.3" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
+<li class="chapter" data-level="5.4" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html"><i class="fa fa-check"></i><b>6</b> Failing and Debuging</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#automatic-errors"><i class="fa fa-check"></i><b>6.2</b> Automatic Errors</a></li>
+<li class="chapter" data-level="6.3" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#automatic-warnings"><i class="fa fa-check"></i><b>6.3</b> Automatic Warnings</a></li>
+<li class="chapter" data-level="6.4" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#code-generated-warnings-and-messages"><i class="fa fa-check"></i><b>6.4</b> Code-generated Warnings and Messages</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="formatting-tables.html"><a href="formatting-tables.html"><i class="fa fa-check"></i><b>7</b> Formatting Tables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="formatting-tables.html"><a href="formatting-tables.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="formatting-tables.html"><a href="formatting-tables.html#initializing-the-table"><i class="fa fa-check"></i><b>7.2</b> Initializing the table</a></li>
+<li class="chapter" data-level="7.3" data-path="formatting-tables.html"><a href="formatting-tables.html#combining-below"><i class="fa fa-check"></i><b>7.3</b> Combining below</a></li>
+<li class="chapter" data-level="7.4" data-path="formatting-tables.html"><a href="formatting-tables.html#add-spaces-between-rows"><i class="fa fa-check"></i><b>7.4</b> Add spaces between rows</a></li>
+<li class="chapter" data-level="7.5" data-path="formatting-tables.html"><a href="formatting-tables.html#indent-some-row-value"><i class="fa fa-check"></i><b>7.5</b> Indent some row value</a></li>
+<li class="chapter" data-level="7.6" data-path="formatting-tables.html"><a href="formatting-tables.html#showing-columns-when-needed"><i class="fa fa-check"></i><b>7.6</b> Showing columns when needed</a></li>
+<li class="chapter" data-level="7.7" data-path="formatting-tables.html"><a href="formatting-tables.html#changing-column-names-programmatically"><i class="fa fa-check"></i><b>7.7</b> Changing column names programmatically</a></li>
+<li class="chapter" data-level="7.8" data-path="formatting-tables.html"><a href="formatting-tables.html#super-titles"><i class="fa fa-check"></i><b>7.8</b> Super Titles</a></li>
+<li class="chapter" data-level="7.9" data-path="formatting-tables.html"><a href="formatting-tables.html#something-else"><i class="fa fa-check"></i><b>7.9</b> Something else</a></li>
+<li class="chapter" data-level="7.10" data-path="formatting-tables.html"><a href="formatting-tables.html#adding-columns-programmatically"><i class="fa fa-check"></i><b>7.10</b> Adding columns programmatically</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="smart-tables-update.html"><a href="smart-tables-update.html"><i class="fa fa-check"></i><b>8</b> Smart Tables Update</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-issue"><i class="fa fa-check"></i><b>8.1</b> The issue</a></li>
+<li class="chapter" data-level="8.2" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-solution"><i class="fa fa-check"></i><b>8.2</b> The Solution</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="formatting-tables-1.html"><a href="formatting-tables-1.html"><i class="fa fa-check"></i><b>9</b> Formatting Tables</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">jmvScaffold: R functions to develop jamovi modules</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="failing-and-debuging" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Failing and Debuging<a href="failing-and-debuging.html#failing-and-debuging" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-2" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Introduction<a href="failing-and-debuging.html#introduction-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Before we dive into more sophisticated topics, such as formatting Tables and dispatching notes, we should briefely consider that sooner or later our code will fail and we need to debug it. Debugging a module in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> may be difficult, because you do see the errors in the jamovi output, but it is often difficult to understand when the error comes from, especially if your code is complex and you have many different tables. <a href='reference/index.html' target='_blank'>jmvScaffold</a> offers some methods and functions to help us out.</p>
+<p>First, when we copied the files from the <code>jmvScaffold</code> package into the module <code>.R/</code> function, one file copied was named <code>jScafFunctions.R</code>. The file head contains three constants</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="failing-and-debuging.html#cb52-1" aria-hidden="true" tabindex="-1"></a>j_DEBUG <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb52-2"><a href="failing-and-debuging.html#cb52-2" aria-hidden="true" tabindex="-1"></a>j_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb52-3"><a href="failing-and-debuging.html#cb52-3" aria-hidden="true" tabindex="-1"></a>t_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<p>we want to set them all to <code>TRUE</code>. After re-installing and opening jamovi from command line,</p>
+<p>In linux</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="failing-and-debuging.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prompt:$</span> flatpack run org.jamovi.jamovi </span></code></pre></div>
+<p>In windows</p>
+<p>AAAAA</p>
+<p>we can now see in console all the calls to the tables and the process to fill them. For example:</p>
+<p><img src="pics/c6_debug1.png" width="477" /></p>
+<p>shows a listing made by the module we are building. The table <code>coefficients</code> is group <code>main</code> is checked for running. It is then run.
+The same goes for <code>anova</code> in <code>main</code> and the other tables. The array <code>means</code> is initialized (it says <code>inited</code>) and run, etc.</p>
+</div>
+<div id="automatic-errors" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Automatic Errors<a href="failing-and-debuging.html#automatic-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This is useful when something fail so we can see where the problem is. Let’s make our code fail, by making a mistake in the <code>run_main_coefficients</code> function in the <code>Runner.R</code> (see <code>coeff</code> rather than <code>coeffs</code>).</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="failing-and-debuging.html#cb54-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb54-2"><a href="failing-and-debuging.html#cb54-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb54-3"><a href="failing-and-debuging.html#cb54-3" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
+<span id="cb54-4"><a href="failing-and-debuging.html#cb54-4" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
+<span id="cb54-5"><a href="failing-and-debuging.html#cb54-5" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
+<span id="cb54-6"><a href="failing-and-debuging.html#cb54-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb54-7"><a href="failing-and-debuging.html#cb54-7" aria-hidden="true" tabindex="-1"></a>      coeff<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs) <span class="do">## misspelled name </span></span>
+<span id="cb54-8"><a href="failing-and-debuging.html#cb54-8" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb54-9"><a href="failing-and-debuging.html#cb54-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
+<span id="cb54-10"><a href="failing-and-debuging.html#cb54-10" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
+<p>Running the module now produces an error in the corresponding table.</p>
+<p><img src="pics/c6_output1.png" width="451" /></p>
+<p>Notice that the module did not fail completely, only the table affected by the error was not filled. We now know that there’s something wrong in the function running the table. We can also check the console to gather some more information.</p>
+<p><img src="pics/c6_debug2.png" width="647" /></p>
+<p>From the listing we can see that the error was in <code>run_main_coefficients</code> and the object ‘coeff’ not found. When errors are more complicated, the console listing gives more information than the jamovi table, but one of the two should be enough to get you going in finding the bug.</p>
+<p>If the error is outside the tables, such as in the <code>.b.R</code>, you get an error at the beginning of the output.</p>
+<p><img src="pics/c6_output2.png" width="605" /></p>
+</div>
+<div id="automatic-warnings" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Automatic Warnings<a href="failing-and-debuging.html#automatic-warnings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>SmartTables</code> automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the <code>run_main_coefficients</code> function.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="failing-and-debuging.html#cb55-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb55-2"><a href="failing-and-debuging.html#cb55-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb55-3"><a href="failing-and-debuging.html#cb55-3" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
+<span id="cb55-4"><a href="failing-and-debuging.html#cb55-4" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
+<span id="cb55-5"><a href="failing-and-debuging.html#cb55-5" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
+<span id="cb55-6"><a href="failing-and-debuging.html#cb55-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb55-7"><a href="failing-and-debuging.html#cb55-7" aria-hidden="true" tabindex="-1"></a>      coeffs<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs) <span class="do">## misspelled name </span></span>
+<span id="cb55-8"><a href="failing-and-debuging.html#cb55-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;something fishy is going on&quot;</span>)</span>
+<span id="cb55-9"><a href="failing-and-debuging.html#cb55-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
+<span id="cb55-10"><a href="failing-and-debuging.html#cb55-10" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
+<p><img src="pics/c6_output3.png" width="437" /></p>
+<p>So, you do not have to worry about capturing warnings, they are automatically displayed. See below for other strategies to pass messages and warnings to the jamovi tables.</p>
+<p>If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them.</p>
+</div>
+<div id="code-generated-warnings-and-messages" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Code-generated Warnings and Messages<a href="failing-and-debuging.html#code-generated-warnings-and-messages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Very often, you want to pass messages to the tables from outside their filling function. You may, for instance, add a note saying that there are missing values in the data, and the user should be careful in interpreting the results. Other times, you may have a recap table at the beginning of the output, and you want to send a footnote to it to signal that something happens worth mentioning. As an example, assume that a warning is generated in our <code>runner$Estimate()</code>, which does not communicate directly to any table.</p>
+<p>To broadcast message from anywere in your module to any table, we need another R6 class offered by <code>jmvScaffold</code>: a <code>Dispatch</code>.</p>
+<p>This class has a very simple interface: accepts warnings or error and send them to SmartTable that are associated with it. We declare it in the <code>Runner.R</code> but it can be create in different places, or even more than one <code>Dispatch</code> object can cohesist in the same module.</p>
+<p>In our <code>Runner</code> we create a <code>Dispatch</code>, initialized with the module results object.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="failing-and-debuging.html#cb56-1" aria-hidden="true" tabindex="-1"></a>Runner <span class="ot">&lt;-</span> R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
+<span id="cb56-2"><a href="failing-and-debuging.html#cb56-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Runner&quot;</span>,</span>
+<span id="cb56-3"><a href="failing-and-debuging.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">class=</span><span class="cn">TRUE</span>, </span>
+<span id="cb56-4"><a href="failing-and-debuging.html#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">cloneable=</span><span class="cn">FALSE</span>,</span>
+<span id="cb56-5"><a href="failing-and-debuging.html#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">inherit =</span> Scaffold,</span>
+<span id="cb56-6"><a href="failing-and-debuging.html#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">public=</span><span class="fu">list</span>(</span>
+<span id="cb56-7"><a href="failing-and-debuging.html#cb56-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">analysis=</span><span class="cn">NULL</span>,</span>
+<span id="cb56-8"><a href="failing-and-debuging.html#cb56-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">model=</span><span class="cn">NULL</span>,</span>
+<span id="cb56-9"><a href="failing-and-debuging.html#cb56-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">dispatcher=</span><span class="cn">NULL</span>,</span>
+<span id="cb56-10"><a href="failing-and-debuging.html#cb56-10" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-11"><a href="failing-and-debuging.html#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">initialize=</span><span class="cf">function</span>(obj) {</span>
+<span id="cb56-12"><a href="failing-and-debuging.html#cb56-12" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>analysis<span class="ot">&lt;-</span>obj</span>
+<span id="cb56-13"><a href="failing-and-debuging.html#cb56-13" aria-hidden="true" tabindex="-1"></a>      <span class="do">## here we create the dispatcher</span></span>
+<span id="cb56-14"><a href="failing-and-debuging.html#cb56-14" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>dispatcher<span class="ot">&lt;-</span>Dispatch<span class="sc">$</span><span class="fu">new</span>(obj<span class="sc">$</span>results)</span>
+<span id="cb56-15"><a href="failing-and-debuging.html#cb56-15" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb56-16"><a href="failing-and-debuging.html#cb56-16" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-17"><a href="failing-and-debuging.html#cb56-17" aria-hidden="true" tabindex="-1"></a> ...</span>
+<span id="cb56-18"><a href="failing-and-debuging.html#cb56-18" aria-hidden="true" tabindex="-1"></a> <span class="do">## other code</span></span></code></pre></div>
+<p>and in the same file, we alter the <code>Estimate()</code> function to produce a message</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="failing-and-debuging.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="do">### other code here</span></span>
+<span id="cb57-2"><a href="failing-and-debuging.html#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="failing-and-debuging.html#cb57-3" aria-hidden="true" tabindex="-1"></a>    estimate<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb57-4"><a href="failing-and-debuging.html#cb57-4" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb57-5"><a href="failing-and-debuging.html#cb57-5" aria-hidden="true" tabindex="-1"></a>      formula  <span class="ot">&lt;-</span> jmvcore<span class="sc">::</span><span class="fu">composeFormula</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
+<span id="cb57-6"><a href="failing-and-debuging.html#cb57-6" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
+<span id="cb57-7"><a href="failing-and-debuging.html#cb57-7" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb57-8"><a href="failing-and-debuging.html#cb57-8" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>dispatcher<span class="sc">$</span>warnings<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
+<span id="cb57-9"><a href="failing-and-debuging.html#cb57-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">message=</span><span class="st">&quot;Something great happened in the estimate function&quot;</span>)</span>
+<span id="cb57-10"><a href="failing-and-debuging.html#cb57-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-11"><a href="failing-and-debuging.html#cb57-11" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb57-12"><a href="failing-and-debuging.html#cb57-12" aria-hidden="true" tabindex="-1"></a><span class="do">### other code here</span></span></code></pre></div>
+<p>The <code>$dispatcher$warnings</code> accepts a list with two fields: <code>topic</code> is the nickname of the table that should receive the message,
+<code>message</code> is the message. Running this code, we obtain:</p>
+<p><img src="pics/c6_output4.png" width="497" /></p>
+<p>You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the <code>Estimate()</code> function, from different parts of the code. One can add any number of notes.</p>
+<p>Finally, you can also send and error from anywhere in the code to a table, using the property <code>error</code>.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="failing-and-debuging.html#cb58-1" aria-hidden="true" tabindex="-1"></a>    estimate<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb58-2"><a href="failing-and-debuging.html#cb58-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb58-3"><a href="failing-and-debuging.html#cb58-3" aria-hidden="true" tabindex="-1"></a>      formula  <span class="ot">&lt;-</span> jmvcore<span class="sc">::</span><span class="fu">composeFormula</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
+<span id="cb58-4"><a href="failing-and-debuging.html#cb58-4" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
+<span id="cb58-5"><a href="failing-and-debuging.html#cb58-5" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb58-6"><a href="failing-and-debuging.html#cb58-6" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>dispatcher<span class="sc">$</span>errors<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
+<span id="cb58-7"><a href="failing-and-debuging.html#cb58-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">message=</span><span class="st">&quot;Something bad happened in the estimate function&quot;</span>)</span>
+<span id="cb58-8"><a href="failing-and-debuging.html#cb58-8" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
+<p><img src="pics/c6_output5.png" width="436" /></p>
+<p>If you want to send an error message that would stop completely the execution of the analysis, you can add
+the field <code>final=TRUE</code> to the list passed to <code>dispatcher$errors</code>.</p>
+<p><img src="pics/c6_output6.png" width="503" /></p>
+<p><code>SmartTable</code>s show the warnings and errors they have received when their <code>$runTable()</code> function is executed. This means that, by default, if a message is sent to the table after that it is executed, the message will not show. This is a rare case, because usually the filling functions that may fail and influence other tables are executed in the early stage of the process. Nonetheless, if you really need to send message between tables that cannot be timely ordered, just send the messages anyway and issue the <code>SmartTable</code> command <code>$retrieveNotes()</code> at the end of the <code>.run()</code> function. In our example, we could do that for all tables.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="failing-and-debuging.html#cb59-1" aria-hidden="true" tabindex="-1"></a>  <span class="co"># for all tables</span></span>
+<span id="cb59-2"><a href="failing-and-debuging.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lapply</span>(private<span class="sc">$</span>.tables,<span class="cf">function</span>(x) x<span class="sc">$</span><span class="fu">retrieveNotes</span>())</span>
+<span id="cb59-3"><a href="failing-and-debuging.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## for one table only, the third we defined</span></span>
+<span id="cb59-4"><a href="failing-and-debuging.html#cb59-4" aria-hidden="true" tabindex="-1"></a>  private<span class="sc">$</span>.tables[[<span class="dv">3</span>]]<span class="sc">$</span><span class="fu">retrieveNotes</span>()</span></code></pre></div>
+<p>Now the order of broadcast does not matter anymore.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="dynamic-tables-appearance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="formatting-tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["jmvScaffoldHowto.pdf", "jmvScaffoldHowto.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

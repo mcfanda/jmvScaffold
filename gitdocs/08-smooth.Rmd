@@ -1,0 +1,55 @@
+# Smart Tables Update
+
+```{r results='hide', echo=FALSE}
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+```
+
+## The issue
+
+The `COOLj` module we are building is pretty fast, so we can update its options and still get a smooth feeling from the output section. For instance, if we are using the `Big 5` data with 4 `covariates`, we can flag and unflag the `Show means` options and get the results very quickly. 
+
+Imagine now that your module gets quite complex, with tens of tables and options. Likely, some of the table will require some time to update (maybe one uses bootstrap, for instance), and that will slow down the appearance of all other tables. Let's simulate that by artifically slowing down our `anova` tables.
+
+```{r eval=FALSE}
+
+    run_main_anova=function() {
+      
+      .anova          <-  as.data.frame(car::Anova(self$model,type=3))
+       names(.anova)  <-  c("nothing","df1","test","p")
+      .anova$df2      <-  self$model$df.residual
+      Sys.sleep(3) ## simulate a slow computation
+      return(.anova)
+       
+      },
+```
+
+If you try now, you'll see that every time the user changes something in the GUI, they have to wait for all tables to be filled. This must be changed.
+
+## The Solution
+
+Many tables do not need to be re-run every time an option is changed. Our `anova` table, for instance, does not need to be re-computed when we ask for the means, by flagging the `Show means` option. The two tables are independent, so showing one should not affect showing the other.
+
+By default, all `r jamovi` tables are initialized and run every time the input GUI changed. We can change this behavior by adding the property `clearWith:` to the tables in `.r.yaml` file. In `clearWith:`, one can specify the options that would update table. All changes in other options will not uptade the table. Thus, in our example, we can set `.r.yaml` file as follows:
+
+```{yaml}
+# ... ##
+
+          - name: anova
+             title:  ANOVA table
+             type: Table
+             ## Here is the new property
+             clearWith:
+                     - dep
+                     - covs
+
+             columns:
+                    - name: var
+                      title: "Variable"
+                      type: text
+## ... ##       
+
+
+```
+
+One can do the same for the `coefficients` table. If you now compile the module and flag and the unflag the `Show Means` option, you'll see that the `anova` and `coefficients` tables do not change and the execution becomes much faster. If you chance the dependent variable or some of the covariates, thw two tables will update.

@@ -37,7 +37,7 @@ Dispatch <- R6::R6Class(
                                 
                                 if (!is.something(table)) stop("SCAFFOLD: a message was sent to a non-existing result object: ",obj$topic)
                                 state<-as.list(table$state)
-                                if (!hasName(obj,"id")) obj$id<-jmvcore::toB64(obj$message)
+                                if (!hasName(obj,"key")) obj$key<-jmvcore::toB64(obj$message)
                                 
                                 obj$message<-private$.translate(obj$message)
                                 
@@ -47,15 +47,12 @@ Dispatch <- R6::R6Class(
                                   table$setVisible(TRUE)
                                   return()
                                 }
-                                     
-                                
-                                if (!inherits(table,"Table")) 
-                                     what<-obj$id
-                                else
-                                     what<-length(state$notes)+1
-                                
-                               state$notes[[what]]<-obj
-                               table$setState(state)
+                          
+                               init<-(hasName(obj,"initOnly") && obj[["initOnly"]]) 
+                               table$setNote(obj$key,obj$message,init=init)
+                              
+                               
+                               
                                
                         },
                         errors=function(obj) {

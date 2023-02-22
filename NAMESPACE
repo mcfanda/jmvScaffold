@@ -2,3 +2,5 @@
 
 export(SmartArray)
 export(SmartTable)
+export(copy_files)
+export(install_module)

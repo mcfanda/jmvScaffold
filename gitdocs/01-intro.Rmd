@@ -24,16 +24,19 @@ knitr::knit_engines$get("yaml")
 
 `r draft`
 
-Here you can find a how-to to build a `r jamovi` package using the R package [jmvScaffold](https://github.com/mcfanda/jmvScaffold), which provides several functions and R6 classes to ease the development of 
+Here you can find a how-to to build a `r jamovi` package using the R package [jmvScaffold](https://github.com/mcfanda/jmvScaffold), which provides several functions and [R6 classes](https://r6.r-lib.org/articles/Introduction.html) to ease the development of 
 `r jamovi` modules. Much of the [jamovi](https://www.jamovi.org) module development information
 can be found in the [jamovi developer's hub](https://dev.jamovi.org/).
 
 Reference and detailed functions description of the package can be found in [jmvScaffold reference page](reference/index.html).
 
-This documentation assumes that the reader is familiar with the basic of jamovi module development, but one may get away without that, and be able to develop a `r jamovi` module only reading these pages.
 
 We should note that developing a `r jamovi` module does not require any of this material. This material, furthermore, will
 not make your coding easier than just using `r jamovi` functions as described in [jamovi developer's hub](https://dev.jamovi.org/). However, when your module starts to get a bit complicated, offering several analyses and sub-modules, or when you want your module to do more sophisticate actions, or more refined style, this material may come handy. 
+
+This documentation assumes that the reader is familiar with the basic of jamovi module development, but one may get away without that, and be able to develop a `r jamovi` module only reading these pages.
+
+To program a jamovi module, you want to have a basic knowledge of [R6 classes](https://r6.r-lib.org/articles/Introduction.html). You do not need much, as it is very easy to work with them. R6 classes brings object oriented programming to R. R6 objects are basically functions that know themselves.
 
 A final word to end the preface: Here we assume that we want to build a jamovi module, store it to (github)[https://github.com], and then publish it in the  `r jamovi` library. If you do not have the second or the third aim (you may want to build a module only for yourself), you can skip the parts related with them.
 
@@ -58,9 +61,9 @@ devtools::install_github("mcfanda/jmvScaffold")
 
 We will see that your module will not need to install `jmvScaffold` to work, you just need it to program.
 
-## Create a module
+## Create a module {#createmodule}
 
-A module in `r jamovi` is a R package that works also in jamovi. As such, it needs to have all the charateristics
+A module in `r jamovi` is a R package that works also in jamovi. As such, it needs to have all the characteristics
 of a R package, plus the additional information and coding required to interface the R package to `r jamovi`. Thus,
 to obtain a working module we need to make steps both for the R package and for the jamovi interface.
 
@@ -80,7 +83,7 @@ This should produce, in the `COOLj` folder, this structure.
 
 `r knitr::include_graphics("pics/c1_create_folders.png")`
 
-If you use (RStudio)[https://posit.co/], its a good idea to create a project in the `COOLj` folder, because working with
+If you use [RStudio](https://posit.co/), its a good idea to create a project in the `COOLj` folder, because working with
 RStudio projects make our lives much easier.
 
 
@@ -101,7 +104,7 @@ LazyData: true
 Imports: jmvcore (>= 0.8.5), R6
 ```
 
-This describe your package in R. Now we need to define a description for `r jamovi`, filling the file
+This describes your package in R. Now we need to define a description for `r jamovi`, filling the file
 `./jamovi/0000.yaml`
 
 ```{yaml}
@@ -122,14 +125,23 @@ minApp: 1.0.8
 
 ```
 
-We will get back to this file later on.
+We will get back to this file later on. For now, we happy.
+
+Finally, we copy the `jmvScaffold` classes in our module `./R` folder with
+
+```{r eval=FALSE}
+
+jmvScaffold::copy_files()
+
+```
+
 
 ## Defining the analysis
 
 A module can do several things, but at least it should execute one analysis. By `analysis` I mean a set of stats
-that would produce some results, such as t-test, a correlation, a machine learning classification algorithm. In this example
-we want to develop a module that deal with linear models. We start simply, and aim at producing a linear regression. 
-We make it more complex later on. By default, `r jamovi` comes with a nice command `Regression->Linear Regression`, or with the [GAMLj module](https://gamlj.github.io/) for regressions and many other linear models. Here we set this aim for demonstrative purposes.
+that would produce some results, such as t-test, a correlation, a machine learning classification algorithm, a Bayesian supercool test equivalent to the t-test . 
+In this example we want to develop a module that deal with linear models. We start simply, and aim at producing a linear regression. 
+We make it more complex later on. This model will be useless, because `r jamovi` already comes with a nice command for regression, `Regression->Linear Regression`, or one can install  [GAMLj module](https://gamlj.github.io/) for regressions and many other linear models. Here we set this aim for demonstrative purposes.
 
 
 ## jamovi analysis
@@ -150,9 +162,9 @@ Running the command produces several files. In the `./jamovi/` folder we have
 
 In them, the jamovi input and output features are defined.
 
-* In __*.a.yaml__ the input options are defined (see API here [jamovi hub](https://dev.jamovi.org/api_analysis-definition.html#options)) 
-* In __*.u.yaml__ the input layout  is of the user interface is  defined (see API here [jamovi hub](https://dev.jamovi.org/api_ui-definition.html)) 
+* In _\*.a.yaml_ file the input options are defined (see API here `r ext_url("jamovi hub: Analysis","https://dev.jamovi.org/api_analysis-definition.html#options")`. 
+* In _\*.u.yaml_ file the input layout  is of the user interface is  defined (see API here `r ext_url("jamovi hub: GUI","https://dev.jamovi.org/api_ui-definition.html")` 
 
-* In __*.r.yaml__ the output results tables are defined (see API here [jamovi hub](https://dev.jamovi.org/api_results-definition.html)) 
+* In _\*.r.yaml_ file the output results tables are defined (see API here `r ext_url("jamovi hub: Results","https://dev.jamovi.org/api_results-definition.html")` 
 
 We should fill them all.

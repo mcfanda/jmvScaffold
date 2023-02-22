@@ -27,7 +27,6 @@ all settings to the children tables
 <ul>
 <li><span class="pkg-link" data-pkg="jmvScaffold" data-topic="SmartTable" data-id="ci"><a href='../../jmvScaffold/html/SmartTable.html#method-SmartTable-ci'><code>jmvScaffold::SmartTable$ci()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="jmvScaffold" data-topic="SmartTable" data-id="setColumnTitle"><a href='../../jmvScaffold/html/SmartTable.html#method-SmartTable-setColumnTitle'><code>jmvScaffold::SmartTable$setColumnTitle()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="jmvScaffold" data-topic="SmartTable" data-id="setTopics"><a href='../../jmvScaffold/html/SmartTable.html#method-SmartTable-setTopics'><code>jmvScaffold::SmartTable$setTopics()</code></a></span></li>
 </ul>
 </details>
 }}

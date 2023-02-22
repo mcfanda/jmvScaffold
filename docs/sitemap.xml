@@ -4,6 +4,9 @@
     <loc>/404.html</loc>
   </url>
   <url>
+    <loc>/advanced-results-objects.html</loc>
+  </url>
+  <url>
     <loc>/appendixa.html</loc>
   </url>
   <url>
@@ -13,7 +16,16 @@
     <loc>/booklet.html</loc>
   </url>
   <url>
+    <loc>/dynamic-tables-appearance.html</loc>
+  </url>
+  <url>
+    <loc>/failing-and-debuging.html</loc>
+  </url>
+  <url>
     <loc>/final-words.html</loc>
+  </url>
+  <url>
+    <loc>/formatting-tables.html</loc>
   </url>
   <url>
     <loc>/index.html</loc>
@@ -22,10 +34,16 @@
     <loc>/interface.html</loc>
   </url>
   <url>
+    <loc>/reference/Dispatch.html</loc>
+  </url>
+  <url>
     <loc>/reference/SmartArray.html</loc>
   </url>
   <url>
     <loc>/reference/SmartTable.html</loc>
+  </url>
+  <url>
+    <loc>/reference/copy_files.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
@@ -35,5 +53,8 @@
   </url>
   <url>
     <loc>/results.html</loc>
+  </url>
+  <url>
+    <loc>/some.html</loc>
   </url>
 </urlset>

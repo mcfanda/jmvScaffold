@@ -87,18 +87,10 @@ The `covs` option will contain the numeric independent variables, and the GUI wi
 
 The complete list of options and their properties can be found at the [jamovi hub](https://dev.jamovi.org/api_analysis-definition.html#options)
 
-At this point we compile it and see what happens.
-
-```{r eval=FALSE}
-jmvtools::install()
-```
-
-If everything went as expected, you should see the `COOLj` module in `r jamovi`. You do not need to restart `r jamovi`, the compiler would restart the internal engine automatically and you should see the new module.
-
 
 ## Layout (.u.yaml)
 
-We need to decide how to lay out the options in the GUI. The layout of the GUI is made of a series of `LayoutBox`, empty containers
+Next, we need to decide how to lay out the options in the GUI. The layout of the GUI is made of a series of `LayoutBox`, empty containers
 that host the controls (the options) as their children. Our options are all numeric, so require an text input control named `TextBox`.
 The layout is basically an HTML page, so one can think of a `LayoutBox` as a `<div>`, containing all the controls `<input type="text">`,`<input type="checkbox">` etc.
 
@@ -128,7 +120,19 @@ children:
 ...
 ```
 
+
 Notice that we set `compiler:` to `tame`, because it tells the jamovi compiler not to override our layout.
+
+## Compiling the jamovi module {#compile}
+
+At this point we compile out module and see what happens.
+
+```{r eval=FALSE}
+jmvtools::install()
+```
+
+If everything went as expected, you should see the `COOLj` module in `r jamovi`. You do not need to restart `r jamovi`, the compiler would restart the internal engine automatically and you should see the new module.
+
 
 `r knitr::include_graphics("pics/c2_menu.png")`
 

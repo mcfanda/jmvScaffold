@@ -73,7 +73,7 @@ a jamovi table column named \code{name} to \code{label}.}
 \describe{
 \item{\code{initSource}}{If \code{estimator} is not passed to initialize()
 set the source of the init() data used to initialize the table.
-if can be:
+It can be:
 \itemize{
 \item a data.frame
 \item a list of named lists
@@ -95,8 +95,8 @@ if data are passed to it                             #'}
 
 \item{\code{title}}{a string. Set the title of the jamovi table}
 
-\item{\code{superTitle}}{a named list list(name=value). Set the superTitle
-of \code{name} column to \code{value}}
+\item{\code{superTitle}}{a named list list(columnname=value). Set the superTitle
+of \code{columnname} column to a \code{value}}
 
 \item{\code{setColumnVisible}}{a list of column names to set visible}
 
@@ -114,7 +114,6 @@ value. Value it is typically \code{Inf}, \code{NA} or \code{NaN}}
 \item \href{#method-SmartTable-initTable}{\code{SmartTable$initTable()}}
 \item \href{#method-SmartTable-runTable}{\code{SmartTable$runTable()}}
 \item \href{#method-SmartTable-ci}{\code{SmartTable$ci()}}
-\item \href{#method-SmartTable-setTopics}{\code{SmartTable$setTopics()}}
 \item \href{#method-SmartTable-retrieveNotes}{\code{SmartTable$retrieveNotes()}}
 \item \href{#method-SmartTable-setNotes}{\code{SmartTable$setNotes()}}
 \item \href{#method-SmartTable-setColumnTitle}{\code{SmartTable$setColumnTitle()}}
@@ -152,7 +151,7 @@ the \code{nickname} is the unique identifier given to the jamovi table. The uniq
 \if{latex}{\out{\hypertarget{method-SmartTable-initTable}{}}}
 \subsection{Method \code{initTable()}}{
 Initialize the table. Check if data are passed, check if
-the table need to be expanded columnwise, if rows should be added and if
+the table needs to be expanded columnwise, if rows should be added and if
 messages are broadcast to go into errors or warnings. Show the table.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartTable$initTable()}\if{html}{\out{</div>}}
@@ -203,31 +202,14 @@ superTitle formats}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-SmartTable-setTopics"></a>}}
-\if{latex}{\out{\hypertarget{method-SmartTable-setTopics}{}}}
-\subsection{Method \code{setTopics()}}{
-this should probabily fo to private
-\subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SmartTable$setTopics()}\if{html}{\out{</div>}}
-}
-
-}
-\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SmartTable-retrieveNotes"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartTable-retrieveNotes}{}}}
 \subsection{Method \code{retrieveNotes()}}{
 this should probabily fo to private
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SmartTable$retrieveNotes(dispatcher = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SmartTable$retrieveNotes()}\if{html}{\out{</div>}}
 }
 
-\subsection{Arguments}{
-\if{html}{\out{<div class="arguments">}}
-\describe{
-\item{\code{the}}{Dispatcher class object to dispatch messages}
-}
-\if{html}{\out{</div>}}
-}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SmartTable-setNotes"></a>}}

@@ -142,7 +142,7 @@ SmartTable <- R6::R6Class("SmartTable",
                               private$.setColumnTitle()
                               private$.ci()
                               self$title
-                              self$setTopics()
+                              private$.setTopics()
 
                               ### check if we need to fill it (it may be empty)
                               if (private$.stop()) {
@@ -220,26 +220,10 @@ SmartTable <- R6::R6Class("SmartTable",
                             },
                             
                             #' @description 
-                            #' this should probabily fo to private
-                            setTopics=function() {
-
-                              .names<-stringr::str_split(self$nickname,"_")[[1]]
-                              alist<-list(.names[1])
-                              
-                              for (aname in .names[-1])
-                                   alist[[length(alist)+1]]<-paste(alist[[length(alist)]],aname,sep ="_")
-                               
-                              self$topics<-unlist(alist)
-                              if (is.something(self$key)) {
-                                 key<-private$.nice_name(self$key)
-                                 others<-stringr::str_replace_all(self$topics,paste0("_",key,"_"),"_*_")
-                                 self$topics<-unique(c(others,self$topics))
-                              }
-                              
-                            },
-                            #' @description this should probabily fo to private
-                            #' @param the Dispatcher class object to dispatch messages
-                            retrieveNotes=function(dispatcher=NULL) {
+                            #' Used to retrieve broadcast messages to the table.
+                            #' Normally not used, may be useful if messages may 
+                            #' arrive to the table after it is filled and displayed
+                            retrieveNotes=function() {
 
                                   notes<-self$table$state$notes
                                   ### remove init only message
@@ -288,7 +272,7 @@ SmartTable <- R6::R6Class("SmartTable",
                             #' @field  initSource
                             #' If `estimator` is not passed to initialize()
                             #' set the source of the init() data used to initialize the table.
-                            #' if can be:
+                            #' It can be:
                             #' 
                             #' * a data.frame
                             #' * a list of named lists
@@ -357,8 +341,8 @@ SmartTable <- R6::R6Class("SmartTable",
                               
                             },
                             #' @field  superTitle
-                            #' a named list list(name=value). Set the superTitle
-                            #' of `name` column to `value`
+                            #' a named list list(columnname=value). Set the superTitle
+                            #' of `columnname` column to a `value`
                             #' 
                             superTitle=function(alist) {
                               
@@ -504,6 +488,23 @@ SmartTable <- R6::R6Class("SmartTable",
                                 .insert(i,t)
                               }
                             },
+                            .setTopics=function() {
+                              
+                              .names<-stringr::str_split(self$nickname,"_")[[1]]
+                              alist<-list(.names[1])
+                              
+                              for (aname in .names[-1])
+                                alist[[length(alist)+1]]<-paste(alist[[length(alist)]],aname,sep ="_")
+                              
+                              self$topics<-unlist(alist)
+                              if (is.something(self$key)) {
+                                key<-private$.nice_name(self$key)
+                                others<-stringr::str_replace_all(self$topics,paste0("_",key,"_"),"_*_")
+                                self$topics<-unique(c(others,self$topics))
+                              }
+                              
+                            },
+                            
                             .finalize=function() {
                               
                               private$.setColumnTitle()
