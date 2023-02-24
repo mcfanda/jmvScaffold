@@ -210,7 +210,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.2" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-solution"><i class="fa fa-check"></i><b>8.2</b> The Solution</a></li>
 <li class="chapter" data-level="8.3" data-path="smart-tables-update.html"><a href="smart-tables-update.html#bottom-line"><i class="fa fa-check"></i><b>8.3</b> Bottom line</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="formatting-tables-1.html"><a href="formatting-tables-1.html"><i class="fa fa-check"></i><b>9</b> Formatting Tables</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a></li>
 <li class="divider"></li>
@@ -248,17 +247,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb13-4"><a href="chapter3.html#cb13-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb13-5"><a href="chapter3.html#cb13-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb13-6"><a href="chapter3.html#cb13-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##               Estimate Std. Error    t value  Pr(&gt;|t|)
-## (Intercept) -0.1468077  0.1786314 -0.8218474 0.4152275
-## x            0.2100804  0.1754251  1.1975506 0.2369725</code></pre>
+<pre><code>##              Estimate Std. Error  t value   Pr(&gt;|t|)
+## (Intercept) 0.2500281  0.1383858 1.806747 0.07707241
+## x           0.2762917  0.1538448 1.795911 0.07880429</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chapter3.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb15-2"><a href="chapter3.html#cb15-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb15-3"><a href="chapter3.html#cb15-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb15-4"><a href="chapter3.html#cb15-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                   coef        se          t         p
-## (Intercept) -0.1468077 0.1786314 -0.8218474 0.4152275
-## x            0.2100804 0.1754251  1.1975506 0.2369725</code></pre>
+<pre><code>##                  coef        se        t          p
+## (Intercept) 0.2500281 0.1383858 1.806747 0.07707241
+## x           0.2762917 0.1538448 1.795911 0.07880429</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>

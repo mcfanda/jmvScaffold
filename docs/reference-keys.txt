@@ -53,5 +53,4 @@ smart-tables-update
 the-issue
 the-solution
 bottom-line
-formatting-tables-1
 appendixa

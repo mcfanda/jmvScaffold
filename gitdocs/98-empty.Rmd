@@ -1,7 +1,0 @@
-# Formatting Tables
-
-```{r results='hide', echo=FALSE}
-library(mcdocs)
-knitr::knit_engines$get("yaml")
-```
-
