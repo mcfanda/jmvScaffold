@@ -1,4 +1,5 @@
-
+#' Installing a jamovi module
+#' @export
 install_module<-function(what) {
   library(what,character.only=TRUE)
   s<-utils::sessionInfo()

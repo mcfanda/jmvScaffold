@@ -1,7 +1,8 @@
-j_DEBUG <- FALSE
-j_INFO  <- FALSE
-t_INFO  <- FALSE
+j_DEBUG <- T
+j_INFO  <- T
+t_INFO  <- T
 
+TRANS_WARNS <- NULL
 #### Helper functions used by Scaffold (not exported)
 
 tinfo <- function(...) {
@@ -12,7 +13,7 @@ tinfo <- function(...) {
 }
 
 
-ginfo <- function(...) {
+jinfo <- function(...) {
   if (j_INFO) {
     cat("\n")
     cat(paste(list(...)))
@@ -20,16 +21,6 @@ ginfo <- function(...) {
   }
 }
 
-gstart <- function(...) {
-  if (j_INFO) {
-    cat(paste(paste(list(...)),"..."))
-  }
-}
-gend <- function() {
-  if (j_INFO) {
-    cat(".......................................done\n")
-  }
-}
 
 
 mark <- function(...) {

@@ -1,6 +1,0 @@
-j_DEBUG=T
-j_INFO=T
-t_INFO=T
-
-
-

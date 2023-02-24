@@ -1,0 +1,19 @@
+---
+title: Helper functions to develop jamovi modules
+name: jmvScaffold
+version: 0.9.0
+jms: '1.0'
+authors:
+  - Marcello Gallucci
+maintainer: Marcello Gallucci <mcfanda@gmail.com>
+date: '1970-01-01'
+type: R
+description: >-
+  Provides R6 classes and functions to easely develop complex modules generally
+  with several output tables and submodules. Provides functions to handle jamovi
+  tables, add notes and warning to tables, install moduled.
+analyses: []
+usesNative: true
+minApp: 1.0.8
+
+...

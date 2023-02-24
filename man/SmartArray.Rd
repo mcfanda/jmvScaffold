@@ -4,13 +4,17 @@
 \alias{SmartArray}
 \title{SmartArray R6 Class}
 \description{
-A programmer interface to init and populutate \code{\link[jmvcore]{jmvcore::Array}}.
-
-It works exactly like \link[jmvScaffold]{SmartTable} class, but it passes
-all settings to the children tables
+A programmer interface to init and polutate \code{\link[jmvcore]{jmvcore::Array}}
 }
 \section{Super class}{
 \code{\link[jmvScaffold:SmartTable]{jmvScaffold::SmartTable}} -> \code{SmartArray}
+}
+\section{Public fields}{
+\if{html}{\out{<div class="r6-fields">}}
+\describe{
+\item{\code{childrenObjs}}{a list of children \code{jmvScaffold::SmartTable}}
+}
+\if{html}{\out{</div>}}
 }
 \section{Methods}{
 \subsection{Public methods}{
@@ -27,7 +31,6 @@ all settings to the children tables
 <ul>
 <li><span class="pkg-link" data-pkg="jmvScaffold" data-topic="SmartTable" data-id="ci"><a href='../../jmvScaffold/html/SmartTable.html#method-SmartTable-ci'><code>jmvScaffold::SmartTable$ci()</code></a></span></li>
 <li><span class="pkg-link" data-pkg="jmvScaffold" data-topic="SmartTable" data-id="setColumnTitle"><a href='../../jmvScaffold/html/SmartTable.html#method-SmartTable-setColumnTitle'><code>jmvScaffold::SmartTable$setColumnTitle()</code></a></span></li>
-<li><span class="pkg-link" data-pkg="jmvScaffold" data-topic="SmartTable" data-id="setTopics"><a href='../../jmvScaffold/html/SmartTable.html#method-SmartTable-setTopics'><code>jmvScaffold::SmartTable$setTopics()</code></a></span></li>
 </ul>
 </details>
 }}
@@ -35,15 +38,33 @@ all settings to the children tables
 \if{html}{\out{<a id="method-SmartArray-new"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartArray-new}{}}}
 \subsection{Method \code{new()}}{
+Initialize the SmartArray object, creating the children tables
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SmartArray$new(tables, estimator = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SmartArray$new(array, estimator = NULL)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{array}}{A jamovi array of class \code{\link[jmvcore]{jmvcore::Array}}}
+
+\item{\code{estimator}}{optional \link[R6:R6Class]{R6}. If set, SmartArray inquires
+the R6 class for init and run functions to initialize and populate the jamovi tables.
+the R6 class should provide functions using the convention \code{init_[nickname]} and \verb{run_[nickname] where the }nickname` is the unique identifier given to the jamovi table. The unique identifiers can be
+\itemize{
+\item \strong{arrayname}:            the name of the \code{\link[jmvcore]{jmvcore::Array}}
+\item \strong{groupname_arrayname}:   the name of the \code{\link[jmvcore]{jmvcore::Group}} containing the \code{\link[jmvcore]{jmvcore::Array}}  and the Array name
+}}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SmartArray-initTable"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartArray-initTable}{}}}
 \subsection{Method \code{initTable()}}{
+initializes all children tables from \code{runSource} or \code{estimator::run_[tablename]}, and
+takes care of all aesthetic adjustments required
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartArray$initTable()}\if{html}{\out{</div>}}
 }
@@ -53,6 +74,8 @@ all settings to the children tables
 \if{html}{\out{<a id="method-SmartArray-runTable"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartArray-runTable}{}}}
 \subsection{Method \code{runTable()}}{
+fills all children tables from \code{runSource} or \code{estimator::run_[tablename]}, and
+takes care of all aesthetic adjustments required
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartArray$runTable()}\if{html}{\out{</div>}}
 }
@@ -62,6 +85,7 @@ all settings to the children tables
 \if{html}{\out{<a id="method-SmartArray-retrieveNotes"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartArray-retrieveNotes}{}}}
 \subsection{Method \code{retrieveNotes()}}{
+used internally, but must be kept public
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartArray$retrieveNotes()}\if{html}{\out{</div>}}
 }
@@ -71,10 +95,17 @@ all settings to the children tables
 \if{html}{\out{<a id="method-SmartArray-setNotes"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartArray-setNotes}{}}}
 \subsection{Method \code{setNotes()}}{
-set a note (footnote) to be displayed under the table
+set a note to all children tables. Not necessary if a \code{Dispatch} object is used instead
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SmartArray$setNotes(dispatcher = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SmartArray$setNotes(note)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{note}}{a string: the message to set}
+}
+\if{html}{\out{</div>}}
+}
 }
 }

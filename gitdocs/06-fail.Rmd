@@ -1,0 +1,195 @@
+# Warning, Failing and Debuging
+
+```{r results='hide', echo=FALSE}
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+FILEREF="https://github.com/mcfanda/COOLj/tree/"
+```
+
+
+
+## Introduction
+
+Before we dive into more sophisticated topics, such as formatting Tables, we should briefly consider the sad fact that sooner or later our code will fail and we need to debug it. Debugging a module in `r jamovi` may be difficult, because when you see the error in the `r jamovi` output, it is often difficult to understand when the error comes from, especially if your code is complex and you have many different tables. In jamovi, you want to have toggled on `developer mode`, to see informative errors. However, `r ext_url("jmvScaffold","reference/index.html")` offers also some methods and functions to help us out.
+
+First, when we copied the files from the `jmvScaffold` package into the module `.R/` function, one file copied was named `jScafFunctions.R`. The file head contains three constants
+
+`r filehead("R/jScafFunctions.R",FILEREF,"Version.0.0.5")`
+```{r eval=FALSE}
+j_DEBUG <- TRUE
+j_INFO  <- TRUE
+t_INFO  <- TRUE
+
+```
+
+we want to set them all to `TRUE`. After re-installing and opening `r jamovi` from command line,  
+
+In linux:
+
+```{bash, eval=FALSE  }
+prompt:~$ flatpack run org.jamovi.jamovi 
+```
+
+In windows:
+```{r }
+# Note: I should buy a windows machine
+```
+
+## Tables debugging
+
+we can now see in console all the calls to the tables and the process to fill them. For example:
+
+`r knitr::include_graphics("pics/c6_debug1.png")`
+
+This shows a listing made by the module we are building: The SmartTable `coefficients` in group `main` is checked for running. It is then run. The same goes for `anova` in `main` and the other tables. The array `means` is initialized (it says `inited`) and run, etc. 
+
+## Mark landmarks
+
+Another useful function is `mark(...)`. Mark simply cat in the console whatever is passed to it, after some formatting. The advantage of `cat` is that can be turned on and off changing the constant `j_DEBUG` is `jmvScafFunctions.R` file.  Very similar is the function `jinfo(...)`, which is meant to print in console landmarks and checkpoints. This is turned on and off with the constant `j_INFO`. The difference between `mark()` and `jinfo()` is basically its name. The idea is to use `jinfo()` to landmark the code (like `jinfo("Init phase")`, `ginfo("Run phase")` ) as stable reference, whereas to use `mark()` when debugging and then remove it from the code. Having different names makes `grep`ing `mark` easy when we clean the code. 
+
+When the module is ready to get published, one sets `j_DEBUG`, `j_INFO` and `j_TABLE` to false e nothing will be printed in the console.
+
+
+## Automatic Errors
+
+This is useful when something fail so we can see where the problem is. Let's make our code fail, by making a mistake in the  `run_main_coefficients` function in the `Runner.R` (see `coeff` rather than `coeffs`).
+
+`r filehead("R/Runner.R")`
+```{r eval=FALSE}
+
+    run_main_coefficients=function() {
+      
+      .summary         <-   summary(self$model)
+      coeffs           <-  .summary$coefficients
+      coeffs           <-   as.data.frame(coeffs)
+      names(coeffs)    <-   c("coef","se","t","p")
+      coeff$var       <-   rownames(coeffs) ## misspelled name 
+      
+      return(coeffs)
+    },
+
+```
+
+Running the module now produces an error in the corresponding table. 
+
+`r knitr::include_graphics("pics/c6_output1.png")`
+
+Notice that the module did not fail completely, only the table affected by the error was not filled. We now know that there's something wrong in the function running the table. We can also check the console to gather some more information.
+
+`r knitr::include_graphics("pics/c6_debug2.png")`
+
+From the listing we can see that the error was in `run_main_coefficients` and the object 'coeff' was not found. When errors are more complicated, the console listing gives more information than the jamovi table, but one of the two should be enough to get you going in finding the bug.
+
+If the error is outside the tables, such as in the `.b.R`, you get an error at the beginning of the output.
+
+`r knitr::include_graphics("pics/c6_output2.png")`
+
+## Automatic Warnings
+
+`SmartTables` automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the `run_main_coefficients` function.
+
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
+```{r eval=FALSE}
+
+    run_main_coefficients=function() {
+      
+      .summary         <-   summary(self$model)
+      coeffs           <-  .summary$coefficients
+      coeffs           <-   as.data.frame(coeffs)
+      names(coeffs)    <-   c("coef","se","t","p")
+      coeffs$var       <-   rownames(coeffs)  
+      warning("something fishy is going on")
+      return(coeffs)
+    },
+
+```
+
+`r knitr::include_graphics("pics/c6_output3.png")`
+
+So, you do not have to worry about capturing warnings, they are automatically displayed. If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them.
+
+## Code-generated Warnings and Messages
+
+Very often, you want to pass messages to tables from outside their filling function. You may, for instance, add a note saying that there are missing values in the data, and the user should be careful in interpreting the results. Other times, you may have a recap table at the beginning of the output, and you want to send a footnote to it to signal that something happens worth mentioning. As an example, assume that a warning is generated in our `runner$Estimate()`, which does not communicate directly to any table.
+
+To broadcast message from anywhere in your module to any table, we can use a method that our `Runner` class inherits from the parent class `Scaffold`. The method is named `dispatcher`. This method accepts warnings or error and sends them to `SmartTable` and `SmartArray`. 
+
+
+We just need to use it whereever we need in the `Runner` object. In the example, we alter the `Estimate()` function to produce a message:
+
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
+```{r eval=FALSE}
+
+#...#
+
+    estimate=function() {
+      
+      formula  <- jmvcore::composeFormula(self$analysis$options$dep,self$analysis$options$covs)
+      self$model    <- stats::lm(formula,data=self$analysis$data)
+      
+      self$warning<-list(topic="main_coefficients",
+                                     message="Something great happened in the estimate function")
+
+    },
+#...#    
+```
+
+The `$dispatcher$warning` accepts a list with two fields: `topic` is the nickname of the table that should receive the message,
+`message` is the message. Running this code, we obtain:
+
+`r knitr::include_graphics("pics/c6_output4.png")`
+
+You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the `Estimate()` function, from different parts of the code. One can add any number of notes.
+
+Finally, you can also send and error from anywhere in the code to a table, using the property `error`. We exemplifies this by sending a message to `main_anova` table.
+
+`r filehead("R/Runner.R")`
+```{r eval=FALSE}
+
+    estimate=function() {
+      
+      formula  <- jmvcore::composeFormula(self$analysis$options$dep,self$analysis$options$covs)
+      self$model    <- stats::lm(formula,data=self$analysis$data)
+      
+      self$error<-list(topic="main_anova",
+                                   message="Something bad happened in the estimate function")
+    },
+
+```
+
+`r knitr::include_graphics("pics/c6_output5.png")`
+
+If you want to send an error message that would stop completely the execution of the analysis, you can add
+the field `final=TRUE` to the list passed to `dispatcher$error`, such as
+
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
+```{r eval=FALSE}
+#...#
+      self$error<-list(topic="main_coefficients",
+                                   message="Something bad happened in the estimate function", final=TRUE)
+#...#
+
+```
+
+
+`r knitr::include_graphics("pics/c6_output6.png")`
+
+## Transient messages
+
+The are other cases in which you want your message to disappear after execution. Typical case is when some of your table would require a lot of time to execute, and this is known in advance. For instance, the user may select bootstrap inference rather than standard one, so you want to send a message while the bootstrap is being computed that _this may take a while_.  You can do that by sending a message with the `initOnly=TRUE` field. 
+
+
+`r filehead("R/Runner.R")`
+```{r eval=FALSE}
+#...#
+      self$warning<-list(topic="main_coefficients",
+                                   message="This may take a while", initOnly=TRUE)
+
+#...#
+```
+
+This message will be shown until the table is filled, and disappears afterward. We go back to this later on.
+
+

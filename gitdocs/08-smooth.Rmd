@@ -1,0 +1,104 @@
+# Smart Tables Update
+
+```{r results='hide', echo=FALSE}
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+FILEREF="https://github.com/mcfanda/COOLj/tree/"
+```
+
+## The issue
+
+The `COOLj` module we are building is pretty fast, so we can update its options and still get a smooth feeling from the output section. Indeed, if we are using the `Big 5` data with 4 `covariates`, we can flag and unflag the `Show means for Sig.` or `ES CI` options and get the results very quickly. 
+
+Imagine now that your module gets quite complex, with tens of tables and options. Likely, some of the table will require some time to update (maybe one uses bootstrap, for instance), and that will slow down the appearance of all other tables. Let's simulate that by artificially slowing down our (original) `anova` tables.
+
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.8")`
+```{r eval=FALSE}
+#...#
+    run_main_anova=function() {
+      
+      .anova          <-  as.data.frame(car::Anova(self$model,type=3))
+       names(.anova)  <-  c("nothing","df1","test","p")
+      .anova$df2      <-  self$model$df.residual
+      .anova$var      <-  rownames(.anova)
+      Sys.sleep(3) ## simulate a slow computation
+      return(.anova)
+       
+      },
+#...#
+```
+
+If you try now, you'll see that every time the user changes something in the GUI, they have to wait for all tables to be filled. This behavior can be changed.
+
+## The Solution
+
+Many tables do not need to be re-run every time an option is changed. Our `anova` table, for instance, does not need to be re-computed when we ask for the means, by flagging the `Show means` option. The two tables are independent, so showing one should not affect showing the other.
+
+By default, all `r jamovi` tables are initialized and run every time the input GUI changed. We can change this behavior by adding the property `clearWith:` to the tables in `.r.yaml` file. In `clearWith:`, one can specify the options that would update the table. All changes in other options will not update the table. Thus, in our example, we can set `.r.yaml` file as follows:
+
+`r filehead("jamov/myregression.r.yaml",FILEREF,"Version.0.0.8")`
+```{yaml}
+# ... ##
+
+          - name: anova
+             title:  ANOVA table
+             type: Table
+             ## Here is the new property
+             clearWith:
+                     - dep
+                     - covs
+
+             columns:
+                    - name: var
+                      title: "Variable"
+                      type: text
+## ... ##       
+
+
+```
+
+Then we need to init the table, with some simple information like this:
+
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.8")`
+```{r eval=FALSE}
+#...#
+    init_main_anova=function() {
+      
+      covs      <- self$analysis$options$covs
+      terms     <- c("(Intercept)",covs,"Residuals")
+      tab       <- lapply(terms, function(x) list(var=x))
+      return(tab)
+      
+    },
+    # the run function did not change
+    run_main_anova=function() {
+      
+      .anova          <-  as.data.frame(car::Anova(self$model,type=3))
+       names(.anova)  <-  c("nothing","df1","test","p")
+      .anova$df2      <-  self$model$df.residual
+      .anova$var      <-  rownames(.anova)
+      Sys.sleep(3) ## simulate a slow computation
+      return(.anova)
+       
+      },
+#...#
+```
+
+
+If you now compile the module and flag and the unflag the `Show Means for Sig.` option, you'll see that the `anova` table do not change and the execution becomes much faster. If you chance the dependent variable or some of the covariates, the two tables will update.
+
+If you do this process for all the tables, you will see that they update only when needed. The only exception are Unkeyed Arrays of tables (the ones you defined based on the results, such as the `sig_means` array in the example). They are always refilled, because `r jamovi` cannot know in advanced how many tables you need.
+
+## Bottom line
+
+One can program `r jamovi` modules freely with all techniques one wishes. If one wants to take advantege of `r jamovi` flexibility and `jmvScaffold` helping function, one can follow this guidelines:
+
+* Define a table in `.r.yaml`
+* Define a `Scaffold` runner
+* Associate each table in the `.b.R` file to a SmartTable or Smart Array
+* Write a `init_tablename` in the `Runner` object to initialize the table
+* Write a `run_tablename` in the `Runner` object to fill the table
+* Adjust the aestetics of the table in the `.b.R` file
+
+
+

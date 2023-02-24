@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="booklet.html"/>
-<link rel="next" href="results.html"/>
+<link rel="next" href="chapter3.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -141,7 +141,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="booklet.html"><a href="booklet.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
 <li class="chapter" data-level="1.2" data-path="booklet.html"><a href="booklet.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
-<li class="chapter" data-level="1.3" data-path="booklet.html"><a href="booklet.html#create-a-module"><i class="fa fa-check"></i><b>1.3</b> Create a module</a></li>
+<li class="chapter" data-level="1.3" data-path="booklet.html"><a href="booklet.html#createmodule"><i class="fa fa-check"></i><b>1.3</b> Create a module</a></li>
 <li class="chapter" data-level="1.4" data-path="booklet.html"><a href="booklet.html#defining-the-analysis"><i class="fa fa-check"></i><b>1.4</b> Defining the analysis</a></li>
 <li class="chapter" data-level="1.5" data-path="booklet.html"><a href="booklet.html#jamovi-analysis"><i class="fa fa-check"></i><b>1.5</b> jamovi analysis</a></li>
 </ul></li>
@@ -149,19 +149,67 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="2.1" data-path="interface.html"><a href="interface.html#options-.a.yaml"><i class="fa fa-check"></i><b>2.1</b> Options (.a.yaml)</a></li>
 <li class="chapter" data-level="2.2" data-path="interface.html"><a href="interface.html#layout-.u.yaml"><i class="fa fa-check"></i><b>2.2</b> Layout (.u.yaml)</a></li>
+<li class="chapter" data-level="2.3" data-path="interface.html"><a href="interface.html#compile"><i class="fa fa-check"></i><b>2.3</b> Compiling the jamovi module</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>3</b> Results</a>
+<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> Results</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="results.html"><a href="results.html#preparing-the-results"><i class="fa fa-check"></i><b>3.1</b> Preparing the results</a></li>
-<li class="chapter" data-level="3.2" data-path="results.html"><a href="results.html#defining-the-result-tables-.r.yaml"><i class="fa fa-check"></i><b>3.2</b> Defining the result tables (.r.yaml)</a></li>
-<li class="chapter" data-level="3.3" data-path="results.html"><a href="results.html#r-code-for-jamovi"><i class="fa fa-check"></i><b>3.3</b> R code for jamovi</a></li>
-<li class="chapter" data-level="3.4" data-path="results.html"><a href="results.html#initialize-a-table"><i class="fa fa-check"></i><b>3.4</b> Initialize a table</a></li>
-<li class="chapter" data-level="3.5" data-path="results.html"><a href="results.html#filling-a-table"><i class="fa fa-check"></i><b>3.5</b> Filling a table</a></li>
-<li class="chapter" data-level="3.6" data-path="results.html"><a href="results.html#passing-data-to-smarttables"><i class="fa fa-check"></i><b>3.6</b> Passing data to SmartTables</a></li>
-<li class="chapter" data-level="3.7" data-path="results.html"><a href="results.html#automatic-filling-of-tables."><i class="fa fa-check"></i><b>3.7</b> Automatic filling of tables.</a></li>
+<li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#preparing-the-results"><i class="fa fa-check"></i><b>3.1</b> Preparing the results</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#defining-the-result-tables-.r.yaml"><i class="fa fa-check"></i><b>3.2</b> Defining the result tables (.r.yaml)</a></li>
+<li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#r-code-for-jamovi"><i class="fa fa-check"></i><b>3.3</b> R code for jamovi</a></li>
+<li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#initialize-a-table"><i class="fa fa-check"></i><b>3.4</b> Initialize a table</a></li>
+<li class="chapter" data-level="3.5" data-path="chapter3.html"><a href="chapter3.html#populating-a-table"><i class="fa fa-check"></i><b>3.5</b> Populating a table</a></li>
+<li class="chapter" data-level="3.6" data-path="chapter3.html"><a href="chapter3.html#passing-data-to-smarttables"><i class="fa fa-check"></i><b>3.6</b> Passing data to SmartTables</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter3.html"><a href="chapter3.html#automatic-filling-of-tables."><i class="fa fa-check"></i><b>3.7</b> Automatic filling of tables.</a></li>
+<li class="chapter" data-level="3.8" data-path="chapter3.html"><a href="chapter3.html#r6-classes-to-run-complex-modules"><i class="fa fa-check"></i><b>3.8</b> R6 classes to run complex modules</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>4</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html"><i class="fa fa-check"></i><b>4</b> Advanced Results Objects</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#groups-jmvcoregroup"><i class="fa fa-check"></i><b>4.2</b> Groups (jmvcore::Group)</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#arrays-of-tables-jmvcorearray"><i class="fa fa-check"></i><b>4.3</b> Arrays of tables (jmvcore::Array)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#array-known-number-of-tables"><i class="fa fa-check"></i><b>4.3.1</b> Array: known number of tables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#array-unknown-number-of-tables"><i class="fa fa-check"></i><b>4.3.2</b> Array: Unknown number of tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#other-results-objects"><i class="fa fa-check"></i><b>4.4</b> Other Results objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html"><i class="fa fa-check"></i><b>5</b> Dynamic Tables Appearance</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-table-on-option-change"><i class="fa fa-check"></i><b>5.2</b> Showing table on option change</a></li>
+<li class="chapter" data-level="5.3" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
+<li class="chapter" data-level="5.4" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html"><i class="fa fa-check"></i><b>6</b> Warning, Failing and Debuging</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#tables-debugging"><i class="fa fa-check"></i><b>6.2</b> Tables debugging</a></li>
+<li class="chapter" data-level="6.3" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#mark-landmarks"><i class="fa fa-check"></i><b>6.3</b> Mark landmarks</a></li>
+<li class="chapter" data-level="6.4" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-errors"><i class="fa fa-check"></i><b>6.4</b> Automatic Errors</a></li>
+<li class="chapter" data-level="6.5" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-warnings"><i class="fa fa-check"></i><b>6.5</b> Automatic Warnings</a></li>
+<li class="chapter" data-level="6.6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#code-generated-warnings-and-messages"><i class="fa fa-check"></i><b>6.6</b> Code-generated Warnings and Messages</a></li>
+<li class="chapter" data-level="6.7" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#transient-messages"><i class="fa fa-check"></i><b>6.7</b> Transient messages</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="formatting-tables.html"><a href="formatting-tables.html"><i class="fa fa-check"></i><b>7</b> Formatting Tables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="formatting-tables.html"><a href="formatting-tables.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="formatting-tables.html"><a href="formatting-tables.html#initializing-the-table"><i class="fa fa-check"></i><b>7.2</b> Initializing the table</a></li>
+<li class="chapter" data-level="7.3" data-path="formatting-tables.html"><a href="formatting-tables.html#combining-below"><i class="fa fa-check"></i><b>7.3</b> Combining below</a></li>
+<li class="chapter" data-level="7.4" data-path="formatting-tables.html"><a href="formatting-tables.html#add-spaces-between-rows"><i class="fa fa-check"></i><b>7.4</b> Add spaces between rows</a></li>
+<li class="chapter" data-level="7.5" data-path="formatting-tables.html"><a href="formatting-tables.html#indent-some-row-value"><i class="fa fa-check"></i><b>7.5</b> Indent some row value</a></li>
+<li class="chapter" data-level="7.6" data-path="formatting-tables.html"><a href="formatting-tables.html#showing-columns-when-needed"><i class="fa fa-check"></i><b>7.6</b> Showing columns when needed</a></li>
+<li class="chapter" data-level="7.7" data-path="formatting-tables.html"><a href="formatting-tables.html#showing-columns-programmatically"><i class="fa fa-check"></i><b>7.7</b> Showing columns programmatically</a></li>
+<li class="chapter" data-level="7.8" data-path="formatting-tables.html"><a href="formatting-tables.html#changing-column-names-programmatically"><i class="fa fa-check"></i><b>7.8</b> Changing column names programmatically</a></li>
+<li class="chapter" data-level="7.9" data-path="formatting-tables.html"><a href="formatting-tables.html#super-titles"><i class="fa fa-check"></i><b>7.9</b> Super Titles</a></li>
+<li class="chapter" data-level="7.10" data-path="formatting-tables.html"><a href="formatting-tables.html#something-else"><i class="fa fa-check"></i><b>7.10</b> Something else</a></li>
+<li class="chapter" data-level="7.11" data-path="formatting-tables.html"><a href="formatting-tables.html#adding-columns-programmatically"><i class="fa fa-check"></i><b>7.11</b> Adding columns programmatically</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="smart-tables-update.html"><a href="smart-tables-update.html"><i class="fa fa-check"></i><b>8</b> Smart Tables Update</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-issue"><i class="fa fa-check"></i><b>8.1</b> The issue</a></li>
+<li class="chapter" data-level="8.2" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-solution"><i class="fa fa-check"></i><b>8.2</b> The Solution</a></li>
+<li class="chapter" data-level="8.3" data-path="smart-tables-update.html"><a href="smart-tables-update.html#bottom-line"><i class="fa fa-check"></i><b>8.3</b> Bottom line</a></li>
+</ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a></li>
 <li class="divider"></li>
@@ -186,11 +234,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="interface" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">Chapter 2</span> Interface<a href="interface.html#interface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="interface.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mcdocs)</span>
-<span id="cb8-2"><a href="interface.html#cb8-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>knit_engines<span class="sc">$</span><span class="fu">get</span>(<span class="st">&quot;yaml&quot;</span>)</span></code></pre></div>
+<p><img src="pics/c2_menu.png" width="233" /></p>
+<p>Every jamovi command has a GUI which allow users to set up the analysis and toggle options. All active items in the input GUI are called <code>Options</code>. In the <code>Descriptive</code> analysis, the content of <code>Variables</code> field, <code>Split by</code> field, the toggle option <code>Frequency Tables</code> etc. are all option that we should define.</p>
 <div id="options-.a.yaml" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> Options (.a.yaml)<a href="interface.html#options-.a.yaml" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Every control the user sees in the input panel of our analysis must be defined in the <code>*.a.yaml</code> file. An example is this, generated by the jamovi compiler default settings:</p>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="interface.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
 <span id="cb9-2"><a href="interface.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
 <span id="cb9-3"><a href="interface.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">menuGroup</span><span class="kw">:</span><span class="at"> COOLj</span></span>
@@ -222,67 +273,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-29"><a href="interface.html#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">default</span><span class="kw">:</span><span class="at"> notequal</span></span></code></pre></div>
 <p>Each option should have a <code>name</code> and a <code>type</code>. Depending to the <code>type</code>, other properties can be defined. For our purposes,
 we need a <code>Variable</code> type to input the dependent variable and a <code>Variables</code> type to input independent variables, plus the <code>Data</code> type that will pass the spreadsheet data to the R package.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="interface.html#cb10-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="interface.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb10-2"><a href="interface.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
 <span id="cb10-3"><a href="interface.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
 <span id="cb10-4"><a href="interface.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">menuGroup</span><span class="kw">:</span><span class="at"> COOLj</span></span>
-<span id="cb10-5"><a href="interface.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0.0&#39;</span></span>
+<span id="cb10-5"><a href="interface.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;0.0.1&#39;</span></span>
 <span id="cb10-6"><a href="interface.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">jas</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.2&#39;</span></span>
 <span id="cb10-7"><a href="interface.html#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="interface.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> data</span></span>
-<span id="cb10-9"><a href="interface.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Data</span></span>
-<span id="cb10-10"><a href="interface.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
-<span id="cb10-11"><a href="interface.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> dep</span></span>
-<span id="cb10-12"><a href="interface.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Dependent Variable</span></span>
-<span id="cb10-13"><a href="interface.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
-<span id="cb10-14"><a href="interface.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
-<span id="cb10-15"><a href="interface.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span>
-<span id="cb10-16"><a href="interface.html#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
-<span id="cb10-17"><a href="interface.html#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> covs</span></span>
-<span id="cb10-18"><a href="interface.html#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Covariates</span></span>
-<span id="cb10-19"><a href="interface.html#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variables</span></span>
-<span id="cb10-20"><a href="interface.html#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">suggested</span><span class="kw">:</span></span>
-<span id="cb10-21"><a href="interface.html#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> continuous</span></span>
-<span id="cb10-22"><a href="interface.html#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> ordinal</span></span>
-<span id="cb10-23"><a href="interface.html#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
-<span id="cb10-24"><a href="interface.html#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span></code></pre></div>
+<span id="cb10-8"><a href="interface.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb10-9"><a href="interface.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> data</span></span>
+<span id="cb10-10"><a href="interface.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Data</span></span>
+<span id="cb10-11"><a href="interface.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb10-12"><a href="interface.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> dep</span></span>
+<span id="cb10-13"><a href="interface.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Dependent Variable</span></span>
+<span id="cb10-14"><a href="interface.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
+<span id="cb10-15"><a href="interface.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
+<span id="cb10-16"><a href="interface.html#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span>
+<span id="cb10-17"><a href="interface.html#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb10-18"><a href="interface.html#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> covs</span></span>
+<span id="cb10-19"><a href="interface.html#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Covariates</span></span>
+<span id="cb10-20"><a href="interface.html#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variables</span></span>
+<span id="cb10-21"><a href="interface.html#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">suggested</span><span class="kw">:</span></span>
+<span id="cb10-22"><a href="interface.html#cb10-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> continuous</span></span>
+<span id="cb10-23"><a href="interface.html#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> ordinal</span></span>
+<span id="cb10-24"><a href="interface.html#cb10-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
+<span id="cb10-25"><a href="interface.html#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span>
+<span id="cb10-26"><a href="interface.html#cb10-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-27"><a href="interface.html#cb10-27" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
 <p>First, notice the <code>menuGroup</code> property. That says in which menu the analysis will appear in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>. Because the <code>COOLj</code> menu
 does not exist, the compiler will create one. Later we see how to put your module under pre-existing menus.</p>
 <p>Now, the <code>dep</code> option will contain the dependent variable, and the property <code>permitted</code> allows the user to input only numerical variables (see appendix <a href="appendixa.html#appendixa">A</a>) for more details about variables types in jamovi).
 The <code>covs</code> option will contain the numeric independent variables, and the GUI will signal with little icons that the field expects
 <code>continuous</code> or <code>ordinal</code> variable, ruled by the property <code>suggested</code>.</p>
 <p>The complete list of options and their properties can be found at the <a href="https://dev.jamovi.org/api_analysis-definition.html#options">jamovi hub</a></p>
-<p>At this point we compile it and see what happens.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="interface.html#cb11-1" aria-hidden="true" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
-<p>If everything went as expected, you should see the <code>COOLj</code> module in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>. You do not need to restart <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, the compiler would restart the internal engine automatically and you should see the new module.</p>
 </div>
 <div id="layout-.u.yaml" class="section level2 hasAnchor" number="2.2">
 <h2><span class="header-section-number">2.2</span> Layout (.u.yaml)<a href="interface.html#layout-.u.yaml" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We need to decide how to lay out the options in the GUI. The layout of the GUI is made of a series of <code>LayoutBox</code>, empty containers
+<p>Next, we need to decide how to lay out the options in the GUI. The layout of the GUI is made of a series of <code>LayoutBox</code>, empty containers
 that host the controls (the options) as their children. Our options are all numeric, so require an text input control named <code>TextBox</code>.
 The layout is basically an HTML page, so one can think of a <code>LayoutBox</code> as a <code>&lt;div&gt;</code>, containing all the controls <code>&lt;input type="text"&gt;</code>,<code>&lt;input type="checkbox"&gt;</code> etc.</p>
 <p>For now, we set it like this:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb12-1"><a href="interface.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb12-2"><a href="interface.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
-<span id="cb12-3"><a href="interface.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> powerReg</span></span>
-<span id="cb12-4"><a href="interface.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jus</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;3.0&#39;</span></span>
-<span id="cb12-5"><a href="interface.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stage</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
-<span id="cb12-6"><a href="interface.html#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="fu">compilerMode</span><span class="kw">:</span><span class="at"> tame</span></span>
-<span id="cb12-7"><a href="interface.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">children</span><span class="kw">:</span></span>
-<span id="cb12-8"><a href="interface.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> LayoutBox</span></span>
-<span id="cb12-9"><a href="interface.html#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span><span class="at"> large</span></span>
-<span id="cb12-10"><a href="interface.html#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">children</span><span class="kw">:</span></span>
-<span id="cb12-11"><a href="interface.html#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
-<span id="cb12-12"><a href="interface.html#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es</span></span>
-<span id="cb12-13"><a href="interface.html#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb12-14"><a href="interface.html#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
-<span id="cb12-15"><a href="interface.html#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> alpha</span></span>
-<span id="cb12-16"><a href="interface.html#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb12-17"><a href="interface.html#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
-<span id="cb12-18"><a href="interface.html#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> power</span></span>
-<span id="cb12-19"><a href="interface.html#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb12-20"><a href="interface.html#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.u.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.u.yaml' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb11-1"><a href="interface.html#cb11-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-2"><a href="interface.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
+<span id="cb11-3"><a href="interface.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> myRegression</span></span>
+<span id="cb11-4"><a href="interface.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jus</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;3.0&#39;</span></span>
+<span id="cb11-5"><a href="interface.html#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stage</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
+<span id="cb11-6"><a href="interface.html#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">compilerMode</span><span class="kw">:</span><span class="at"> tame</span></span>
+<span id="cb11-7"><a href="interface.html#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="fu">children</span><span class="kw">:</span></span>
+<span id="cb11-8"><a href="interface.html#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> LayoutBox</span></span>
+<span id="cb11-9"><a href="interface.html#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span><span class="at"> large</span></span>
+<span id="cb11-10"><a href="interface.html#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">children</span><span class="kw">:</span></span>
+<span id="cb11-11"><a href="interface.html#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
+<span id="cb11-12"><a href="interface.html#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es</span></span>
+<span id="cb11-13"><a href="interface.html#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb11-14"><a href="interface.html#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
+<span id="cb11-15"><a href="interface.html#cb11-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> alpha</span></span>
+<span id="cb11-16"><a href="interface.html#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb11-17"><a href="interface.html#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
+<span id="cb11-18"><a href="interface.html#cb11-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> power</span></span>
+<span id="cb11-19"><a href="interface.html#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span></code></pre></div>
 <p>Notice that we set <code>compiler:</code> to <code>tame</code>, because it tells the jamovi compiler not to override our layout.</p>
+</div>
+<div id="compile" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Compiling the jamovi module<a href="interface.html#compile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At this point we compile out module and see what happens.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="interface.html#cb12-1" aria-hidden="true" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
+<p>If everything went as expected, you should see the <code>COOLj</code> module in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>. You do not need to restart <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, the compiler would restart the internal engine automatically and you should see the new module.</p>
 <p><img src="pics/c2_menu.png" width="233" /></p>
 <p><img src="pics/c2_input1.png" width="592" /></p>
 <p>Now we have a scaffold to start programming the stats, so we can now use <code>jmvScaffold</code>.</p>
@@ -295,7 +357,7 @@ The layout is basically an HTML page, so one can think of a <code>LayoutBox</cod
         </div>
       </div>
 <a href="booklet.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="results.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

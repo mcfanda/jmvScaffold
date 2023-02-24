@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Dynamic Tables Appearance | jmvScaffold: R functions to develop jamovi modules</title>
+  <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Dynamic Tables Appearance | jmvScaffold: R functions to develop jamovi modules" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="It provise some explanations about using the package to develop jamovi modules" />
+  <meta name="github-repo" content="mcfanda/jmvScaffold" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Dynamic Tables Appearance | jmvScaffold: R functions to develop jamovi modules" />
+  
+  <meta name="twitter:description" content="It provise some explanations about using the package to develop jamovi modules" />
+  
+
+<meta name="author" content="Marcello Gallucci" />
+
+
+<meta name="date" content="2023-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="advanced-results-objects.html"/>
+<link rel="next" href="warning-failing-and-debuging.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="mcstyle.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">jmvScaffold howto</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="booklet.html"><a href="booklet.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="booklet.html"><a href="booklet.html#preface"><i class="fa fa-check"></i><b>1.1</b> Preface</a></li>
+<li class="chapter" data-level="1.2" data-path="booklet.html"><a href="booklet.html#getstarted"><i class="fa fa-check"></i><b>1.2</b> Getting Started</a></li>
+<li class="chapter" data-level="1.3" data-path="booklet.html"><a href="booklet.html#createmodule"><i class="fa fa-check"></i><b>1.3</b> Create a module</a></li>
+<li class="chapter" data-level="1.4" data-path="booklet.html"><a href="booklet.html#defining-the-analysis"><i class="fa fa-check"></i><b>1.4</b> Defining the analysis</a></li>
+<li class="chapter" data-level="1.5" data-path="booklet.html"><a href="booklet.html#jamovi-analysis"><i class="fa fa-check"></i><b>1.5</b> jamovi analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="interface.html"><a href="interface.html"><i class="fa fa-check"></i><b>2</b> Interface</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="interface.html"><a href="interface.html#options-.a.yaml"><i class="fa fa-check"></i><b>2.1</b> Options (.a.yaml)</a></li>
+<li class="chapter" data-level="2.2" data-path="interface.html"><a href="interface.html#layout-.u.yaml"><i class="fa fa-check"></i><b>2.2</b> Layout (.u.yaml)</a></li>
+<li class="chapter" data-level="2.3" data-path="interface.html"><a href="interface.html#compile"><i class="fa fa-check"></i><b>2.3</b> Compiling the jamovi module</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter3.html"><a href="chapter3.html"><i class="fa fa-check"></i><b>3</b> Results</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter3.html"><a href="chapter3.html#preparing-the-results"><i class="fa fa-check"></i><b>3.1</b> Preparing the results</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter3.html"><a href="chapter3.html#defining-the-result-tables-.r.yaml"><i class="fa fa-check"></i><b>3.2</b> Defining the result tables (.r.yaml)</a></li>
+<li class="chapter" data-level="3.3" data-path="chapter3.html"><a href="chapter3.html#r-code-for-jamovi"><i class="fa fa-check"></i><b>3.3</b> R code for jamovi</a></li>
+<li class="chapter" data-level="3.4" data-path="chapter3.html"><a href="chapter3.html#initialize-a-table"><i class="fa fa-check"></i><b>3.4</b> Initialize a table</a></li>
+<li class="chapter" data-level="3.5" data-path="chapter3.html"><a href="chapter3.html#populating-a-table"><i class="fa fa-check"></i><b>3.5</b> Populating a table</a></li>
+<li class="chapter" data-level="3.6" data-path="chapter3.html"><a href="chapter3.html#passing-data-to-smarttables"><i class="fa fa-check"></i><b>3.6</b> Passing data to SmartTables</a></li>
+<li class="chapter" data-level="3.7" data-path="chapter3.html"><a href="chapter3.html#automatic-filling-of-tables."><i class="fa fa-check"></i><b>3.7</b> Automatic filling of tables.</a></li>
+<li class="chapter" data-level="3.8" data-path="chapter3.html"><a href="chapter3.html#r6-classes-to-run-complex-modules"><i class="fa fa-check"></i><b>3.8</b> R6 classes to run complex modules</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html"><i class="fa fa-check"></i><b>4</b> Advanced Results Objects</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#introduction"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#groups-jmvcoregroup"><i class="fa fa-check"></i><b>4.2</b> Groups (jmvcore::Group)</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#arrays-of-tables-jmvcorearray"><i class="fa fa-check"></i><b>4.3</b> Arrays of tables (jmvcore::Array)</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#array-known-number-of-tables"><i class="fa fa-check"></i><b>4.3.1</b> Array: known number of tables</a></li>
+<li class="chapter" data-level="4.3.2" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#array-unknown-number-of-tables"><i class="fa fa-check"></i><b>4.3.2</b> Array: Unknown number of tables</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#other-results-objects"><i class="fa fa-check"></i><b>4.4</b> Other Results objects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html"><i class="fa fa-check"></i><b>5</b> Dynamic Tables Appearance</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-table-on-option-change"><i class="fa fa-check"></i><b>5.2</b> Showing table on option change</a></li>
+<li class="chapter" data-level="5.3" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
+<li class="chapter" data-level="5.4" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html"><i class="fa fa-check"></i><b>6</b> Warning, Failing and Debuging</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#tables-debugging"><i class="fa fa-check"></i><b>6.2</b> Tables debugging</a></li>
+<li class="chapter" data-level="6.3" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#mark-landmarks"><i class="fa fa-check"></i><b>6.3</b> Mark landmarks</a></li>
+<li class="chapter" data-level="6.4" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-errors"><i class="fa fa-check"></i><b>6.4</b> Automatic Errors</a></li>
+<li class="chapter" data-level="6.5" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-warnings"><i class="fa fa-check"></i><b>6.5</b> Automatic Warnings</a></li>
+<li class="chapter" data-level="6.6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#code-generated-warnings-and-messages"><i class="fa fa-check"></i><b>6.6</b> Code-generated Warnings and Messages</a></li>
+<li class="chapter" data-level="6.7" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#transient-messages"><i class="fa fa-check"></i><b>6.7</b> Transient messages</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="formatting-tables.html"><a href="formatting-tables.html"><i class="fa fa-check"></i><b>7</b> Formatting Tables</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="formatting-tables.html"><a href="formatting-tables.html#introduction-3"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="formatting-tables.html"><a href="formatting-tables.html#initializing-the-table"><i class="fa fa-check"></i><b>7.2</b> Initializing the table</a></li>
+<li class="chapter" data-level="7.3" data-path="formatting-tables.html"><a href="formatting-tables.html#combining-below"><i class="fa fa-check"></i><b>7.3</b> Combining below</a></li>
+<li class="chapter" data-level="7.4" data-path="formatting-tables.html"><a href="formatting-tables.html#add-spaces-between-rows"><i class="fa fa-check"></i><b>7.4</b> Add spaces between rows</a></li>
+<li class="chapter" data-level="7.5" data-path="formatting-tables.html"><a href="formatting-tables.html#indent-some-row-value"><i class="fa fa-check"></i><b>7.5</b> Indent some row value</a></li>
+<li class="chapter" data-level="7.6" data-path="formatting-tables.html"><a href="formatting-tables.html#showing-columns-when-needed"><i class="fa fa-check"></i><b>7.6</b> Showing columns when needed</a></li>
+<li class="chapter" data-level="7.7" data-path="formatting-tables.html"><a href="formatting-tables.html#showing-columns-programmatically"><i class="fa fa-check"></i><b>7.7</b> Showing columns programmatically</a></li>
+<li class="chapter" data-level="7.8" data-path="formatting-tables.html"><a href="formatting-tables.html#changing-column-names-programmatically"><i class="fa fa-check"></i><b>7.8</b> Changing column names programmatically</a></li>
+<li class="chapter" data-level="7.9" data-path="formatting-tables.html"><a href="formatting-tables.html#super-titles"><i class="fa fa-check"></i><b>7.9</b> Super Titles</a></li>
+<li class="chapter" data-level="7.10" data-path="formatting-tables.html"><a href="formatting-tables.html#something-else"><i class="fa fa-check"></i><b>7.10</b> Something else</a></li>
+<li class="chapter" data-level="7.11" data-path="formatting-tables.html"><a href="formatting-tables.html#adding-columns-programmatically"><i class="fa fa-check"></i><b>7.11</b> Adding columns programmatically</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="smart-tables-update.html"><a href="smart-tables-update.html"><i class="fa fa-check"></i><b>8</b> Smart Tables Update</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-issue"><i class="fa fa-check"></i><b>8.1</b> The issue</a></li>
+<li class="chapter" data-level="8.2" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-solution"><i class="fa fa-check"></i><b>8.2</b> The Solution</a></li>
+<li class="chapter" data-level="8.3" data-path="smart-tables-update.html"><a href="smart-tables-update.html#bottom-line"><i class="fa fa-check"></i><b>8.3</b> Bottom line</a></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendixa.html"><a href="appendixa.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">jmvScaffold: R functions to develop jamovi modules</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dynamic-tables-appearance" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Dynamic Tables Appearance<a href="dynamic-tables-appearance.html#dynamic-tables-appearance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introduction-1" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Introduction<a href="dynamic-tables-appearance.html#introduction-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Not every table is useful every time we run the analysis. Sometimes you want to hide a table, sometimes a hidden table should appear. <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> allows hiding and showing the tables as default and programmatically, <code>jmvScaffold</code> helps make the process a bit smoother.</p>
+<p>Let’s make our module a bit more complex adding one option in the GUI. It allows the user to show the <code>sig_means</code> array, that we now want hidden by default.</p>
+<p>In the <code>.a.yalm</code> file, we add this two options.</p>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb46-1"><a href="dynamic-tables-appearance.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb46-2"><a href="dynamic-tables-appearance.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> show_means</span></span>
+<span id="cb46-3"><a href="dynamic-tables-appearance.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Show Means for Sig.&quot;</span></span>
+<span id="cb46-4"><a href="dynamic-tables-appearance.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Bool</span></span>
+<span id="cb46-5"><a href="dynamic-tables-appearance.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">default</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb46-6"><a href="dynamic-tables-appearance.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<p><img src="pics/c5_input1.png" width="589" /></p>
+</div>
+<div id="showing-table-on-option-change" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Showing table on option change<a href="dynamic-tables-appearance.html#showing-table-on-option-change" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example, we want the <code>sig_means</code> array to be shown only when the user selects <code>Show means for Sig.</code> in the GUI. We need to modify the <code>.r.yaml</code> file as follows:</p>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb47-1"><a href="dynamic-tables-appearance.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb47-2"><a href="dynamic-tables-appearance.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sig</span></span>
+<span id="cb47-3"><a href="dynamic-tables-appearance.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
+<span id="cb47-4"><a href="dynamic-tables-appearance.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Significant covariates</span></span>
+<span id="cb47-5"><a href="dynamic-tables-appearance.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_means)</span></span>
+<span id="cb47-6"><a href="dynamic-tables-appearance.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb47-7"><a href="dynamic-tables-appearance.html#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> means</span></span>
+<span id="cb47-8"><a href="dynamic-tables-appearance.html#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;&quot;</span></span>
+<span id="cb47-9"><a href="dynamic-tables-appearance.html#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Array</span></span>
+<span id="cb47-10"><a href="dynamic-tables-appearance.html#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_means)</span></span>
+<span id="cb47-11"><a href="dynamic-tables-appearance.html#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb47-12"><a href="dynamic-tables-appearance.html#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Variable - $key</span></span>
+<span id="cb47-13"><a href="dynamic-tables-appearance.html#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb47-14"><a href="dynamic-tables-appearance.html#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb47-15"><a href="dynamic-tables-appearance.html#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb47-16"><a href="dynamic-tables-appearance.html#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb47-17"><a href="dynamic-tables-appearance.html#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb47-18"><a href="dynamic-tables-appearance.html#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mean</span></span>
+<span id="cb47-19"><a href="dynamic-tables-appearance.html#cb47-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Mean&quot;</span></span>
+<span id="cb47-20"><a href="dynamic-tables-appearance.html#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb47-21"><a href="dynamic-tables-appearance.html#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sd</span></span>
+<span id="cb47-22"><a href="dynamic-tables-appearance.html#cb47-22" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Sd&quot;</span></span>
+<span id="cb47-23"><a href="dynamic-tables-appearance.html#cb47-23" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb47-24"><a href="dynamic-tables-appearance.html#cb47-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-25"><a href="dynamic-tables-appearance.html#cb47-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-26"><a href="dynamic-tables-appearance.html#cb47-26" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<p>Notice the <code>visible:</code> property. This means that the Array will be shown only if <code>show_means</code> is set to TRUE, thus when the user flags it. No other modification of the code is required. Notice, furthermore, that given the way <code>SmartArray</code> and <code>SmartTable</code> are implemented, if the table or the array is not visible, the functions to fill it are not run, so an advantage in performance is gained by not running computation that is not need.</p>
+<p>If you want a table or array to be visible by default by hidden by choice, just set the default of the associated option as true.</p>
+<p><img src="pics/c5_output1.png" width="966" /></p>
+</div>
+<div id="showing-tables-programmatically" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Showing tables programmatically<a href="dynamic-tables-appearance.html#showing-tables-programmatically" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Sometimes you want your module to show tables only when necessary, and the necessity arises from the results. As an example, assume that you want to show the section <code>Additional Ouput</code> only if there is some significant results (again, silly example but we need a case in studying). With this aim, we do not know in advance if the table will be shown, so we have to make it visible only when the results suggest so.</p>
+<p>There are different strategies to accomplish that, maybe the easiest one is the following.</p>
+<p>Define in the <code>r.yaml</code> file the table as not visible by default with <code>visible: false</code>.</p>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb48-1"><a href="dynamic-tables-appearance.html#cb48-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-2"><a href="dynamic-tables-appearance.html#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> additional</span></span>
+<span id="cb48-3"><a href="dynamic-tables-appearance.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
+<span id="cb48-4"><a href="dynamic-tables-appearance.html#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Additional Results</span></span>
+<span id="cb48-5"><a href="dynamic-tables-appearance.html#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb48-6"><a href="dynamic-tables-appearance.html#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
+<span id="cb48-7"><a href="dynamic-tables-appearance.html#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
+<span id="cb48-8"><a href="dynamic-tables-appearance.html#cb48-8" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb48-9"><a href="dynamic-tables-appearance.html#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">  ## here we set the default as not visible</span></span>
+<span id="cb48-10"><a href="dynamic-tables-appearance.html#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb48-11"><a href="dynamic-tables-appearance.html#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb48-12"><a href="dynamic-tables-appearance.html#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb48-13"><a href="dynamic-tables-appearance.html#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb48-14"><a href="dynamic-tables-appearance.html#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> index</span></span>
+<span id="cb48-15"><a href="dynamic-tables-appearance.html#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Index&quot;</span></span>
+<span id="cb48-16"><a href="dynamic-tables-appearance.html#cb48-16" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb48-17"><a href="dynamic-tables-appearance.html#cb48-17" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> value</span></span>
+<span id="cb48-18"><a href="dynamic-tables-appearance.html#cb48-18" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Value&quot;</span></span>
+<span id="cb48-19"><a href="dynamic-tables-appearance.html#cb48-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb48-20"><a href="dynamic-tables-appearance.html#cb48-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span></code></pre></div>
+<p>Then go to the <code>.b.R</code> file, in the <code>init()</code> function, and set the proporties of the table as shown here.</p>
+<div class="filename">
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dynamic-tables-appearance.html#cb49-1" aria-hidden="true" tabindex="-1"></a>    atable                <span class="ot">&lt;-</span> SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
+<span id="cb49-2"><a href="dynamic-tables-appearance.html#cb49-2" aria-hidden="true" tabindex="-1"></a>    atable<span class="sc">$</span>activateOnData <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb49-3"><a href="dynamic-tables-appearance.html#cb49-3" aria-hidden="true" tabindex="-1"></a>    private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
+<p>The <code>$activateOnData</code> property is crucial here: It tells the <code>SmartTable</code> to check its data source (i.e. <code>runner$run_additional_effects()</code>) and make itself visible only if it receives some data.</p>
+<p>Now we need to be sure that the <code>run_additional_effects()</code> returns something only if there is a significant result in the coefficients.
+In the <code>Runner.R</code> file, we change the function in:</p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="dynamic-tables-appearance.html#cb50-1" aria-hidden="true" tabindex="-1"></a>run_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb50-2"><a href="dynamic-tables-appearance.html#cb50-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-3"><a href="dynamic-tables-appearance.html#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## check the covs ##</span></span>
+<span id="cb50-4"><a href="dynamic-tables-appearance.html#cb50-4" aria-hidden="true" tabindex="-1"></a>  results      <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(self<span class="sc">$</span>model)<span class="sc">$</span>coefficients)</span>
+<span id="cb50-5"><a href="dynamic-tables-appearance.html#cb50-5" aria-hidden="true" tabindex="-1"></a>  results      <span class="ot">&lt;-</span>   results[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb50-6"><a href="dynamic-tables-appearance.html#cb50-6" aria-hidden="true" tabindex="-1"></a>  whichcovs    <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(results[results[,<span class="dv">4</span>]<span class="sc">&lt;</span>.<span class="dv">05</span>,])</span>
+<span id="cb50-7"><a href="dynamic-tables-appearance.html#cb50-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(whichcovs)<span class="sc">==</span><span class="dv">0</span>) </span>
+<span id="cb50-8"><a href="dynamic-tables-appearance.html#cb50-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb50-9"><a href="dynamic-tables-appearance.html#cb50-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-10"><a href="dynamic-tables-appearance.html#cb50-10" aria-hidden="true" tabindex="-1"></a>  eps       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">epsilon_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb50-11"><a href="dynamic-tables-appearance.html#cb50-11" aria-hidden="true" tabindex="-1"></a>  eps_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eps<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;Epsilon^2&quot;</span>,<span class="at">value=</span>eps<span class="sc">$</span>Epsilon2)</span>
+<span id="cb50-12"><a href="dynamic-tables-appearance.html#cb50-12" aria-hidden="true" tabindex="-1"></a>  eta       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb50-13"><a href="dynamic-tables-appearance.html#cb50-13" aria-hidden="true" tabindex="-1"></a>  eta_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pEta^2&quot;</span>,<span class="at">value=</span>eta<span class="sc">$</span>Eta2)</span>
+<span id="cb50-14"><a href="dynamic-tables-appearance.html#cb50-14" aria-hidden="true" tabindex="-1"></a>  omega     <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">omega_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb50-15"><a href="dynamic-tables-appearance.html#cb50-15" aria-hidden="true" tabindex="-1"></a>  omega_df  <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pOmega^2&quot;</span>,<span class="at">value=</span>omega<span class="sc">$</span>Omega2)</span>
+<span id="cb50-16"><a href="dynamic-tables-appearance.html#cb50-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb50-17"><a href="dynamic-tables-appearance.html#cb50-17" aria-hidden="true" tabindex="-1"></a>  tab       <span class="ot">&lt;-</span>  <span class="fu">rbind</span>(eps_df,eta_df,omega_df)</span>
+<span id="cb50-18"><a href="dynamic-tables-appearance.html#cb50-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(tab)</span>
+<span id="cb50-19"><a href="dynamic-tables-appearance.html#cb50-19" aria-hidden="true" tabindex="-1"></a>},</span></code></pre></div>
+<p>If you are using the <code>Big 5</code> data buddled with <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, you can try predicting <code>Neuroticism</code> with <code>Openess</code>, which will not show the table, and then with <code>Agreebleness</code>, which will show the table</p>
+<p><img src="pics/c5_output2.png" width="1073" /></p>
+<p><img src="pics/c5_output3.png" width="1022" /></p>
+</div>
+<div id="additional-strategies" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Additional strategies<a href="dynamic-tables-appearance.html#additional-strategies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Usually the <code>yaml</code> property <code>visible:(option)</code> or the <code>SmartTable</code> <code>$activateOnData</code> are sufficient for all cases of dynamic table appearance. If, however, the developer needs more flexibility, one can set the <code>visible:</code> property to <code>false</code>, and use <code>$activated</code> property of <code>SmartTable</code>. <code>$activated</code> accept <code>TRUE</code> or <code>FALSE</code>, and it is equivalent to the jamovi function <code>table$setVisible(BOOL)</code>. Using <code>$activated</code>, however, will also not run the code required to fill the table when <code>$activated&lt;-FALSE</code>, so you do not need to take precaution again running useless computation.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="advanced-results-objects.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="warning-failing-and-debuging.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["jmvScaffoldHowto.pdf", "jmvScaffoldHowto.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
