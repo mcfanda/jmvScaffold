@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="failing-and-debuging.html"/>
+<link rel="prev" href="warning-failing-and-debuging.html"/>
 <link rel="next" href="smart-tables-update.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -180,12 +180,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
 <li class="chapter" data-level="5.4" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html"><i class="fa fa-check"></i><b>6</b> Failing and Debuging</a>
+<li class="chapter" data-level="6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html"><i class="fa fa-check"></i><b>6</b> Warning, Failing and Debuging</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
-<li class="chapter" data-level="6.2" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#automatic-errors"><i class="fa fa-check"></i><b>6.2</b> Automatic Errors</a></li>
-<li class="chapter" data-level="6.3" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#automatic-warnings"><i class="fa fa-check"></i><b>6.3</b> Automatic Warnings</a></li>
-<li class="chapter" data-level="6.4" data-path="failing-and-debuging.html"><a href="failing-and-debuging.html#code-generated-warnings-and-messages"><i class="fa fa-check"></i><b>6.4</b> Code-generated Warnings and Messages</a></li>
+<li class="chapter" data-level="6.1" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#introduction-2"><i class="fa fa-check"></i><b>6.1</b> Introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#tables-debugging"><i class="fa fa-check"></i><b>6.2</b> Tables debugging</a></li>
+<li class="chapter" data-level="6.3" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#mark-landmarks"><i class="fa fa-check"></i><b>6.3</b> Mark landmarks</a></li>
+<li class="chapter" data-level="6.4" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-errors"><i class="fa fa-check"></i><b>6.4</b> Automatic Errors</a></li>
+<li class="chapter" data-level="6.5" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-warnings"><i class="fa fa-check"></i><b>6.5</b> Automatic Warnings</a></li>
+<li class="chapter" data-level="6.6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#code-generated-warnings-and-messages"><i class="fa fa-check"></i><b>6.6</b> Code-generated Warnings and Messages</a></li>
+<li class="chapter" data-level="6.7" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#transient-messages"><i class="fa fa-check"></i><b>6.7</b> Transient messages</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="formatting-tables.html"><a href="formatting-tables.html"><i class="fa fa-check"></i><b>7</b> Formatting Tables</a>
 <ul>
@@ -195,15 +198,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.4" data-path="formatting-tables.html"><a href="formatting-tables.html#add-spaces-between-rows"><i class="fa fa-check"></i><b>7.4</b> Add spaces between rows</a></li>
 <li class="chapter" data-level="7.5" data-path="formatting-tables.html"><a href="formatting-tables.html#indent-some-row-value"><i class="fa fa-check"></i><b>7.5</b> Indent some row value</a></li>
 <li class="chapter" data-level="7.6" data-path="formatting-tables.html"><a href="formatting-tables.html#showing-columns-when-needed"><i class="fa fa-check"></i><b>7.6</b> Showing columns when needed</a></li>
-<li class="chapter" data-level="7.7" data-path="formatting-tables.html"><a href="formatting-tables.html#changing-column-names-programmatically"><i class="fa fa-check"></i><b>7.7</b> Changing column names programmatically</a></li>
-<li class="chapter" data-level="7.8" data-path="formatting-tables.html"><a href="formatting-tables.html#super-titles"><i class="fa fa-check"></i><b>7.8</b> Super Titles</a></li>
-<li class="chapter" data-level="7.9" data-path="formatting-tables.html"><a href="formatting-tables.html#something-else"><i class="fa fa-check"></i><b>7.9</b> Something else</a></li>
-<li class="chapter" data-level="7.10" data-path="formatting-tables.html"><a href="formatting-tables.html#adding-columns-programmatically"><i class="fa fa-check"></i><b>7.10</b> Adding columns programmatically</a></li>
+<li class="chapter" data-level="7.7" data-path="formatting-tables.html"><a href="formatting-tables.html#showing-columns-programmatically"><i class="fa fa-check"></i><b>7.7</b> Showing columns programmatically</a></li>
+<li class="chapter" data-level="7.8" data-path="formatting-tables.html"><a href="formatting-tables.html#changing-column-names-programmatically"><i class="fa fa-check"></i><b>7.8</b> Changing column names programmatically</a></li>
+<li class="chapter" data-level="7.9" data-path="formatting-tables.html"><a href="formatting-tables.html#super-titles"><i class="fa fa-check"></i><b>7.9</b> Super Titles</a></li>
+<li class="chapter" data-level="7.10" data-path="formatting-tables.html"><a href="formatting-tables.html#something-else"><i class="fa fa-check"></i><b>7.10</b> Something else</a></li>
+<li class="chapter" data-level="7.11" data-path="formatting-tables.html"><a href="formatting-tables.html#adding-columns-programmatically"><i class="fa fa-check"></i><b>7.11</b> Adding columns programmatically</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="smart-tables-update.html"><a href="smart-tables-update.html"><i class="fa fa-check"></i><b>8</b> Smart Tables Update</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-issue"><i class="fa fa-check"></i><b>8.1</b> The issue</a></li>
 <li class="chapter" data-level="8.2" data-path="smart-tables-update.html"><a href="smart-tables-update.html#the-solution"><i class="fa fa-check"></i><b>8.2</b> The Solution</a></li>
+<li class="chapter" data-level="8.3" data-path="smart-tables-update.html"><a href="smart-tables-update.html#bottom-line"><i class="fa fa-check"></i><b>8.3</b> Bottom line</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="formatting-tables-1.html"><a href="formatting-tables-1.html"><i class="fa fa-check"></i><b>9</b> Formatting Tables</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
@@ -232,19 +237,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 7</span> Formatting Tables<a href="formatting-tables.html#formatting-tables" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="introduction-3" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Introduction<a href="formatting-tables.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Now we can tune the look of our table. We should, however, do a better job in initializing the tables. So far, we did not do anything in the <code>.init()</code> table but running the <code>$initTab()</code> function. Properly initiating the table makes the whole user experience much smoother and pleasant. To convince yourself about that, consider than our little module is very fast now, because we simply run a regression with a few variables. Consider that your model may take time to obtain the results, maybe because you need to bootstrap, or the user has a huge dataset with hundreds of variables.</p>
-<p>To appreciate the need for a proper initialization of the tables, let slow down our <code>Estimate()</code> function in the <code>Runner</code> by change it like this, re-install and try changing variables or options in the module GUI, as a user would do.</p>
+<p>Now we can tune the look of our table. We should, however, do a better job in initializing the tables. So far, we did not do anything in the <code>.init()</code> function but running the <code>$initTab()</code> function. Properly initiating the table makes the whole user experience much smoother and pleasant. To convince yourself about that, consider than our little module is very fast now, because we simply run a regression with a few variables. Ponder that your model may take time to obtain the results, maybe because you need to bootstrap, user has billions of data points, or the user has a huge dataset with hundreds of variables.</p>
+<p>To appreciate the need for a proper initialization of the tables, let slow down our <code>Estimate()</code> function in the <code>Runner</code> by change it like this, re-install and try changing variables or options in the module GUI, as a user would do (we removed the warnings and errors in this chapter).</p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="formatting-tables.html#cb60-1" aria-hidden="true" tabindex="-1"></a>    estimate<span class="ot">=</span><span class="cf">function</span>() {</span>
 <span id="cb60-2"><a href="formatting-tables.html#cb60-2" aria-hidden="true" tabindex="-1"></a>      </span>
 <span id="cb60-3"><a href="formatting-tables.html#cb60-3" aria-hidden="true" tabindex="-1"></a>      formula  <span class="ot">&lt;-</span> jmvcore<span class="sc">::</span><span class="fu">composeFormula</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
 <span id="cb60-4"><a href="formatting-tables.html#cb60-4" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
 <span id="cb60-5"><a href="formatting-tables.html#cb60-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">3</span>)</span>
 <span id="cb60-6"><a href="formatting-tables.html#cb60-6" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
-<p>What happens with a slightly slower estimation is that the tables will expand and shrink every time the user changes some option, and the whole results section will flicker in an unpleasant way. To avoid that, we can set the dimensions and fill some columns of the tables in the <code>$initTable()</code> function phase. <code>SmartTable</code> can be initiated by passing data in the <code>init()</code> phase, data that are typically the name of the rows, such as variables names, or some other fixed information.</p>
+<p>What happens with a slightly slower estimation is that the tables will expand and shrink every time the user changes some option, and the whole results section will flicker in an unpleasant way (try yourself after compiling the module with the last chanches). To avoid that, we can set the dimensions and fill some columns of the tables in the <code>$initTable()</code> function phase. <code>SmartTable</code> can be initiated by passing data in the <code>init()</code> phase, data that are typically the name of the rows, such as variables names, or some other fixed information.</p>
 <p><code>SmartTable</code> objects <code>$initTab()</code> function inquires the <code>initSource</code> property (if set) or the <code>runner</code> <code>init_tablename()</code> function to get info to fill the tables in the init phase. You want to pass very fast and simple information, and let the actual data to come in in the <code>.run()</code> phase, when we call the <code>$runTable</code> function.</p>
-<p>Let’s start with <code>effects</code> table, which does not look very good (be sure to go back to the first definition of the table in chapter <a href="chapter3.html#chapter3">3</a>).</p>
+<p>Let’s start with <code>effects</code> table, which does not look very good.</p>
 <p><img src="pics/c3_output8.png" width="322" /></p>
 <p>First, the variables are alternating in the column <code>Variable</code>, which is not a natural way to read the results. It would be better to have each variable with all its effect sizes and then another variable, and so on. So, first we sort the output by variable in the <code>Runner.R</code> filling function.</p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="formatting-tables.html#cb61-1" aria-hidden="true" tabindex="-1"></a>    run_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
 <span id="cb61-2"><a href="formatting-tables.html#cb61-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb61-3"><a href="formatting-tables.html#cb61-3" aria-hidden="true" tabindex="-1"></a>      eps       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">epsilon_squared</span>(self<span class="sc">$</span>model)</span>
@@ -255,44 +266,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb61-8"><a href="formatting-tables.html#cb61-8" aria-hidden="true" tabindex="-1"></a>      omega_df  <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pOmega^2&quot;</span>,<span class="at">value=</span>omega<span class="sc">$</span>Omega2)</span>
 <span id="cb61-9"><a href="formatting-tables.html#cb61-9" aria-hidden="true" tabindex="-1"></a>      </span>
 <span id="cb61-10"><a href="formatting-tables.html#cb61-10" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(<span class="fu">rbind</span>(eps_df,eta_df,omega_df))</span>
-<span id="cb61-11"><a href="formatting-tables.html#cb61-11" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span>  tab[<span class="fu">order</span>(tab<span class="sc">$</span>var),]</span>
+<span id="cb61-11"><a href="formatting-tables.html#cb61-11" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span>  tab[<span class="fu">order</span>(tab<span class="sc">$</span>var),]  <span class="co"># we order the results by variable</span></span>
 <span id="cb61-12"><a href="formatting-tables.html#cb61-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
 <span id="cb61-13"><a href="formatting-tables.html#cb61-13" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
 <p><img src="pics/c7_output1.png" width="339" /></p>
 </div>
 <div id="initializing-the-table" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Initializing the table<a href="formatting-tables.html#initializing-the-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>At the <code>.init()</code> time, we know what are the covariates that will be listed in the table and what are the labels of the effect sizes we want to show. We can pass this info to the table <code>$initTable</code> by defining in <code>Runner</code> a <code>init_additional_effects()</code> function. Recall that in the <code>.init()</code> phase we have all the options, the data definitions, but no estimation nor the actual data. This is made on purpose to keep the <code>.init()</code> phase light and fast.</p>
+<p>At the <code>.init()</code> time, we know what the covariates that will be listed in the table and the labels of the effect sizes we want to show. We can pass this info to the table <code>$initTable</code> by defining in <code>Runner</code> a <code>init_additional_effects()</code> function. Recall that in the <code>.init()</code> phase we have all the options, the data definitions, but no estimation nor the actual data. This is made on purpose to keep the <code>.init()</code> phase light and fast.</p>
 <p>In the Runner, we write.</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="formatting-tables.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="do">## other code here</span></span>
-<span id="cb62-2"><a href="formatting-tables.html#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb62-3"><a href="formatting-tables.html#cb62-3" aria-hidden="true" tabindex="-1"></a>    init_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb62-4"><a href="formatting-tables.html#cb62-4" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb62-5"><a href="formatting-tables.html#cb62-5" aria-hidden="true" tabindex="-1"></a>      covs      <span class="ot">&lt;-</span> self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs</span>
-<span id="cb62-6"><a href="formatting-tables.html#cb62-6" aria-hidden="true" tabindex="-1"></a>      es        <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pEpsilon&quot;</span>,<span class="st">&quot;pEta&quot;</span>,<span class="st">&quot;pOmega&quot;</span>) </span>
-<span id="cb62-7"><a href="formatting-tables.html#cb62-7" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">expand.grid</span>(covs,es))</span>
-<span id="cb62-8"><a href="formatting-tables.html#cb62-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(tab)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;var&quot;</span>,<span class="st">&quot;index&quot;</span>)</span>
-<span id="cb62-9"><a href="formatting-tables.html#cb62-9" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> tab[<span class="fu">order</span>(tab<span class="sc">$</span>var),]</span>
-<span id="cb62-10"><a href="formatting-tables.html#cb62-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
-<span id="cb62-11"><a href="formatting-tables.html#cb62-11" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb62-12"><a href="formatting-tables.html#cb62-12" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb62-13"><a href="formatting-tables.html#cb62-13" aria-hidden="true" tabindex="-1"></a>    run_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb62-14"><a href="formatting-tables.html#cb62-14" aria-hidden="true" tabindex="-1"></a><span class="do">## other code here</span></span></code></pre></div>
-<p>We are passing to the <code>init_tablename</code> function a data.frame with the <code>var</code> and the <code>index</code> labels, that we know as soon as the GUI is updated. If you play around with the GUI of your module, you can notice that now the <code>Effects Size Indices</code> gets ready very quickly, with the correct number of raws, and it is finalized with the numerical values when the estimation is done.
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="formatting-tables.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb62-2"><a href="formatting-tables.html#cb62-2" aria-hidden="true" tabindex="-1"></a>    init_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb62-3"><a href="formatting-tables.html#cb62-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb62-4"><a href="formatting-tables.html#cb62-4" aria-hidden="true" tabindex="-1"></a>      covs      <span class="ot">&lt;-</span> self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs</span>
+<span id="cb62-5"><a href="formatting-tables.html#cb62-5" aria-hidden="true" tabindex="-1"></a>      es        <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;pEpsilon&quot;</span>,<span class="st">&quot;pEta&quot;</span>,<span class="st">&quot;pOmega&quot;</span>) </span>
+<span id="cb62-6"><a href="formatting-tables.html#cb62-6" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">expand.grid</span>(covs,es))</span>
+<span id="cb62-7"><a href="formatting-tables.html#cb62-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(tab)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;var&quot;</span>,<span class="st">&quot;index&quot;</span>)</span>
+<span id="cb62-8"><a href="formatting-tables.html#cb62-8" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> tab[<span class="fu">order</span>(tab<span class="sc">$</span>var),]</span>
+<span id="cb62-9"><a href="formatting-tables.html#cb62-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
+<span id="cb62-10"><a href="formatting-tables.html#cb62-10" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb62-11"><a href="formatting-tables.html#cb62-11" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb62-12"><a href="formatting-tables.html#cb62-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-13"><a href="formatting-tables.html#cb62-13" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<p>We are passing to the <code>init_[tablename]</code> function a data.frame with the <code>var</code> and the <code>index</code> labels, that we know as soon as the GUI is updated. If you play around with the GUI of your module, you can notice that now the <code>Effects Size Indices</code> gets ready very quickly, with the correct number of rows, and it is finalized with the numerical values when the estimation is done.
 (remove the <code>Sys.sleep(3)</code> for future usage)</p>
+<p>Note: one does not need to prepare a <code>init_tablename()</code> function for each table. It should be done for tables that requires some formatting before hand, such as the formatting options discussed below.</p>
 </div>
 <div id="combining-below" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Combining below<a href="formatting-tables.html#combining-below" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(ref. <a href='reference/SmartTable.html##public-fields-1' target='_blank'>SmartTable$CombineBelow</a>)</p>
 <p>At this point, we can notice that the repetition of the <code>Variable</code> name makes the table a bit heavy (column name is <code>var</code>). We can make it look better by removing the repeated labels and let them print only when a new variable name appears. This can be in the <code>.r.yaml</code> file by adding <code>combineBelow: true</code> property.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb63-1"><a href="formatting-tables.html#cb63-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb63-1"><a href="formatting-tables.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb63-2"><a href="formatting-tables.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
 <span id="cb63-3"><a href="formatting-tables.html#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb63-4"><a href="formatting-tables.html#cb63-4" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
 <span id="cb63-5"><a href="formatting-tables.html#cb63-5" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
 <span id="cb63-6"><a href="formatting-tables.html#cb63-6" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
 <span id="cb63-7"><a href="formatting-tables.html#cb63-7" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb63-8"><a href="formatting-tables.html#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">combineBelow</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
+<span id="cb63-8"><a href="formatting-tables.html#cb63-8" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">combineBelow</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb63-9"><a href="formatting-tables.html#cb63-9" aria-hidden="true" tabindex="-1"></a><span class="at">                      ...</span></span>
+<span id="cb63-10"><a href="formatting-tables.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>The results are more pleasantly looking.</p>
 <p><img src="pics/c7_output2.png" width="342" /></p>
 </div>
@@ -300,10 +319,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.4</span> Add spaces between rows<a href="formatting-tables.html#add-spaces-between-rows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(ref. <a href='reference/SmartTable.html##public-fields-1' target='_blank'>SmartTable$spaceBy</a>)</p>
 <p>Another way to make tables more pleasant looking is to add some space between rows that are someway logically separated. In our table <code>Effects Size Indices</code> we can separate a bit the sets of indices between variables. We can use <code>SmartTable</code> property <code>$spacyBy</code>. <code>spaceBy</code> accepts a column name or a vector of indices, indicating where to put the space. When the argument is a column name, or a vector of names, the space is inserted when the column changes value. In practices, we define the <code>SmartTable</code> like this.</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="formatting-tables.html#cb64-1" aria-hidden="true" tabindex="-1"></a>            atable          <span class="ot">&lt;-</span> SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
-<span id="cb64-2"><a href="formatting-tables.html#cb64-2" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>spaceBy  <span class="ot">&lt;-</span> <span class="st">&quot;var&quot;</span> </span>
-<span id="cb64-3"><a href="formatting-tables.html#cb64-3" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
-<span id="cb64-4"><a href="formatting-tables.html#cb64-4" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
+<div class="filename">
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="formatting-tables.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb64-2"><a href="formatting-tables.html#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="formatting-tables.html#cb64-3" aria-hidden="true" tabindex="-1"></a>            atable          <span class="ot">&lt;-</span> SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
+<span id="cb64-4"><a href="formatting-tables.html#cb64-4" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>spaceBy  <span class="ot">&lt;-</span> <span class="st">&quot;var&quot;</span> </span>
+<span id="cb64-5"><a href="formatting-tables.html#cb64-5" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
+<span id="cb64-6"><a href="formatting-tables.html#cb64-6" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
+<span id="cb64-7"><a href="formatting-tables.html#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p><img src="pics/c7_output3.png" width="320" /></p>
 </div>
 <div id="indent-some-row-value" class="section level2 hasAnchor" number="7.5">
@@ -311,107 +336,147 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>(ref. <a href='reference/SmartTable.html##public-fields-1' target='_blank'>SmartTable$indent</a>)</p>
 <p>Another stylistic change we can make to our tables is to indent some rows to improve readability. Indent can be passed to a <code>SmartTable</code> as a vector of rows indices. The values of the first column at the provided indices will be indent. As a quick example,
 we indent the first row label of the <code>effects</code> table.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="formatting-tables.html#cb65-1" aria-hidden="true" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
-<span id="cb65-2"><a href="formatting-tables.html#cb65-2" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>spaceBy <span class="ot">&lt;-</span> <span class="st">&quot;var&quot;</span></span>
-<span id="cb65-3"><a href="formatting-tables.html#cb65-3" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>indent <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb65-4"><a href="formatting-tables.html#cb65-4" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
-<span id="cb65-5"><a href="formatting-tables.html#cb65-5" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
+<div class="filename">
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="formatting-tables.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb65-2"><a href="formatting-tables.html#cb65-2" aria-hidden="true" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
+<span id="cb65-3"><a href="formatting-tables.html#cb65-3" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>spaceBy <span class="ot">&lt;-</span> <span class="st">&quot;var&quot;</span></span>
+<span id="cb65-4"><a href="formatting-tables.html#cb65-4" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>indent <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb65-5"><a href="formatting-tables.html#cb65-5" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
+<span id="cb65-6"><a href="formatting-tables.html#cb65-6" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
+<span id="cb65-7"><a href="formatting-tables.html#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p><img src="pics/c7_output4.png" width="402" /></p>
 </div>
 <div id="showing-columns-when-needed" class="section level2 hasAnchor" number="7.6">
 <h2><span class="header-section-number">7.6</span> Showing columns when needed<a href="formatting-tables.html#showing-columns-when-needed" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>There are applications in which one or more columns of a table are not always necessary, so you want to show them only when needed. An example would be to show the confidence intervals of our effect size indices only when the user requires them flagging an option. In other situations, you do not know in advanced if the column is needed, because its relevance depends on the obtained results. <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> allows handling these cases.</p>
 <p>Linking a column visibility to an option is the easiest way. Lets’ define an option in the <code>.a.yaml</code> file to toggle confidence intervals appearance.</p>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb66"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb66-1"><a href="formatting-tables.html#cb66-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb66-2"><a href="formatting-tables.html#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> show_ci</span></span>
 <span id="cb66-3"><a href="formatting-tables.html#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> ES CI</span></span>
 <span id="cb66-4"><a href="formatting-tables.html#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Bool</span></span>
 <span id="cb66-5"><a href="formatting-tables.html#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">default</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div>
 <p>and change <code>effects</code> table in the <code>.r.yaml</code> file</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb67-1"><a href="formatting-tables.html#cb67-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb67-2"><a href="formatting-tables.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
-<span id="cb67-3"><a href="formatting-tables.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
-<span id="cb67-4"><a href="formatting-tables.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb67-5"><a href="formatting-tables.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb67-6"><a href="formatting-tables.html#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb67-7"><a href="formatting-tables.html#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb67-8"><a href="formatting-tables.html#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb67-9"><a href="formatting-tables.html#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb67-10"><a href="formatting-tables.html#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">combineBelow</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb67-11"><a href="formatting-tables.html#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> index</span></span>
-<span id="cb67-12"><a href="formatting-tables.html#cb67-12" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Index&quot;</span></span>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb67-1"><a href="formatting-tables.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb67-2"><a href="formatting-tables.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> additional</span></span>
+<span id="cb67-3"><a href="formatting-tables.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
+<span id="cb67-4"><a href="formatting-tables.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Additional Results</span></span>
+<span id="cb67-5"><a href="formatting-tables.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb67-6"><a href="formatting-tables.html#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
+<span id="cb67-7"><a href="formatting-tables.html#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
+<span id="cb67-8"><a href="formatting-tables.html#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb67-9"><a href="formatting-tables.html#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb67-10"><a href="formatting-tables.html#cb67-10" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb67-11"><a href="formatting-tables.html#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb67-12"><a href="formatting-tables.html#cb67-12" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
 <span id="cb67-13"><a href="formatting-tables.html#cb67-13" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb67-14"><a href="formatting-tables.html#cb67-14" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> value</span></span>
-<span id="cb67-15"><a href="formatting-tables.html#cb67-15" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Value&quot;</span></span>
-<span id="cb67-16"><a href="formatting-tables.html#cb67-16" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb67-17"><a href="formatting-tables.html#cb67-17" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span>
-<span id="cb67-18"><a href="formatting-tables.html#cb67-18" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es_ci_lower</span></span>
-<span id="cb67-19"><a href="formatting-tables.html#cb67-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Lower</span></span>
+<span id="cb67-14"><a href="formatting-tables.html#cb67-14" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">combineBelow</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb67-15"><a href="formatting-tables.html#cb67-15" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> index</span></span>
+<span id="cb67-16"><a href="formatting-tables.html#cb67-16" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Index&quot;</span></span>
+<span id="cb67-17"><a href="formatting-tables.html#cb67-17" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb67-18"><a href="formatting-tables.html#cb67-18" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> value</span></span>
+<span id="cb67-19"><a href="formatting-tables.html#cb67-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Value&quot;</span></span>
 <span id="cb67-20"><a href="formatting-tables.html#cb67-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb67-21"><a href="formatting-tables.html#cb67-21" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_ci)</span></span>
-<span id="cb67-22"><a href="formatting-tables.html#cb67-22" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es_ci_upper</span></span>
-<span id="cb67-23"><a href="formatting-tables.html#cb67-23" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Upper</span></span>
+<span id="cb67-21"><a href="formatting-tables.html#cb67-21" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span>
+<span id="cb67-22"><a href="formatting-tables.html#cb67-22" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es_ci_lower</span></span>
+<span id="cb67-23"><a href="formatting-tables.html#cb67-23" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Lower</span></span>
 <span id="cb67-24"><a href="formatting-tables.html#cb67-24" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb67-25"><a href="formatting-tables.html#cb67-25" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_ci)</span></span></code></pre></div>
-<p>You can see that the two new columns, <code>es_ci_lower</code> and <code>es_ci_upper</code> have their visibility linked to the option <code>show_ci</code>. After compiling, we get the following behavior (you will fill up the new columns as usual, not shown here).</p>
+<span id="cb67-25"><a href="formatting-tables.html#cb67-25" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_ci)</span></span>
+<span id="cb67-26"><a href="formatting-tables.html#cb67-26" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es_ci_upper</span></span>
+<span id="cb67-27"><a href="formatting-tables.html#cb67-27" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Upper</span></span>
+<span id="cb67-28"><a href="formatting-tables.html#cb67-28" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb67-29"><a href="formatting-tables.html#cb67-29" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_ci)</span></span>
+<span id="cb67-30"><a href="formatting-tables.html#cb67-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-31"><a href="formatting-tables.html#cb67-31" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<p>You can see that the two new columns, <code>es_ci_lower</code> and <code>es_ci_upper</code> have their visibility linked to the option <code>show_ci</code>. After compiling, we get the following behavior (you will fill up with data the new columns as usual, not shown here).</p>
 <p><img src="pics/c7_output7.png" width="1019" />
 <img src="pics/c7_output8.png" width="1106" /></p>
+</div>
+<div id="showing-columns-programmatically" class="section level2 hasAnchor" number="7.7">
+<h2><span class="header-section-number">7.7</span> Showing columns programmatically<a href="formatting-tables.html#showing-columns-programmatically" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Another case is when a column visibility depends on your results. For example, in certain mixed models, <code>emmeans</code> R package can be used to obtain the estimated marginal means, that are returned with their CI and the degrees of freedom. However, when the number of rows in the data are too many, the DF are set to <code>Inf</code> (because the CI uses the z-test). So we want to hide the degrees of freedom column after <code>Inf</code> values are produced by our code.</p>
 <p>To try out, we can reproduce this case in our <code>Runner</code> filling function of the table <code>anova</code> like this. We draw a uniform random number, if it is larger than .5 we set the <code>df1</code> column to Inf.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="formatting-tables.html#cb68-1" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb68-2"><a href="formatting-tables.html#cb68-2" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb68-3"><a href="formatting-tables.html#cb68-3" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
-<span id="cb68-4"><a href="formatting-tables.html#cb68-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb68-5"><a href="formatting-tables.html#cb68-5" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
-<span id="cb68-6"><a href="formatting-tables.html#cb68-6" aria-hidden="true" tabindex="-1"></a>       test           <span class="ot">&lt;-</span>   <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">&gt;</span>.<span class="dv">5</span></span>
-<span id="cb68-7"><a href="formatting-tables.html#cb68-7" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (test) .anova<span class="sc">$</span>df1 <span class="ot">&lt;-</span> <span class="cn">Inf</span></span>
-<span id="cb68-8"><a href="formatting-tables.html#cb68-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
-<span id="cb68-9"><a href="formatting-tables.html#cb68-9" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb68-10"><a href="formatting-tables.html#cb68-10" aria-hidden="true" tabindex="-1"></a>      },</span></code></pre></div>
-<p>If you try installing and play around with the GUI, every now and then you would see an empty <code>df</code> column, because NaN are not shown in the jamovi tables. When this happens, we want to hide the column. With this aim, we add the property <code>$hideOn</code> to the definition of the <code>SmartTable</code> in <code>.b.R</code> file.</p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="formatting-tables.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb68-2"><a href="formatting-tables.html#cb68-2" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb68-3"><a href="formatting-tables.html#cb68-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb68-4"><a href="formatting-tables.html#cb68-4" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
+<span id="cb68-5"><a href="formatting-tables.html#cb68-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb68-6"><a href="formatting-tables.html#cb68-6" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
+<span id="cb68-7"><a href="formatting-tables.html#cb68-7" aria-hidden="true" tabindex="-1"></a>       test           <span class="ot">&lt;-</span>   <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">&gt;</span>.<span class="dv">5</span> <span class="co"># we simulate unneeded columns not expected apriori</span></span>
+<span id="cb68-8"><a href="formatting-tables.html#cb68-8" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (test) .anova<span class="sc">$</span>df1 <span class="ot">&lt;-</span> <span class="cn">Inf</span></span>
+<span id="cb68-9"><a href="formatting-tables.html#cb68-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
+<span id="cb68-10"><a href="formatting-tables.html#cb68-10" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb68-11"><a href="formatting-tables.html#cb68-11" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb68-12"><a href="formatting-tables.html#cb68-12" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<p>If you try installing and play around with the GUI (just toggle one option on and off), every now and then you would see all <code>Inf</code> in the <code>df</code> column. When this happens, we want to hide the column. With this aim, we add the property <code>$hideOn</code> to the definition of the <code>SmartTable</code> in <code>.b.R</code> file.</p>
+<div class="filename">
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="formatting-tables.html#cb69-1" aria-hidden="true" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>main<span class="sc">$</span>anova,private<span class="sc">$</span>.runner)</span>
 <span id="cb69-2"><a href="formatting-tables.html#cb69-2" aria-hidden="true" tabindex="-1"></a>            <span class="do">## here we hide `df1` when it receives NaN</span></span>
 <span id="cb69-3"><a href="formatting-tables.html#cb69-3" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>hideOn <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">df1=</span><span class="cn">Inf</span>)</span>
 <span id="cb69-4"><a href="formatting-tables.html#cb69-4" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
-<p>The property <code>$hideOn</code> accepts a named list, with format <code>list(columnan=value)</code> where <code>value</code> is the value that, when received in the data` hides the column. Installing the module now and playing around should produce the expected behavior.</p>
+<p>The property <code>$hideOn</code> accepts a named list, with format <code>list(columnan=value)</code> where <code>value</code> is the value that, when received in the data, hides the column. Installing the module now and playing around should produce the expected behavior.</p>
 </div>
-<div id="changing-column-names-programmatically" class="section level2 hasAnchor" number="7.7">
-<h2><span class="header-section-number">7.7</span> Changing column names programmatically<a href="formatting-tables.html#changing-column-names-programmatically" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Another case is when mutally alternative columns should be shown programmatically (after the results are produced). A case is when <code>car::Anova()</code> is applied to different linear models: It may produce a F-test or a Chi-square test. Obviously, one can program each case separately (with an S3 method, for instance), or simply change the name of the column reporting the test depending on the results</p>
+<div id="changing-column-names-programmatically" class="section level2 hasAnchor" number="7.8">
+<h2><span class="header-section-number">7.8</span> Changing column names programmatically<a href="formatting-tables.html#changing-column-names-programmatically" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Another case is when mutually alternative columns should be shown programmatically (after the results are produced). A case is when <code>car::Anova()</code> is applied to different linear models: It may produce a F-test or a Chi-square test. Obviously, one can program each case separately (with an S3 method, for instance), or simply change the name of the column reporting the test depending on the results.</p>
 <p>To exemplify, let assume that you need to change the name of a column programmatically. You only need to attach to the data.frame passed to the table the attribute <code>titles</code>, as a named list of the form <code>list(columnname="new title")</code>. As follows:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="formatting-tables.html#cb70-1" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb70-2"><a href="formatting-tables.html#cb70-2" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb70-3"><a href="formatting-tables.html#cb70-3" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
-<span id="cb70-4"><a href="formatting-tables.html#cb70-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb70-5"><a href="formatting-tables.html#cb70-5" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
-<span id="cb70-6"><a href="formatting-tables.html#cb70-6" aria-hidden="true" tabindex="-1"></a>       test           <span class="ot">&lt;-</span>   <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">&gt;</span>.<span class="dv">5</span></span>
-<span id="cb70-7"><a href="formatting-tables.html#cb70-7" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (test) <span class="fu">attr</span>(.anova,<span class="st">&quot;titles&quot;</span>)<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">test=</span><span class="st">&quot;Chi-squares&quot;</span>)</span>
-<span id="cb70-8"><a href="formatting-tables.html#cb70-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
-<span id="cb70-9"><a href="formatting-tables.html#cb70-9" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb70-10"><a href="formatting-tables.html#cb70-10" aria-hidden="true" tabindex="-1"></a>      },</span></code></pre></div>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
-<div id="super-titles" class="section level2 hasAnchor" number="7.8">
-<h2><span class="header-section-number">7.8</span> Super Titles<a href="formatting-tables.html#super-titles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="formatting-tables.html#cb70-1" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb70-2"><a href="formatting-tables.html#cb70-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-3"><a href="formatting-tables.html#cb70-3" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
+<span id="cb70-4"><a href="formatting-tables.html#cb70-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(.anova)   <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb70-5"><a href="formatting-tables.html#cb70-5" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
+<span id="cb70-6"><a href="formatting-tables.html#cb70-6" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(.anova)</span>
+<span id="cb70-7"><a href="formatting-tables.html#cb70-7" aria-hidden="true" tabindex="-1"></a>       test1            <span class="ot">&lt;-</span>   <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">&gt;</span>.<span class="dv">5</span> <span class="co"># we simulate unneeded columns not expected apriori</span></span>
+<span id="cb70-8"><a href="formatting-tables.html#cb70-8" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (test1) .anova<span class="sc">$</span>df1 <span class="ot">&lt;-</span> <span class="cn">Inf</span></span>
+<span id="cb70-9"><a href="formatting-tables.html#cb70-9" aria-hidden="true" tabindex="-1"></a>       test2           <span class="ot">&lt;-</span>   <span class="fu">runif</span>(<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">1</span>)<span class="sc">&gt;</span>.<span class="dv">5</span></span>
+<span id="cb70-10"><a href="formatting-tables.html#cb70-10" aria-hidden="true" tabindex="-1"></a>       <span class="cf">if</span> (test2) <span class="fu">attr</span>(.anova,<span class="st">&quot;titles&quot;</span>)<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">test=</span><span class="st">&quot;Chi-squares&quot;</span>)</span>
+<span id="cb70-11"><a href="formatting-tables.html#cb70-11" aria-hidden="true" tabindex="-1"></a>       <span class="fu">return</span>(.anova)</span>
+<span id="cb70-12"><a href="formatting-tables.html#cb70-12" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb70-13"><a href="formatting-tables.html#cb70-13" aria-hidden="true" tabindex="-1"></a>      },</span></code></pre></div>
+<p>If you try out (flag and unflag some option in the GUI), you’ll see that the F-test column appears as Chi-square every now and then.</p>
+</div>
+<div id="super-titles" class="section level2 hasAnchor" number="7.9">
+<h2><span class="header-section-number">7.9</span> Super Titles<a href="formatting-tables.html#super-titles" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(ref. <a href='reference/SmartTable.html#active-bindings-1' target='_blank'>SmartTable$superTitle</a>)</p>
 <p>The effect size table with the confidence intervals does not look fine (ignore that we did not fill the new column, it is not the point now).</p>
 <p><img src="pics/c7_output8.png" width="1106" /></p>
-<p>The <code>Upper</code> and <code>Lower</code> columns would look much better if they had a title over them, showing that they refer to the 95% confidence intevals. We can do that with supertitles. With <code>SmartTable</code> you simply add a supertitle as follows:</p>
+<p>The <code>Upper</code> and <code>Lower</code> columns would look much better if they had a title over them, showing that they refer to the 95% confidence intervals. We can do that with supertitles. With <code>SmartTable</code> you simply add a supertitle as follows:</p>
+<div class="filename">
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="formatting-tables.html#cb71-1" aria-hidden="true" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
 <span id="cb71-2"><a href="formatting-tables.html#cb71-2" aria-hidden="true" tabindex="-1"></a>            <span class="co"># ... #</span></span>
 <span id="cb71-3"><a href="formatting-tables.html#cb71-3" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>superTitle <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">es_ci_lower=</span><span class="st">&quot;95% confidence interval&quot;</span>,<span class="at">es_ci_upper=</span><span class="st">&quot;95% confidence interval&quot;</span>)</span>
-<span id="cb71-4"><a href="formatting-tables.html#cb71-4" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
-<span id="cb71-5"><a href="formatting-tables.html#cb71-5" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
+<span id="cb71-4"><a href="formatting-tables.html#cb71-4" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
 <p>The property <code>$superTitle</code> accepts a list of the format <code>list(columnname1="super title",columnname2="super title",...)</code>. Here we tell the table to put a super title to the two <code>es_ci_lower</code> and <code>es_ci_upper</code>, as shown here.</p>
 <p><img src="pics/c7_output10.png" width="433" /></p>
 </div>
-<div id="something-else" class="section level2 hasAnchor" number="7.9">
-<h2><span class="header-section-number">7.9</span> Something else<a href="formatting-tables.html#something-else" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>As a final touch, we can remove the ugly string representing the greek letters. You can pass to a text columns any ascii value or UTF value. We can adjust the <code>init_tablename()</code> function to pass those values.</p>
+<div id="something-else" class="section level2 hasAnchor" number="7.10">
+<h2><span class="header-section-number">7.10</span> Something else<a href="formatting-tables.html#something-else" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As a final touch, we can remove the ugly string representing the greek letters in table <code>additional_effects</code>. You can pass to a text columns any ascii value or UTF value. We can adjust the <code>init_[tablename]()</code> function to pass those values.</p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="formatting-tables.html#cb72-1" aria-hidden="true" tabindex="-1"></a>    init_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
 <span id="cb72-2"><a href="formatting-tables.html#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-3"><a href="formatting-tables.html#cb72-3" aria-hidden="true" tabindex="-1"></a>      covs      <span class="ot">&lt;-</span> self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs</span>
-<span id="cb72-4"><a href="formatting-tables.html#cb72-4" aria-hidden="true" tabindex="-1"></a>      es        <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;\u03b5&#39;</span>,<span class="st">&#39;\u03b7&#39;</span>,<span class="st">&#39;\u03c9&#39;</span>) <span class="do">## greek UTF </span></span>
-<span id="cb72-5"><a href="formatting-tables.html#cb72-5" aria-hidden="true" tabindex="-1"></a>      es        <span class="ot">&lt;-</span> <span class="fu">paste</span>(es,<span class="st">&#39;\u00B2&#39;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb72-4"><a href="formatting-tables.html#cb72-4" aria-hidden="true" tabindex="-1"></a>      es        <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;\u03b5&#39;</span>,<span class="st">&#39;\u03b7&#39;</span>,<span class="st">&#39;\u03c9&#39;</span>) <span class="do">## greek UTF for letter</span></span>
+<span id="cb72-5"><a href="formatting-tables.html#cb72-5" aria-hidden="true" tabindex="-1"></a>      es        <span class="ot">&lt;-</span> <span class="fu">paste</span>(es,<span class="st">&#39;\u00B2&#39;</span>,<span class="at">sep=</span><span class="st">&quot;&quot;</span>) <span class="co"># UTF for square</span></span>
 <span id="cb72-6"><a href="formatting-tables.html#cb72-6" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">expand.grid</span>(covs,es))</span>
 <span id="cb72-7"><a href="formatting-tables.html#cb72-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(tab)<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;var&quot;</span>,<span class="st">&quot;index&quot;</span>)</span>
 <span id="cb72-8"><a href="formatting-tables.html#cb72-8" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> tab[<span class="fu">order</span>(tab<span class="sc">$</span>var),]</span>
@@ -433,11 +498,15 @@ we indent the first row label of the <code>effects</code> table.</p>
 <span id="cb72-24"><a href="formatting-tables.html#cb72-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
 <span id="cb72-25"><a href="formatting-tables.html#cb72-25" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
 <p><img src="pics/c7_output5.png" width="309" /></p>
+<p>Notice that we define the columns <code>var</code> and <code>index</code> in <code>init_additional_effects</code> function, and we no longer pass these columns in the <code>run_additional_effects</code>. The general principle is: formatting in <code>init_tablename</code>, data in <code>run_tablename</code>.</p>
 </div>
-<div id="adding-columns-programmatically" class="section level2 hasAnchor" number="7.10">
-<h2><span class="header-section-number">7.10</span> Adding columns programmatically<a href="formatting-tables.html#adding-columns-programmatically" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>There are occasions in which one cannot anticipate how many columns a table should have. A typical example is when you need to show a matrix, like a correlation matrix. Let us make an example planning to add a correlation matrix among all the covariate and the dependent variable.</p>
+<div id="adding-columns-programmatically" class="section level2 hasAnchor" number="7.11">
+<h2><span class="header-section-number">7.11</span> Adding columns programmatically<a href="formatting-tables.html#adding-columns-programmatically" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There are occasions in which one cannot anticipate how many columns a table should have. A typical example is when you need to show a matrix, like a correlation matrix. Let us make an example planning to add a correlation matrix among all the covariates and the dependent variable.</p>
 <p>First, we create a new table in the <code>.r.yaml</code> file with only one column, the column that will contain the variables names.</p>
+<div class="filename">
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb73"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb73-1"><a href="formatting-tables.html#cb73-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb73-2"><a href="formatting-tables.html#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> correlations</span></span>
 <span id="cb73-3"><a href="formatting-tables.html#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Correlations</span></span>
@@ -448,6 +517,9 @@ we indent the first row label of the <code>effects</code> table.</p>
 <span id="cb73-8"><a href="formatting-tables.html#cb73-8" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
 <span id="cb73-9"><a href="formatting-tables.html#cb73-9" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span></code></pre></div>
 <p>Then we add a <code>SmartTable</code> to the <code>.b.R</code> file.</p>
+<div class="filename">
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="formatting-tables.html#cb74-1" aria-hidden="true" tabindex="-1"></a>           <span class="co"># set up the means SmartTable</span></span>
 <span id="cb74-2"><a href="formatting-tables.html#cb74-2" aria-hidden="true" tabindex="-1"></a>            obj<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>correlations,private<span class="sc">$</span>.runner)</span>
 <span id="cb74-3"><a href="formatting-tables.html#cb74-3" aria-hidden="true" tabindex="-1"></a>            obj<span class="sc">$</span>expandOnInit  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
@@ -455,6 +527,9 @@ we indent the first row label of the <code>effects</code> table.</p>
 <span id="cb74-5"><a href="formatting-tables.html#cb74-5" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>obj</span></code></pre></div>
 <p>We define the <code>SmartTable</code> as all the other tables, but we set the <code>$expandOnInit</code> property to TRUE and <code>$expandFrom</code> set to 2. These two properties tell the table to expand columnwise adding any column that will be passed in the <code>init_correlations()</code> function in the <code>Runner</code>. The new columns are added from the second column on. By default, they are added on the left of the table.</p>
 <p>Now we prepare the functions to fill the table in <code>Runner.R</code></p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
 <div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="formatting-tables.html#cb75-1" aria-hidden="true" tabindex="-1"></a>    init_correlations<span class="ot">=</span><span class="cf">function</span>() {</span>
 <span id="cb75-2"><a href="formatting-tables.html#cb75-2" aria-hidden="true" tabindex="-1"></a>      </span>
 <span id="cb75-3"><a href="formatting-tables.html#cb75-3" aria-hidden="true" tabindex="-1"></a>      vars<span class="ot">&lt;-</span><span class="fu">c</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
@@ -465,14 +540,19 @@ we indent the first row label of the <code>effects</code> table.</p>
 <span id="cb75-8"><a href="formatting-tables.html#cb75-8" aria-hidden="true" tabindex="-1"></a>      </span>
 <span id="cb75-9"><a href="formatting-tables.html#cb75-9" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
 <p>In the init function we pass a <code>data.frame</code> which has K+1 columns where K is the number of covariates and K rows. Notice that we fill the <code>var</code> variable with the names of the <code>covariate</code> and all other values equal to <code>"."</code>. <code>SmartTable</code> would consider <code>"."</code> as an empty value, but as compared with passing <code>NA</code>, will not consider the table filled, and thus will update with the runTable.</p>
-<p>The results should look like this:</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="formatting-tables.html#cb76-1" aria-hidden="true" tabindex="-1"></a>    run_correlations<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb76-2"><a href="formatting-tables.html#cb76-2" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb76-3"><a href="formatting-tables.html#cb76-3" aria-hidden="true" tabindex="-1"></a>      vars<span class="ot">&lt;-</span><span class="fu">c</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
-<span id="cb76-4"><a href="formatting-tables.html#cb76-4" aria-hidden="true" tabindex="-1"></a>      tab<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">cor</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[,vars]))</span>
-<span id="cb76-5"><a href="formatting-tables.html#cb76-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
-<span id="cb76-6"><a href="formatting-tables.html#cb76-6" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb76-7"><a href="formatting-tables.html#cb76-7" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
+<p>Now we set the filling function:</p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="formatting-tables.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb76-2"><a href="formatting-tables.html#cb76-2" aria-hidden="true" tabindex="-1"></a>    run_correlations<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb76-3"><a href="formatting-tables.html#cb76-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb76-4"><a href="formatting-tables.html#cb76-4" aria-hidden="true" tabindex="-1"></a>      vars<span class="ot">&lt;-</span><span class="fu">c</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
+<span id="cb76-5"><a href="formatting-tables.html#cb76-5" aria-hidden="true" tabindex="-1"></a>      tab<span class="ot">&lt;-</span><span class="fu">as.data.frame</span>(<span class="fu">cor</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[,vars]))</span>
+<span id="cb76-6"><a href="formatting-tables.html#cb76-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
+<span id="cb76-7"><a href="formatting-tables.html#cb76-7" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb76-8"><a href="formatting-tables.html#cb76-8" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb76-9"><a href="formatting-tables.html#cb76-9" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p><img src="pics/c7_output6.png" width="591" /></p>
 
 </div>
@@ -482,7 +562,7 @@ we indent the first row label of the <code>effects</code> table.</p>
           </div>
         </div>
       </div>
-<a href="failing-and-debuging.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="warning-failing-and-debuging.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="smart-tables-update.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

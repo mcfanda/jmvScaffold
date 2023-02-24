@@ -29,11 +29,14 @@ introduction-1
 showing-table-on-option-change
 showing-tables-programmatically
 additional-strategies
-failing-and-debuging
+warning-failing-and-debuging
 introduction-2
+tables-debugging
+mark-landmarks
 automatic-errors
 automatic-warnings
 code-generated-warnings-and-messages
+transient-messages
 formatting-tables
 introduction-3
 initializing-the-table
@@ -41,6 +44,7 @@ combining-below
 add-spaces-between-rows
 indent-some-row-value
 showing-columns-when-needed
+showing-columns-programmatically
 changing-column-names-programmatically
 super-titles
 something-else
@@ -48,5 +52,6 @@ adding-columns-programmatically
 smart-tables-update
 the-issue
 the-solution
+bottom-line
 formatting-tables-1
 appendixa

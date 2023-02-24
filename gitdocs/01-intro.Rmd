@@ -59,7 +59,7 @@ devtools::install_github("mcfanda/jmvScaffold")
 
 ```
 
-We will see that your module will not need to install `jmvScaffold` to work, you just need it to program.
+We will see that your module will not need to install `jmvScaffold` to work, you just need it to program. Thus, **when you publish your module, `r jamovi` will not need to install `jmvScaffold` package**. The necessary files to take advantage of the functions and classes provided by `jmvScaffold` will be part of your module, independently of `jmvScaffold` package. Thus, no change or update for `jmvScaffold` will affect your code in the future, nor any link to the package will bind your code to it. 
 
 ## Create a module {#createmodule}
 
@@ -67,11 +67,9 @@ A module in `r jamovi` is a R package that works also in jamovi. As such, it nee
 of a R package, plus the additional information and coding required to interface the R package to `r jamovi`. Thus,
 to obtain a working module we need to make steps both for the R package and for the jamovi interface.
 
-We now create a new module, named `COOLj`. At the end of this material, the `COOLj` module will look like
+We now create a new module, named `COOLj`. At the end of this material, the `COOLj` module will `r ext_url("look like this", "https://github.com/mcfanda/COOLj")`. For simplicity, we aim at producing a module that does a linear regression and some other simple statistics.
 
-!TODO SAY what it does!
-
-[this](https://github.com/mcfanda/testme). First, we create its folder (so be sure you are in a parent folder) and the folders structure with `jmvtool`
+First, we create its folder (so be sure you are in a parent folder) and the folders structure with `jmvtool`
 
 
 ```{r eval=FALSE}
@@ -83,7 +81,7 @@ This should produce, in the `COOLj` folder, this structure.
 
 `r knitr::include_graphics("pics/c1_create_folders.png")`
 
-If you use [RStudio](https://posit.co/), its a good idea to create a project in the `COOLj` folder, because working with
+If you use [RStudio](https://posit.co/), it is a good idea to create a project in the `COOLj` folder, because working with
 RStudio projects make our lives much easier.
 
 
@@ -162,9 +160,9 @@ Running the command produces several files. In the `./jamovi/` folder we have
 
 In them, the jamovi input and output features are defined.
 
-* In _\*.a.yaml_ file the input options are defined (see API here `r ext_url("jamovi hub: Analysis","https://dev.jamovi.org/api_analysis-definition.html#options")`. 
-* In _\*.u.yaml_ file the input layout  is of the user interface is  defined (see API here `r ext_url("jamovi hub: GUI","https://dev.jamovi.org/api_ui-definition.html")` 
+* In _\*.a.yaml_ file the input options are defined, see API here `r ext_url("jamovi hub: Analysis","https://dev.jamovi.org/api_analysis-definition.html#options")`. 
+* In _\*.u.yaml_ file the input layout  is of the user interface is  defined, see API here `r ext_url("jamovi hub: GUI","https://dev.jamovi.org/api_ui-definition.html")` 
 
-* In _\*.r.yaml_ file the output results tables are defined (see API here `r ext_url("jamovi hub: Results","https://dev.jamovi.org/api_results-definition.html")` 
+* In _\*.r.yaml_ file the output results tables are defined, see API here `r ext_url("jamovi hub: Results","https://dev.jamovi.org/api_results-definition.html")` 
 
 We should fill them all.

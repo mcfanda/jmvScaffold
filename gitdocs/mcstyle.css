@@ -187,3 +187,23 @@ code {
 tr {
   vertical-align: top;
 }
+
+div.filename {
+  display: block;
+  margin-bottom: 0px !important; 
+}
+
+span.filename {
+  border-top-left-radius:  20px;
+  border-top-right-radius:  20px;
+  font-size: .75em;
+  font-style: italic;
+  float: right;
+  padding: 15px;
+  background-color: #f7f7f7 ;
+ 
+}
+
+.sourceCode {
+  clear: both;
+}

@@ -1,13 +1,14 @@
 # Advanced Results Objects
 
-```{r results='hide'}
+```{r , echo=FALSE, results='hide'}
 library(mcdocs)
 knitr::knit_engines$get("yaml")
+FILEREF="https://github.com/mcfanda/COOLj/tree/"
 ```
 
 ## Introduction
 
-So far we defined `jmvcore::Table` objects. Tables, however, are not the only `jmvcore::Results` object available to the module developer. The basic results will always go into tables, but the result tables can be organized in a more rational way, or be created programmatically depending on the module needs. Here are a few useful objects. 
+So far we defined `jmvcore::Table` objects. Tables, however, are not the only `jmvcore::Results` object available to the module developer. The results will usually go into tables, but the result tables can be organized in a more rational way, or be created programmatically depending on the module needs. Here are a few useful objects. 
 
 ## Groups (jmvcore::Group)
 
@@ -15,6 +16,7 @@ A useful object is the `jmvcore::Group`. Groups allow structuring the result tab
 
 We should change the `r.yaml` file introducing the `Group` object:
 
+`r filehead("jamovi/myregression.a.yaml",FILEREF,"Version.0.0.4")`
 ```{yaml eval=FALSE}
 
 ---
@@ -69,6 +71,7 @@ Notice that the definition of the tables has not changed, they are just organize
 
 The logic of interfacing R code with the tables via a `SmartTable` object in file `.b.R` does not change as well, the only difference is that we should change the name of the table. In the `self$results` list, tables are now referred to as `self$results$groupname$tablename`.
 
+`r filehead("R/myregression.b.R",FILEREF,"Version.0.0.4")`
 ```{r eval=FALSE}
 
 ## same code as before here
@@ -99,7 +102,7 @@ The logic of interfacing R code with the tables via a `SmartTable` object in fil
 
 Consequently, in the `Runner.R` file their assocated function should be named  `run_[groupname]_[tablename]`, because they `[groupname]_[tablename]` nickname uniquely indentifies each table. In `Runner.R` code:
 
-
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.4")`
 ```{r eval=FALSE}
 
     run_main_coefficients=function() {
@@ -142,14 +145,16 @@ You should now have your output organized in sections like this:
 
 ## Arrays of tables (jmvcore::Array)
 
-Arrays of tables are complex objects that allow for a lot of flexibility in setting up results tables. They contain tables like groups do, but the number of tables created in an array is flexible and depends on the GUI input. We can distinguish two typical cases. When the number of tables depends on an option defined in the GUI (in the `.a.yaml` file), or when the number of tables depends on some calculation done in the R code, so not directly linked to an option. Let's see the two cases in detail.
+Arrays of tables are complex objects that allow for a lot of flexibility in setting up results tables. They contain tables like groups do, but the number of tables created in an array is flexible and depends on the input or the results. We can distinguish two typical cases. When the number of tables depends on an option defined in the GUI (in the `.a.yaml` file), or when the number of tables depends on some calculation done in the R code, so not directly linked to an option. Let's see the two cases in detail.
 
 ### Array: known number of tables
 
-Assume we want to produce a table for each covariate (a silly example but you get the point, I hope). Say that for each independent variable you want a separate table with the mean and standard deviation of the variable. Obviously, we do not know in advance how many independent variables the user will define, but as soon as the user defines them, we can count the independent variables and we know how many we need. So, we can link the number of `items` attached to the `Array` object to the `covs` option. This can be done directly in the `yaml` code in `.r.yaml` file.
+Assume we want to produce a table for each covariate selected by the user. Say that for each covariate you want a separate table with the mean and standard deviation of the variable. Obviously, we do not know in advance how many independent variables the user will define, but as soon as the user defines them, `r jamovi` can count the independent variables and know how many tables are needed. In our example, we can link the number of tables (`items`) attached to the `Array` object to the `covs` option. This can be done directly in the `yaml` code in `.r.yaml` file.
 
+`r filehead("jamovi/myregression.r.yaml",FILEREF,"Version.0.0.4")`
 ```{yaml}
 
+#...#
        - name: means
          title: Mean and Standard deviation
          type: Array
@@ -171,7 +176,7 @@ Assume we want to produce a table for each covariate (a silly example but you ge
 
 ```
 
-Notice the `items` property. We set it to `(covs)` to signal `jamovi` to take the contents of the option `covs` from the input, and create one table for each item found in `covs`. In the following example, I get two tables because I selected two covariates.
+Notice the `items` property. We set it to `(covs)` to signal `jamovi` to take the contents of the option `covs` from the input, and create one table for each item found in `covs`. Thus, for each covariate selected by the user a `Table` is created as specified in the `template:` property. In the following example, I get two tables because I selected two covariates.
 
 `r knitr::include_graphics("pics/c4_output2.png")`
 
@@ -179,47 +184,48 @@ Notice the individual table title. It is set to the name of a covariate because 
 
 Now we can populated each table within the array. First, we go to the `.b.R` file and define the array.
 
-
+`r filehead("R/myregression.b.R",FILEREF,"Version.0.0.4")`
 ```{r eval=FALSE}
 
 ## same code as before here
-...
+#...#
         .init = function() {
               
             ## same code as before here
-            ...
+            #...#
           
             # set up the means SmartArray
-            atable<-SmartArray$new(self$results$means,private$.runner)
+            obj<-SmartArray$new(self$results$means,private$.runner)
             # put the SmartArray in the list
-            private$.tables[[length(private$.tables)+1]]<-atable
+            private$.tables[[length(private$.tables)+1]]<-obj
 
             # the remaining code does not change
-            ...
+#...#
 ```
 
 Here we use a different `jmvScaffold` object, called `r ext_url("SmartArray","reference/SmartArray.html")`. Its API is equivalent to the one of a
 `r ext_url("SmartTable","reference/SmartTable.html")`, but passes all the defined properties to the children tables.
 
-In the `Runner.R` file we should set up a function named `run_[arrayname]` to fill it. This function should return a list of data.frame, one for each item selected in the option associated with the array. In our example, the function should return a list of data.frame, one for each covariate selected by the users. Obviously, it is the developer resposability to return a list of length equal to the number of items in the array.
+In the `Runner.R` file we should set up a function named `run_[arrayname]` to fill it. This function should return a list of data.frame, one for each item selected in the option associated with the array. In our example, the function should return a list of data.frame, one for each covariate selected by the users. Obviously, it is the developer responsibility to return a list of length equal to the number of items in the array.
 
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.4")`
 ```{r eval=FALSE}
 
-## same code as before here
-...
+# ... #
 
-    run_means=function() {
+run_means=function() {
       
-      tabs     <-  lapply(self$analysis$options$covs, function (x) {
-                   m  <- mean(self$analysis$data[[x]],na.rm=TRUE)
-                   s  <- sd(self$analysis$data[[x]],na.rm=TRUE)
-                   data.frame(var=x,mean=m,sd=s)
-      })
+  tabs  <-  lapply(self$analysis$options$covs, function (x) {
+                      m  <- mean(self$analysis$data[[x]],na.rm=TRUE)
+                      s  <- sd(self$analysis$data[[x]],na.rm=TRUE)
+                     data.frame(var=x,mean=m,sd=s)
+               })
 
-      return(tabs)
+ return(tabs)
     }
-## same code as before here
-...
+
+# ... #
+
 ```
 
 
@@ -233,19 +239,27 @@ Recall the results in
 
 `r knitr::include_graphics("pics/c3_output4.png")`
 
-Assume now, for some silly reason, that we want a table with mean and standard deviation only for covariates that have a significant effect on the dependent variable. In this case, we do not know how many tables we need until we run the analysis and check the results. `jmvScaffold` `SmartArray` can handle this case smoothly: it will produce and fill as many table as we pass to it with a list of data.frame. Let us see an example.
+Assume now, for some silly reason, that we want additional tables with means and standard deviations only for covariates that have a significant effect on the dependent variable. In this case, we do not know how many tables we need until we run the analysis and check the results. `jmvScaffold::SmartArray` can handle this case smoothly: It produces and fills as many tables as we pass to it with a list of data.frame. Let us see an example.
 
-In the `r.yaml` file, we need to remove the `items:(covs)` property, because we do not know which of the `covs` variable will require a table. For the rest, nothing changes.
+In the `r.yaml` file, we define a new Array as the one before, but without the `items:(covs)` property, because we do not know which of the `covs` variable will require a table. We also put the array under a group, because it looks better in the output page.
 
-
+`r filehead("jamovi/myregression.r.yaml",FILEREF,"Version.0.0.4")`
 ```{yaml}
-
-       - name: means
-         title: Mean and Standard deviation
-         type: Array
-         template:
+#...#
+       - name: sig
+         type: Group
+         title: Significant covariates
+         items: 
+           - name: means
+             title: ""
+             type: Array
+             template:
                 title:  Variable - $key
                 type: Table
+                clearWith:
+                   - dep
+                   - covs
+
                 columns:
                     - name: var
                       title: "Variable"
@@ -258,13 +272,16 @@ In the `r.yaml` file, we need to remove the `items:(covs)` property, because we 
                       type: number
 
 
+
 ```
 
-The `b.R` file does not change. We only have to change the `run_means()` function in the `Runner.R` to select the covariates that we want to display in the new tables.
+In the `Runner.R` file, we simply need to define a `run_sig_means()` function to select the covariates that we want to display in the new tables.
 
-
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.4")`
 ```{r eval=FALSE}
+#...#
 
+   run_sig_means=function() {
       ## select the covs ##
       results      <-   as.data.frame(summary(self$model)$coefficients)
       results      <-   results[-1,]
@@ -278,22 +295,60 @@ The `b.R` file does not change. We only have to change the `run_means()` functio
       })
 
       return(tabs)
+   }
  
+```
+
+Finaly, we add the new array to the list of smart objects in the `.b.R` files.
+
+`r filehead("R/myregression.b.R",FILEREF,"Version.0.0.4")`
+```{r eval=FALSE}
+
+## same code as before here
+#...#
+        .init = function() {
+              
+            ## same code as before here
+            #...#
+          
+            # set up the sig_means SmartArray
+            obj<-SmartArray$new(self$results$sig$means,private$.runner)
+            # put the SmartArray in the list
+            private$.tables[[length(private$.tables)+1]]<-obj
+
+            # the remaining code does not change
+#...#
 ```
 
 and we can check after re-installing that the module is working as intended.
 
 `r knitr::include_graphics("pics/c4_output4.png")`
 
-But notice the table titles. They are now `Variable - 1` and `Variable - 2` because we do not have any key defined. No problem, we can pass the keys to the `SmartArray` as an attribute of the data we pass to it. Just add to the `run_means()` function the line and you have your nice titles.
+Now pay attention to the tables titles. They are now `Variable - 1` and `Variable - 2` because we do not have any key defined. No problem, we can pass the keys to the `SmartArray` as an attribute of the data we pass to it. Just add to the `run_means()` function the line and you have your nice titles.
 
-
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.4")`
 ```{r eval=FALSE}
 
-      ...
+      # ... #
 
-      attr(tabs,"keys")<-whichcovs
-      return(tabs)
+      
+    run_sig_means=function() {
+        ## select the covs ##
+        results      <-   as.data.frame(summary(self$model)$coefficients)
+        results      <-   results[-1,]
+        whichcovs    <-   rownames(results[results[,4]<.05,])
+        
+        ## make the tables
+        tabs     <-  lapply(whichcovs, function (x) {
+            m  <- mean(self$analysis$data[[x]],na.rm=TRUE)
+            s  <- sd(self$analysis$data[[x]],na.rm=TRUE)
+            data.frame(var=x,mean=m,sd=s)
+        })
+        attr(tabs,"keys")<-whichcovs ## passing the keys to the jamovi table
+        return(tabs)
+    }
+
+      # ... #
 
 ```
 
@@ -304,3 +359,4 @@ But notice the table titles. They are now `Variable - 1` and `Variable - 2` beca
 `r jamovi` offers other results objects, very important to develop modules such as `Image` for diplaying plots, or `Html` widget to display text using `html`. They are not handled by `jmvScaffold` and can easely be filled by accessing to them directly. 
 
 Information about these objects can be found in `r ext_url("jamovi hub: Results","https://dev.jamovi.org/api_results-definition.html")` .
+

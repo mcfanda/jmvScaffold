@@ -13,10 +13,9 @@ A programmer interface to init and polutate \code{\link[jmvcore]{jmvcore::Table}
 
 \item{\code{table}}{\code{\link[jmvcore]{jmvcore::Table}}}
 
-\item{\code{topics}}{the different topics}
-
 \item{\code{nickname}}{the unique identifier of the table used by other classes
-to dispatch messages to the table or to interact with it}
+to dispatch messages to the table or to interact with it. It is usually
+used internally, but it is left public for ease to access and debug.}
 
 \item{\code{expandOnInit}}{if TRUE, the jamovi table is expanded columnwise
 if the data.frame passed in the init are more than the ones defined
@@ -104,6 +103,10 @@ of \code{columnname} column to a \code{value}}
 for columns in names(list(name=value))
 hide the column if all its cells are equal to
 value. Value it is typically \code{Inf}, \code{NA} or \code{NaN}}
+
+\item{\code{debug}}{a logical.
+Print debugging information in console. Default is FALSE of the value
+of the constant \code{t_INFO} if exists.}
 }
 \if{html}{\out{</div>}}
 }
@@ -135,12 +138,11 @@ Initialize the SmartTable object
 
 \item{\code{estimator}}{optional \link[R6:R6Class]{R6}. If set, SmartTable inquires
 the R6 class for init and run functions to initialize and populate the jamovi Table.
-the R6 class should provide functions using the convention \code{init_[nickname]} where
-the \code{nickname} is the unique identifier given to the jamovi table. The unique identifiers can be
+the R6 class should provide functions using the convention \code{init_[nickname]} and \verb{run_[nickname] where the }nickname` is the unique identifier given to the jamovi table. The unique identifiers can be
 \itemize{
 \item \strong{tablename}:            the name of the \code{\link[jmvcore]{jmvcore::Table}} in jamovi .r.yaml file
 \item \strong{groupname_tablename}:  the name of the \code{\link[jmvcore]{jmvcore::Group}} parenting the table and the table name
-\item \strong{arrayname_tablename}:  the name of the \code{\link[jmvcore]{jmvcore::Array}}  parenting the table and the table name
+\item \strong{arrayname}:            the name of the \code{\link[jmvcore]{jmvcore::Array}}  parenting the table and the table name
 }}
 }
 \if{html}{\out{</div>}}
@@ -150,9 +152,8 @@ the \code{nickname} is the unique identifier given to the jamovi table. The uniq
 \if{html}{\out{<a id="method-SmartTable-initTable"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartTable-initTable}{}}}
 \subsection{Method \code{initTable()}}{
-Initialize the table. Check if data are passed, check if
-the table needs to be expanded columnwise, if rows should be added and if
-messages are broadcast to go into errors or warnings. Show the table.
+initialize the table from \code{initSource} or \code{estimator::run_[tablename]}, and
+set all the aestetical and behavioral options passed to the table.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartTable$initTable()}\if{html}{\out{</div>}}
 }
@@ -162,9 +163,8 @@ messages are broadcast to go into errors or warnings. Show the table.
 \if{html}{\out{<a id="method-SmartTable-runTable"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartTable-runTable}{}}}
 \subsection{Method \code{runTable()}}{
-Populates the table. Check if data are passed, check if
-the table need to be expanded columnwise, if rows should be added and if
-messages are broadcast to go into errors or warnings. Show the table.
+fills the table from \code{runSource} or \code{estimator::run_[tablename]}, and
+takes care of all aesthetic adjustment required
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartTable$runTable()}\if{html}{\out{</div>}}
 }
@@ -174,7 +174,8 @@ messages are broadcast to go into errors or warnings. Show the table.
 \if{html}{\out{<a id="method-SmartTable-ci"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartTable-ci}{}}}
 \subsection{Method \code{ci()}}{
-insert a superTitle over the confidence interval columns
+a wrapper function to set a superTitle over upper and lower limits columns
+of a confidence interval.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartTable$ci(
   aroot,
@@ -187,16 +188,14 @@ insert a superTitle over the confidence interval columns
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{aroot}}{the root of the name of the confidence bounds columns. If one names the
-confidence bounds columns as \code{some.ci.lower} and \code{some.ci.upper}, and sets
-\code{aroot} as \code{some}, the two columns will be superTitled with \verb{width \% Confidence Intervals}.}
+\item{\code{aroot}}{a string with the root name of the two columns. For example for \code{es_upper} and \code{es_lower}
+the root is \code{es}.}
 
-\item{\code{width}}{the width of the CI to appear in the superTitle}
+\item{\code{width}}{the width of the confidence interval.}
 
-\item{\code{label}}{add labels to the superTitle}
+\item{\code{label}}{default NULL, prefix to put to the title of the Super Title.}
 
-\item{\code{format}}{default is \code{"{}\% Confidence Intervals"}, can be changed to pass different
-superTitle formats}
+\item{\code{format}}{a \code{format} string of the type \verb{\{\}\% something as a title}. Default is \code{"{}\% Confidence Intervals"}.}
 }
 \if{html}{\out{</div>}}
 }
@@ -205,7 +204,7 @@ superTitle formats}
 \if{html}{\out{<a id="method-SmartTable-retrieveNotes"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartTable-retrieveNotes}{}}}
 \subsection{Method \code{retrieveNotes()}}{
-this should probabily fo to private
+only used internally, however it should be public
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartTable$retrieveNotes()}\if{html}{\out{</div>}}
 }
@@ -215,20 +214,36 @@ this should probabily fo to private
 \if{html}{\out{<a id="method-SmartTable-setNotes"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartTable-setNotes}{}}}
 \subsection{Method \code{setNotes()}}{
-set a note (footnote) to be displayed under  the table
+set a note to the child table. Not necessary if a \code{Dispatch} object is used instead
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{SmartTable$setNotes(dispatcher = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{SmartTable$setNotes(note)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{note}}{a string: the message to set}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-SmartTable-setColumnTitle"></a>}}
 \if{latex}{\out{\hypertarget{method-SmartTable-setColumnTitle}{}}}
 \subsection{Method \code{setColumnTitle()}}{
-Change the title of the jamovi table programmatically
+change the title of a column
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{SmartTable$setColumnTitle(name, title)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{name}}{a string: the name of the column}
+
+\item{\code{title}}{a string: the new title of the column}
+}
+\if{html}{\out{</div>}}
+}
 }
 }

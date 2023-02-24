@@ -54,13 +54,10 @@
 <dd><p><code><a href="https://rdrr.io/pkg/jmvcore/man/Analysis.html" class="external-link">jmvcore::Table</a></code></p></dd>
 
 
-<dt><code>topics</code></dt>
-<dd><p>the different topics</p></dd>
-
-
 <dt><code>nickname</code></dt>
 <dd><p>the unique identifier of the table used by other classes
-to dispatch messages to the table or to interact with it</p></dd>
+to dispatch messages to the table or to interact with it. It is usually
+used internally, but it is left public for ease to access and debug.</p></dd>
 
 
 <dt><code>expandOnInit</code></dt>
@@ -174,8 +171,8 @@ if data are passed to it                             #'</p></dd>
 
 
 <dt><code>superTitle</code></dt>
-<dd><p>a named list list(name=value). Set the superTitle
-of <code>name</code> column to <code>value</code></p></dd>
+<dd><p>a named list list(columnname=value). Set the superTitle
+of <code>columnname</code> column to a <code>value</code></p></dd>
 
 
 <dt><code>setColumnVisible</code></dt>
@@ -187,6 +184,12 @@ of <code>name</code> column to <code>value</code></p></dd>
 for columns in names(list(name=value))
 hide the column if all its cells are equal to
 value. Value it is typically <code>Inf</code>, <code>NA</code> or <code>NaN</code></p></dd>
+
+
+<dt><code>debug</code></dt>
+<dd><p>a logical.
+Print debugging information in console. Default is FALSE of the value
+of the constant <code>t_INFO</code> if exists.</p></dd>
 
 
 </dl><p></p></div>
@@ -201,7 +204,6 @@ value. Value it is typically <code>Inf</code>, <code>NA</code> or <code>NaN</cod
 <li><p><a href="#method-SmartTable-initTable"><code>SmartTable$initTable()</code></a></p></li>
 <li><p><a href="#method-SmartTable-runTable"><code>SmartTable$runTable()</code></a></p></li>
 <li><p><a href="#method-SmartTable-ci"><code>SmartTable$ci()</code></a></p></li>
-<li><p><a href="#method-SmartTable-setTopics"><code>SmartTable$setTopics()</code></a></p></li>
 <li><p><a href="#method-SmartTable-retrieveNotes"><code>SmartTable$retrieveNotes()</code></a></p></li>
 <li><p><a href="#method-SmartTable-setNotes"><code>SmartTable$setNotes()</code></a></p></li>
 <li><p><a href="#method-SmartTable-setColumnTitle"><code>SmartTable$setColumnTitle()</code></a></p></li>
@@ -221,10 +223,9 @@ value. Value it is typically <code>Inf</code>, <code>NA</code> or <code>NaN</cod
 <dt><code>estimator</code></dt>
 <dd><p>optional <a href="https://r6.r-lib.org/reference/R6Class.html" class="external-link">R6</a>. If set, SmartTable inquires
 the R6 class for init and run functions to initialize and populate the jamovi Table.
-the R6 class should provide functions using the convention <code>init_[nickname]</code> where
-the <code>nickname</code> is the unique identifier given to the jamovi table. The unique identifiers can be</p><ul><li><p><strong>tablename</strong>:            the name of the <code><a href="https://rdrr.io/pkg/jmvcore/man/Analysis.html" class="external-link">jmvcore::Table</a></code> in jamovi .r.yaml file</p></li>
+the R6 class should provide functions using the convention <code>init_[nickname]</code> and <code>run_[nickname] where the </code>nickname` is the unique identifier given to the jamovi table. The unique identifiers can be</p><ul><li><p><strong>tablename</strong>:            the name of the <code><a href="https://rdrr.io/pkg/jmvcore/man/Analysis.html" class="external-link">jmvcore::Table</a></code> in jamovi .r.yaml file</p></li>
 <li><p><strong>groupname_tablename</strong>:  the name of the <code><a href="https://rdrr.io/pkg/jmvcore/man/Analysis.html" class="external-link">jmvcore::Group</a></code> parenting the table and the table name</p></li>
-<li><p><strong>arrayname_tablename</strong>:  the name of the <code><a href="https://rdrr.io/pkg/jmvcore/man/Analysis.html" class="external-link">jmvcore::Array</a></code>  parenting the table and the table name</p></li>
+<li><p><strong>arrayname</strong>:            the name of the <code><a href="https://rdrr.io/pkg/jmvcore/man/Analysis.html" class="external-link">jmvcore::Array</a></code>  parenting the table and the table name</p></li>
 </ul></dd>
 
 
@@ -233,9 +234,8 @@ the <code>nickname</code> is the unique identifier given to the jamovi table. Th
 
 </div><p></p><hr><a id="method-SmartTable-initTable"></a><div class="section">
 <h3 id="method-inittable-">Method <code>initTable()</code><a class="anchor" aria-label="anchor" href="#method-inittable-"></a></h3>
-<p>Initialize the table. Check if data are passed, check if
-the table needs to be expanded columnwise, if rows should be added and if
-messages are broadcast to go into errors or warnings. Show the table.</p><div class="section">
+<p>initialize the table from <code>initSource</code> or <code>estimator::run_[tablename]</code>, and
+set all the aestetical and behavioral options passed to the table.</p><div class="section">
 <h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">initTable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
@@ -243,9 +243,8 @@ messages are broadcast to go into errors or warnings. Show the table.</p><div cl
 
 </div><p></p><hr><a id="method-SmartTable-runTable"></a><div class="section">
 <h3 id="method-runtable-">Method <code>runTable()</code><a class="anchor" aria-label="anchor" href="#method-runtable-"></a></h3>
-<p>Populates the table. Check if data are passed, check if
-the table need to be expanded columnwise, if rows should be added and if
-messages are broadcast to go into errors or warnings. Show the table.</p><div class="section">
+<p>fills the table from <code>runSource</code> or <code>estimator::run_[tablename]</code>, and
+takes care of all aesthetic adjustment required</p><div class="section">
 <h4 id="usage-2">Usage<a class="anchor" aria-label="anchor" href="#usage-2"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">runTable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
@@ -253,7 +252,8 @@ messages are broadcast to go into errors or warnings. Show the table.</p><div cl
 
 </div><p></p><hr><a id="method-SmartTable-ci"></a><div class="section">
 <h3 id="method-ci-">Method <code>ci()</code><a class="anchor" aria-label="anchor" href="#method-ci-"></a></h3>
-<p>insert a superTitle over the confidence interval columns</p><div class="section">
+<p>a wrapper function to set a superTitle over upper and lower limits columns
+of a confidence interval.</p><div class="section">
 <h4 id="usage-3">Usage<a class="anchor" aria-label="anchor" href="#usage-3"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">ci</span><span class="op">(</span></span>
 <span>  <span class="va">aroot</span>,</span>
@@ -266,66 +266,68 @@ messages are broadcast to go into errors or warnings. Show the table.</p><div cl
 <div class="section">
 <h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>aroot</code></dt>
-<dd><p>the root of the name of the confidence bounds columns. If one names the
-confidence bounds columns as <code>some.ci.lower</code> and <code>some.ci.upper</code>, and sets
-<code>aroot</code> as <code>some</code>, the two columns will be superTitled with <code>width % Confidence Intervals</code>.</p></dd>
+<dd><p>a string with the root name of the two columns. For example for <code>es_upper</code> and <code>es_lower</code>
+the root is <code>es</code>.</p></dd>
 
 
 <dt><code>width</code></dt>
-<dd><p>the width of the CI to appear in the superTitle</p></dd>
+<dd><p>the width of the confidence interval.</p></dd>
 
 
 <dt><code>label</code></dt>
-<dd><p>add labels to the superTitle</p></dd>
+<dd><p>default NULL, prefix to put to the title of the Super Title.</p></dd>
 
 
 <dt><code>format</code></dt>
-<dd><p>default is <code>"{}% Confidence Intervals"</code>, can be changed to pass different
-superTitle formats</p></dd>
+<dd><p>a <code>format</code> string of the type <code>{}% something as a title</code>. Default is <code>"{}% Confidence Intervals"</code>.</p></dd>
 
 
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-SmartTable-setTopics"></a><div class="section">
-<h3 id="method-settopics-">Method <code>setTopics()</code><a class="anchor" aria-label="anchor" href="#method-settopics-"></a></h3>
-<p>this should probabily fo to private</p><div class="section">
+</div><p></p><hr><a id="method-SmartTable-retrieveNotes"></a><div class="section">
+<h3 id="method-retrievenotes-">Method <code>retrieveNotes()</code><a class="anchor" aria-label="anchor" href="#method-retrievenotes-"></a></h3>
+<p>only used internally, however it should be public</p><div class="section">
 <h4 id="usage-4">Usage<a class="anchor" aria-label="anchor" href="#usage-4"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">setTopics</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">retrieveNotes</span><span class="op">(</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 
-</div><p></p><hr><a id="method-SmartTable-retrieveNotes"></a><div class="section">
-<h3 id="method-retrievenotes-">Method <code>retrieveNotes()</code><a class="anchor" aria-label="anchor" href="#method-retrievenotes-"></a></h3>
-<p>this should probabily fo to private</p><div class="section">
+</div><p></p><hr><a id="method-SmartTable-setNotes"></a><div class="section">
+<h3 id="method-setnotes-">Method <code>setNotes()</code><a class="anchor" aria-label="anchor" href="#method-setnotes-"></a></h3>
+<p>set a note to the child table. Not necessary if a <code>Dispatch</code> object is used instead</p><div class="section">
 <h4 id="usage-5">Usage<a class="anchor" aria-label="anchor" href="#usage-5"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">retrieveNotes</span><span class="op">(</span>dispatcher <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><p></p></div>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">setNotes</span><span class="op">(</span><span class="va">note</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
 <div class="section">
 <h4 id="arguments-2">Arguments<a class="anchor" aria-label="anchor" href="#arguments-2"></a></h4>
-<p></p><div class="arguments"><dl><dt><code>the</code></dt>
-<dd><p>Dispatcher class object to dispatch messages</p></dd>
+<p></p><div class="arguments"><dl><dt><code>note</code></dt>
+<dd><p>a string: the message to set</p></dd>
 
 
 </dl><p></p></div>
 </div>
 
-</div><p></p><hr><a id="method-SmartTable-setNotes"></a><div class="section">
-<h3 id="method-setnotes-">Method <code>setNotes()</code><a class="anchor" aria-label="anchor" href="#method-setnotes-"></a></h3>
-<p>set a note (footnote) to be displayed under  the table</p><div class="section">
-<h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
-<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">setNotes</span><span class="op">(</span>dispatcher <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div><p></p></div>
-</div>
-
-
 </div><p></p><hr><a id="method-SmartTable-setColumnTitle"></a><div class="section">
 <h3 id="method-setcolumntitle-">Method <code>setColumnTitle()</code><a class="anchor" aria-label="anchor" href="#method-setcolumntitle-"></a></h3>
-<p>Change the title of the jamovi table programmatically</p><div class="section">
-<h4 id="usage-7">Usage<a class="anchor" aria-label="anchor" href="#usage-7"></a></h4>
+<p>change the title of a column</p><div class="section">
+<h4 id="usage-6">Usage<a class="anchor" aria-label="anchor" href="#usage-6"></a></h4>
 <p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">SmartTable</span><span class="op">$</span><span class="fu">setColumnTitle</span><span class="op">(</span><span class="va">name</span>, <span class="va">title</span><span class="op">)</span></span></code></pre></div><p></p></div>
 </div>
 
+<div class="section">
+<h4 id="arguments-3">Arguments<a class="anchor" aria-label="anchor" href="#arguments-3"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>name</code></dt>
+<dd><p>a string: the name of the column</p></dd>
+
+
+<dt><code>title</code></dt>
+<dd><p>a string: the new title of the column</p></dd>
+
+
+</dl><p></p></div>
+</div>
 
 </div>
 

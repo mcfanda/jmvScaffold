@@ -3,38 +3,46 @@
 ```{r results='hide', echo=FALSE}
 library(mcdocs)
 knitr::knit_engines$get("yaml")
+FILEREF="https://github.com/mcfanda/COOLj/tree/"
 ```
 
 ## Introduction
 
 Not every table is useful every time we run the analysis. Sometimes you want to hide a table, sometimes a hidden table should appear. `r jamovi` allows hiding and showing the tables as default and programmatically, `jmvScaffold` helps make the process a bit smoother.
 
-Let's make our module a bit more complex adding one option in the GUI. It allows the user to show the `means` array, that we now want hidden by default.
+Let's make our module a bit more complex adding one option in the GUI. It allows the user to show the `sig_means` array, that we now want hidden by default.
 
 In the `.a.yalm` file, we add this two options.
 
+`r filehead("jamovi/myregression.a.yaml",FILEREF,"Version.0.0.5")`
 ```{yaml}
-
+#...#
     - name: show_means
-      title: Show Means
+      title: "Show Means for Sig."
       type: Bool
       default: false
-
+#...#
 ```
 
 `r knitr::include_graphics("pics/c5_input1.png")`
 
 ## Showing table on option change
 
-In this example, we want the `means` array to be shown only when the user selects `Show means` in the GUI. We need to modify the `.r.yaml` file as follows:
+In this example, we want the `sig_means` array to be shown only when the user selects `Show means for Sig.` in the GUI. We need to modify the `.r.yaml` file as follows:
 
+`r filehead("jamovi/myregression.r.yaml",FILEREF,"Version.0.0.5")`
 ```{yaml}
-
-       - name: means
-         title: Mean and Standard deviation
-         type: Array
+#...#
+       - name: sig
+         type: Group
+         title: Significant covariates
          visible: (show_means)
-         template:
+         items: 
+           - name: means
+             title: ""
+             type: Array
+             visible: (show_means)
+             template:
                 title:  Variable - $key
                 type: Table
                 columns:
@@ -49,6 +57,7 @@ In this example, we want the `means` array to be shown only when the user select
                       type: number
 
 
+#...#
 ```
 
 Notice the `visible:` property. This means that the Array will be shown only if `show_means` is set to TRUE, thus when the user flags it. No other modification of the code is required. Notice, furthermore, that given the way `SmartArray` and `SmartTable` are implemented, if the table or the array is not visible, the functions to fill it are not run, so an advantage in performance is gained by not running computation that is not need.
@@ -66,6 +75,7 @@ There are different strategies to accomplish that, maybe the easiest one is the 
 
 Define in the `r.yaml` file the table as not visible by default with `visible: false`.
 
+`r filehead("jamovi/myregression.r.yaml",FILEREF,"Version.0.0.5")`
 ```{yaml}
 
        - name: additional
@@ -75,7 +85,7 @@ Define in the `r.yaml` file the table as not visible by default with `visible: f
            - name: effects
              title:  Effect Size Indices
              type: Table
-             visible: false
+             visible: false  ## here we set the default as not visible
              columns:
                     - name: var
                       title: "Variable"
@@ -93,6 +103,7 @@ Define in the `r.yaml` file the table as not visible by default with `visible: f
 
 Then go to the `.b.R` file, in the `init()` function, and set the proporties of the table as shown here.
 
+`r filehead("R/myregression.b.R",FILEREF,"Version.0.0.5")`
 ```{r eval=FALSE}
 
     atable                <- SmartTable$new(self$results$additional$effects,private$.runner)
@@ -103,9 +114,10 @@ Then go to the `.b.R` file, in the `init()` function, and set the proporties of 
 
 The `$activateOnData` property is crucial here: It tells the `SmartTable` to check its data source (i.e. `runner$run_additional_effects()`) and make itself visible only if it receives some data.
 
-Now we need to be sure that the `runner$run_additional_effects()` returns something only if there is a significant result in the coefficients.
+Now we need to be sure that the `run_additional_effects()` returns something only if there is a significant result in the coefficients.
 In the `Runner.R` file, we change the function in:
-  
+
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.5")`
 ```{r eval=FALSE}
 
 run_additional_effects=function() {
