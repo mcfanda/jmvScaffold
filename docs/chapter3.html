@@ -247,17 +247,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb13-4"><a href="chapter3.html#cb13-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb13-5"><a href="chapter3.html#cb13-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb13-6"><a href="chapter3.html#cb13-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                 Estimate Std. Error     t value  Pr(&gt;|t|)
-## (Intercept)  0.009634895  0.1509114  0.06384471 0.9493590
-## x           -0.003379056  0.1270850 -0.02658894 0.9788978</code></pre>
+<pre><code>##                Estimate Std. Error    t value  Pr(&gt;|t|)
+## (Intercept) -0.08664756  0.1290681 -0.6713321 0.5052271
+## x            0.13968415  0.1215421  1.1492653 0.2561411</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chapter3.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb15-2"><a href="chapter3.html#cb15-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb15-3"><a href="chapter3.html#cb15-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb15-4"><a href="chapter3.html#cb15-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                     coef        se           t         p
-## (Intercept)  0.009634895 0.1509114  0.06384471 0.9493590
-## x           -0.003379056 0.1270850 -0.02658894 0.9788978</code></pre>
+<pre><code>##                    coef        se          t         p
+## (Intercept) -0.08664756 0.1290681 -0.6713321 0.5052271
+## x            0.13968415 0.1215421  1.1492653 0.2561411</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
