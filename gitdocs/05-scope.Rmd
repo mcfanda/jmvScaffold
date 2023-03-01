@@ -101,7 +101,7 @@ Define in the `r.yaml` file the table as not visible by default with `visible: f
 
 ```
 
-Then go to the `.b.R` file, in the `init()` function, and set the proporties of the table as shown here.
+Then go to the `.b.R` file, in the `.init()` function, and set the properties of the table as shown here.
 
 `r filehead("R/myregression.b.R",FILEREF,"Version.0.0.5")`
 ```{r eval=FALSE}

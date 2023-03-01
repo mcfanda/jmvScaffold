@@ -12,7 +12,7 @@ FILEREF="https://github.com/mcfanda/COOLj/tree/"
 
 Before we dive into more sophisticated topics, such as formatting Tables, we should briefly consider the sad fact that sooner or later our code will fail and we need to debug it. Debugging a module in `r jamovi` may be difficult, because when you see the error in the `r jamovi` output, it is often difficult to understand when the error comes from, especially if your code is complex and you have many different tables. In jamovi, you want to have toggled on `developer mode`, to see informative errors. However, `r ext_url("jmvScaffold","reference/index.html")` offers also some methods and functions to help us out.
 
-First, when we copied the files from the `jmvScaffold` package into the module `.R/` function, one file copied was named `jScafFunctions.R`. The file head contains three constants
+First, when we copied the files from the `jmvScaffold` package into the module `.R/` function in \@ref(createmodule), one file copied was named `jScafFunctions.R`. The file head contains three constants
 
 `r filehead("R/jScafFunctions.R",FILEREF,"Version.0.0.5")`
 ```{r eval=FALSE}
