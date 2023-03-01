@@ -247,17 +247,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb12-4"><a href="chapter3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                 Estimate Std. Error     t value  Pr(&gt;|t|)
-## (Intercept) 0.1036067048  0.1337994 0.774343587 0.4425252
-## x           0.0007359282  0.1388646 0.005299609 0.9957935</code></pre>
+<pre><code>##                Estimate Std. Error    t value  Pr(&gt;|t|)
+## (Intercept)  0.03213467  0.1430266  0.2246762 0.8231849
+## x           -0.18005705  0.1545126 -1.1653230 0.2496467</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                     coef        se           t         p
-## (Intercept) 0.1036067048 0.1337994 0.774343587 0.4425252
-## x           0.0007359282 0.1388646 0.005299609 0.9957935</code></pre>
+<pre><code>##                    coef        se          t         p
+## (Intercept)  0.03213467 0.1430266  0.2246762 0.8231849
+## x           -0.18005705 0.1545126 -1.1653230 0.2496467</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
@@ -337,11 +337,11 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 </div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter3.html#cb18-1" aria-hidden="true" tabindex="-1"></a>jmvScaffold<span class="sc">::</span><span class="fu">copy_files</span>()</span></code></pre></div>
 <p>which copies in the present module <code>./R</code> folder the necessary files.</p>
-<p><img src="pics/c3_r_files2.png" width="338" /></p>
+<p><img src="pics/c3_r_files2.png" width="334" /></p>
 </div>
 <div id="initialize-a-table" class="section level2 hasAnchor" number="3.4">
 <h2><span class="header-section-number">3.4</span> Initialize a table<a href="chapter3.html#initialize-a-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Table objects are passed to the R package with the property <code>self$results</code>. This property is a <code>named list</code>, so we can refer to our table as <code>self$table$coefficients</code>. In the <code>.init()</code> function, we should create a <code>SmartTable</code> object initialized with the table it is going to handle. We simply write this code.</p>
+<p>Table objects are passed to the R package with the property <code>self$results</code>. This property is a <code>named list</code>, so we can refer to our table as <code>self$results$coefficients</code>. In the <code>.init()</code> function, we should create a <code>SmartTable</code> object initialized with the table it is going to handle. We simply write this code.</p>
 <div class="filename">
 <span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Online version</a>)</span>
 </div>

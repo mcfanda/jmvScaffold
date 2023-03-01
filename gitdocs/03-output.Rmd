@@ -138,7 +138,7 @@ which copies in the present module `./R` folder the necessary files.
 
 ## Initialize a table
 
-Table objects are passed to the R package with the property `self$results`. This property is a `named list`, so we can refer to our table as `self$table$coefficients`. In the `.init()` function, we should create a `SmartTable` object initialized with the table it is going to handle. We simply write this code. 
+Table objects are passed to the R package with the property `self$results`. This property is a `named list`, so we can refer to our table as `self$results$coefficients`. In the `.init()` function, we should create a `SmartTable` object initialized with the table it is going to handle. We simply write this code. 
 
 `r filehead("R/myregression.b.R",FILEREF,"Version.0.0.1")`
 ```{r eval=FALSE}
