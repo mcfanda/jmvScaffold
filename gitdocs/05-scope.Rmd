@@ -152,7 +152,7 @@ If you are using the `Big 5` data buddled with `r jamovi`, you can try predictin
 
 ## Additional strategies
 
-Usually the `yaml` property `visible:(option)` or the `SmartTable` `$activateOnData` are sufficient for all cases of dynamic table appearance. If, however, the developer needs more flexibility, one can set the `visible:` property to `false`, and use `$activated` property of `SmartTable`. `$activated` accept `TRUE` or `FALSE`, and it is equivalent to the jamovi function `table$setVisible(BOOL)`. Using `$activated`, however, will also not run the code required to fill the table when `$activated<-FALSE`, so you do not need to take precaution again running useless computation.
+Usually the `yaml` property `visible:(option)` or the `SmartTable` `$activateOnData` are sufficient for all cases of dynamic table display If, however, the developer needs more flexibility, one can set the `visible:` property to `false`, and use `$activated` property of `SmartTable`. `$activated` accept `TRUE` or `FALSE`, and it is equivalent to the jamovi function `table$setVisible(BOOL)`. Using `$activated`, however, will also not run the code required to fill the table when `$activated<-FALSE`, so you do not need to take precaution again running useless computation.
 
 
 
