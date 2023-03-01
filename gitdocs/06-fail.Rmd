@@ -160,7 +160,7 @@ Finally, you can also send an error from anywhere in the code to a table, using 
 `r knitr::include_graphics("pics/c6_output5.png")`
 
 If you want to send an error message that would stop completely the execution of the analysis, you can add
-the field `final=TRUE` to the list passed to `dispatcher$error`, such as
+the field `final=TRUE` to the list passed to `$error`, such as
 
 `r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
 ```{r eval=FALSE}

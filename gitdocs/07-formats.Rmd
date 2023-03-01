@@ -11,7 +11,7 @@ FILEREF="https://github.com/mcfanda/COOLj/tree/"
 
 Now we can tune the look of our table. We should, however, do a better job in initializing the tables. So far, we did not do anything in the `.init()` function but running the `$initTab()` function. Properly initiating the table makes the whole user experience much smoother and pleasant. To convince yourself about that, consider than our little module is very fast now, because we simply run a regression with a few variables. Ponder that your model may take time to obtain the results, maybe because you need to bootstrap, user has billions of data points, or the user has a huge dataset with hundreds of variables. 
 
-To appreciate the need for a proper initialization of the tables, let slow down our `Estimate()` function in the `Runner` by change it like this, re-install and try changing variables or options in the module GUI, as a user would do (we removed the warnings and errors in this chapter).
+To appreciate the need for a proper initialization of the tables, let slow down our `Estimate()` function in the `Runner` by changing it like this, re-install and try changing variables or options in the module GUI, as a user would do (we removed the warnings and errors in this chapter).
 
 `r filehead("R/Runner.R",FILEREF,"Version.0.0.7")`
 ```{r eval=FALSE}
@@ -25,7 +25,7 @@ To appreciate the need for a proper initialization of the tables, let slow down 
 
 ```
 
-What happens with a slightly slower estimation is that the tables will expand and shrink every time the user changes some option, and the whole results section will flicker in an unpleasant way (try yourself after compiling the module with the last chanches). To avoid that, we can set the dimensions and fill some columns of the tables in the `$initTable()` function phase. `SmartTable` can be initiated by passing data in the `init()` phase, data that are typically the name of the rows, such as variables names, or some other fixed information.
+What happens with a slightly slower estimation is that the tables will expand and shrink every time the user changes some option, and the whole results section will flicker in an unpleasant way (try yourself after compiling the module with the last changes). To avoid that, we can set the dimensions of the table and fill some columns of it in the `$initTable()` function phase. `SmartTable` can be initiated by passing data in the `init()` phase, data that are typically the name of the rows, such as variables names, or some other fixed information.
 
 `SmartTable` objects `$initTab()` function inquires the `initSource` property (if set) or the `runner` `init_tablename()` function to get info to fill the tables in the init phase. You want to pass very fast and simple information, and let the actual data to come in in the `.run()` phase, when we call the `$runTable` function.
 
@@ -55,6 +55,8 @@ First, the variables are alternating in the column `Variable`, which is not a na
 
 `r knitr::include_graphics("pics/c7_output1.png")`
 
+Now we can format the table to our aestetic needs.
+
 ## Initializing the table
 
 At the `.init()` time, we know what the covariates that will be listed in the table and the labels of the effect sizes we want to show. We can pass this info to the table `$initTable` by defining in `Runner` a `init_additional_effects()` function. Recall that in the `.init()` phase we have all the options, the data definitions, but no estimation nor the actual data. This is made on purpose to keep the `.init()` phase light and fast.
@@ -82,13 +84,13 @@ In the Runner, we write.
 We are passing to the `init_[tablename]` function a data.frame with the `var` and the `index` labels, that we know as soon as the GUI is updated. If you play around with the GUI of your module, you can notice that now the `Effects Size Indices` gets ready very quickly, with the correct number of rows, and it is finalized with the numerical values when the estimation is done.
 (remove the `Sys.sleep(3)` for future usage)
 
-Note: one does not need to prepare a `init_tablename()` function for each table. It should be done for tables that requires some formatting before hand, such as the formatting options discussed below.
+_Note_: one does not need to prepare a `init_tablename()` function for each table. It should be done for tables that require some formatting before hand, such as the formatting options discussed below.
 
 ## Combining below 
 
 (ref. `r ext_url("SmartTable$CombineBelow","reference/SmartTable.html##public-fields-1")`)
 
-At this point, we can notice that the repetition of the `Variable` name makes the table a bit heavy (column name is `var`). We can make it look better by removing the repeated labels and let them print only when a new variable name appears. This can be in the `.r.yaml` file by adding `combineBelow: true` property.
+At this point, we can notice that the repetition of the `Variable` name makes the table a bit heavy (column name is `var`). We can make it look better by removing the repeated labels and let them print only when a new variable name appears. This can be done in the `.r.yaml` file by adding `combineBelow: true` property.
 
 `r filehead("jamovi/myregression.r.yaml",FILEREF,"Version.0.0.7")`
 ```{yaml}
@@ -132,7 +134,7 @@ Another way to make tables more pleasant looking is to add some space between ro
 
 (ref. `r ext_url("SmartTable$indent","reference/SmartTable.html##public-fields-1")`)
 
-Another stylistic change we can make to our tables is to indent some rows to improve readability. Indent can be passed to a `SmartTable` as a vector of rows indices. The values of the first column at the provided indices will be indent. As a quick example, 
+Another stylistic change we can make to our tables is to indent some row to improve readability. Indent can be passed to a `SmartTable` as a vector of rows indices. The values of the first column at the provided indices will be indent. As a quick example, 
 we indent the first row label of the `effects` table. 
 
 `r filehead("R/myregression.b.R",FILEREF,"Version.0.0.7")`
@@ -243,7 +245,7 @@ If you try installing and play around with the GUI (just toggle one option on an
 
 ```
 
-The property `$hideOn` accepts a named list, with format `list(columnan=value)` where `value` is the value that, when received in the data, hides the column. Installing the module now and playing around should produce the expected behavior.
+The property `$hideOn` accepts a named list, with format `list(columname=value)` where `value` is the value that, when received in the data, hides the column. Installing the module now and playing around should produce the expected behavior.
 
 ## Changing column names programmatically
 
@@ -391,7 +393,7 @@ Now we prepare the functions to fill the table in `Runner.R`
     }
 ```
 
-In the init function we pass a `data.frame` which has K+1 columns where K is the number of covariates and K rows. Notice that we fill the `var` variable with the names of the `covariate` and all other values equal to `"."`. `SmartTable` would consider `"."` as an empty value, but as compared with passing `NA`, will not consider the table filled, and thus will update with the runTable.
+In the init function we pass a `data.frame` which has K+1 columns where K is the number of covariates and K rows. Notice that we fill the `var` variable with the names of the `covariate` and all other values equal to `"."`. `SmartTable` would consider `"."` as an empty value, but as compared with passing `NA`, will not consider the table filled, and thus will update it with the runTable.
 
 Now we set the filling function:
 

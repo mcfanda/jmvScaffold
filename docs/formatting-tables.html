@@ -237,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="introduction-3" class="section level2 hasAnchor" number="7.1">
 <h2><span class="header-section-number">7.1</span> Introduction<a href="formatting-tables.html#introduction-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now we can tune the look of our table. We should, however, do a better job in initializing the tables. So far, we did not do anything in the <code>.init()</code> function but running the <code>$initTab()</code> function. Properly initiating the table makes the whole user experience much smoother and pleasant. To convince yourself about that, consider than our little module is very fast now, because we simply run a regression with a few variables. Ponder that your model may take time to obtain the results, maybe because you need to bootstrap, user has billions of data points, or the user has a huge dataset with hundreds of variables.</p>
-<p>To appreciate the need for a proper initialization of the tables, let slow down our <code>Estimate()</code> function in the <code>Runner</code> by change it like this, re-install and try changing variables or options in the module GUI, as a user would do (we removed the warnings and errors in this chapter).</p>
+<p>To appreciate the need for a proper initialization of the tables, let slow down our <code>Estimate()</code> function in the <code>Runner</code> by changing it like this, re-install and try changing variables or options in the module GUI, as a user would do (we removed the warnings and errors in this chapter).</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
@@ -247,7 +247,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb59-4"><a href="formatting-tables.html#cb59-4" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
 <span id="cb59-5"><a href="formatting-tables.html#cb59-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">3</span>)</span>
 <span id="cb59-6"><a href="formatting-tables.html#cb59-6" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
-<p>What happens with a slightly slower estimation is that the tables will expand and shrink every time the user changes some option, and the whole results section will flicker in an unpleasant way (try yourself after compiling the module with the last chanches). To avoid that, we can set the dimensions and fill some columns of the tables in the <code>$initTable()</code> function phase. <code>SmartTable</code> can be initiated by passing data in the <code>init()</code> phase, data that are typically the name of the rows, such as variables names, or some other fixed information.</p>
+<p>What happens with a slightly slower estimation is that the tables will expand and shrink every time the user changes some option, and the whole results section will flicker in an unpleasant way (try yourself after compiling the module with the last changes). To avoid that, we can set the dimensions of the table and fill some columns of it in the <code>$initTable()</code> function phase. <code>SmartTable</code> can be initiated by passing data in the <code>init()</code> phase, data that are typically the name of the rows, such as variables names, or some other fixed information.</p>
 <p><code>SmartTable</code> objects <code>$initTab()</code> function inquires the <code>initSource</code> property (if set) or the <code>runner</code> <code>init_tablename()</code> function to get info to fill the tables in the init phase. You want to pass very fast and simple information, and let the actual data to come in in the <code>.run()</code> phase, when we call the <code>$runTable</code> function.</p>
 <p>Let’s start with <code>effects</code> table, which does not look very good.</p>
 <p><img src="pics/c3_output8.png" width="322" /></p>
@@ -269,6 +269,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb60-12"><a href="formatting-tables.html#cb60-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
 <span id="cb60-13"><a href="formatting-tables.html#cb60-13" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
 <p><img src="pics/c7_output1.png" width="339" /></p>
+<p>Now we can format the table to our aestetic needs.</p>
 </div>
 <div id="initializing-the-table" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Initializing the table<a href="formatting-tables.html#initializing-the-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -292,12 +293,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb61-13"><a href="formatting-tables.html#cb61-13" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>We are passing to the <code>init_[tablename]</code> function a data.frame with the <code>var</code> and the <code>index</code> labels, that we know as soon as the GUI is updated. If you play around with the GUI of your module, you can notice that now the <code>Effects Size Indices</code> gets ready very quickly, with the correct number of rows, and it is finalized with the numerical values when the estimation is done.
 (remove the <code>Sys.sleep(3)</code> for future usage)</p>
-<p>Note: one does not need to prepare a <code>init_tablename()</code> function for each table. It should be done for tables that requires some formatting before hand, such as the formatting options discussed below.</p>
+<p><em>Note</em>: one does not need to prepare a <code>init_tablename()</code> function for each table. It should be done for tables that require some formatting before hand, such as the formatting options discussed below.</p>
 </div>
 <div id="combining-below" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Combining below<a href="formatting-tables.html#combining-below" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(ref. <a href='reference/SmartTable.html##public-fields-1' target='_blank'>SmartTable$CombineBelow</a>)</p>
-<p>At this point, we can notice that the repetition of the <code>Variable</code> name makes the table a bit heavy (column name is <code>var</code>). We can make it look better by removing the repeated labels and let them print only when a new variable name appears. This can be in the <code>.r.yaml</code> file by adding <code>combineBelow: true</code> property.</p>
+<p>At this point, we can notice that the repetition of the <code>Variable</code> name makes the table a bit heavy (column name is <code>var</code>). We can make it look better by removing the repeated labels and let them print only when a new variable name appears. This can be done in the <code>.r.yaml</code> file by adding <code>combineBelow: true</code> property.</p>
 <div class="filename">
 <span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
 </div>
@@ -333,7 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="indent-some-row-value" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Indent some row value<a href="formatting-tables.html#indent-some-row-value" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(ref. <a href='reference/SmartTable.html##public-fields-1' target='_blank'>SmartTable$indent</a>)</p>
-<p>Another stylistic change we can make to our tables is to indent some rows to improve readability. Indent can be passed to a <code>SmartTable</code> as a vector of rows indices. The values of the first column at the provided indices will be indent. As a quick example,
+<p>Another stylistic change we can make to our tables is to indent some row to improve readability. Indent can be passed to a <code>SmartTable</code> as a vector of rows indices. The values of the first column at the provided indices will be indent. As a quick example,
 we indent the first row label of the <code>effects</code> table.</p>
 <div class="filename">
 <span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/myregression.b.R' target='_blank'>Online version</a>)</span>
@@ -425,7 +426,7 @@ we indent the first row label of the <code>effects</code> table.</p>
 <span id="cb68-2"><a href="formatting-tables.html#cb68-2" aria-hidden="true" tabindex="-1"></a>            <span class="do">## here we hide `df1` when it receives NaN</span></span>
 <span id="cb68-3"><a href="formatting-tables.html#cb68-3" aria-hidden="true" tabindex="-1"></a>            atable<span class="sc">$</span>hideOn <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">df1=</span><span class="cn">Inf</span>)</span>
 <span id="cb68-4"><a href="formatting-tables.html#cb68-4" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
-<p>The property <code>$hideOn</code> accepts a named list, with format <code>list(columnan=value)</code> where <code>value</code> is the value that, when received in the data, hides the column. Installing the module now and playing around should produce the expected behavior.</p>
+<p>The property <code>$hideOn</code> accepts a named list, with format <code>list(columname=value)</code> where <code>value</code> is the value that, when received in the data, hides the column. Installing the module now and playing around should produce the expected behavior.</p>
 </div>
 <div id="changing-column-names-programmatically" class="section level2 hasAnchor" number="7.8">
 <h2><span class="header-section-number">7.8</span> Changing column names programmatically<a href="formatting-tables.html#changing-column-names-programmatically" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -538,7 +539,7 @@ we indent the first row label of the <code>effects</code> table.</p>
 <span id="cb74-7"><a href="formatting-tables.html#cb74-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
 <span id="cb74-8"><a href="formatting-tables.html#cb74-8" aria-hidden="true" tabindex="-1"></a>      </span>
 <span id="cb74-9"><a href="formatting-tables.html#cb74-9" aria-hidden="true" tabindex="-1"></a>    }</span></code></pre></div>
-<p>In the init function we pass a <code>data.frame</code> which has K+1 columns where K is the number of covariates and K rows. Notice that we fill the <code>var</code> variable with the names of the <code>covariate</code> and all other values equal to <code>"."</code>. <code>SmartTable</code> would consider <code>"."</code> as an empty value, but as compared with passing <code>NA</code>, will not consider the table filled, and thus will update with the runTable.</p>
+<p>In the init function we pass a <code>data.frame</code> which has K+1 columns where K is the number of covariates and K rows. Notice that we fill the <code>var</code> variable with the names of the <code>covariate</code> and all other values equal to <code>"."</code>. <code>SmartTable</code> would consider <code>"."</code> as an empty value, but as compared with passing <code>NA</code>, will not consider the table filled, and thus will update it with the runTable.</p>
 <p>Now we set the filling function:</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.7/R/Runner.R' target='_blank'>Online version</a>)</span>
