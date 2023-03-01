@@ -52,7 +52,7 @@ When the module is ready to get published, one sets `j_DEBUG`, `j_INFO` and `j_T
 
 ## Automatic Errors
 
-This is useful when something fail so we can see where the problem is. Let's make our code fail, by making a mistake in the  `run_main_coefficients` function in the `Runner.R` (see `coeff` rather than `coeffs`).
+This is useful when something fails so we can see where the problem is. Let's make our code fail, by making a mistake in the  `run_main_coefficients` function in the `Runner.R` (see `coeff` rather than `coeffs`).
 
 `r filehead("R/Runner.R")`
 ```{r eval=FALSE}
@@ -112,10 +112,10 @@ So, you do not have to worry about capturing warnings, they are automatically di
 
 Very often, you want to pass messages to tables from outside their filling function. You may, for instance, add a note saying that there are missing values in the data, and the user should be careful in interpreting the results. Other times, you may have a recap table at the beginning of the output, and you want to send a footnote to it to signal that something happens worth mentioning. As an example, assume that a warning is generated in our `runner$Estimate()`, which does not communicate directly to any table.
 
-To broadcast message from anywhere in your module to any table, we can use a method that our `Runner` class inherits from the parent class `Scaffold`. The method is named `dispatcher`. This method accepts warnings or error and sends them to `SmartTable` and `SmartArray`. 
+To broadcast message from anywhere in your module to any table, we can use a method that our `Runner` class inherits from the parent class `Scaffold`. The method is named `$warning`. This method accepts a warning as a list of the form `list(topic="atablename",message="a text to diplay")` and sends them to `SmartTable` and `SmartArray`. 
 
 
-We just need to use it whereever we need in the `Runner` object. In the example, we alter the `Estimate()` function to produce a message:
+We just need to use it where ever we need in the `Runner` object. In the example, we alter the `Estimate()` function to produce a message:
 
 `r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
 ```{r eval=FALSE}
@@ -134,10 +134,12 @@ We just need to use it whereever we need in the `Runner` object. In the example,
 #...#    
 ```
 
-The `$dispatcher$warning` accepts a list with two fields: `topic` is the nickname of the table that should receive the message,
+The `$warning` accepts a list with two fields: `topic` is the nickname of the table that should receive the message,
 `message` is the message. Running this code, we obtain:
 
 `r knitr::include_graphics("pics/c6_output4.png")`
+
+Exactly the same can be done with the method `$error` which send an error to the table named in the `topic` field. 
 
 You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the `Estimate()` function, from different parts of the code. One can add any number of notes.
 

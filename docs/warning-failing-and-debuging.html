@@ -263,7 +263,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="automatic-errors" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Automatic Errors<a href="warning-failing-and-debuging.html#automatic-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>This is useful when something fail so we can see where the problem is. Let’s make our code fail, by making a mistake in the <code>run_main_coefficients</code> function in the <code>Runner.R</code> (see <code>coeff</code> rather than <code>coeffs</code>).</p>
+<p>This is useful when something fails so we can see where the problem is. Let’s make our code fail, by making a mistake in the <code>run_main_coefficients</code> function in the <code>Runner.R</code> (see <code>coeff</code> rather than <code>coeffs</code>).</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R </span>
 </div>
@@ -307,8 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="code-generated-warnings-and-messages" class="section level2 hasAnchor" number="6.6">
 <h2><span class="header-section-number">6.6</span> Code-generated Warnings and Messages<a href="warning-failing-and-debuging.html#code-generated-warnings-and-messages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Very often, you want to pass messages to tables from outside their filling function. You may, for instance, add a note saying that there are missing values in the data, and the user should be careful in interpreting the results. Other times, you may have a recap table at the beginning of the output, and you want to send a footnote to it to signal that something happens worth mentioning. As an example, assume that a warning is generated in our <code>runner$Estimate()</code>, which does not communicate directly to any table.</p>
-<p>To broadcast message from anywhere in your module to any table, we can use a method that our <code>Runner</code> class inherits from the parent class <code>Scaffold</code>. The method is named <code>dispatcher</code>. This method accepts warnings or error and sends them to <code>SmartTable</code> and <code>SmartArray</code>.</p>
-<p>We just need to use it whereever we need in the <code>Runner</code> object. In the example, we alter the <code>Estimate()</code> function to produce a message:</p>
+<p>To broadcast message from anywhere in your module to any table, we can use a method that our <code>Runner</code> class inherits from the parent class <code>Scaffold</code>. The method is named <code>$warning</code>. This method accepts a warning as a list of the form <code>list(topic="atablename",message="a text to diplay")</code> and sends them to <code>SmartTable</code> and <code>SmartArray</code>.</p>
+<p>We just need to use it where ever we need in the <code>Runner</code> object. In the example, we alter the <code>Estimate()</code> function to produce a message:</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
@@ -324,9 +324,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb55-10"><a href="warning-failing-and-debuging.html#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb55-11"><a href="warning-failing-and-debuging.html#cb55-11" aria-hidden="true" tabindex="-1"></a>    },</span>
 <span id="cb55-12"><a href="warning-failing-and-debuging.html#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="co">#...#    </span></span></code></pre></div>
-<p>The <code>$dispatcher$warning</code> accepts a list with two fields: <code>topic</code> is the nickname of the table that should receive the message,
+<p>The <code>$warning</code> accepts a list with two fields: <code>topic</code> is the nickname of the table that should receive the message,
 <code>message</code> is the message. Running this code, we obtain:</p>
 <p><img src="pics/c6_output4.png" width="497" /></p>
+<p>Exactly the same can be done with the method <code>$error</code> which send an error to the table named in the <code>topic</code> field.</p>
 <p>You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the <code>Estimate()</code> function, from different parts of the code. One can add any number of notes.</p>
 <p>Finally, you can also send and error from anywhere in the code to a table, using the property <code>error</code>. We exemplifies this by sending a message to <code>main_anova</code> table.</p>
 <div class="filename">
