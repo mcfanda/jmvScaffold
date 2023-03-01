@@ -38,7 +38,7 @@ This documentation assumes that the reader is familiar with the basic of jamovi 
 
 To program a jamovi module, you want to have a basic knowledge of [R6 classes](https://r6.r-lib.org/articles/Introduction.html). You do not need much, as it is very easy to work with them. R6 classes bring object-oriented programming to R. R6 objects are basically functions that know themselves.
 
-A final word to end the preface: Here we assume that we want to build a jamovi module, store it to (github)[https://github.com], and then publish it in the  `r jamovi` library. If you do not have the second or the third aim (you may want to build a module only for yourself), you can skip the parts related with them.
+A final word to end the preface: Here we assume that we want to build a jamovi module, store it to `r ext_url("github","https://github.com")`, and then publish it in the  `r jamovi` library. If you do not have the second or the third aim (you may want to build a module only for yourself), you can skip the parts related with them.
 
 ## Getting Started {#getstarted}
 
