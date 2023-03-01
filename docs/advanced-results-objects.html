@@ -240,7 +240,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="groups-jmvcoregroup" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Groups (jmvcore::Group)<a href="advanced-results-objects.html#groups-jmvcoregroup" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A useful object is the <code>jmvcore::Group</code>. Groups allow structuring the result tables sections. Assume, for instance, we want to put our <code>coefficients</code> and <code>anova</code> tables in a <code>Main Results</code> section of the output, and our <code>effects</code> table under <code>Additional Output</code>, to be filled later on with other tables.</p>
+<p>A useful object is the <code>jmvcore::Group</code>. Groups allow structuring the result tables into sections. Assume, for instance, we want to put our <code>coefficients</code> and <code>anova</code> tables in a <code>Main Results</code> section of the output, and our <code>effects</code> table under <code>Additional Output</code>, to be filled later on with other tables.</p>
 <p>We should change the <code>r.yaml</code> file introducing the <code>Group</code> object:</p>
 <div class="filename">
 <span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
@@ -319,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-22"><a href="advanced-results-objects.html#cb36-22" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb36-23"><a href="advanced-results-objects.html#cb36-23" aria-hidden="true" tabindex="-1"></a>            <span class="co"># the remaining code does not change</span></span>
 <span id="cb36-24"><a href="advanced-results-objects.html#cb36-24" aria-hidden="true" tabindex="-1"></a>            ...</span></code></pre></div>
-<p>Consequently, in the <code>Runner.R</code> file their assocated function should be named <code>run_[groupname]_[tablename]</code>, because they <code>[groupname]_[tablename]</code> nickname uniquely indentifies each table. In <code>Runner.R</code> code:</p>
+<p>Consequently, in the <code>Runner.R</code> file their associated function should be named <code>run_[groupname]_[tablename]</code>, because they <code>[groupname]_[tablename]</code> nickname uniquely identifies each table. In <code>Runner.R</code> code:</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>

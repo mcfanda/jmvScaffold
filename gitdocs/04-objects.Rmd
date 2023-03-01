@@ -12,7 +12,7 @@ So far we defined `jmvcore::Table` objects. Tables, however, are not the only `j
 
 ## Groups (jmvcore::Group)
 
-A useful object is the `jmvcore::Group`. Groups allow structuring the result tables sections. Assume, for instance, we want to put our `coefficients` and `anova` tables in a `Main Results` section of the output, and our `effects` table under `Additional Output`, to be filled later on with other tables.
+A useful object is the `jmvcore::Group`. Groups allow structuring the result tables into sections. Assume, for instance, we want to put our `coefficients` and `anova` tables in a `Main Results` section of the output, and our `effects` table under `Additional Output`, to be filled later on with other tables.
 
 We should change the `r.yaml` file introducing the `Group` object:
 
@@ -100,7 +100,7 @@ The logic of interfacing R code with the tables via a `SmartTable` object in fil
             ...
 ```
 
-Consequently, in the `Runner.R` file their assocated function should be named  `run_[groupname]_[tablename]`, because they `[groupname]_[tablename]` nickname uniquely indentifies each table. In `Runner.R` code:
+Consequently, in the `Runner.R` file their associated function should be named  `run_[groupname]_[tablename]`, because they `[groupname]_[tablename]` nickname uniquely identifies each table. In `Runner.R` code:
 
 `r filehead("R/Runner.R",FILEREF,"Version.0.0.4")`
 ```{r eval=FALSE}
