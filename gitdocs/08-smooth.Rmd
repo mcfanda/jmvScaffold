@@ -1,16 +1,18 @@
 # Smart Tables Update
 
 ```{r results='hide', echo=FALSE}
+
 library(mcdocs)
 knitr::knit_engines$get("yaml")
 FILEREF="https://github.com/mcfanda/COOLj/tree/"
+
 ```
 
 ## The issue
 
 The `COOLj` module we are building is pretty fast, so we can update its options and still get a smooth feeling from the output section. Indeed, if we are using the `Big 5` data with 4 `covariates`, we can flag and unflag the `Show means for Sig.` or `ES CI` options and get the results very quickly. 
 
-Imagine now that your module gets quite complex, with tens of tables and options. Likely, some of the table will require some time to update (maybe one uses bootstrap, for instance), and that will slow down the appearance of all other tables. Let's simulate that by artificially slowing down our (original) `anova` tables.
+Imagine now that your module gets quite complex, with tens of tables and options. Likely, some of the table will require some time to update (maybe one uses bootstrap, for instance), and that will slow down the display of all other tables. Let's simulate that by artificially slowing down our (original) `anova` tables.
 
 `r filehead("R/Runner.R",FILEREF,"Version.0.0.8")`
 ```{r eval=FALSE}
@@ -32,7 +34,7 @@ If you try now, you'll see that every time the user changes something in the GUI
 
 ## The Solution
 
-Many tables do not need to be re-run every time an option is changed. Our `anova` table, for instance, does not need to be re-computed when we ask for the means, by flagging the `Show means` option. The two tables are independent, so showing one should not affect showing the other.
+Many tables do not need to be re-run every time an option is changed. Our `anova` table, for instance, does not need to be re-computed when we ask for the means, by flagging the `Show means for sig.` option. The two tables are independent, so showing one should not affect showing the other.
 
 By default, all `r jamovi` tables are initialized and run every time the input GUI changed. We can change this behavior by adding the property `clearWith:` to the tables in `.r.yaml` file. In `clearWith:`, one can specify the options that would update the table. All changes in other options will not update the table. Thus, in our example, we can set `.r.yaml` file as follows:
 

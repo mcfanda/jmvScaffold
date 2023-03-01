@@ -237,7 +237,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="the-issue" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> The issue<a href="smart-tables-update.html#the-issue" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The <code>COOLj</code> module we are building is pretty fast, so we can update its options and still get a smooth feeling from the output section. Indeed, if we are using the <code>Big 5</code> data with 4 <code>covariates</code>, we can flag and unflag the <code>Show means for Sig.</code> or <code>ES CI</code> options and get the results very quickly.</p>
-<p>Imagine now that your module gets quite complex, with tens of tables and options. Likely, some of the table will require some time to update (maybe one uses bootstrap, for instance), and that will slow down the appearance of all other tables. Let’s simulate that by artificially slowing down our (original) <code>anova</code> tables.</p>
+<p>Imagine now that your module gets quite complex, with tens of tables and options. Likely, some of the table will require some time to update (maybe one uses bootstrap, for instance), and that will slow down the display of all other tables. Let’s simulate that by artificially slowing down our (original) <code>anova</code> tables.</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
@@ -257,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="the-solution" class="section level2 hasAnchor" number="8.2">
 <h2><span class="header-section-number">8.2</span> The Solution<a href="smart-tables-update.html#the-solution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Many tables do not need to be re-run every time an option is changed. Our <code>anova</code> table, for instance, does not need to be re-computed when we ask for the means, by flagging the <code>Show means</code> option. The two tables are independent, so showing one should not affect showing the other.</p>
+<p>Many tables do not need to be re-run every time an option is changed. Our <code>anova</code> table, for instance, does not need to be re-computed when we ask for the means, by flagging the <code>Show means for sig.</code> option. The two tables are independent, so showing one should not affect showing the other.</p>
 <p>By default, all <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> tables are initialized and run every time the input GUI changed. We can change this behavior by adding the property <code>clearWith:</code> to the tables in <code>.r.yaml</code> file. In <code>clearWith:</code>, one can specify the options that would update the table. All changes in other options will not update the table. Thus, in our example, we can set <code>.r.yaml</code> file as follows:</p>
 <div class="filename">
 <span class="filename">File: jamov/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/jamov/myregression.r.yaml' target='_blank'>Online version</a>)</span>
