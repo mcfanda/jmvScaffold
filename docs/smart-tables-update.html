@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>COOLj</code> module we are building is pretty fast, so we can update its options and still get a smooth feeling from the output section. Indeed, if we are using the <code>Big 5</code> data with 4 <code>covariates</code>, we can flag and unflag the <code>Show means for Sig.</code> or <code>ES CI</code> options and get the results very quickly.</p>
 <p>Imagine now that your module gets quite complex, with tens of tables and options. Likely, some of the table will require some time to update (maybe one uses bootstrap, for instance), and that will slow down the display of all other tables. Let’s simulate that by artificially slowing down our (original) <code>anova</code> tables.</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="smart-tables-update.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb76-2"><a href="smart-tables-update.html#cb76-2" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
@@ -260,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Many tables do not need to be re-run every time an option is changed. Our <code>anova</code> table, for instance, does not need to be re-computed when we ask for the means, by flagging the <code>Show means for sig.</code> option. The two tables are independent, so showing one should not affect showing the other.</p>
 <p>By default, all <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> tables are initialized and run every time the input GUI changed. We can change this behavior by adding the property <code>clearWith:</code> to the tables in <code>.r.yaml</code> file. In <code>clearWith:</code>, one can specify the options that would update the table. All changes in other options will not update the table. Thus, in our example, we can set <code>.r.yaml</code> file as follows:</p>
 <div class="filename">
-<span class="filename">File: jamov/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/jamov/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+<span class="filename">File: jamov/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/jamov/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb77"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb77-1"><a href="smart-tables-update.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... ##</span></span>
 <span id="cb77-2"><a href="smart-tables-update.html#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -279,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb77-15"><a href="smart-tables-update.html#cb77-15" aria-hidden="true" tabindex="-1"></a><span class="co">## ... ##       </span></span></code></pre></div>
 <p>Then we need to init the table, with some simple information like this:</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="smart-tables-update.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb78-2"><a href="smart-tables-update.html#cb78-2" aria-hidden="true" tabindex="-1"></a>    init_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>

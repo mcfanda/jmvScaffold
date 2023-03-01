@@ -239,7 +239,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Before we dive into more sophisticated topics, such as formatting Tables, we should briefly consider the sad fact that sooner or later our code will fail and we need to debug it. Debugging a module in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> may be difficult, because when you see the error in the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> output, it is often difficult to understand when the error comes from, especially if your code is complex and you have many different tables. In jamovi, you want to have toggled on <code>developer mode</code>, to see informative errors. However, <a href='reference/index.html' target='_blank'>jmvScaffold</a> offers also some methods and functions to help us out.</p>
 <p>First, when we copied the files from the <code>jmvScaffold</code> package into the module <code>.R/</code> function, one file copied was named <code>jScafFunctions.R</code>. The file head contains three constants</p>
 <div class="filename">
-<span class="filename">File: R/jScafFunctions.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/jScafFunctions.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/jScafFunctions.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/jScafFunctions.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="warning-failing-and-debuging.html#cb50-1" aria-hidden="true" tabindex="-1"></a>j_DEBUG <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb50-2"><a href="warning-failing-and-debuging.html#cb50-2" aria-hidden="true" tabindex="-1"></a>j_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
@@ -289,7 +289,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.5</span> Automatic Warnings<a href="warning-failing-and-debuging.html#automatic-warnings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>SmartTables</code> automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the <code>run_main_coefficients</code> function.</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="warning-failing-and-debuging.html#cb54-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
 <span id="cb54-2"><a href="warning-failing-and-debuging.html#cb54-2" aria-hidden="true" tabindex="-1"></a>      </span>
@@ -310,7 +310,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To broadcast message from anywhere in your module to any table, we can use a method that our <code>Runner</code> class inherits from the parent class <code>Scaffold</code>. The method is named <code>$warning</code>. This method accepts a warning as a list of the form <code>list(topic="atablename",message="a text to diplay")</code> and sends them to <code>SmartTable</code> and <code>SmartArray</code>.</p>
 <p>We just need to use it where ever we need in the <code>Runner</code> object. In the example, we alter the <code>Estimate()</code> function to produce a message:</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="warning-failing-and-debuging.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb55-2"><a href="warning-failing-and-debuging.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -344,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If you want to send an error message that would stop completely the execution of the analysis, you can add
 the field <code>final=TRUE</code> to the list passed to <code>$error</code>, such as</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="warning-failing-and-debuging.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb57-2"><a href="warning-failing-and-debuging.html#cb57-2" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>error<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>

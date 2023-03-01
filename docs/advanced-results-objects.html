@@ -243,7 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A useful object is the <code>jmvcore::Group</code>. Groups allow structuring the result tables into sections. Assume, for instance, we want to put our <code>coefficients</code> and <code>anova</code> tables in a <code>Main Results</code> section of the output, and our <code>effects</code> table under <code>Additional Output</code>, to be filled later on with other tables.</p>
 <p>We should change the <code>r.yaml</code> file introducing the <code>Group</code> object:</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
+<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.a.yaml' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb35"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb35-1"><a href="advanced-results-objects.html#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-2"><a href="advanced-results-objects.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Notice that the definition of the tables has not changed, they are just organized under a <code>Group</code> with property <code>title</code> and <code>items</code>.</p>
 <p>The logic of interfacing R code with the tables via a <code>SmartTable</code> object in file <code>.b.R</code> does not change as well, the only difference is that we should change the name of the table. In the <code>self$results</code> list, tables are now referred to as <code>self$results$groupname$tablename</code>.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="advanced-results-objects.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">## same code as before here</span></span>
 <span id="cb36-2"><a href="advanced-results-objects.html#cb36-2" aria-hidden="true" tabindex="-1"></a>...</span>
@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-24"><a href="advanced-results-objects.html#cb36-24" aria-hidden="true" tabindex="-1"></a>            ...</span></code></pre></div>
 <p>Consequently, in the <code>Runner.R</code> file their associated function should be named <code>run_[groupname]_[tablename]</code>, because they <code>[groupname]_[tablename]</code> nickname uniquely identifies each table. In <code>Runner.R</code> code:</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="advanced-results-objects.html#cb37-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
 <span id="cb37-2"><a href="advanced-results-objects.html#cb37-2" aria-hidden="true" tabindex="-1"></a>      </span>
@@ -362,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.1</span> Array: known number of tables<a href="advanced-results-objects.html#array-known-number-of-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Assume we want to produce a table for each covariate selected by the user. Say that for each covariate you want a separate table with the mean and standard deviation of the variable. Obviously, we do not know in advance how many independent variables the user will define, but as soon as the user defines them, <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> can count the independent variables and know how many tables are needed. In our example, we can link the number of tables (<code>items</code>) attached to the <code>Array</code> object to the <code>covs</code> option. This can be done directly in the <code>yaml</code> code in <code>.r.yaml</code> file.</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb38"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb38-1"><a href="advanced-results-objects.html#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-2"><a href="advanced-results-objects.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
@@ -388,7 +388,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Notice the individual table title. It is set to the name of a covariate because in the <code>title:</code> property we use the special key <code>$key</code>, which means the name of the item found in <code>items:</code> variable. All this is done automatically by <code>jamovi</code> interpreter, so it is very easy and smooth to define arrays like this.</p>
 <p>Now we can populated each table within the array. First, we go to the <code>.b.R</code> file and define the array.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="advanced-results-objects.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## same code as before here</span></span>
 <span id="cb39-2"><a href="advanced-results-objects.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href='reference/SmartTable.html' target='_blank'>SmartTable</a>, but passes all the defined properties to the children tables.</p>
 <p>In the <code>Runner.R</code> file we should set up a function named <code>run_[arrayname]</code> to fill it. This function should return a list of data.frame, one for each item selected in the option associated with the array. In our example, the function should return a list of data.frame, one for each covariate selected by the users. Obviously, it is the developer responsibility to return a list of length equal to the number of items in the array.</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="advanced-results-objects.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... #</span></span>
 <span id="cb40-2"><a href="advanced-results-objects.html#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -434,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Assume now, for some silly reason, that we want additional tables with means and standard deviations only for covariates that have a significant effect on the dependent variable. In this case, we do not know how many tables we need until we run the analysis and check the results. <code>jmvScaffold::SmartArray</code> can handle this case smoothly: It produces and fills as many tables as we pass to it with a list of data.frame. Let us see an example.</p>
 <p>In the <code>r.yaml</code> file, we define a new Array as the one before, but without the <code>items:(covs)</code> property, because we do not know which of the <code>covs</code> variable will require a table. We also put the array under a group, because it looks better in the output page.</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb41"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb41-1"><a href="advanced-results-objects.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb41-2"><a href="advanced-results-objects.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sig</span></span>
@@ -463,7 +463,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb41-25"><a href="advanced-results-objects.html#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span></code></pre></div>
 <p>In the <code>Runner.R</code> file, we simply need to define a <code>run_sig_means()</code> function to select the covariates that we want to display in the new tables.</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="advanced-results-objects.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb42-2"><a href="advanced-results-objects.html#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -484,7 +484,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb42-17"><a href="advanced-results-objects.html#cb42-17" aria-hidden="true" tabindex="-1"></a>   }</span></code></pre></div>
 <p>Finaly, we add the new array to the list of smart objects in the <code>.b.R</code> files.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="advanced-results-objects.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="do">## same code as before here</span></span>
 <span id="cb43-2"><a href="advanced-results-objects.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
@@ -504,7 +504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="pics/c4_output4.png" width="328" /></p>
 <p>Now pay attention to the tables titles. They are now <code>Variable - 1</code> and <code>Variable - 2</code> because we do not have any key defined. No problem, we can pass the keys to the <code>SmartArray</code> as an attribute of the data we pass to it. Just add to the <code>run_means()</code> function the line and you have your nice titles.</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="advanced-results-objects.html#cb44-1" aria-hidden="true" tabindex="-1"></a>      <span class="co"># ... #</span></span>
 <span id="cb44-2"><a href="advanced-results-objects.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
