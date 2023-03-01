@@ -9,7 +9,7 @@ FILEREF="https://github.com/mcfanda/COOLj/tree/"
 
 ## Introduction
 
-Now we can tune the look of our table. We should, however, do a better job in initializing the tables. So far, we did not do anything in the `.init()` function but running the `$initTab()` function. Properly initiating the table makes the whole user experience much smoother and pleasant. To convince yourself about that, consider than our little module is very fast now, because we simply run a regression with a few variables. Ponder that your model may take time to obtain the results, maybe because you need to bootstrap, user has billions of data points, or the user has a huge dataset with hundreds of variables. 
+Now we can tune the look of our tables. We should, however, do a better job in initializing the tables. So far, we did not do anything in the `.init()` function but running the `$initTab()` function. Properly initiating the table makes the whole user experience much smoother and pleasant. To convince yourself about that, consider than our little module is very fast now, because we simply run a regression with a few variables. Ponder that your model may take time to obtain the results, maybe because you need to bootstrap, user has billions of data points, or the user has a huge dataset with hundreds of variables. 
 
 To appreciate the need for a proper initialization of the tables, let slow down our `Estimate()` function in the `Runner` by changing it like this, re-install and try changing variables or options in the module GUI, as a user would do (we removed the warnings and errors in this chapter).
 
