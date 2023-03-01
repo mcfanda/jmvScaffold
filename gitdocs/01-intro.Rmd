@@ -63,7 +63,7 @@ devtools::install_github("mcfanda/jmvScaffold")
 
 ```
 
-We will see that your module will not need to install `jmvScaffold` to work, you just need it to program. Thus, **when you publish your module, `r jamovi` will not need to install `jmvScaffold` package**. The necessary files to take advantage of the functions and classes provided by `jmvScaffold` will be part of your module, independently of `jmvScaffold` package. Thus, no change or update for `jmvScaffold` will affect your code in the future, nor any link to the package will bind your code to it. 
+We will see that your module will not need to install `jmvScaffold` to work, you just need it to program. Thus, **when you publish your module, `r jamovi` will not need to install `jmvScaffold` package**. The necessary files to take advantage of the functions and classes provided by `jmvScaffold` will be part of your module, independently of `jmvScaffold` package. Thus, no change or update of `jmvScaffold` will affect your code in the future, nor any link to the package will bind your code to it. 
 
 ## Create a module {#createmodule}
 
@@ -150,7 +150,7 @@ We make it more complex later on. This model will be useless, because `r jamovi`
 
 ## jamovi analysis
 
-We want to call this `analysis` `myRegression`. so, we create a file named `myRegression` in the `./jamovi/` folder.
+We want to call this `analysis` `myRegression`. Thus, we create a file named `myRegression` in the `./jamovi/` folder.
 
 ```{r eval=FALSE}
 jmvtools::addAnalysis(name='myRegression', title='Regression analysis')

@@ -4,13 +4,11 @@
 ```{r results='hide', echo=FALSE}
 library(mcdocs)
 knitr::knit_engines$get("yaml")
-library(mcdocs)
-knitr::knit_engines$get("yaml")
 FILEREF="https://github.com/mcfanda/COOLj/tree/"
 ```
 
 
-Every jamovi command has a GUI which allow users to set up the analysis and toggle options. All active items in the input GUI are called `Options`. In the `Descriptive` analysis, the content of `Variables` field, `Split by` field, the toggle option `Frequency Tables` etc. are all option that we should define.
+Every jamovi command has a GUI which allows users to set up the analysis and toggle options. All active items in the input GUI are called `Options`. In the `Descriptive` analysis, the content of `Variables` field, `Split by` field, the toggle option `Frequency Tables` etc. are all option that we should define.
 
 ## Options (.a.yaml)
 
