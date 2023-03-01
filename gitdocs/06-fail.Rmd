@@ -3,8 +3,6 @@
 ```{r results='hide', echo=FALSE}
 library(mcdocs)
 knitr::knit_engines$get("yaml")
-library(mcdocs)
-knitr::knit_engines$get("yaml")
 FILEREF="https://github.com/mcfanda/COOLj/tree/"
 ```
 
@@ -24,7 +22,7 @@ t_INFO  <- TRUE
 
 ```
 
-we want to set them all to `TRUE`. After re-installing and opening `r jamovi` from command line,  
+we want to set them all to `TRUE`. After re-installing and we launch `r jamovi` from command line,  
 
 In linux:
 
