@@ -361,7 +361,7 @@ The possibility to pass results to a SmartTable in different ways gives the prog
 
 ## Automatic filling of tables.
 
-You can go a long way off without the this section. One can add tables ad define a function or a procedure to fill each table passing the results data to the `$runTable` function. However, when your module gets more complex, you want to give a structure to the calls that fill the tables, so you can forget about them and focus on the R programming. Here comes the last method `jmvScaffold` offers to populate the jamovi tables. 
+You can go a long way off without the following section. One can add tables ad define a function or a procedure to fill each table passing the results data to the `$runTable` function. However, when your module gets more complex, you want to give a structure to the calls that fill the tables, so you can forget about them and focus on the R programming. Here comes the last method `jmvScaffold` offers to populate the jamovi tables. 
 
 When a `SmartTable` is initialized, it can be associated with an R6 class that provides the functions to run the table. When the table is run with the `$runTable()` function, it calls the R6 and inquires if the class has a function called `run_[tablename]`. If it is there, it executes the function and the table is filled with the return of the function. 
 
