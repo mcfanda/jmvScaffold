@@ -1,4 +1,4 @@
-# Dynamic Tables Appearance
+# Dynamic Tables Display
 
 ```{r results='hide', echo=FALSE}
 library(mcdocs)
@@ -26,7 +26,7 @@ In the `.a.yalm` file, we add this two options.
 
 `r knitr::include_graphics("pics/c5_input1.png")`
 
-## Showing table on option change
+## Showing table on options change
 
 In this example, we want the `sig_means` array to be shown only when the user selects `Show means for Sig.` in the GUI. We need to modify the `.r.yaml` file as follows:
 
