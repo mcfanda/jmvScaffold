@@ -357,7 +357,7 @@ We can try these strategies (but the last) with some simple code, passing some n
 
 `r knitr::include_graphics("pics/c3_output6.png")`
 
-The possibility to pass results to a SmartTable in different ways gives the programmer flexibility to populate tables from different sources. Nonetheless, when the module gets very complex, even this flexibility cannot be enough. When things get complex, the following method may be the best: Associating the table to a R6 class that it is automatically called by the tables themselves. Sound complex but it is not.
+The possibility to pass results to a SmartTable in different ways gives the programmer flexibility to populate tables from different sources. Nonetheless, when the module gets very complex, even this flexibility may not be enough. When things get complex, the following method may be the best: Associating the table to a R6 class that it is automatically called by the tables themselves. Sound complex but it is not.
 
 ## Automatic filling of tables.
 

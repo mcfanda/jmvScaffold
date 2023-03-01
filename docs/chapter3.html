@@ -247,17 +247,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb12-4"><a href="chapter3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##              Estimate Std. Error  t value  Pr(&gt;|t|)
-## (Intercept) 0.1731641  0.1346321 1.286202 0.2045422
-## x           0.1483287  0.1232908 1.203080 0.2348459</code></pre>
+<pre><code>##              Estimate Std. Error   t value    Pr(&gt;|t|)
+## (Intercept) 0.3897895  0.1438295 2.7100813 0.009300842
+## x           0.1004280  0.1481399 0.6779264 0.501073383</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                  coef        se        t         p
-## (Intercept) 0.1731641 0.1346321 1.286202 0.2045422
-## x           0.1483287 0.1232908 1.203080 0.2348459</code></pre>
+<pre><code>##                  coef        se         t           p
+## (Intercept) 0.3897895 0.1438295 2.7100813 0.009300842
+## x           0.1004280 0.1481399 0.6779264 0.501073383</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
@@ -528,7 +528,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb25-14"><a href="chapter3.html#cb25-14" aria-hidden="true" tabindex="-1"></a>        }</span>
 <span id="cb25-15"><a href="chapter3.html#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p><img src="pics/c3_output6.png" width="375" /></p>
-<p>The possibility to pass results to a SmartTable in different ways gives the programmer flexibility to populate tables from different sources. Nonetheless, when the module gets very complex, even this flexibility cannot be enough. When things get complex, the following method may be the best: Associating the table to a R6 class that it is automatically called by the tables themselves. Sound complex but it is not.</p>
+<p>The possibility to pass results to a SmartTable in different ways gives the programmer flexibility to populate tables from different sources. Nonetheless, when the module gets very complex, even this flexibility may not be enough. When things get complex, the following method may be the best: Associating the table to a R6 class that it is automatically called by the tables themselves. Sound complex but it is not.</p>
 </div>
 <div id="automatic-filling-of-tables." class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> Automatic filling of tables.<a href="chapter3.html#automatic-filling-of-tables." class="anchor-section" aria-label="Anchor link to header"></a></h2>
