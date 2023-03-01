@@ -36,9 +36,9 @@ Reference and detailed functions description of the package can be found in [jmv
 
 
 We should note that developing a `r jamovi` module does not require any of this material. This material, furthermore, will
-not make your coding easier than just using `r jamovi` functions as described in [jamovi developer's hub](https://dev.jamovi.org/). However, when your module starts to get a bit complicated, offering several analyses and sub-modules, or when you want your module to do more sophisticate actions, or more refined style, this material may come handy. 
+not make your coding easier than just using `r jamovi` functions as described in [jamovi developer's hub](https://dev.jamovi.org/). However, when your module starts to get a bit complicated, offering several analyses and sub-modules, or when you want your module to do more sophisticated actions, or a more refined style is needed, this material may come handy. 
 
-This documentation assumes that the reader is familiar with the basic of jamovi module development, but one may get away without that, and be able to develop a `r jamovi` module only reading these pages.
+This documentation assumes that the reader is familiar with the basic of `r jamovi` module development, but one may get away without that, and be able to develop a `r jamovi` module only reading these pages.
 
   To program a jamovi module, you want to have a basic knowledge of `r ext_url("R6 classes","https://r6.r-lib.org/articles/Introduction.html")`. You do not need much, as it is very easy to work with them. R6 classes bring object-oriented programming to R. R6 objects are basically functions that know themselves.
 
