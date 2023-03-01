@@ -45,7 +45,7 @@ This shows a listing made by the module we are building: The SmartTable `coeffic
 
 ## Mark landmarks
 
-Another useful function is `mark(...)`. Mark simply cat in the console whatever is passed to it, after some formatting. The advantage of `mark` over `cat` is that can be turned on and off changing the constant `j_DEBUG` in `jmvScafFunctions.R` file.  Very similar is the function `jinfo(...)`, which is meant to print to the console landmarks and checkpoints. This is turned on and off with the constant `j_INFO`. The difference between `mark()` and `jinfo()` is basically their name. The idea is to use `jinfo()` to landmark the code (like `jinfo("Init phase")`, `ginfo("Run phase")` ) as a stable reference, whereas to use `mark()` when debugging and then remove it from the code. Having different names makes `grep`ing `mark` easier when we clean the code. 
+Another useful function is `mark(...)`. Mark simply cat in the console whatever is passed to it, after some formatting. The advantage of `mark` over `cat` is that `mark` can be turned on and off changing the constant `j_DEBUG` in `jmvScafFunctions.R` file.  Very similar is the function `jinfo(...)`, which is meant to print to the console landmarks and checkpoints. This is turned on and off with the constant `j_INFO`. The difference between `mark()` and `jinfo()` is basically their name. The idea is to use `jinfo()` to landmark the code (like `jinfo("Init phase")`, `ginfo("Run phase")` ) as a stable reference, whereas to use `mark()` when debugging and then remove it from the code. Having different names makes `grep`ing `mark` easier when we clean the code. 
 
 When the module is ready to get published, one sets `j_DEBUG`, `j_INFO` and `j_TABLE` to false e nothing will be printed in the console.
 
