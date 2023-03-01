@@ -86,7 +86,7 @@ If the error is outside the tables, such as in the `.b.R`, you get an error at t
 
 ## Automatic Warnings
 
-A `SmartTable` automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the `run_main_coefficients` function.
+A `SmartTable` automatically gathers warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the `run_main_coefficients` function.
 
 `r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
 ```{r eval=FALSE}
