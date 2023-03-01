@@ -244,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="warning-failing-and-debuging.html#cb50-1" aria-hidden="true" tabindex="-1"></a>j_DEBUG <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb50-2"><a href="warning-failing-and-debuging.html#cb50-2" aria-hidden="true" tabindex="-1"></a>j_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb50-3"><a href="warning-failing-and-debuging.html#cb50-3" aria-hidden="true" tabindex="-1"></a>t_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
-<p>we want to set them all to <code>TRUE</code>. After re-installing and we launch <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> from command line,</p>
+<p>we want to set them all to <code>TRUE</code>. After re-installing, we launch <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> from command line,</p>
 <p>In linux:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="warning-failing-and-debuging.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prompt:~$</span> flatpack run org.jamovi.jamovi </span></code></pre></div>
 <p>In windows:</p>
@@ -287,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="automatic-warnings" class="section level2 hasAnchor" number="6.5">
 <h2><span class="header-section-number">6.5</span> Automatic Warnings<a href="warning-failing-and-debuging.html#automatic-warnings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p><code>SmartTables</code> automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the <code>run_main_coefficients</code> function.</p>
+<p>A <code>SmartTable</code> automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the <code>run_main_coefficients</code> function.</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
