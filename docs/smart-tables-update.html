@@ -241,18 +241,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="smart-tables-update.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb77-2"><a href="smart-tables-update.html#cb77-2" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb77-3"><a href="smart-tables-update.html#cb77-3" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb77-4"><a href="smart-tables-update.html#cb77-4" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
-<span id="cb77-5"><a href="smart-tables-update.html#cb77-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb77-6"><a href="smart-tables-update.html#cb77-6" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
-<span id="cb77-7"><a href="smart-tables-update.html#cb77-7" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(.anova)</span>
-<span id="cb77-8"><a href="smart-tables-update.html#cb77-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">3</span>) <span class="do">## simulate a slow computation</span></span>
-<span id="cb77-9"><a href="smart-tables-update.html#cb77-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
-<span id="cb77-10"><a href="smart-tables-update.html#cb77-10" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb77-11"><a href="smart-tables-update.html#cb77-11" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb77-12"><a href="smart-tables-update.html#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="smart-tables-update.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb76-2"><a href="smart-tables-update.html#cb76-2" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb76-3"><a href="smart-tables-update.html#cb76-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb76-4"><a href="smart-tables-update.html#cb76-4" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
+<span id="cb76-5"><a href="smart-tables-update.html#cb76-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb76-6"><a href="smart-tables-update.html#cb76-6" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
+<span id="cb76-7"><a href="smart-tables-update.html#cb76-7" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(.anova)</span>
+<span id="cb76-8"><a href="smart-tables-update.html#cb76-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">3</span>) <span class="do">## simulate a slow computation</span></span>
+<span id="cb76-9"><a href="smart-tables-update.html#cb76-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
+<span id="cb76-10"><a href="smart-tables-update.html#cb76-10" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb76-11"><a href="smart-tables-update.html#cb76-11" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb76-12"><a href="smart-tables-update.html#cb76-12" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>If you try now, you’ll see that every time the user changes something in the GUI, they have to wait for all tables to be filled. This behavior can be changed.</p>
 </div>
 <div id="the-solution" class="section level2 hasAnchor" number="8.2">
@@ -262,46 +262,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamov/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/jamov/myregression.r.yaml' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb78"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb78-1"><a href="smart-tables-update.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... ##</span></span>
-<span id="cb78-2"><a href="smart-tables-update.html#cb78-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-3"><a href="smart-tables-update.html#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> anova</span></span>
-<span id="cb78-4"><a href="smart-tables-update.html#cb78-4" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  ANOVA table</span></span>
-<span id="cb78-5"><a href="smart-tables-update.html#cb78-5" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb78-6"><a href="smart-tables-update.html#cb78-6" aria-hidden="true" tabindex="-1"></a><span class="co">             ## Here is the new property</span></span>
-<span id="cb78-7"><a href="smart-tables-update.html#cb78-7" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">clearWith</span><span class="kw">:</span></span>
-<span id="cb78-8"><a href="smart-tables-update.html#cb78-8" aria-hidden="true" tabindex="-1"></a><span class="at">                     </span><span class="kw">-</span><span class="at"> dep</span></span>
-<span id="cb78-9"><a href="smart-tables-update.html#cb78-9" aria-hidden="true" tabindex="-1"></a><span class="at">                     </span><span class="kw">-</span><span class="at"> covs</span></span>
-<span id="cb78-10"><a href="smart-tables-update.html#cb78-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb78-11"><a href="smart-tables-update.html#cb78-11" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb78-12"><a href="smart-tables-update.html#cb78-12" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb78-13"><a href="smart-tables-update.html#cb78-13" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb78-14"><a href="smart-tables-update.html#cb78-14" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb78-15"><a href="smart-tables-update.html#cb78-15" aria-hidden="true" tabindex="-1"></a><span class="co">## ... ##       </span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb77-1"><a href="smart-tables-update.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... ##</span></span>
+<span id="cb77-2"><a href="smart-tables-update.html#cb77-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-3"><a href="smart-tables-update.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> anova</span></span>
+<span id="cb77-4"><a href="smart-tables-update.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  ANOVA table</span></span>
+<span id="cb77-5"><a href="smart-tables-update.html#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb77-6"><a href="smart-tables-update.html#cb77-6" aria-hidden="true" tabindex="-1"></a><span class="co">             ## Here is the new property</span></span>
+<span id="cb77-7"><a href="smart-tables-update.html#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">clearWith</span><span class="kw">:</span></span>
+<span id="cb77-8"><a href="smart-tables-update.html#cb77-8" aria-hidden="true" tabindex="-1"></a><span class="at">                     </span><span class="kw">-</span><span class="at"> dep</span></span>
+<span id="cb77-9"><a href="smart-tables-update.html#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="at">                     </span><span class="kw">-</span><span class="at"> covs</span></span>
+<span id="cb77-10"><a href="smart-tables-update.html#cb77-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-11"><a href="smart-tables-update.html#cb77-11" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb77-12"><a href="smart-tables-update.html#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb77-13"><a href="smart-tables-update.html#cb77-13" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb77-14"><a href="smart-tables-update.html#cb77-14" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb77-15"><a href="smart-tables-update.html#cb77-15" aria-hidden="true" tabindex="-1"></a><span class="co">## ... ##       </span></span></code></pre></div>
 <p>Then we need to init the table, with some simple information like this:</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.8/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="smart-tables-update.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb79-2"><a href="smart-tables-update.html#cb79-2" aria-hidden="true" tabindex="-1"></a>    init_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb79-3"><a href="smart-tables-update.html#cb79-3" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb79-4"><a href="smart-tables-update.html#cb79-4" aria-hidden="true" tabindex="-1"></a>      covs      <span class="ot">&lt;-</span> self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs</span>
-<span id="cb79-5"><a href="smart-tables-update.html#cb79-5" aria-hidden="true" tabindex="-1"></a>      terms     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;(Intercept)&quot;</span>,covs,<span class="st">&quot;Residuals&quot;</span>)</span>
-<span id="cb79-6"><a href="smart-tables-update.html#cb79-6" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> <span class="fu">lapply</span>(terms, <span class="cf">function</span>(x) <span class="fu">list</span>(<span class="at">var=</span>x))</span>
-<span id="cb79-7"><a href="smart-tables-update.html#cb79-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
-<span id="cb79-8"><a href="smart-tables-update.html#cb79-8" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb79-9"><a href="smart-tables-update.html#cb79-9" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb79-10"><a href="smart-tables-update.html#cb79-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the run function did not change</span></span>
-<span id="cb79-11"><a href="smart-tables-update.html#cb79-11" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb79-12"><a href="smart-tables-update.html#cb79-12" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb79-13"><a href="smart-tables-update.html#cb79-13" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
-<span id="cb79-14"><a href="smart-tables-update.html#cb79-14" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb79-15"><a href="smart-tables-update.html#cb79-15" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
-<span id="cb79-16"><a href="smart-tables-update.html#cb79-16" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(.anova)</span>
-<span id="cb79-17"><a href="smart-tables-update.html#cb79-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">3</span>) <span class="do">## simulate a slow computation</span></span>
-<span id="cb79-18"><a href="smart-tables-update.html#cb79-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
-<span id="cb79-19"><a href="smart-tables-update.html#cb79-19" aria-hidden="true" tabindex="-1"></a>       </span>
-<span id="cb79-20"><a href="smart-tables-update.html#cb79-20" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb79-21"><a href="smart-tables-update.html#cb79-21" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="smart-tables-update.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb78-2"><a href="smart-tables-update.html#cb78-2" aria-hidden="true" tabindex="-1"></a>    init_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb78-3"><a href="smart-tables-update.html#cb78-3" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb78-4"><a href="smart-tables-update.html#cb78-4" aria-hidden="true" tabindex="-1"></a>      covs      <span class="ot">&lt;-</span> self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs</span>
+<span id="cb78-5"><a href="smart-tables-update.html#cb78-5" aria-hidden="true" tabindex="-1"></a>      terms     <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;(Intercept)&quot;</span>,covs,<span class="st">&quot;Residuals&quot;</span>)</span>
+<span id="cb78-6"><a href="smart-tables-update.html#cb78-6" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span> <span class="fu">lapply</span>(terms, <span class="cf">function</span>(x) <span class="fu">list</span>(<span class="at">var=</span>x))</span>
+<span id="cb78-7"><a href="smart-tables-update.html#cb78-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
+<span id="cb78-8"><a href="smart-tables-update.html#cb78-8" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb78-9"><a href="smart-tables-update.html#cb78-9" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb78-10"><a href="smart-tables-update.html#cb78-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># the run function did not change</span></span>
+<span id="cb78-11"><a href="smart-tables-update.html#cb78-11" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb78-12"><a href="smart-tables-update.html#cb78-12" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb78-13"><a href="smart-tables-update.html#cb78-13" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
+<span id="cb78-14"><a href="smart-tables-update.html#cb78-14" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb78-15"><a href="smart-tables-update.html#cb78-15" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
+<span id="cb78-16"><a href="smart-tables-update.html#cb78-16" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(.anova)</span>
+<span id="cb78-17"><a href="smart-tables-update.html#cb78-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">Sys.sleep</span>(<span class="dv">3</span>) <span class="do">## simulate a slow computation</span></span>
+<span id="cb78-18"><a href="smart-tables-update.html#cb78-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
+<span id="cb78-19"><a href="smart-tables-update.html#cb78-19" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb78-20"><a href="smart-tables-update.html#cb78-20" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb78-21"><a href="smart-tables-update.html#cb78-21" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>If you now compile the module and flag and the unflag the <code>Show Means for Sig.</code> option, you’ll see that the <code>anova</code> table do not change and the execution becomes much faster. If you chance the dependent variable or some of the covariates, the two tables will update.</p>
 <p>If you do this process for all the tables, you will see that they update only when needed. The only exception are Unkeyed Arrays of tables (the ones you defined based on the results, such as the <code>sig_means</code> array in the example). They are always refilled, because <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> cannot know in advanced how many tables you need.</p>
 </div>
@@ -322,7 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 
 
-<span id="cb80-2"><a href="smart-tables-update.html#cb80-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>knit_engines<span class="sc">$</span><span class="fu">get</span>(<span class="st">&quot;yaml&quot;</span>)</span></code></pre></div>
+<span id="cb79-2"><a href="smart-tables-update.html#cb79-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>knit_engines<span class="sc">$</span><span class="fu">get</span>(<span class="st">&quot;yaml&quot;</span>)</span></code></pre></div>
 </div>
             </section>
 

@@ -13,9 +13,13 @@ description: "It provise some explanations about using the package to develop ja
 ---
 
 
-```{r results='hide'}
+
+```{r results='hide', echo=FALSE}
 library(mcdocs)
 knitr::knit_engines$get("yaml")
+library(mcdocs)
+knitr::knit_engines$get("yaml")
+FILEREF="https://github.com/mcfanda/COOLj/tree/"
 ```
 
 # Introduction {#booklet}
@@ -87,6 +91,7 @@ RStudio projects make our lives much easier.
 
 We now need to fill the `DESCRIPTION` file as for any R package. Here an example
 
+`r filehead("DESCRIPTION",FILEREF,"Version.0.0.1")`
 ```{r eval=FALSE}
 Package: COOLj
 Type: Package
@@ -105,6 +110,7 @@ Imports: jmvcore (>= 0.8.5), R6
 This describes your package in R. Now we need to define a description for `r jamovi`, filling the file
 `./jamovi/0000.yaml`
 
+`r filehead("jamovi/000.yaml",FILEREF,"Version.0.0.1")`
 ```{yaml}
 title: Simple example of jmvScaffold
 name: COOLj

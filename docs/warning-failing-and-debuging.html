@@ -241,14 +241,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: R/jScafFunctions.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/jScafFunctions.R' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="warning-failing-and-debuging.html#cb51-1" aria-hidden="true" tabindex="-1"></a>j_DEBUG <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb51-2"><a href="warning-failing-and-debuging.html#cb51-2" aria-hidden="true" tabindex="-1"></a>j_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb51-3"><a href="warning-failing-and-debuging.html#cb51-3" aria-hidden="true" tabindex="-1"></a>t_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="warning-failing-and-debuging.html#cb50-1" aria-hidden="true" tabindex="-1"></a>j_DEBUG <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb50-2"><a href="warning-failing-and-debuging.html#cb50-2" aria-hidden="true" tabindex="-1"></a>j_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb50-3"><a href="warning-failing-and-debuging.html#cb50-3" aria-hidden="true" tabindex="-1"></a>t_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
 <p>we want to set them all to <code>TRUE</code>. After re-installing and opening <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> from command line,</p>
 <p>In linux:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb52-1"><a href="warning-failing-and-debuging.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prompt:~$</span> flatpack run org.jamovi.jamovi </span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="warning-failing-and-debuging.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prompt:~$</span> flatpack run org.jamovi.jamovi </span></code></pre></div>
 <p>In windows:</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="warning-failing-and-debuging.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: I should buy a windows machine</span></span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="warning-failing-and-debuging.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: I should buy a windows machine</span></span></code></pre></div>
 </div>
 <div id="tables-debugging" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Tables debugging<a href="warning-failing-and-debuging.html#tables-debugging" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -267,16 +267,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: R/Runner.R </span>
 </div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="warning-failing-and-debuging.html#cb54-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb54-2"><a href="warning-failing-and-debuging.html#cb54-2" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb54-3"><a href="warning-failing-and-debuging.html#cb54-3" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
-<span id="cb54-4"><a href="warning-failing-and-debuging.html#cb54-4" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
-<span id="cb54-5"><a href="warning-failing-and-debuging.html#cb54-5" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
-<span id="cb54-6"><a href="warning-failing-and-debuging.html#cb54-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb54-7"><a href="warning-failing-and-debuging.html#cb54-7" aria-hidden="true" tabindex="-1"></a>      coeff<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs) <span class="do">## misspelled name </span></span>
-<span id="cb54-8"><a href="warning-failing-and-debuging.html#cb54-8" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb54-9"><a href="warning-failing-and-debuging.html#cb54-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
-<span id="cb54-10"><a href="warning-failing-and-debuging.html#cb54-10" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="warning-failing-and-debuging.html#cb53-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb53-2"><a href="warning-failing-and-debuging.html#cb53-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb53-3"><a href="warning-failing-and-debuging.html#cb53-3" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
+<span id="cb53-4"><a href="warning-failing-and-debuging.html#cb53-4" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
+<span id="cb53-5"><a href="warning-failing-and-debuging.html#cb53-5" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
+<span id="cb53-6"><a href="warning-failing-and-debuging.html#cb53-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb53-7"><a href="warning-failing-and-debuging.html#cb53-7" aria-hidden="true" tabindex="-1"></a>      coeff<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs) <span class="do">## misspelled name </span></span>
+<span id="cb53-8"><a href="warning-failing-and-debuging.html#cb53-8" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb53-9"><a href="warning-failing-and-debuging.html#cb53-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
+<span id="cb53-10"><a href="warning-failing-and-debuging.html#cb53-10" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
 <p>Running the module now produces an error in the corresponding table.</p>
 <p><img src="pics/c6_output1.png" width="451" /></p>
 <p>Notice that the module did not fail completely, only the table affected by the error was not filled. We now know that there’s something wrong in the function running the table. We can also check the console to gather some more information.</p>
@@ -291,16 +291,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="warning-failing-and-debuging.html#cb55-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb55-2"><a href="warning-failing-and-debuging.html#cb55-2" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb55-3"><a href="warning-failing-and-debuging.html#cb55-3" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
-<span id="cb55-4"><a href="warning-failing-and-debuging.html#cb55-4" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
-<span id="cb55-5"><a href="warning-failing-and-debuging.html#cb55-5" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
-<span id="cb55-6"><a href="warning-failing-and-debuging.html#cb55-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb55-7"><a href="warning-failing-and-debuging.html#cb55-7" aria-hidden="true" tabindex="-1"></a>      coeffs<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs)  </span>
-<span id="cb55-8"><a href="warning-failing-and-debuging.html#cb55-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;something fishy is going on&quot;</span>)</span>
-<span id="cb55-9"><a href="warning-failing-and-debuging.html#cb55-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
-<span id="cb55-10"><a href="warning-failing-and-debuging.html#cb55-10" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="warning-failing-and-debuging.html#cb54-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb54-2"><a href="warning-failing-and-debuging.html#cb54-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb54-3"><a href="warning-failing-and-debuging.html#cb54-3" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
+<span id="cb54-4"><a href="warning-failing-and-debuging.html#cb54-4" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
+<span id="cb54-5"><a href="warning-failing-and-debuging.html#cb54-5" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
+<span id="cb54-6"><a href="warning-failing-and-debuging.html#cb54-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb54-7"><a href="warning-failing-and-debuging.html#cb54-7" aria-hidden="true" tabindex="-1"></a>      coeffs<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs)  </span>
+<span id="cb54-8"><a href="warning-failing-and-debuging.html#cb54-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;something fishy is going on&quot;</span>)</span>
+<span id="cb54-9"><a href="warning-failing-and-debuging.html#cb54-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
+<span id="cb54-10"><a href="warning-failing-and-debuging.html#cb54-10" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
 <p><img src="pics/c6_output3.png" width="437" /></p>
 <p>So, you do not have to worry about capturing warnings, they are automatically displayed. If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them.</p>
 </div>
@@ -312,18 +312,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="warning-failing-and-debuging.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb56-2"><a href="warning-failing-and-debuging.html#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-3"><a href="warning-failing-and-debuging.html#cb56-3" aria-hidden="true" tabindex="-1"></a>    estimate<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb56-4"><a href="warning-failing-and-debuging.html#cb56-4" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb56-5"><a href="warning-failing-and-debuging.html#cb56-5" aria-hidden="true" tabindex="-1"></a>      formula  <span class="ot">&lt;-</span> jmvcore<span class="sc">::</span><span class="fu">composeFormula</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
-<span id="cb56-6"><a href="warning-failing-and-debuging.html#cb56-6" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
-<span id="cb56-7"><a href="warning-failing-and-debuging.html#cb56-7" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb56-8"><a href="warning-failing-and-debuging.html#cb56-8" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>warning<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
-<span id="cb56-9"><a href="warning-failing-and-debuging.html#cb56-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">message=</span><span class="st">&quot;Something great happened in the estimate function&quot;</span>)</span>
-<span id="cb56-10"><a href="warning-failing-and-debuging.html#cb56-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-11"><a href="warning-failing-and-debuging.html#cb56-11" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb56-12"><a href="warning-failing-and-debuging.html#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co">#...#    </span></span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="warning-failing-and-debuging.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb55-2"><a href="warning-failing-and-debuging.html#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="warning-failing-and-debuging.html#cb55-3" aria-hidden="true" tabindex="-1"></a>    estimate<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb55-4"><a href="warning-failing-and-debuging.html#cb55-4" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb55-5"><a href="warning-failing-and-debuging.html#cb55-5" aria-hidden="true" tabindex="-1"></a>      formula  <span class="ot">&lt;-</span> jmvcore<span class="sc">::</span><span class="fu">composeFormula</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
+<span id="cb55-6"><a href="warning-failing-and-debuging.html#cb55-6" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
+<span id="cb55-7"><a href="warning-failing-and-debuging.html#cb55-7" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb55-8"><a href="warning-failing-and-debuging.html#cb55-8" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>warning<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
+<span id="cb55-9"><a href="warning-failing-and-debuging.html#cb55-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">message=</span><span class="st">&quot;Something great happened in the estimate function&quot;</span>)</span>
+<span id="cb55-10"><a href="warning-failing-and-debuging.html#cb55-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-11"><a href="warning-failing-and-debuging.html#cb55-11" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb55-12"><a href="warning-failing-and-debuging.html#cb55-12" aria-hidden="true" tabindex="-1"></a><span class="co">#...#    </span></span></code></pre></div>
 <p>The <code>$dispatcher$warning</code> accepts a list with two fields: <code>topic</code> is the nickname of the table that should receive the message,
 <code>message</code> is the message. Running this code, we obtain:</p>
 <p><img src="pics/c6_output4.png" width="497" /></p>
@@ -332,24 +332,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: R/Runner.R </span>
 </div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="warning-failing-and-debuging.html#cb57-1" aria-hidden="true" tabindex="-1"></a>    estimate<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb57-2"><a href="warning-failing-and-debuging.html#cb57-2" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb57-3"><a href="warning-failing-and-debuging.html#cb57-3" aria-hidden="true" tabindex="-1"></a>      formula  <span class="ot">&lt;-</span> jmvcore<span class="sc">::</span><span class="fu">composeFormula</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
-<span id="cb57-4"><a href="warning-failing-and-debuging.html#cb57-4" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
-<span id="cb57-5"><a href="warning-failing-and-debuging.html#cb57-5" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb57-6"><a href="warning-failing-and-debuging.html#cb57-6" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>error<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_anova&quot;</span>,</span>
-<span id="cb57-7"><a href="warning-failing-and-debuging.html#cb57-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">message=</span><span class="st">&quot;Something bad happened in the estimate function&quot;</span>)</span>
-<span id="cb57-8"><a href="warning-failing-and-debuging.html#cb57-8" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="warning-failing-and-debuging.html#cb56-1" aria-hidden="true" tabindex="-1"></a>    estimate<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb56-2"><a href="warning-failing-and-debuging.html#cb56-2" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb56-3"><a href="warning-failing-and-debuging.html#cb56-3" aria-hidden="true" tabindex="-1"></a>      formula  <span class="ot">&lt;-</span> jmvcore<span class="sc">::</span><span class="fu">composeFormula</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>dep,self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs)</span>
+<span id="cb56-4"><a href="warning-failing-and-debuging.html#cb56-4" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(formula,<span class="at">data=</span>self<span class="sc">$</span>analysis<span class="sc">$</span>data)</span>
+<span id="cb56-5"><a href="warning-failing-and-debuging.html#cb56-5" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb56-6"><a href="warning-failing-and-debuging.html#cb56-6" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>error<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_anova&quot;</span>,</span>
+<span id="cb56-7"><a href="warning-failing-and-debuging.html#cb56-7" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">message=</span><span class="st">&quot;Something bad happened in the estimate function&quot;</span>)</span>
+<span id="cb56-8"><a href="warning-failing-and-debuging.html#cb56-8" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
 <p><img src="pics/c6_output5.png" width="436" /></p>
 <p>If you want to send an error message that would stop completely the execution of the analysis, you can add
 the field <code>final=TRUE</code> to the list passed to <code>dispatcher$error</code>, such as</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="warning-failing-and-debuging.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb58-2"><a href="warning-failing-and-debuging.html#cb58-2" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>error<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
-<span id="cb58-3"><a href="warning-failing-and-debuging.html#cb58-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">message=</span><span class="st">&quot;Something bad happened in the estimate function&quot;</span>, <span class="at">final=</span><span class="cn">TRUE</span>)</span>
-<span id="cb58-4"><a href="warning-failing-and-debuging.html#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="warning-failing-and-debuging.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb57-2"><a href="warning-failing-and-debuging.html#cb57-2" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>error<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
+<span id="cb57-3"><a href="warning-failing-and-debuging.html#cb57-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">message=</span><span class="st">&quot;Something bad happened in the estimate function&quot;</span>, <span class="at">final=</span><span class="cn">TRUE</span>)</span>
+<span id="cb57-4"><a href="warning-failing-and-debuging.html#cb57-4" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p><img src="pics/c6_output6.png" width="503" /></p>
 </div>
 <div id="transient-messages" class="section level2 hasAnchor" number="6.7">
@@ -358,11 +358,11 @@ the field <code>final=TRUE</code> to the list passed to <code>dispatcher$error</
 <div class="filename">
 <span class="filename">File: R/Runner.R </span>
 </div>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="warning-failing-and-debuging.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb59-2"><a href="warning-failing-and-debuging.html#cb59-2" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>warning<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
-<span id="cb59-3"><a href="warning-failing-and-debuging.html#cb59-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">message=</span><span class="st">&quot;This may take a while&quot;</span>, <span class="at">initOnly=</span><span class="cn">TRUE</span>)</span>
-<span id="cb59-4"><a href="warning-failing-and-debuging.html#cb59-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-5"><a href="warning-failing-and-debuging.html#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="warning-failing-and-debuging.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb58-2"><a href="warning-failing-and-debuging.html#cb58-2" aria-hidden="true" tabindex="-1"></a>      self<span class="sc">$</span>warning<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">topic=</span><span class="st">&quot;main_coefficients&quot;</span>,</span>
+<span id="cb58-3"><a href="warning-failing-and-debuging.html#cb58-3" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">message=</span><span class="st">&quot;This may take a while&quot;</span>, <span class="at">initOnly=</span><span class="cn">TRUE</span>)</span>
+<span id="cb58-4"><a href="warning-failing-and-debuging.html#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="warning-failing-and-debuging.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>This message will be shown until the table is filled, and disappears afterward. We go back to this later on.</p>
 
 </div>
