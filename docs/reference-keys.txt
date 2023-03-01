@@ -34,9 +34,10 @@ introduction-2
 tables-debugging
 mark-landmarks
 automatic-errors
-automatic-warnings
-code-generated-warnings-and-messages
+awarnings
+codewarnings
 transient-messages
+capturing-warnings-and-errors
 formatting-tables
 introduction-3
 initializing-the-table

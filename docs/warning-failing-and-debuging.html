@@ -186,9 +186,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#tables-debugging"><i class="fa fa-check"></i><b>6.2</b> Tables debugging</a></li>
 <li class="chapter" data-level="6.3" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#mark-landmarks"><i class="fa fa-check"></i><b>6.3</b> Mark landmarks</a></li>
 <li class="chapter" data-level="6.4" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-errors"><i class="fa fa-check"></i><b>6.4</b> Automatic Errors</a></li>
-<li class="chapter" data-level="6.5" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#automatic-warnings"><i class="fa fa-check"></i><b>6.5</b> Automatic Warnings</a></li>
-<li class="chapter" data-level="6.6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#code-generated-warnings-and-messages"><i class="fa fa-check"></i><b>6.6</b> Code-generated Warnings and Messages</a></li>
+<li class="chapter" data-level="6.5" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#awarnings"><i class="fa fa-check"></i><b>6.5</b> Automatic Warnings</a></li>
+<li class="chapter" data-level="6.6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#codewarnings"><i class="fa fa-check"></i><b>6.6</b> Code-generated Warnings and Messages</a></li>
 <li class="chapter" data-level="6.7" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#transient-messages"><i class="fa fa-check"></i><b>6.7</b> Transient messages</a></li>
+<li class="chapter" data-level="6.8" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#capturing-warnings-and-errors"><i class="fa fa-check"></i><b>6.8</b> Capturing warnings and errors</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="formatting-tables.html"><a href="formatting-tables.html"><i class="fa fa-check"></i><b>7</b> Formatting Tables</a>
 <ul>
@@ -285,9 +286,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If the error is outside the tables, such as in the <code>.b.R</code>, you get an error at the beginning of the output.</p>
 <p><img src="pics/c6_output2.png" width="605" /></p>
 </div>
-<div id="automatic-warnings" class="section level2 hasAnchor" number="6.5">
-<h2><span class="header-section-number">6.5</span> Automatic Warnings<a href="warning-failing-and-debuging.html#automatic-warnings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>A <code>SmartTable</code> automatically gather warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the <code>run_main_coefficients</code> function.</p>
+<div id="awarnings" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Automatic Warnings<a href="warning-failing-and-debuging.html#awarnings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <code>SmartTable</code> automatically gathers warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the <code>run_main_coefficients</code> function.</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
@@ -302,10 +303,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb54-9"><a href="warning-failing-and-debuging.html#cb54-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
 <span id="cb54-10"><a href="warning-failing-and-debuging.html#cb54-10" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
 <p><img src="pics/c6_output3.png" width="437" /></p>
-<p>So, you do not have to worry about capturing warnings, they are automatically displayed. If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them.</p>
+<p>So, you do not have to worry about capturing warnings, they are automatically displayed. If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them. To avoid engulfing the tables, a max of 5 automatic notes are added to the table when the warning comes from the filling function. Repeated warnings are displayed only once.</p>
 </div>
-<div id="code-generated-warnings-and-messages" class="section level2 hasAnchor" number="6.6">
-<h2><span class="header-section-number">6.6</span> Code-generated Warnings and Messages<a href="warning-failing-and-debuging.html#code-generated-warnings-and-messages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="codewarnings" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Code-generated Warnings and Messages<a href="warning-failing-and-debuging.html#codewarnings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Very often, you want to pass messages to tables from outside their filling function. You may, for instance, add a note saying that there are missing values in the data, and the user should be careful in interpreting the results. Other times, you may have a recap table at the beginning of the output, and you want to send a footnote to it to signal that something happens worth mentioning. As an example, assume that a warning is generated in our <code>runner$Estimate()</code>, which does not communicate directly to any table.</p>
 <p>To broadcast message from anywhere in your module to any table, we can use a method that our <code>Runner</code> class inherits from the parent class <code>Scaffold</code>. The method is named <code>$warning</code>. This method accepts a warning as a list of the form <code>list(topic="atablename",message="a text to diplay")</code> and sends them to <code>SmartTable</code> and <code>SmartArray</code>.</p>
 <p>We just need to use it where ever we need in the <code>Runner</code> object. In the example, we alter the <code>Estimate()</code> function to produce a message:</p>
@@ -364,6 +365,32 @@ the field <code>final=TRUE</code> to the list passed to <code>$error</code>, suc
 <span id="cb58-4"><a href="warning-failing-and-debuging.html#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-5"><a href="warning-failing-and-debuging.html#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>This message will be shown until the table is filled, and disappears afterward. We go back to this later on.</p>
+</div>
+<div id="capturing-warnings-and-errors" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Capturing warnings and errors<a href="warning-failing-and-debuging.html#capturing-warnings-and-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When your module starts doing complex computations, often in different files, it becomes useful to capture warnings and errors from the R functions and deal with them programmatically. <code>jmvScaffold</code> offers a useful function that can execute code and capture errors and warnings. The function is named <code>try_hard()</code>.</p>
+<p>The function <code>try_hard()</code> accepts as argument any R code, execute it, and returns a list of the form <code>list(obj,error,warning,message)</code>. <code>obj</code> contains the output of the code, <code>error</code> is either <code>FALSE</code> or the error message produced by the code, <code>warning</code> is either <code>FALSE</code> or a list of warning messages produced by the code, <code>message</code> is either false or a list of messages produced by the code. Let’s use it in an example.</p>
+<p>Assume you are programming somewhere a function to produce some stats. Say your function is</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="warning-failing-and-debuging.html#cb59-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>,<span class="dv">2</span>)) </span></code></pre></div>
+<pre><code>## Warning: NAs introduced by coercion</code></pre>
+<pre><code>## [1]  1 NA  2</code></pre>
+<p>If the function is in a table filling function the warning will appear in the jamovi table notes, otherwise will be lost. If you want to get control of the warnings (or error) you can use <code>try_hard()</code>.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="warning-failing-and-debuging.html#cb62-1" aria-hidden="true" tabindex="-1"></a>  outcome<span class="ot">&lt;-</span><span class="fu">try_hard</span>({</span>
+<span id="cb62-2"><a href="warning-failing-and-debuging.html#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>,<span class="dv">2</span>)) </span>
+<span id="cb62-3"><a href="warning-failing-and-debuging.html#cb62-3" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb62-4"><a href="warning-failing-and-debuging.html#cb62-4" aria-hidden="true" tabindex="-1"></a>  outcome</span></code></pre></div>
+<pre><code>## $error
+## [1] FALSE
+## 
+## $warning
+## [1] &quot;NAs introduced by coercion&quot;
+## 
+## $message
+## [1] FALSE
+## 
+## $obj
+## [1]  1 NA  2</code></pre>
+<p>Now you can decide what to do with the outcome variable. You can stop the processing (in case <code>error</code> is not <code>FALSE</code>), you can ignore it, or pass it to a table as we did before in <a href="warning-failing-and-debuging.html#codewarnings">6.6</a>. The same goes with warnings and messages.</p>
 
 </div>
 </div>

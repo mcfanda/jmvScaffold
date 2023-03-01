@@ -84,7 +84,7 @@ If the error is outside the tables, such as in the `.b.R`, you get an error at t
 
 `r knitr::include_graphics("pics/c6_output2.png")`
 
-## Automatic Warnings
+## Automatic Warnings {#awarnings}
 
 A `SmartTable` automatically gathers warnings from the filling functions and display them as note of the jamovi table. We can try this by producing a warning in the `run_main_coefficients` function.
 
@@ -106,9 +106,9 @@ A `SmartTable` automatically gathers warnings from the filling functions and dis
 
 `r knitr::include_graphics("pics/c6_output3.png")`
 
-So, you do not have to worry about capturing warnings, they are automatically displayed. If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them.
+So, you do not have to worry about capturing warnings, they are automatically displayed. If you do not want to show warnings automatically, you can capture them within the function and process them as needed, or simply ignore them. To avoid engulfing the tables, a max of 5 automatic notes are added to the table when the warning comes from the filling function. Repeated warnings are displayed only once.
 
-## Code-generated Warnings and Messages
+## Code-generated Warnings and Messages {#codewarnings}
 
 Very often, you want to pass messages to tables from outside their filling function. You may, for instance, add a note saying that there are missing values in the data, and the user should be careful in interpreting the results. Other times, you may have a recap table at the beginning of the output, and you want to send a footnote to it to signal that something happens worth mentioning. As an example, assume that a warning is generated in our `runner$Estimate()`, which does not communicate directly to any table.
 
@@ -190,4 +190,37 @@ The are other cases in which you want your message to disappear after execution.
 
 This message will be shown until the table is filled, and disappears afterward. We go back to this later on.
 
+## Capturing warnings and errors
+
+When your module starts doing complex computations, often in different files, it becomes useful to capture warnings and errors from the R functions and deal with them programmatically. `jmvScaffold` offers a useful function that can execute code and capture errors and warnings. The function is named `try_hard()`.
+
+The function `try_hard()` accepts as argument any R code, execute it, and returns a list of the form `list(obj,error,warning,message)`. `obj` contains the output of the code, `error` is either `FALSE` or the error message produced by the code, `warning` is either `FALSE` or a list of warning messages produced by the code, `message` is either false or a list of messages   produced by the code. Let's use it in an example.
+
+Assume you are programming somewhere a function to produce some stats. Say your function is 
+
+```{r eval=TRUE}
+
+      as.numeric(c(1,"a",2)) 
+
+```
+
+If the function is in a table filling function the warning will appear in the jamovi table notes, otherwise will be lost. If you want to get control of the warnings (or error) you can use `try_hard()`.
+
+```{r echo=FALSE}
+
+source("../inst/jScafFunctions.R")
+
+```
+
+
+```{r }
+
+  outcome<-try_hard({
+    as.numeric(c(1,"a",2)) 
+  })
+  outcome
+
+```
+
+Now you can decide what to do with the outcome variable. You can stop the processing (in case `error` is not `FALSE`), you can ignore it, or pass it to a table as we did before in \@ref(codewarnings). The same goes with warnings and messages.
 

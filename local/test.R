@@ -20,7 +20,10 @@ head(data)
 #write.csv(data,"../jamm_docs/data/somedata.csv")
 ff<-y~x1*x2+fact1
 all.vars(ff)
-mm<-lm(y~x1*x2+fact1)
+x3<-cut(x1,3)
+x2<-cut(x1,3)
+mm<-lm(y~x2*x3+fact1)
+
 ss<-summary(mm)
 ss$df[2]
 qq<-ss$coefficients
