@@ -194,7 +194,7 @@ This message will be shown until the table is filled, and disappears afterward. 
 
 When your module starts doing complex computations, often in different files, it becomes useful to capture warnings and errors from the R functions and deal with them programmatically. `jmvScaffold` offers a useful function that can execute code and capture errors and warnings. The function is named `try_hard()`.
 
-The function `try_hard()` accepts as argument any R code, execute it, and returns a list of the form `list(obj,error,warning,message)`. `obj` contains the output of the code, `error` is either `FALSE` or the error message produced by the code, `warning` is either `FALSE` or a list of warning messages produced by the code, `message` is either false or a list of messages   produced by the code. Let's use it in an example.
+The function `try_hard()` accepts as argument any R code, executes it, and returns a list of the form `list(obj,error,warning,message)`. `obj` contains the output of the code, `error` is either `FALSE` or the error message produced by the code, `warning` is either `FALSE` or a list of warning messages produced by the code, `message` is either false or a list of messages   produced by the code. Let's use it in an example.
 
 Assume you are programming somewhere a function to produce some stats. Say your function is 
 
@@ -222,5 +222,5 @@ source("../inst/jScafFunctions.R")
 
 ```
 
-Now you can decide what to do with the outcome variable. You can stop the processing (in case `error` is not `FALSE`), you can ignore it, or pass it to a table as we did before in \@ref(codewarnings). The same goes with warnings and messages.
+Now you can decide what to do with the outcome variable. You can stop the processing (in case `error` is not `FALSE`), you can ignore it, you can pass the warning to a table as we did before in \@ref(codewarnings). `try_hard()` never fails, so it is the programmer responsibility to handle possible error that would void the results of the input code.
 

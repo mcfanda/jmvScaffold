@@ -369,7 +369,7 @@ the field <code>final=TRUE</code> to the list passed to <code>$error</code>, suc
 <div id="capturing-warnings-and-errors" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Capturing warnings and errors<a href="warning-failing-and-debuging.html#capturing-warnings-and-errors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When your module starts doing complex computations, often in different files, it becomes useful to capture warnings and errors from the R functions and deal with them programmatically. <code>jmvScaffold</code> offers a useful function that can execute code and capture errors and warnings. The function is named <code>try_hard()</code>.</p>
-<p>The function <code>try_hard()</code> accepts as argument any R code, execute it, and returns a list of the form <code>list(obj,error,warning,message)</code>. <code>obj</code> contains the output of the code, <code>error</code> is either <code>FALSE</code> or the error message produced by the code, <code>warning</code> is either <code>FALSE</code> or a list of warning messages produced by the code, <code>message</code> is either false or a list of messages produced by the code. Let’s use it in an example.</p>
+<p>The function <code>try_hard()</code> accepts as argument any R code, executes it, and returns a list of the form <code>list(obj,error,warning,message)</code>. <code>obj</code> contains the output of the code, <code>error</code> is either <code>FALSE</code> or the error message produced by the code, <code>warning</code> is either <code>FALSE</code> or a list of warning messages produced by the code, <code>message</code> is either false or a list of messages produced by the code. Let’s use it in an example.</p>
 <p>Assume you are programming somewhere a function to produce some stats. Say your function is</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="warning-failing-and-debuging.html#cb59-1" aria-hidden="true" tabindex="-1"></a>      <span class="fu">as.numeric</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="st">&quot;a&quot;</span>,<span class="dv">2</span>)) </span></code></pre></div>
 <pre><code>## Warning: NAs introduced by coercion</code></pre>
@@ -390,7 +390,7 @@ the field <code>final=TRUE</code> to the list passed to <code>$error</code>, suc
 ## 
 ## $obj
 ## [1]  1 NA  2</code></pre>
-<p>Now you can decide what to do with the outcome variable. You can stop the processing (in case <code>error</code> is not <code>FALSE</code>), you can ignore it, or pass it to a table as we did before in <a href="warning-failing-and-debuging.html#codewarnings">6.6</a>. The same goes with warnings and messages.</p>
+<p>Now you can decide what to do with the outcome variable. You can stop the processing (in case <code>error</code> is not <code>FALSE</code>), you can ignore it, you can pass the warning to a table as we did before in <a href="warning-failing-and-debuging.html#codewarnings">6.6</a>. <code>try_hard()</code> never fails, so it is the programmer responsibility to handle possible error that would void the results of the input code.</p>
 
 </div>
 </div>
