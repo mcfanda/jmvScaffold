@@ -240,24 +240,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a href='https://r6.r-lib.org/articles/Introduction.html' target='_blank'>R6 classes</a>
 with many different properties and options, allowing the programmer to fine-tune the look and feel of the results in details. If you need actions not performed by <code>SmartTable</code> class, you can always twickle the jamovi tables as described in <a href='https://dev.jamovi.org/api_results-definition.html' target='_blank'>jamovi hub</a>.</p>
 <p><code>jmvScaffold</code> provides a R6 class, named <code>SmartTables</code>, which works as an interface between the programmer and the jamovi results API. With that, you can do a lot of things without touching the jamovi results class. Before that, however, we need to declare our tables in the <code>.r.yaml</code> file. In our little project, we need at least one table for the regression results.</p>
-<p>It is a good idea, I suggest, to see how the R table would look like. In R, we obtain the results of a linear regression with <code>lm()</code> command from <code>stats::</code> package, so we basically need to run this</p>
+<p>It is a good idea, I suggest, to visualize the R table that will populate the jamovi table. In R, we obtain the results of a linear regression with <code>lm()</code> command from <code>stats::</code> package, so we basically need to run this</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="chapter3.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb12-2"><a href="chapter3.html#cb12-2" aria-hidden="true" tabindex="-1"></a> data     <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y=</span><span class="fu">rnorm</span>(<span class="dv">50</span>),<span class="at">x=</span><span class="fu">rnorm</span>(<span class="dv">50</span>))</span>
 <span id="cb12-3"><a href="chapter3.html#cb12-3" aria-hidden="true" tabindex="-1"></a> model    <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">lm</span>(y<span class="sc">~</span>x,<span class="at">data=</span>data)</span>
 <span id="cb12-4"><a href="chapter3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                Estimate Std. Error    t value  Pr(&gt;|t|)
-## (Intercept) -0.02183134  0.1431081 -0.1525514 0.8793915
-## x           -0.04163901  0.1352215 -0.3079318 0.7594665</code></pre>
+<pre><code>##               Estimate Std. Error   t value  Pr(&gt;|t|)
+## (Intercept) -0.2268992  0.1670838 -1.357997 0.1808141
+## x            0.1766343  0.1463640  1.206815 0.2334174</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                    coef        se          t         p
-## (Intercept) -0.02183134 0.1431081 -0.1525514 0.8793915
-## x           -0.04163901 0.1352215 -0.3079318 0.7594665</code></pre>
+<pre><code>##                   coef        se         t         p
+## (Intercept) -0.2268992 0.1670838 -1.357997 0.1808141
+## x            0.1766343 0.1463640  1.206815 0.2334174</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
@@ -296,7 +296,7 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb16-27"><a href="chapter3.html#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto,pvalue</span></span>
 <span id="cb16-28"><a href="chapter3.html#cb16-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-29"><a href="chapter3.html#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span></code></pre></div>
-<p>So, a widget of type <code>Table</code>, with columns defined by a <code>name</code>, a <code>title</code> and a <code>format</code>. Details of all widgets definitions can be found in the <a href='https://dev.jamovi.org/api_results-definition.html' target='_blank'>jamovi hub</a></p>
+<p>So, a widget of type <code>Table</code>, with columns defined by a <code>name</code>, a <code>title</code> and a <code>format</code>. Details of all widgets definitions can be found in the <a href='https://dev.jamovi.org/api_results-definition.html' target='_blank'>jamovi hub</a>.</p>
 <p>Compiling the module (<a href="interface.html#compile">2.3</a>) after defining the table in the <code>.r.yaml</code> file produces the table in the output (still empty)</p>
 <p><img src="pics/c3_output1.png" width="374" /></p>
 </div>
@@ -463,7 +463,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb23-14"><a href="chapter3.html#cb23-14" aria-hidden="true" tabindex="-1"></a>            coeffs     <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb23-15"><a href="chapter3.html#cb23-15" aria-hidden="true" tabindex="-1"></a>            coeffs     <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb23-16"><a href="chapter3.html#cb23-16" aria-hidden="true" tabindex="-1"></a>            <span class="fu">names</span>(coeffs)  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb23-17"><a href="chapter3.html#cb23-17" aria-hidden="true" tabindex="-1"></a>            coeffs<span class="sc">$</span>var <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(coeffs) </span>
+<span id="cb23-17"><a href="chapter3.html#cb23-17" aria-hidden="true" tabindex="-1"></a>            coeffs<span class="sc">$</span>var <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(coeffs) <span class="do">## here we fill the `var` column</span></span>
 <span id="cb23-18"><a href="chapter3.html#cb23-18" aria-hidden="true" tabindex="-1"></a>            </span>
 <span id="cb23-19"><a href="chapter3.html#cb23-19" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.regtab<span class="sc">$</span>runSource <span class="ot">&lt;-</span> coeffs</span>
 <span id="cb23-20"><a href="chapter3.html#cb23-20" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.regtab<span class="sc">$</span><span class="fu">runTable</span>()</span>

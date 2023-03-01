@@ -14,7 +14,7 @@ with many different properties and options,  allowing the programmer to fine-tun
 
 `jmvScaffold` provides a R6 class, named `SmartTables`, which works as an interface between the programmer and the jamovi results API. With that, you can do a lot of things without touching the jamovi results class. Before that, however, we need to declare  our tables in the `.r.yaml` file. In our little project, we need at least one table for the regression results. 
 
-It is a good idea, I suggest, to see how the R table would look like. In R, we obtain the results of a linear regression with `lm()` command from `stats::` package, so we basically need to run this
+It is a good idea, I suggest, to visualize the R table that will populate the jamovi table. In R, we obtain the results of a linear regression with `lm()` command from `stats::` package, so we basically need to run this
 
 ```{r }
 # data will arrive from jamovi, here we fake one dataset
@@ -78,7 +78,7 @@ items:
 ---
 ```
 
-So, a widget of type `Table`, with columns defined by a `name`, a `title` and a `format`. Details of all widgets definitions can be found in the `r ext_url("jamovi hub","https://dev.jamovi.org/api_results-definition.html")`
+So, a widget of type `Table`, with columns defined by a `name`, a `title` and a `format`. Details of all widgets definitions can be found in the `r ext_url("jamovi hub","https://dev.jamovi.org/api_results-definition.html")`.
 
 Compiling the module (\@ref(compile)) after defining the table in the `.r.yaml` file produces the table in the output (still empty)
 
@@ -280,7 +280,7 @@ It does work! However, the `Variable` column is empty. We want to fill it with t
             coeffs     <- .summary$coefficients
             coeffs     <-  as.data.frame(coeffs)
             names(coeffs)  <- c("coef","se","t","p")
-            coeffs$var <-  rownames(coeffs) 
+            coeffs$var <-  rownames(coeffs) ## here we fill the `var` column
             
             private$.regtab$runSource <- coeffs
             private$.regtab$runTable()
