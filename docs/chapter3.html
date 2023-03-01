@@ -247,17 +247,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb12-4"><a href="chapter3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                Estimate Std. Error    t value  Pr(&gt;|t|)
-## (Intercept) -0.02371414  0.1420846 -0.1669016 0.8681486
-## x           -0.12001679  0.1208928 -0.9927540 0.3258082</code></pre>
+<pre><code>##                Estimate Std. Error    t value   Pr(&gt;|t|)
+## (Intercept)  0.23525146  0.1265876  1.8584083 0.06924904
+## x           -0.09475785  0.1264277 -0.7495021 0.45721237</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                    coef        se          t         p
-## (Intercept) -0.02371414 0.1420846 -0.1669016 0.8681486
-## x           -0.12001679 0.1208928 -0.9927540 0.3258082</code></pre>
+<pre><code>##                    coef        se          t          p
+## (Intercept)  0.23525146 0.1265876  1.8584083 0.06924904
+## x           -0.09475785 0.1264277 -0.7495021 0.45721237</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
@@ -532,7 +532,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 </div>
 <div id="automatic-filling-of-tables." class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> Automatic filling of tables.<a href="chapter3.html#automatic-filling-of-tables." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>You can go a long way off without the following section. One can add tables ad define a function or a procedure to fill each table passing the results data to the <code>$runTable</code> function. However, when your module gets more complex, you want to give a structure to the calls that fill the tables, so you can forget about them and focus on the R programming. Here comes the last method <code>jmvScaffold</code> offers to populate the jamovi tables.</p>
+<p>You can go a long way off without the following section. One can add tables and define a function or a procedure to fill each table, passing the results data to the <code>$runTable</code> function. However, when your module gets more complex, you want to give a structure to the calls that fill the tables, so you can forget about filling the table and focus on the R programming. Here comes the last method <code>jmvScaffold</code> offers to populate the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> tables.</p>
 <p>When a <code>SmartTable</code> is initialized, it can be associated with an R6 class that provides the functions to run the table. When the table is run with the <code>$runTable()</code> function, it calls the R6 and inquires if the class has a function called <code>run_[tablename]</code>. If it is there, it executes the function and the table is filled with the return of the function.</p>
 <p>Let’s build this R6 new class, and call it <code>Runner</code>.</p>
 <div class="filename">
