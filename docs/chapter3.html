@@ -247,17 +247,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb12-4"><a href="chapter3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                Estimate Std. Error    t value  Pr(&gt;|t|)
-## (Intercept) -0.06167266  0.1629975 -0.3783657 0.7068273
-## x            0.06446713  0.1628338  0.3959076 0.6939275</code></pre>
+<pre><code>##                Estimate Std. Error     t value  Pr(&gt;|t|)
+## (Intercept)  0.01451644  0.1456159  0.09968993 0.9210057
+## x           -0.04069651  0.1386343 -0.29355298 0.7703650</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                    coef        se          t         p
-## (Intercept) -0.06167266 0.1629975 -0.3783657 0.7068273
-## x            0.06446713 0.1628338  0.3959076 0.6939275</code></pre>
+<pre><code>##                    coef        se           t         p
+## (Intercept)  0.01451644 0.1456159  0.09968993 0.9210057
+## x           -0.04069651 0.1386343 -0.29355298 0.7703650</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
@@ -561,7 +561,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb26-21"><a href="chapter3.html#cb26-21" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb26-22"><a href="chapter3.html#cb26-22" aria-hidden="true" tabindex="-1"></a>  ) <span class="co"># end of public</span></span>
 <span id="cb26-23"><a href="chapter3.html#cb26-23" aria-hidden="true" tabindex="-1"></a>) <span class="co"># end of class</span></span></code></pre></div>
-<p>What we are doing is to define a R6 object of class <code>Scaffold</code> (very useful in the future), that is initialized with <code>jmvcore::Analysis</code> R6 analysis object, in our case it will be the <code>myRegressionClass</code> object, that contains all information we need to do the analyses. We need to save it somewhere, so we store it in the <code>self$analysis</code> field. Alternatively, you can put it in the <code>private</code> fields (good practice), we did not do it for keep the code simpler. If you worry about passing a big R6 class (the jamovi <code>myRegressionClass</code>) to another R6 class (<code>Runner</code>), don’t you worry: they are linked by reference, the memory footprint will not increase much (I guess).</p>
+<p>What we are doing is to define a R6 object of class <code>Scaffold</code> (very useful in the future), that is initialized with <code>jmvcore::Analysis</code> R6 analysis object, in our case it will be the <code>myRegressionClass</code> object, that contains all information we need to do the analyses. We need to save it somewhere, so we store it in the <code>self$analysis</code> field. Alternatively, you can put it in the <code>private</code> fields (good practice), we did not do it to keep the code simpler. If you are worry about passing a big R6 class (the jamovi <code>myRegressionClass</code>) to another R6 class (<code>Runner</code>), don’t you worry: they are linked by reference, the memory footprint will not increase much (I guess).</p>
 <p>Now we need to tell the <code>SmartTable</code> that is is associated with this class. In the <code>myRegression.b.R</code> file we write:</p>
 <div class="filename">
 <span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.2/R/myregression.b.R' target='_blank'>Online version</a>)</span>

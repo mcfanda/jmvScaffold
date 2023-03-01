@@ -396,7 +396,7 @@ Runner <- R6::R6Class(
             
 ```
 
-What we are doing is to define a R6 object of class `Scaffold` (very useful in the future), that is initialized with `jmvcore::Analysis` R6 analysis object, in our case it will be the `myRegressionClass` object, that contains all information we need to do the analyses. We need to save it somewhere, so we store it in the `self$analysis` field. Alternatively, you can put it in the `private` fields (good practice), we did not do it for keep the code simpler. If you worry about passing a big R6 class (the jamovi `myRegressionClass`) to another R6 class (`Runner`), don't you worry: they are linked by reference, the memory footprint will not increase much (I guess).
+What we are doing is to define a R6 object of class `Scaffold` (very useful in the future), that is initialized with `jmvcore::Analysis` R6 analysis object, in our case it will be the `myRegressionClass` object, that contains all information we need to do the analyses. We need to save it somewhere, so we store it in the `self$analysis` field. Alternatively, you can put it in the `private` fields (good practice), we did not do it to keep the code simpler. If you are worry about passing a big R6 class (the jamovi `myRegressionClass`) to another R6 class (`Runner`), don't you worry: they are linked by reference, the memory footprint will not increase much (I guess).
 
 Now we need to tell the `SmartTable` that is is associated with this class. In the `myRegression.b.R` file we write:
 
