@@ -111,10 +111,23 @@ Dispatch <- R6::R6Class(
                       },
                       .translate=function(msg) {
       
-                            for (w in TRANS_WARNS) {
-                                 msg<-gsub(w$original,w$new,msg,fixed=T)
-                            }
-                           return(msg)
+                        .translate=function(msg) {
+                          
+                          if (!exists("TRANS_WARNS")) return(msg)
+                          
+                          where<-unlist(lapply(TRANS_WARNS,function(x) length(grep(x$original,msg))>0))
+                          where<-which(where)
+                          
+                          if (is.something(where))
+                            if (is.something(TRANS_WARNS[[where]]$new))
+                              msg<-gsub(TRANS_WARNS[[where]]$original,TRANS_WARNS[[where]]$new,msg,fixed=T)
+                          else
+                            msg<-NULL
+                          
+                          return(msg)
+                          
+                        }
+                        return(msg)
 
                        }
                        

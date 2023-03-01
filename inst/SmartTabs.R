@@ -92,7 +92,7 @@ SmartTable <- R6::R6Class("SmartTable",
                               private$.setColumnTitle()
                               private$.ci()
                               self$title
-                              self$table$setState(list(status="inited"))
+                              self$table$setState(list(status="checked"))
 
                               ### fill with initial values###
 
@@ -111,7 +111,7 @@ SmartTable <- R6::R6Class("SmartTable",
                               private$.spaceBy()
                               ## in case is a go, the table may be invisible (if activatedOnData). turn visibility on
                               self$table$setVisible(TRUE)
-                              
+                              self$table$setState(list(status="inited"))
                               private$.debug_msg("inited")
                             },
                             
@@ -146,7 +146,8 @@ SmartTable <- R6::R6Class("SmartTable",
                               private$.finalize()
                               
                               private$.debug_msg("run")
-                              self$table$setState(list(status="complete"))
+                              if (utils::hasName(self$table$state,"status") && self$table$state[["status"]]=="inited")
+                                          self$table$setState(list(status="complete"))
                               
                             },
                             
@@ -619,6 +620,7 @@ SmartArray <- R6::R6Class("SmartArray",
 
                               self$table$setVisible(TRUE)
                               self$title
+
                               self$table$setState(list(status="inited"))
                               
                               rtables<-private$.getData()
@@ -701,6 +703,7 @@ SmartArray <- R6::R6Class("SmartArray",
                                  }
                              }
                               private$.debug_msg("run")
+
                               self$table$setState(list(status="complete"))
                             },
                             retrieveNotes=function() {
