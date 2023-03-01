@@ -587,7 +587,7 @@ Let's do that with a new table, named `effectSizes` that would output some effec
 
 `r filehead("jamovi/myregression.r.yaml",FILEREF,"Version.0.0.3")`
 ```{yaml eval=FALSE}
-
+#...#
            - name: effects
              title:  Effect Size Indices
              type: Table
@@ -603,10 +603,11 @@ Let's do that with a new table, named `effectSizes` that would output some effec
                       type: number
                       format: zto
 
+#...#
 
 ```
 
-This means we set up a jamovi table named `effects` with three columns, `var`, `index` and `value`. To fill it, we add in the `Runner` class a `run_effects()` function. There, we use the functions in `r ext_url("R package","https://cran.r-project.org/web/packages/effectsize/index.html")` to compute the indices, so we need to add it in our DESCRIPTION file as an `Imports` (not shown here).
+This means we set up a jamovi table named `effects` with three columns, `var`, `index` and `value`. To fill it, we add in the `Runner` class a `run_effects()` function. There, we use the functions in `r ext_url("R package effectsize","https://cran.r-project.org/web/packages/effectsize/index.html")` to compute the indices, so we need to add it in our DESCRIPTION file as an `Imports` (not shown here).
 
 `r filehead("R/Runner.b.R",FILEREF,"Version.0.0.3")`
 ```{r eval=FALSE}
@@ -645,5 +646,5 @@ After installing the module, we should get the results as follows:
 
 `r knitr::include_graphics("pics/c3_output8.png")`
 
-Aesthetically,  the table can improved, but the general idea of setting and populating tables should be now clear.
+Aesthetically,  the table can be improved, but the general idea of setting and populating tables should be now clear.
 

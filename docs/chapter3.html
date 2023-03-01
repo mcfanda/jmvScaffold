@@ -248,16 +248,16 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
 <pre><code>##                Estimate Std. Error    t value  Pr(&gt;|t|)
-## (Intercept) -0.09601718  0.1423890 -0.6743302 0.5033363
-## x           -0.09050099  0.1442924 -0.6272056 0.5334968</code></pre>
+## (Intercept) -0.04840216  0.1502241 -0.3221996 0.7487007
+## x            0.03504140  0.1506296  0.2326328 0.8170356</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
 <pre><code>##                    coef        se          t         p
-## (Intercept) -0.09601718 0.1423890 -0.6743302 0.5033363
-## x           -0.09050099 0.1442924 -0.6272056 0.5334968</code></pre>
+## (Intercept) -0.04840216 0.1502241 -0.3221996 0.7487007
+## x            0.03504140 0.1506296  0.2326328 0.8170356</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
@@ -724,7 +724,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <div class="filename">
 <span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
 </div>
-<div class="sourceCode" id="cb32"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb32-1"><a href="chapter3.html#cb32-1" aria-hidden="true" tabindex="-1"></a></span>
+<div class="sourceCode" id="cb32"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb32-1"><a href="chapter3.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb32-2"><a href="chapter3.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
 <span id="cb32-3"><a href="chapter3.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
 <span id="cb32-4"><a href="chapter3.html#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
@@ -738,8 +738,10 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb32-12"><a href="chapter3.html#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> value</span></span>
 <span id="cb32-13"><a href="chapter3.html#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Value&quot;</span></span>
 <span id="cb32-14"><a href="chapter3.html#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb32-15"><a href="chapter3.html#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span></code></pre></div>
-<p>This means we set up a jamovi table named <code>effects</code> with three columns, <code>var</code>, <code>index</code> and <code>value</code>. To fill it, we add in the <code>Runner</code> class a <code>run_effects()</code> function. There, we use the functions in <a href='https://cran.r-project.org/web/packages/effectsize/index.html' target='_blank'>R package</a> to compute the indices, so we need to add it in our DESCRIPTION file as an <code>Imports</code> (not shown here).</p>
+<span id="cb32-15"><a href="chapter3.html#cb32-15" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span>
+<span id="cb32-16"><a href="chapter3.html#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="chapter3.html#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<p>This means we set up a jamovi table named <code>effects</code> with three columns, <code>var</code>, <code>index</code> and <code>value</code>. To fill it, we add in the <code>Runner</code> class a <code>run_effects()</code> function. There, we use the functions in <a href='https://cran.r-project.org/web/packages/effectsize/index.html' target='_blank'>R package effectsize</a> to compute the indices, so we need to add it in our DESCRIPTION file as an <code>Imports</code> (not shown here).</p>
 <div class="filename">
 <span class="filename">File: R/Runner.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/Runner.b.R' target='_blank'>Online version</a>)</span>
 </div>
@@ -769,7 +771,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb34-6"><a href="chapter3.html#cb34-6" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
 <p>After installing the module, we should get the results as follows:</p>
 <p><img src="pics/c3_output8.png" width="322" /></p>
-<p>Aesthetically, the table can improved, but the general idea of setting and populating tables should be now clear.</p>
+<p>Aesthetically, the table can be improved, but the general idea of setting and populating tables should be now clear.</p>
 
 </div>
 </div>
