@@ -24,9 +24,9 @@ arrays-of-tables-jmvcorearray
 array-known-number-of-tables
 array-unknown-number-of-tables
 other-results-objects
-dynamic-tables-appearance
+dynamic-tables-display
 introduction-1
-showing-table-on-option-change
+showing-table-on-options-change
 showing-tables-programmatically
 additional-strategies
 warning-failing-and-debuging

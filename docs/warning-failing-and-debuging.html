@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="dynamic-tables-appearance.html"/>
+<link rel="prev" href="dynamic-tables-display.html"/>
 <link rel="next" href="formatting-tables.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -173,12 +173,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#other-results-objects"><i class="fa fa-check"></i><b>4.4</b> Other Results objects</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html"><i class="fa fa-check"></i><b>5</b> Dynamic Tables Appearance</a>
+<li class="chapter" data-level="5" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html"><i class="fa fa-check"></i><b>5</b> Dynamic Tables Display</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-table-on-option-change"><i class="fa fa-check"></i><b>5.2</b> Showing table on option change</a></li>
-<li class="chapter" data-level="5.3" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
-<li class="chapter" data-level="5.4" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
+<li class="chapter" data-level="5.1" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#showing-table-on-options-change"><i class="fa fa-check"></i><b>5.2</b> Showing table on options change</a></li>
+<li class="chapter" data-level="5.3" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
+<li class="chapter" data-level="5.4" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html"><i class="fa fa-check"></i><b>6</b> Warning, Failing and Debuging</a>
 <ul>
@@ -244,7 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="warning-failing-and-debuging.html#cb50-1" aria-hidden="true" tabindex="-1"></a>j_DEBUG <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb50-2"><a href="warning-failing-and-debuging.html#cb50-2" aria-hidden="true" tabindex="-1"></a>j_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb50-3"><a href="warning-failing-and-debuging.html#cb50-3" aria-hidden="true" tabindex="-1"></a>t_INFO  <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span></code></pre></div>
-<p>we want to set them all to <code>TRUE</code>. After re-installing and opening <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> from command line,</p>
+<p>we want to set them all to <code>TRUE</code>. After re-installing and we launch <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> from command line,</p>
 <p>In linux:</p>
 <div class="sourceCode" id="cb51"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb51-1"><a href="warning-failing-and-debuging.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">prompt:~$</span> flatpack run org.jamovi.jamovi </span></code></pre></div>
 <p>In windows:</p>
@@ -252,13 +252,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="tables-debugging" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Tables debugging<a href="warning-failing-and-debuging.html#tables-debugging" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>we can now see in console all the calls to the tables and the process to fill them. For example:</p>
+<p>We can now see in console all the calls to the tables and the process to fill them. For example:</p>
 <p><img src="pics/c6_debug1.png" width="641" /></p>
 <p>This shows a listing made by the module we are building: The SmartTable <code>coefficients</code> in group <code>main</code> is checked for running. It is then run. The same goes for <code>anova</code> in <code>main</code> and the other tables. The array <code>means</code> is initialized (it says <code>inited</code>) and run, etc.</p>
 </div>
 <div id="mark-landmarks" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> Mark landmarks<a href="warning-failing-and-debuging.html#mark-landmarks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Another useful function is <code>mark(...)</code>. Mark simply cat in the console whatever is passed to it, after some formatting. The advantage of <code>cat</code> is that can be turned on and off changing the constant <code>j_DEBUG</code> is <code>jmvScafFunctions.R</code> file. Very similar is the function <code>jinfo(...)</code>, which is meant to print in console landmarks and checkpoints. This is turned on and off with the constant <code>j_INFO</code>. The difference between <code>mark()</code> and <code>jinfo()</code> is basically its name. The idea is to use <code>jinfo()</code> to landmark the code (like <code>jinfo("Init phase")</code>, <code>ginfo("Run phase")</code> ) as stable reference, whereas to use <code>mark()</code> when debugging and then remove it from the code. Having different names makes <code>grep</code>ing <code>mark</code> easy when we clean the code.</p>
+<p>Another useful function is <code>mark(...)</code>. Mark simply cat in the console whatever is passed to it, after some formatting. The advantage of <code>mark</code> over <code>cat</code> is that can be turned on and off changing the constant <code>j_DEBUG</code> is <code>jmvScafFunctions.R</code> file. Very similar is the function <code>jinfo(...)</code>, which is meant to print in console landmarks and checkpoints. This is turned on and off with the constant <code>j_INFO</code>. The difference between <code>mark()</code> and <code>jinfo()</code> is basically its name. The idea is to use <code>jinfo()</code> to landmark the code (like <code>jinfo("Init phase")</code>, <code>ginfo("Run phase")</code> ) as stable reference, whereas to use <code>mark()</code> when debugging and then remove it from the code. Having different names makes <code>grep</code>ing <code>mark</code> easy when we clean the code.</p>
 <p>When the module is ready to get published, one sets <code>j_DEBUG</code>, <code>j_INFO</code> and <code>j_TABLE</code> to false e nothing will be printed in the console.</p>
 </div>
 <div id="automatic-errors" class="section level2 hasAnchor" number="6.4">
@@ -372,7 +372,7 @@ the field <code>final=TRUE</code> to the list passed to <code>dispatcher$error</
           </div>
         </div>
       </div>
-<a href="dynamic-tables-appearance.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dynamic-tables-display.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="formatting-tables.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

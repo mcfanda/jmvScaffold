@@ -173,12 +173,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="4.4" data-path="advanced-results-objects.html"><a href="advanced-results-objects.html#other-results-objects"><i class="fa fa-check"></i><b>4.4</b> Other Results objects</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html"><i class="fa fa-check"></i><b>5</b> Dynamic Tables Appearance</a>
+<li class="chapter" data-level="5" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html"><i class="fa fa-check"></i><b>5</b> Dynamic Tables Display</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
-<li class="chapter" data-level="5.2" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-table-on-option-change"><i class="fa fa-check"></i><b>5.2</b> Showing table on option change</a></li>
-<li class="chapter" data-level="5.3" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
-<li class="chapter" data-level="5.4" data-path="dynamic-tables-appearance.html"><a href="dynamic-tables-appearance.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
+<li class="chapter" data-level="5.1" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#introduction-1"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#showing-table-on-options-change"><i class="fa fa-check"></i><b>5.2</b> Showing table on options change</a></li>
+<li class="chapter" data-level="5.3" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#showing-tables-programmatically"><i class="fa fa-check"></i><b>5.3</b> Showing tables programmatically</a></li>
+<li class="chapter" data-level="5.4" data-path="dynamic-tables-display.html"><a href="dynamic-tables-display.html#additional-strategies"><i class="fa fa-check"></i><b>5.4</b> Additional strategies</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html"><i class="fa fa-check"></i><b>6</b> Warning, Failing and Debuging</a>
 <ul>
@@ -247,17 +247,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb12-4"><a href="chapter3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##               Estimate Std. Error   t value   Pr(&gt;|t|)
-## (Intercept) -0.1340183  0.1305172 -1.026824 0.30965015
-## x            0.2612809  0.1219688  2.142194 0.03727912</code></pre>
+<pre><code>##                 Estimate Std. Error     t value  Pr(&gt;|t|)
+## (Intercept) -0.024864960  0.1349716 -0.18422366 0.8546141
+## x           -0.009253684  0.1459635 -0.06339726 0.9497135</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                   coef        se         t          p
-## (Intercept) -0.1340183 0.1305172 -1.026824 0.30965015
-## x            0.2612809 0.1219688  2.142194 0.03727912</code></pre>
+<pre><code>##                     coef        se           t         p
+## (Intercept) -0.024864960 0.1349716 -0.18422366 0.8546141
+## x           -0.009253684 0.1459635 -0.06339726 0.9497135</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
