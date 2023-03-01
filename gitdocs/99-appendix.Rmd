@@ -9,7 +9,7 @@ knitr::knit_engines$get("yaml")
 
 # Appendix A {#appendixa}
 
-`r jamovi` classifies data variables in three classes: 
+`r jamovi` classifies data variables in four classes: 
 
 `r knitr::include_graphics("pics/a_vartypes.png")`
 
