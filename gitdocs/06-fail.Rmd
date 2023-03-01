@@ -139,8 +139,6 @@ The `$warning` accepts a list with two fields: `topic` is the nickname of the ta
 
 `r knitr::include_graphics("pics/c6_output4.png")`
 
-Exactly the same can be done with the method `$error` which send an error to the table named in the `topic` field. 
-
 You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the `Estimate()` function, from different parts of the code. One can add any number of notes.
 
 Finally, you can also send and error from anywhere in the code to a table, using the property `error`. We exemplifies this by sending a message to `main_anova` table.

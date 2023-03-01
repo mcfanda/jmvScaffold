@@ -327,7 +327,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The <code>$warning</code> accepts a list with two fields: <code>topic</code> is the nickname of the table that should receive the message,
 <code>message</code> is the message. Running this code, we obtain:</p>
 <p><img src="pics/c6_output4.png" width="497" /></p>
-<p>Exactly the same can be done with the method <code>$error</code> which send an error to the table named in the <code>topic</code> field.</p>
 <p>You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the <code>Estimate()</code> function, from different parts of the code. One can add any number of notes.</p>
 <p>Finally, you can also send and error from anywhere in the code to a table, using the property <code>error</code>. We exemplifies this by sending a message to <code>main_anova</code> table.</p>
 <div class="filename">
