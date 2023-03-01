@@ -141,7 +141,7 @@ The `$warning` accepts a list with two fields: `topic` is the nickname of the ta
 
 You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the `Estimate()` function, from different parts of the code. One can add any number of notes.
 
-Finally, you can also send and error from anywhere in the code to a table, using the property `error`. We exemplifies this by sending a message to `main_anova` table.
+Finally, you can also send an error from anywhere in the code to a table, using the property `error`. We exemplifies this by sending a message to `main_anova` table.
 
 `r filehead("R/Runner.R")`
 ```{r eval=FALSE}
