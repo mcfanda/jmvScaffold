@@ -241,7 +241,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s make our module a bit more complex adding one option in the GUI. It allows the user to show the <code>sig_means</code> array, that we now want hidden by default.</p>
 <p>In the <code>.a.yalm</code> file, we add this two options.</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.a.yaml' target='_blank'>Working version</a>)</span>
+<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
 </div>
 <div class="sourceCode" id="cb45"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb45-1"><a href="dynamic-tables-display.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb45-2"><a href="dynamic-tables-display.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> show_means</span></span>
@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.2</span> Showing table on options change<a href="dynamic-tables-display.html#showing-table-on-options-change" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this example, we want the <code>sig_means</code> array to be shown only when the user selects <code>Show means for Sig.</code> in the GUI. We need to modify the <code>.r.yaml</code> file as follows:</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
 </div>
 <div class="sourceCode" id="cb46"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb46-1"><a href="dynamic-tables-display.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb46-2"><a href="dynamic-tables-display.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sig</span></span>
@@ -293,7 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are different strategies to accomplish that, maybe the easiest one is the following.</p>
 <p>Define in the <code>r.yaml</code> file the table as not visible by default with <code>visible: false</code>.</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
 </div>
 <div class="sourceCode" id="cb47"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb47-1"><a href="dynamic-tables-display.html#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-2"><a href="dynamic-tables-display.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> additional</span></span>
@@ -317,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb47-20"><a href="dynamic-tables-display.html#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span></code></pre></div>
 <p>Then go to the <code>.b.R</code> file, in the <code>.init()</code> function, and set the properties of the table as shown here.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/myregression.b.R' target='_blank'>Working version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/myregression.b.R' target='_blank'>Online version</a>)</span>
 </div>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="dynamic-tables-display.html#cb48-1" aria-hidden="true" tabindex="-1"></a>    atable                <span class="ot">&lt;-</span> SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
 <span id="cb48-2"><a href="dynamic-tables-display.html#cb48-2" aria-hidden="true" tabindex="-1"></a>    atable<span class="sc">$</span>activateOnData <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
@@ -326,7 +326,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now we need to be sure that the <code>run_additional_effects()</code> returns something only if there is a significant result in the coefficients.
 In the <code>Runner.R</code> file, we change the function in:</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/Runner.R' target='_blank'>Working version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/Runner.R' target='_blank'>Online version</a>)</span>
 </div>
 <div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dynamic-tables-display.html#cb49-1" aria-hidden="true" tabindex="-1"></a>run_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
 <span id="cb49-2"><a href="dynamic-tables-display.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  </span>
