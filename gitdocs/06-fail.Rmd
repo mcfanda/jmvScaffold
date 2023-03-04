@@ -289,4 +289,7 @@ TRANS_WARNS[[3]]<-list(original="Your version of R is not",new=NULL)
 #...#
 ```
 
-This means that in any warning emitted within your module, "Some strange warning" will be replaced by "Some nice warning"; "A complete difficult sentence" will be replaced by "A complete easy sentence", and any warning containing "Your version of R is not" will be discarded.
+This means that in any warning emitted within your module, "Some strange warning" will be replaced by "Some nice warning"; "A complete difficult sentence" will be replaced by "A complete easy sentence", and any warning containing "Your version of R is not" will be discarded. Running the code produces the expected warnings.
+
+`r knitr::include_graphics("pics/c6_output8.png")`
+
