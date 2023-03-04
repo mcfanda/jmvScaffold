@@ -278,7 +278,7 @@ If you run it, you should see the warnings beneath both tables.
 Now we want to get rid of the warning `Your version of ...`, substitute `A complete difficult sentence` with `A simple sentence` and change `Some strange warning:` leaving `the reason is missing value` in the sentence. In a `R/constants.R` file (or whatever file in your package), we prepare the `TRANS_WARNS` list as follows:
 
 `r filehead("R/costants.R",FILEREF,"Version.0.0.6")`
-```{r echo=FALSE,eval=FALSE}
+```{r eval=FALSE}
 
 #...#
 TRANS_WARNS=list()

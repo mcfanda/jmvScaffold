@@ -439,6 +439,13 @@ the field <code>final=TRUE</code> to the list passed to <code>$error</code>, suc
 <div class="filename">
 <span class="filename">File: R/costants.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/costants.R' target='_blank'>Online version</a>)</span>
 </div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="warning-failing-and-debuging.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb65-2"><a href="warning-failing-and-debuging.html#cb65-2" aria-hidden="true" tabindex="-1"></a>TRANS_WARNS<span class="ot">=</span><span class="fu">list</span>()</span>
+<span id="cb65-3"><a href="warning-failing-and-debuging.html#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb65-4"><a href="warning-failing-and-debuging.html#cb65-4" aria-hidden="true" tabindex="-1"></a>TRANS_WARNS[[<span class="dv">1</span>]]<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">original=</span><span class="st">&quot;Some strange warning&quot;</span>,<span class="at">new=</span><span class="st">&quot;Some nice warning&quot;</span>)</span>
+<span id="cb65-5"><a href="warning-failing-and-debuging.html#cb65-5" aria-hidden="true" tabindex="-1"></a>TRANS_WARNS[[<span class="dv">2</span>]]<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">original=</span><span class="st">&quot;A complete difficult sentence&quot;</span>,<span class="at">new=</span><span class="st">&quot;A complete easy sentence&quot;</span>)</span>
+<span id="cb65-6"><a href="warning-failing-and-debuging.html#cb65-6" aria-hidden="true" tabindex="-1"></a>TRANS_WARNS[[<span class="dv">3</span>]]<span class="ot">&lt;-</span><span class="fu">list</span>(<span class="at">original=</span><span class="st">&quot;Your version of R is not&quot;</span>,<span class="at">new=</span><span class="cn">NULL</span>)</span>
+<span id="cb65-7"><a href="warning-failing-and-debuging.html#cb65-7" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>This means that in any warning emitted within your module, “Some strange warning” will be replaced by “Some nice warning”; “A complete difficult sentence” will be replaced by “A complete easy sentence”, and any warning containing “Your version of R is not” will be discarded.</p>
 
 </div>
