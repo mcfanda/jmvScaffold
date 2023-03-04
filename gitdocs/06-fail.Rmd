@@ -114,7 +114,6 @@ Very often, you want to pass messages to tables from outside their filling funct
 
 To broadcast message from anywhere in your module to any table, we can use a method that our `Runner` class inherits from the parent class `Scaffold`. The method is named `$warning`. This method accepts a warning as a list of the form `list(topic="atablename",message="a text to diplay")` and sends them to `SmartTable` and `SmartArray`. 
 
-
 We just need to use it where ever we need in the `Runner` object. In the example, we alter the `Estimate()` function to produce a message:
 
 `r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
@@ -139,7 +138,7 @@ The `$warning` accepts a list with two fields: `topic` is the nickname of the ta
 
 `r knitr::include_graphics("pics/c6_output4.png")`
 
-You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the `Estimate()` function, from different parts of the code. One can add any number of notes.
+You can see that now the table shows two notes: one sent by the filling function with a warning (the fishy message) and one sent by the `Estimate()` function. One can add as many of notes as one wants.
 
 Finally, you can also send an error from anywhere in the code to a table, using the property `error`. We exemplifies this by sending a message to `main_anova` table.
 
