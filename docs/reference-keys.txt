@@ -38,6 +38,7 @@ awarnings
 codewarnings
 transient-messages
 capturing-warnings-and-errors
+unwanted-or-unfriendly-warnings
 formatting-tables
 introduction-3
 initializing-the-table

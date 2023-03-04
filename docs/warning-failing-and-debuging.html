@@ -190,6 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.6" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#codewarnings"><i class="fa fa-check"></i><b>6.6</b> Code-generated Warnings and Messages</a></li>
 <li class="chapter" data-level="6.7" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#transient-messages"><i class="fa fa-check"></i><b>6.7</b> Transient messages</a></li>
 <li class="chapter" data-level="6.8" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#capturing-warnings-and-errors"><i class="fa fa-check"></i><b>6.8</b> Capturing warnings and errors</a></li>
+<li class="chapter" data-level="6.9" data-path="warning-failing-and-debuging.html"><a href="warning-failing-and-debuging.html#unwanted-or-unfriendly-warnings"><i class="fa fa-check"></i><b>6.9</b> Unwanted or unfriendly warnings</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="formatting-tables.html"><a href="formatting-tables.html"><i class="fa fa-check"></i><b>7</b> Formatting Tables</a>
 <ul>
@@ -391,6 +392,54 @@ the field <code>final=TRUE</code> to the list passed to <code>$error</code>, suc
 ## $obj
 ## [1]  1 NA  2</code></pre>
 <p>Now you can decide what to do with the outcome variable. You can stop the processing (in case <code>error</code> is not <code>FALSE</code>), you can ignore it, you can pass the warning to a table as we did before in <a href="warning-failing-and-debuging.html#codewarnings">6.6</a>. <code>try_hard()</code> never fails, so it is the programmer responsibility to handle possible error that would void the results of the input code. By default, it limits the number of warnings to 5, so your tables will not be cluttered by notes. You can change this default with the option <code>max_warn</code>.</p>
+</div>
+<div id="unwanted-or-unfriendly-warnings" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Unwanted or unfriendly warnings<a href="warning-failing-and-debuging.html#unwanted-or-unfriendly-warnings" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You are going to use a lot of different R packages to run your module. Great as they are, sometimes R packages produce warnings that are either very difficult to understand for the user, or simply not informative in jamovi. A warning may be about some recommended options in R that cannot be toggle in jamovi, or some technical warning that you have already solved in your code but still produce the warning. One can capture the single case and handle the in the code, but often the unwanted warning appears in several parts of the code, so it would affect many of the module tables.</p>
+<p><code>jmvScaffold</code> offers a simple mechanism to handle unwanted warnings without affecting the module ability to emit other warnings. The trick is to define, somewhere in your module (like a <code>R/constants.R</code> file), a list named <code>TRANS_WARNS</code>. This list should contain lists of the form <code>list(original="some words",new="new words or NULL")</code>. Let’s see an example.</p>
+<p>Assume the <code>main_anova</code> table produces three warnings, one that you would prefer to translate completely, one that you want to change only in part, and one that you want to suppress. Assume the same is emitted by <code>main_coefficients</code></p>
+<div class="filename">
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/Runner.R' target='_blank'>Online version</a>)</span>
+</div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="warning-failing-and-debuging.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb64-2"><a href="warning-failing-and-debuging.html#cb64-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-3"><a href="warning-failing-and-debuging.html#cb64-3" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb64-4"><a href="warning-failing-and-debuging.html#cb64-4" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb64-5"><a href="warning-failing-and-debuging.html#cb64-5" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
+<span id="cb64-6"><a href="warning-failing-and-debuging.html#cb64-6" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
+<span id="cb64-7"><a href="warning-failing-and-debuging.html#cb64-7" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
+<span id="cb64-8"><a href="warning-failing-and-debuging.html#cb64-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb64-9"><a href="warning-failing-and-debuging.html#cb64-9" aria-hidden="true" tabindex="-1"></a>      coeffs<span class="sc">$</span>var       <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(coeffs) </span>
+<span id="cb64-10"><a href="warning-failing-and-debuging.html#cb64-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;something fishy is going on&quot;</span>)</span>
+<span id="cb64-11"><a href="warning-failing-and-debuging.html#cb64-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;Some strange warning: the reason is missing value&quot;</span>)</span>
+<span id="cb64-12"><a href="warning-failing-and-debuging.html#cb64-12" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;A complete difficult sentence&quot;</span>)</span>
+<span id="cb64-13"><a href="warning-failing-and-debuging.html#cb64-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;Your version of R is not 1.1.1&quot;</span>)</span>
+<span id="cb64-14"><a href="warning-failing-and-debuging.html#cb64-14" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb64-15"><a href="warning-failing-and-debuging.html#cb64-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
+<span id="cb64-16"><a href="warning-failing-and-debuging.html#cb64-16" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb64-17"><a href="warning-failing-and-debuging.html#cb64-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-18"><a href="warning-failing-and-debuging.html#cb64-18" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb64-19"><a href="warning-failing-and-debuging.html#cb64-19" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb64-20"><a href="warning-failing-and-debuging.html#cb64-20" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb64-21"><a href="warning-failing-and-debuging.html#cb64-21" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
+<span id="cb64-22"><a href="warning-failing-and-debuging.html#cb64-22" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb64-23"><a href="warning-failing-and-debuging.html#cb64-23" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
+<span id="cb64-24"><a href="warning-failing-and-debuging.html#cb64-24" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(.anova) </span>
+<span id="cb64-25"><a href="warning-failing-and-debuging.html#cb64-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;Some strange warning: the reason is missing value&quot;</span>)</span>
+<span id="cb64-26"><a href="warning-failing-and-debuging.html#cb64-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;A complete difficult sentence&quot;</span>)</span>
+<span id="cb64-27"><a href="warning-failing-and-debuging.html#cb64-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">&quot;Your version of R is not 1.1.1&quot;</span>)</span>
+<span id="cb64-28"><a href="warning-failing-and-debuging.html#cb64-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-29"><a href="warning-failing-and-debuging.html#cb64-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
+<span id="cb64-30"><a href="warning-failing-and-debuging.html#cb64-30" aria-hidden="true" tabindex="-1"></a>       </span>
+<span id="cb64-31"><a href="warning-failing-and-debuging.html#cb64-31" aria-hidden="true" tabindex="-1"></a>      },</span>
+<span id="cb64-32"><a href="warning-failing-and-debuging.html#cb64-32" aria-hidden="true" tabindex="-1"></a><span class="co">#...#    </span></span></code></pre></div>
+<p>If you run it, you should see the warnings beneath both tables.</p>
+<p><img src="pics/c6_output7.png" width="504" /></p>
+<p>Now we want to get rid of the warning <code>Your version of ...</code>, substitute <code>A complete difficult sentence</code> with <code>A simple sentence</code> and change <code>Some strange warning:</code> leaving <code>the reason is missing value</code> in the sentence. In a <code>R/constants.R</code> file (or whatever file in your package), we prepare the <code>TRANS_WARNS</code> list as follows:</p>
+<div class="filename">
+<span class="filename">File: R/costants.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.6/R/costants.R' target='_blank'>Online version</a>)</span>
+</div>
+<p>This means that in any warning emitted within your module, “Some strange warning” will be replaced by “Some nice warning”; “A complete difficult sentence” will be replaced by “A complete easy sentence”, and any warning containing “Your version of R is not” will be discarded.</p>
 
 </div>
 </div>

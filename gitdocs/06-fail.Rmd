@@ -224,3 +224,69 @@ source("../inst/jScafFunctions.R")
 
 Now you can decide what to do with the outcome variable. You can stop the processing (in case `error` is not `FALSE`), you can ignore it, you can pass the warning to a table as we did before in \@ref(codewarnings). `try_hard()` never fails, so it is the programmer responsibility to handle possible error that would void the results of the input code. By default, it limits the number of warnings to 5, so your tables will not be cluttered by notes. You can change this default with the option `max_warn`.
 
+## Unwanted or unfriendly warnings
+
+You are going to use a lot of different R packages to run your module. Great as they are, sometimes R packages produce warnings that are either very difficult to understand for the user, or simply not informative in jamovi. A warning may be about some recommended options in R that cannot be toggle in jamovi, or some technical warning that you have already solved in your code but still produce the warning. One can capture the single case and handle the in the code, but often the unwanted warning appears in several parts of the code, so it would affect many of the module tables. 
+
+`jmvScaffold` offers a simple mechanism to handle unwanted warnings without affecting the module ability to emit other warnings. The trick is to define, somewhere in your module (like a `R/constants.R` file), a list named `TRANS_WARNS`. This list should contain lists of the form `list(original="some words",new="new words or NULL")`. Let's see an example.
+
+Assume the `main_anova` table produces three warnings, one that you would prefer to translate completely, one that you want to change only in part, and one that you want to suppress. Assume the same is emitted by `main_coefficients`
+
+`r filehead("R/Runner.R",FILEREF,"Version.0.0.6")`
+```{r eval=FALSE}
+
+#...#
+
+    run_main_coefficients=function() {
+      
+      .summary         <-   summary(self$model)
+      coeffs           <-  .summary$coefficients
+      coeffs           <-   as.data.frame(coeffs)
+      names(coeffs)    <-   c("coef","se","t","p")
+      coeffs$var       <-  rownames(coeffs) 
+      warning("something fishy is going on")
+      warning("Some strange warning: the reason is missing value")
+      warning("A complete difficult sentence")
+      warning("Your version of R is not 1.1.1")
+      
+      return(coeffs)
+    },
+
+#...#
+    run_main_anova=function() {
+      
+      .anova          <-  as.data.frame(car::Anova(self$model,type=3))
+       names(.anova)  <-  c("nothing","df1","test","p")
+      .anova$df2      <-  self$model$df.residual
+      .anova$var      <-  rownames(.anova) 
+      warning("Some strange warning: the reason is missing value")
+      warning("A complete difficult sentence")
+      warning("Your version of R is not 1.1.1")
+
+      return(.anova)
+       
+      },
+#...#    
+
+
+```
+
+If you run it, you should see the warnings beneath both tables.
+
+`r knitr::include_graphics("pics/c6_output7.png")`
+
+Now we want to get rid of the warning `Your version of ...`, substitute `A complete difficult sentence` with `A simple sentence` and change `Some strange warning:` leaving `the reason is missing value` in the sentence. In a `R/constants.R` file (or whatever file in your package), we prepare the `TRANS_WARNS` list as follows:
+
+`r filehead("R/costants.R",FILEREF,"Version.0.0.6")`
+```{r echo=FALSE,eval=FALSE}
+
+#...#
+TRANS_WARNS=list()
+
+TRANS_WARNS[[1]]<-list(original="Some strange warning",new="Some nice warning")
+TRANS_WARNS[[2]]<-list(original="A complete difficult sentence",new="A complete easy sentence")
+TRANS_WARNS[[3]]<-list(original="Your version of R is not",new=NULL)
+#...#
+```
+
+This means that in any warning emitted within your module, "Some strange warning" will be replaced by "Some nice warning"; "A complete difficult sentence" will be replaced by "A complete easy sentence", and any warning containing "Your version of R is not" will be discarded.
