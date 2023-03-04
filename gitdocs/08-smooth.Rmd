@@ -92,7 +92,7 @@ If you do this process for all the tables, you will see that they update only wh
 
 ## Bottom line
 
-One can program `r jamovi` modules freely with all techniques one wishes. If one wants to take advantage of `r jamovi` flexibility and `jmvScaffold` helping function, one can follow this guidelines:
+One can program `r jamovi` modules freely with all techniques one wishes. If one wants to take advantage of `r jamovi` flexibility and `jmvScaffold` helping function, one can follow these guidelines:
 
 * Define a table in `.r.yaml`
 * Define a `Scaffold` runner
