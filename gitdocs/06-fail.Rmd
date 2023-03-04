@@ -226,7 +226,7 @@ Now you can decide what to do with the outcome variable. You can stop the proces
 
 ## Unwanted or unfriendly warnings
 
-You are going to use a lot of different R packages to run your module. Great as they are, sometimes R packages produce warnings that are either very difficult to understand for the user, or simply not informative in jamovi. A warning may be about some recommended options in R that cannot be toggle in jamovi, or some technical warning that you have already solved in your code but still produce the warning. One can capture the single case and handle the in the code, but often the unwanted warning appears in several parts of the code, so it would affect many of the module tables. 
+You are going to use a lot of different R packages to run your module. Great as they are, sometimes R packages produce warnings that are either very difficult to understand for the user, or simply not informative in jamovi. A warning may be about some recommended options in R that cannot be toggle in jamovi, or some technical warning that you have already solved in your code but still produce the warning. Of course, one can capture each single case and handle it in the code, but often the unwanted warning appears in several parts of the code, so it would affect many of the module tables. 
 
 `jmvScaffold` offers a simple mechanism to handle unwanted warnings without affecting the module ability to emit other warnings. The trick is to define, somewhere in your module (like a `R/constants.R` file), a list named `TRANS_WARNS`. This list should contain lists of the form `list(original="some words",new="new words or NULL")`. Let's see an example.
 
