@@ -16,9 +16,6 @@ description: "It provise some explanations about using the package to develop ja
 
 ```{r results='hide', echo=FALSE}
 library(mcdocs)
-knitr::knit_engines$get("yaml")
-library(mcdocs)
-knitr::knit_engines$get("yaml")
 FILEREF="https://github.com/mcfanda/COOLj/tree/"
 ```
 

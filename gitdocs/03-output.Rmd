@@ -2,7 +2,6 @@
 
 ```{r , echo=FALSE, results='hide'}
 library(mcdocs)
-knitr::knit_engines$get("yaml")
 FILEREF="https://github.com/mcfanda/COOLj/tree/"
 ```
 
