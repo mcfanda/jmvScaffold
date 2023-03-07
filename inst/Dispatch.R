@@ -125,11 +125,10 @@ Dispatch <- R6::R6Class(
                         if (is.something(where)) {
                           if (length(where)>1) where<-where[[1]]
                           if (is.something(TRANS_WARNS[[where]]$new))
-                            msg<-gsub(TRANS_WARNS[[where]]$original,TRANS_WARNS[[where]]$new,msg,fixed=T)
-                        }
-                        else
-                          msg<-NULL
-                        
+                             msg<-gsub(TRANS_WARNS[[where]]$original,TRANS_WARNS[[where]]$new,msg,fixed=T)
+                          else
+                             msg<-NULL
+                        }                  
                         return(msg)                          
                        }
                        
