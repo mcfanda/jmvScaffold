@@ -291,12 +291,18 @@ SmartTable <- R6::R6Class("SmartTable",
                                 
                                 if (!isFALSE(error)) {
                                   private$.debug_msg("ERROR",fun,error)
+                                  if (exists("fromb64")) error<-fromb64(error)
                                   self$table$setError(error)
                                   return()
                                 }
                                 if (!isFALSE(warning)) {
-                                    l<-length(warning)
-                                    if (l>5) warning<-warning[(l-4):l]
+                                    dispatch<-Dispatch$new(self)
+                                    warning<-lapply(warning, function(x) {
+                                        if (exists("fromb64")) 
+                                             x<-fromb64(x)
+                                        dispatch$translate(x)
+                                    })
+                                    warning<-warning[sapply(warning,function(x) is.something(x))]
                                     
                                     if (inherits(self$table,"Table")) 
                                       for (w in warning)
@@ -421,6 +427,9 @@ SmartTable <- R6::R6Class("SmartTable",
                               try_hard({
                               for (j in self$spaceAt) {
                                 if (j<0) j<-self$table$rowCount+j
+                                if (j==0 || j>self$table$rowCount)
+                                  next
+                                
                                 self$table$addFormat(rowNo=j,col=k,jmvcore::Cell.END_GROUP)
                                 self$table$addFormat(rowNo=j+1,col=k,jmvcore::Cell.BEGIN_GROUP)
                               }})

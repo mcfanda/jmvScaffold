@@ -1,5 +1,5 @@
-j_DEBUG <- FALSE
-j_INFO  <- FALSE
+j_DEBUG <- TRUE
+j_INFO  <- TRUE
 t_INFO  <- FALSE
 
 #### Helper functions used by Scaffold (not exported)
@@ -68,33 +68,41 @@ is.there<-function(pattern,string) length(grep(pattern,string,fixed=T))>0
 #### It does not reterun the results, so the expr should assign a valut to the results
 #### something like try_hard({a<-3^2}) and not a<-try_hard(3^2)
 
-try_hard<-function(exp) {
-
-  .results<-list(error=FALSE,warning=FALSE,message=FALSE,obj=FALSE)
+try_hard<-function(exp,max_warn=5) {
+  
+  .results<-list(error=FALSE,warning=list(),message=FALSE,obj=FALSE)
   
   .results$obj <- withCallingHandlers(
     tryCatch(exp, error=function(e) {
-       mark("SOURCE:")
-       mark(conditionCall(e))
+      mark("SOURCE:")
+      mark(conditionCall(e))
       .results$error<<-conditionMessage(e)
       NULL
     }), warning=function(w) {
-      .results$warning<<-conditionMessage(w)
+      
+      if (length(.results$warning)==max_warn) 
+        .results$warning[[length(.results$warning)+1]]<<-"Additional warnings are present."
+      
+      if (length(.results$warning)<max_warn)
+        .results$warning[[length(.results$warning)+1]]<<-conditionMessage(w)
+      
       invokeRestart("muffleWarning")
     }, message = function(m) {
       .results$message<<-conditionMessage(m)
       invokeRestart("muffleMessage")
     })
-
+  
   
   if (!isFALSE(.results$error)) {
-               mark("CALLER:")
-               mark(rlang::enquo(exp))
-               mark("ERROR:")
-               mark(.results$error)
+    mark("CALLER:")
+    mark(rlang::enquo(exp))
+    mark("ERROR:")
+    mark(.results$error)
   }
+  if(length(.results$warning)==0) .results$warning<-FALSE
+  if(length(.results$warning)==1) .results$warning<-.results$warning[[1]]
   
-
+  
   return(.results)
 }
 
