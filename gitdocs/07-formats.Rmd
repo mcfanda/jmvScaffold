@@ -245,7 +245,7 @@ If you try installing and play around with the GUI (just toggle one option on an
 
 ```
 
-The property `$hideOn` accepts a named list, with format `list(columname=value)` where `value` is the value that, when received in the data, hides the column. Installing the module now and playing around should produce the expected behavior.
+The property `$hideOn` accepts a named list, with format `list(columname=value)` where `value` is the value that, when received in the data, hides the column. Installing the module now and playing around should produce the expected behavior. `$hideOn` works by checking all values of the column in the data table, if they are all corresponding to the target value (Inf in the example), it hides the column, otherwise it show it. Thus, it can be used also to show hidden columns when the data show some not missing value. For logical compability, the same operation can be obtained with the function `$showOn`.
 
 ## Changing column names programmatically
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 3 Results | jmvScaffold: R functions to develop jamovi modules</title>
   <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 3 Results | jmvScaffold: R functions to develop jamovi modules" />
   <meta property="og:type" content="book" />
@@ -249,17 +249,17 @@ with many different properties and options, allowing the programmer to fine-tune
 <span id="cb12-4"><a href="chapter3.html#cb12-4" aria-hidden="true" tabindex="-1"></a>.summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(model)</span>
 <span id="cb12-5"><a href="chapter3.html#cb12-5" aria-hidden="true" tabindex="-1"></a> coeffs   <span class="ot">&lt;-</span> .summary<span class="sc">$</span>coefficients</span>
 <span id="cb12-6"><a href="chapter3.html#cb12-6" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##               Estimate Std. Error    t value  Pr(&gt;|t|)
-## (Intercept) 0.01257818  0.1630951 0.07712174 0.9388473
-## x           0.11053719  0.1739651 0.63539861 0.5281862</code></pre>
+<pre><code>##               Estimate Std. Error   t value  Pr(&gt;|t|)
+## (Intercept)  0.1572248  0.1337628  1.175399 0.2456325
+## x           -0.1431285  0.1245853 -1.148840 0.2563148</code></pre>
 <p>Because we do not want spaces in the table heads, we can rename the table names and transform the table into a data.frame.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter3.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data will arrive from jamovi, here we fake one dataset</span></span>
 <span id="cb14-2"><a href="chapter3.html#cb14-2" aria-hidden="true" tabindex="-1"></a> coeffs <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(coeffs)</span>
 <span id="cb14-3"><a href="chapter3.html#cb14-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">names</span>(coeffs)<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
 <span id="cb14-4"><a href="chapter3.html#cb14-4" aria-hidden="true" tabindex="-1"></a> coeffs</span></code></pre></div>
-<pre><code>##                   coef        se          t         p
-## (Intercept) 0.01257818 0.1630951 0.07712174 0.9388473
-## x           0.11053719 0.1739651 0.63539861 0.5281862</code></pre>
+<pre><code>##                   coef        se         t         p
+## (Intercept)  0.1572248 0.1337628  1.175399 0.2456325
+## x           -0.1431285 0.1245853 -1.148840 0.2563148</code></pre>
 <p>now that we know how our table will look like we should get into the R programming.</p>
 <p>As a side note, I would suggest to always use R commands prefixed with their package name, such as <code>stats::lm</code> rather than <code>lm</code>. This is required if you want to publish your R module in CRAN, and it makes your code much more readable. It is like calling functions with their name and surname, and we want to be polite with our functions.</p>
 </div>
@@ -267,7 +267,7 @@ with many different properties and options, allowing the programmer to fine-tune
 <h2><span class="header-section-number">3.2</span> Defining the result tables (.r.yaml)<a href="chapter3.html#defining-the-result-tables-.r.yaml" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>All results tables (and other widgets) are defined in the <code>.r.yaml</code>. Here we need a table that will represent the R table we have seen before. So we need the following code.</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.a.yaml' target='_blank'>Online version</a>)</span>
+<span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.a.yaml' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb16"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb16-1"><a href="chapter3.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
 <span id="cb16-2"><a href="chapter3.html#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
@@ -311,7 +311,7 @@ with many different properties and options, allowing the programmer to fine-tune
 When the user opens the analysis, or whenever the GUI is updated, jamovi runs your R module in the <code>.b.R</code> file. It calls the <code>.init()</code> function first and then the <code>.run()</code> function. Actually, the <code>.init()</code> function can be absent, but my suggestion is to define it for all analyses, because in the <code>.init()</code> function the tables are formated and prepared to be filled. The <code>.init()</code> function gives you the opportunity to give your output a nice and professional look. Tables are populated in the <code>.run()</code> function.</p>
 <p>A working <code>.b.R</code> file, that does not do anything, is the following:</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter3.html#cb17-1" aria-hidden="true" tabindex="-1"></a>myRegressionClass <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&#39;jmvcore&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>)) R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
 <span id="cb17-2"><a href="chapter3.html#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;myRegressionClass&quot;</span>,</span>
@@ -345,7 +345,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <h2><span class="header-section-number">3.4</span> Initialize a table<a href="chapter3.html#initialize-a-table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Table objects are passed to the R package with the property <code>self$results</code>. This property is a <code>named list</code>, so we can refer to our table as <code>self$results$coefficients</code>. In the <code>.init()</code> function, we should create a <code>SmartTable</code> object initialized with the table it is going to handle. We simply write this code.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="chapter3.html#cb19-1" aria-hidden="true" tabindex="-1"></a>myRegressionClass <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&#39;jmvcore&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>)) R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
 <span id="cb19-2"><a href="chapter3.html#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;myRegressionClass&quot;</span>,</span>
@@ -375,7 +375,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>First, we need to gather the user choices made in jamovi GUI by collecting the options we defined in the <code>.a.yalm file</code>. All options are available in R as a <code>named list</code> named <code>self$options</code>. So we can get them to define our regression models.</p>
 <p>We should get the option <code>dep</code> to know which is our dependent variable, then we call the option <code>covs</code>. In the <code>.run()</code> function, we can write.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter3.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb20-2"><a href="chapter3.html#cb20-2" aria-hidden="true" tabindex="-1"></a>        .run <span class="ot">=</span> <span class="cf">function</span>() {</span>
@@ -387,7 +387,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb20-8"><a href="chapter3.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p><code>dep</code> is a string containing the variable name, whereas <code>covs</code> is a list, so we need to manipulated it to make it a formula to pass it to <code>lm()</code>. This can be done easely with <code>jmvcore</code> R package, which provides very useful functions to handle the GUI input in R (see <a href='https://cran.r-project.org/web/packages/jmvcore/index.html' target='_blank'>jmvcore Package</a> for details). Here we use the function <code>jmvcore::composeFormula(dep,covs)</code>, which transforms a list of terms into a R formula.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="chapter3.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb21-2"><a href="chapter3.html#cb21-2" aria-hidden="true" tabindex="-1"></a>        .run <span class="ot">=</span> <span class="cf">function</span>() {</span>
@@ -405,7 +405,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>Notice the function <code>is.something()</code>. It is provided by <code>jmvScaffold</code> and it is useful to evaluate options, because options can be of very different classes, and we just want to know if they are set or not. <code>is.something</code> does that.</p>
 <p>A this point, we should compute the regression and build a R table to pass to our <code>SmartTable</code> object defined before.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter3.html#cb22-1" aria-hidden="true" tabindex="-1"></a>myRegressionClass <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&#39;jmvcore&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>)) R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
 <span id="cb22-2"><a href="chapter3.html#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;myRegressionClass&quot;</span>,</span>
@@ -447,7 +447,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p><img src="pics/c3_output2.png" width="339" /></p>
 <p>It does work! However, the <code>Variable</code> column is empty. We want to fill it with the names of the covariates. So we simply add the code necessary to add a column to our R data.frame.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter3.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb23-2"><a href="chapter3.html#cb23-2" aria-hidden="true" tabindex="-1"></a>        .run <span class="ot">=</span> <span class="cf">function</span>() {</span>
@@ -538,7 +538,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>When a <code>SmartTable</code> is initialized, it can be associated with an R6 class that provides the functions to run the table. When the table is run with the <code>$runTable()</code> function, it calls the R6 and inquires if the class has a function called <code>run_[tablename]</code>. If it is there, <code>run_[tablename]()</code> is executed and the table is filled with the return of the function.</p>
 <p>Let’s build this R6 new class, and call it <code>Runner</code>.</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.2/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.2/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter3.html#cb26-1" aria-hidden="true" tabindex="-1"></a>Runner <span class="ot">&lt;-</span> R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
 <span id="cb26-2"><a href="chapter3.html#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Runner&quot;</span>,</span>
@@ -566,7 +566,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>What we are doing is to define a R6 object of class <code>Scaffold</code> (very useful in the future), that is initialized with <code>jmvcore::Analysis</code> R6 analysis object, in our case it will be the <code>myRegressionClass</code> object, that contains all information we need to do the analyses. We need to save it somewhere, so we store it in the <code>self$analysis</code> field. Alternatively, you can put it in the <code>private</code> fields (good practice), we did not do it to keep the code simpler. If you are worry about passing a big R6 class (the jamovi <code>myRegressionClass</code>) to another R6 class (<code>Runner</code>), don’t you worry: they are linked by reference, the memory footprint will not increase much (I guess).</p>
 <p>Now we need to tell the <code>SmartTable</code> that it is is associated with this class. In the <code>myRegression.b.R</code> file we write:</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.2/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.2/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="chapter3.html#cb27-1" aria-hidden="true" tabindex="-1"></a>myRegressionClass <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&#39;jmvcore&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>)) R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
 <span id="cb27-2"><a href="chapter3.html#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;myRegressionClass&quot;</span>,</span>
@@ -606,7 +606,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>Consider now this case (but many more cases are coming). You have 2 tables to fill: regression coefficients, and a ANOVA table (think about keep adding tons of tables, the story would not change). You want to estimate the model only once, and then use the estimation object (an <code>lm</code> class in this case) for several different tables. We now do it for two tables.</p>
 <p>In the <code>.r.yaml</code> file, we add:</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb28-1"><a href="chapter3.html#cb28-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-2"><a href="chapter3.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
@@ -634,7 +634,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>in the <code>Runner.R</code> R code file we add a function to estimate the model , and we define one function for each table to populate.</p>
 <p>First, the estimating function.</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="chapter3.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb29-2"><a href="chapter3.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="do">### we are in the public field of the Runner class</span></span>
@@ -657,7 +657,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>(again, for simplicity I put the model in a public field <code>self$model</code>, but putting it in <code>private$.model</code> is more elegant).</p>
 <p>As regards filling the tables, we can do this:</p>
 <div class="filename">
-<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/Runner.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="chapter3.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="do">### we are in the public field of the Runner class</span></span>
 <span id="cb30-2"><a href="chapter3.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
@@ -681,7 +681,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb30-20"><a href="chapter3.html#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>Now we should program in the <code>myRegression.b.R</code> the new table <code>anova</code>.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="chapter3.html#cb31-1" aria-hidden="true" tabindex="-1"></a>myRegressionClass <span class="ot">&lt;-</span> <span class="cf">if</span> (<span class="fu">requireNamespace</span>(<span class="st">&#39;jmvcore&#39;</span>, <span class="at">quietly=</span><span class="cn">TRUE</span>)) R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
 <span id="cb31-2"><a href="chapter3.html#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;myRegressionClass&quot;</span>,</span>
@@ -724,7 +724,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <p>From now on, we can simply add results tables by defining each table in the <code>.r.yaml</code> file, define a function named <code>run_[tablename]</code> in the <code>Runner.R</code> file, and add the <code>SmartTable</code> to the <code>private$.tables</code> list. Pay attention to the fact that in the <code>.init()</code> function we define our smart object and then add them to a list. At the end, we run the <code>$initTable()</code> function for all objects in the list. The same we do in the <code>.run()</code> function executing the <code>$runTable()</code> function of each object. Later on, when we add additional tables, the last command (the <code>lappy(..)</code> command) should always appear after any definition of the tables.</p>
 <p>Let’s do that with a new table, named <code>effectSizes</code> that would output some effect size indices (which will customize later on). First, the <code>.r.yaml</code>.</p>
 <div class="filename">
-<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/jamovi/myregression.r.yaml' target='_blank'>Online version</a>)</span>
+<span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb32-1"><a href="chapter3.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb32-2"><a href="chapter3.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
@@ -745,7 +745,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb32-17"><a href="chapter3.html#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>This means we set up a jamovi table named <code>effects</code> with three columns, <code>var</code>, <code>index</code> and <code>value</code>. To fill it, we add in the <code>Runner</code> class a <code>run_effects()</code> function. There, we use the functions in <a href='https://cran.r-project.org/web/packages/effectsize/index.html' target='_blank'>R package effectsize</a> to compute the indices, so we need to add it in our DESCRIPTION file as an <code>Imports</code> (not shown here).</p>
 <div class="filename">
-<span class="filename">File: R/Runner.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/Runner.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/Runner.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/Runner.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="chapter3.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
 <span id="cb33-2"><a href="chapter3.html#cb33-2" aria-hidden="true" tabindex="-1"></a>    run_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
@@ -763,7 +763,7 @@ When the user opens the analysis, or whenever the GUI is updated, jamovi runs yo
 <span id="cb33-14"><a href="chapter3.html#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>Now, we define the table as a <code>SmartTable</code> in the <code>.b.R</code> file and add it to the list of <code>SmartTable</code> objects we defined before.</p>
 <div class="filename">
-<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/myregression.b.R' target='_blank'>Online version</a>)</span>
+<span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.3/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="chapter3.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="do">## in the `.init()` function</span></span>
 <span id="cb34-2"><a href="chapter3.html#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
