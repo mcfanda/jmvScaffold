@@ -32,6 +32,7 @@ SmartTable <- R6::R6Class("SmartTable",
                             combineBelow=0,
                             ci_info=list(),
                             columnTitles=list(),
+                            mutenotes=FALSE,
                             initialize=function(table,estimator=NULL) {
 
                               if (exists("t_INFO")) private$.debug<-t_INFO
@@ -160,8 +161,11 @@ SmartTable <- R6::R6Class("SmartTable",
 
                                   notes<-self$table$notes
                                   lapply(notes,function(x) {
-                                    if (isTRUE(x$init))
+                                    if (self$mutenotes)
                                        self$table$setNote(x$key,NULL)
+                                    else
+                                       if (isTRUE(x$init))
+                                          self$table$setNote(x$key,NULL)
                                   })
 
                             },
@@ -292,8 +296,10 @@ SmartTable <- R6::R6Class("SmartTable",
                                 warning<-output$warning
                                 
                                 if (!isFALSE(error)) {
+                                  dispatch<-Dispatch$new(self)
                                   private$.debug_msg("ERROR",fun,error)
                                   if (exists("fromb64")) error<-fromb64(error)
+                                  error<-dispatch$translate(error)
                                   self$table$setError(error)
                                   private$.error<-TRUE
                                    return()
@@ -342,6 +348,8 @@ SmartTable <- R6::R6Class("SmartTable",
                                   jtable$setRow(rowNo=i,w)
                               }
                               
+                              private$.setHideOn(rtable)
+                              
                               rlist <-private$.listify(rtable)
                               for (i in seq_along(rlist)) {
                                 t<-rlist[[i]]
@@ -353,14 +361,13 @@ SmartTable <- R6::R6Class("SmartTable",
                             .finalize=function() {
                               
                               private$.setColumnTitle()
-                              private$.setHideOn()
                               self$table$setVisible(TRUE)
 
                             },
-                            .setHideOn=function() {
+                            .setHideOn=function(rtable) {
                               
+                              rtable<-private$.framefy(rtable)
                               if (is.something(private$.hideOn)) {
-                                rtable<-self$table$asDF
                                 what<-names(rtable)
                                 for (col in names(private$.hideOn))
                                   if (col %in% what) {

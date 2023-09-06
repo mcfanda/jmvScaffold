@@ -50,6 +50,7 @@ It accepts a list with fields:
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-Dispatch-new}{\code{Dispatch$new()}}
+\item \href{#method-Dispatch-translate}{\code{Dispatch$translate()}}
 }
 }
 \if{html}{\out{<hr>}}
@@ -65,6 +66,28 @@ Initialize the Dispatch object
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{results}}{A jamovi results object  \code{\link[jmvcore]{jmvcore::Results}}}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Dispatch-translate"></a>}}
+\if{latex}{\out{\hypertarget{method-Dispatch-translate}{}}}
+\subsection{Method \code{translate()}}{
+Translate a message
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{Dispatch$translate(msgobj)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{msgobj}}{a list containing the field \code{message}. The function looks in the environment
+for a global list named \code{TRANS_WARNS}. The list must contain lists with the field \code{original} and
+one of the following: \code{new}: a new message to replace \code{original};
+\code{sub}: a string to substitute the \code{original} string. \code{append}: a string to append to \code{original}.
+\code{prepend}: a string to prepend to \code{original}. The field are evaluated in this order.
+To remove a warning or error, simple set \code{new=NULL}}
 }
 \if{html}{\out{</div>}}
 }
