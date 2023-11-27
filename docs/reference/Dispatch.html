@@ -91,6 +91,7 @@ It accepts a list with fields:</p><ul><li><p><code>topic</code> the nickname of 
 <h3 id="public-methods">Public methods<a class="anchor" aria-label="anchor" href="#public-methods"></a></h3>
 
 <ul><li><p><a href="#method-Dispatch-new"><code>Dispatch$new()</code></a></p></li>
+<li><p><a href="#method-Dispatch-translate"><code>Dispatch$translate()</code></a></p></li>
 </ul></div><p></p><hr><a id="method-Dispatch-new"></a><div class="section">
 <h3 id="method-new-">Method <code>new()</code><a class="anchor" aria-label="anchor" href="#method-new-"></a></h3>
 <p>Initialize the Dispatch object</p><div class="section">
@@ -102,6 +103,27 @@ It accepts a list with fields:</p><ul><li><p><code>topic</code> the nickname of 
 <h4 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h4>
 <p></p><div class="arguments"><dl><dt><code>results</code></dt>
 <dd><p>A jamovi results object  <code>jmvcore::Results</code></p></dd>
+
+
+</dl><p></p></div>
+</div>
+
+</div><p></p><hr><a id="method-Dispatch-translate"></a><div class="section">
+<h3 id="method-translate-">Method <code>translate()</code><a class="anchor" aria-label="anchor" href="#method-translate-"></a></h3>
+<p>Translate a message</p><div class="section">
+<h4 id="usage-1">Usage<a class="anchor" aria-label="anchor" href="#usage-1"></a></h4>
+<p></p><div class="r"><div class="sourceCode"><pre><code><span><span class="va">Dispatch</span><span class="op">$</span><span class="fu">translate</span><span class="op">(</span><span class="va">msgobj</span><span class="op">)</span></span></code></pre></div><p></p></div>
+</div>
+
+<div class="section">
+<h4 id="arguments-1">Arguments<a class="anchor" aria-label="anchor" href="#arguments-1"></a></h4>
+<p></p><div class="arguments"><dl><dt><code>msgobj</code></dt>
+<dd><p>a list containing the field <code>message</code>. The function looks in the environment
+for a global list named <code>TRANS_WARNS</code>. The list must contain lists with the field <code>original</code> and
+one of the following: <code>new</code>: a new message to replace <code>original</code>;
+<code>sub</code>: a string to substitute the <code>original</code> string. <code>append</code>: a string to append to <code>original</code>.
+<code>prepend</code>: a string to prepend to <code>original</code>. The field are evaluated in this order.
+To remove a warning or error, simple set <code>new=NULL</code></p></dd>
 
 
 </dl><p></p></div>
