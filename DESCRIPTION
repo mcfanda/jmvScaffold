@@ -1,7 +1,7 @@
 Package: jmvScaffold
 Type: Package
 Title: Helper functions to develop jamovi modules
-Version: 0.9.0
+Version: 0.9.2
 Author: Marcello Gallucci
 Maintainer: Marcello Gallucci <mcfanda@gmail.com>
 Description: Provides R6 classes and functions to easely develop
