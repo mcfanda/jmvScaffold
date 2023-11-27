@@ -21,7 +21,37 @@ Dispatch <- R6::R6Class(
                           
                                   private$.tables<-results
                                   
+                        },
+                        #' @description Translate a message
+                        #' @param  msgobj a list containing the field `message`. The function looks in the environment
+                        #'                for a global list named `TRANS_WARNS`. The list must contain lists with the field `original` and
+                        #'                one of the following: `new`: a new message to replace `original`;
+                        #'                `sub`: a string to substitute the `original` string. `append`: a string to append to `original`.
+                        #'                `prepend`: a string to prepend to `original`. The field are evaluated in this order.
+                        #'                To remove a warning or error, simple set `new=NULL`
+                        
+                        translate=function(msgobj) {
+                          
+                          if (!exists("TRANS_WARNS")) return(msg)
+                          
+                          msg<-msgobj$message
+                          where<-unlist(lapply(TRANS_WARNS,function(x) length(grep(x$original,msg))>0))
+                          where<-which(where)
+                          if (is.something(where)) {
+                            
+                            if (length(where)>1) where<-where[1]
+                            if ("new" %in% names(TRANS_WARNS[[where]]))
+                              msgobj$message<-TRANS_WARNS[[where]]$new
+                            if ("sub" %in% names(TRANS_WARNS[[where]]))
+                              msgobj$message<-gsub(TRANS_WARNS[[where]]$original,TRANS_WARNS[[where]]$sub,msg,fixed=T)
+                            if ("append" %in% names(TRANS_WARNS[[where]]))
+                              msgobj$message<-paste(msg,TRANS_WARNS[[where]]$append)
+                            if ("prepend" %in% names(TRANS_WARNS[[where]]))
+                              msgobj$message<-paste(TRANS_WARNS[[where]]$prepend,msg)
+                          }
+                          return(msgobj)
                         }
+            
                         ),
             active=list(
                         #' @field warnings
@@ -134,7 +164,13 @@ Dispatch <- R6::R6Class(
                       .translate=function(msg) {
       
                             for (w in TRANS_WARNS) {
-                                 msg<-gsub(w$original,w$new,msg,fixed=T)
+                                 if ("sub" %in% names(w))
+                                     msg<-gsub(w$original,w$new,msg,fixed=T)
+                                 if ("new" %in% names(w)) {
+                                   test<-grep(w$original,msg,fixed=T)
+                                   if (length(test)>0)
+                                      msg<-w$new
+                                 }
                             }
                            return(msg)
 
