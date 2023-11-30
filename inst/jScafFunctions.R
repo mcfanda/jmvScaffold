@@ -4,46 +4,65 @@ t_INFO  <- F
 
 #### Helper functions used by Scaffold (not exported)
 
+j_W0S   <- .Platform$OS.type=="windows"
+
+## -- Note for Windows users
+## If your OS is Windows, but feel free
+## to change the path and name of the log file as you like.
+## --
+wosjscaf<-"wosjscaf.log"
+if (j_WOS)
+     wosjscaf <- paste0(base::Sys.getenv("TEMP"),paste0("\\",wosjscaf))
+
+
+#### Helper functions used by Scaffold (not exported)
+
 tinfo <- function(...) {
   if (t_INFO) {
+    if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+    
     cat(paste(list(...)))
     cat("\n")
+    
+    if (j_W0S && wosjscaf != "") base::sink()
   }
 }
 
 
 jinfo <- function(...) {
   if (j_INFO) {
+    if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+    
     cat("\n")
     cat(paste(list(...)))
     cat("\n")
+    
+    if (j_W0S && wosjscaf != "") base::sink()
   }
 }
 
 
-
-
 mark <- function(...) {
-  if (!j_DEBUG) 
+  if (!j_DEBUG)
     return()
-  if (.Platform$OS.type=="windows")
-    sink("jamovi_jscaff_.log",append = TRUE)
   
-  if (missing(...))
-    cat("Mark here\n")
+  if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+  
+  if (missing(...)) cat("Mark here\n")
+  
   items<-list(...)
   
   if (length(items)>1)  cat("______begin________\n\n")
+  
   for (a in items)
     if (is.character(a))
       cat(a,"\n")
   else
     print(a)
+  
   if (length(items)>1)  cat("_____end_______\n\n")
   
-  if (.Platform$OS.type=="windows")
-    sink()
-  
+  if (j_W0S && wosjscaf != "") base::sink()
 }
 
 is.something <- function(x, ...) UseMethod(".is.something")
