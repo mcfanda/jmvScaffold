@@ -4,7 +4,7 @@ t_INFO  <- F
 
 #### Helper functions used by Scaffold (not exported)
 
-j_W0S   <- .Platform$OS.type=="windows"
+j_WOS   <- .Platform$OS.type=="windows"
 
 ## -- Note for Windows users
 ## If your OS is Windows, but feel free
@@ -19,25 +19,25 @@ if (j_WOS)
 
 tinfo <- function(...) {
   if (t_INFO) {
-    if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+    if (j_WOS && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
     
     cat(paste(list(...)))
     cat("\n")
     
-    if (j_W0S && wosjscaf != "") base::sink()
+    if (j_WOS && wosjscaf != "") base::sink()
   }
 }
 
 
 jinfo <- function(...) {
   if (j_INFO) {
-    if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+    if (j_WOS && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
     
     cat("\n")
     cat(paste(list(...)))
     cat("\n")
     
-    if (j_W0S && wosjscaf != "") base::sink()
+    if (j_WOS && wosjscaf != "") base::sink()
   }
 }
 
@@ -46,7 +46,7 @@ mark <- function(...) {
   if (!j_DEBUG)
     return()
   
-  if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+  if (j_WOS && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
   
   if (missing(...)) cat("Mark here\n")
   
@@ -62,7 +62,7 @@ mark <- function(...) {
   
   if (length(items)>1)  cat("_____end_______\n\n")
   
-  if (j_W0S && wosjscaf != "") base::sink()
+  if (j_WOS && wosjscaf != "") base::sink()
 }
 
 is.something <- function(x, ...) UseMethod(".is.something")
