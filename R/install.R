@@ -43,7 +43,7 @@ install_module<-function(what) {
   cat("git version:",gv,"\n")
   
   if (all(c(pv,zv)==gv)) {
-    processReadme()
+    #processReadme()
     jmvtools::install(home = "flatpak")
 
   }   else
@@ -51,11 +51,14 @@ install_module<-function(what) {
   
 }
 
+#' Check readme file
+#' @export
 
 processReadme = function() {
-  cat("Fixing README.md\n")
+  cat("Fixing README.md ... ")
   zf<-yaml::read_yaml("jamovi/0000.yaml")
   zv<-zf$version
+  cat("for version",zv,"\n")
   conin = file("README.md", "r")
   conout = file(".readme.", "w")
 
