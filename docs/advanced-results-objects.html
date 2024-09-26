@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Advanced Results Objects | jmvScaffold: R functions to develop jamovi modules</title>
   <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Advanced Results Objects | jmvScaffold: R functions to develop jamovi modules" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="mcstyle.css" type="text/css" />
@@ -247,113 +251,113 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.a.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb35-1"><a href="advanced-results-objects.html#cb35-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-2"><a href="advanced-results-objects.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb35-3"><a href="advanced-results-objects.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
-<span id="cb35-4"><a href="advanced-results-objects.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
-<span id="cb35-5"><a href="advanced-results-objects.html#cb35-5" aria-hidden="true" tabindex="-1"></a><span class="fu">jrs</span><span class="kw">:</span><span class="at">   </span><span class="st">&#39;1.1&#39;</span></span>
-<span id="cb35-6"><a href="advanced-results-objects.html#cb35-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-7"><a href="advanced-results-objects.html#cb35-7" aria-hidden="true" tabindex="-1"></a><span class="fu">items</span><span class="kw">:</span></span>
-<span id="cb35-8"><a href="advanced-results-objects.html#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-9"><a href="advanced-results-objects.html#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> main</span></span>
-<span id="cb35-10"><a href="advanced-results-objects.html#cb35-10" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
-<span id="cb35-11"><a href="advanced-results-objects.html#cb35-11" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Main Results</span></span>
-<span id="cb35-12"><a href="advanced-results-objects.html#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
-<span id="cb35-13"><a href="advanced-results-objects.html#cb35-13" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> coefficients</span></span>
-<span id="cb35-14"><a href="advanced-results-objects.html#cb35-14" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Parameter Estimates (Coefficients)</span></span>
-<span id="cb35-15"><a href="advanced-results-objects.html#cb35-15" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb35-16"><a href="advanced-results-objects.html#cb35-16" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb35-17"><a href="advanced-results-objects.html#cb35-17" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb35-18"><a href="advanced-results-objects.html#cb35-18" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb35-19"><a href="advanced-results-objects.html#cb35-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb35-20"><a href="advanced-results-objects.html#cb35-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      ...</span></span>
-<span id="cb35-21"><a href="advanced-results-objects.html#cb35-21" aria-hidden="true" tabindex="-1"></a><span class="co">                      ## here the remaing of the columns as defined before</span></span>
-<span id="cb35-22"><a href="advanced-results-objects.html#cb35-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-23"><a href="advanced-results-objects.html#cb35-23" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> anova</span></span>
-<span id="cb35-24"><a href="advanced-results-objects.html#cb35-24" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  ANOVA table</span></span>
-<span id="cb35-25"><a href="advanced-results-objects.html#cb35-25" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb35-26"><a href="advanced-results-objects.html#cb35-26" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb35-27"><a href="advanced-results-objects.html#cb35-27" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb35-28"><a href="advanced-results-objects.html#cb35-28" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb35-29"><a href="advanced-results-objects.html#cb35-29" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb35-30"><a href="advanced-results-objects.html#cb35-30" aria-hidden="true" tabindex="-1"></a><span class="at">                      ...</span></span>
-<span id="cb35-31"><a href="advanced-results-objects.html#cb35-31" aria-hidden="true" tabindex="-1"></a><span class="co">                      ## here the remaing of the columns as defined before</span></span>
-<span id="cb35-32"><a href="advanced-results-objects.html#cb35-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-33"><a href="advanced-results-objects.html#cb35-33" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> additional</span></span>
-<span id="cb35-34"><a href="advanced-results-objects.html#cb35-34" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group              </span></span>
-<span id="cb35-35"><a href="advanced-results-objects.html#cb35-35" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Additional Results</span></span>
-<span id="cb35-36"><a href="advanced-results-objects.html#cb35-36" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
-<span id="cb35-37"><a href="advanced-results-objects.html#cb35-37" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
-<span id="cb35-38"><a href="advanced-results-objects.html#cb35-38" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
-<span id="cb35-39"><a href="advanced-results-objects.html#cb35-39" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb35-40"><a href="advanced-results-objects.html#cb35-40" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb35-41"><a href="advanced-results-objects.html#cb35-41" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb35-42"><a href="advanced-results-objects.html#cb35-42" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb35-43"><a href="advanced-results-objects.html#cb35-43" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb35-44"><a href="advanced-results-objects.html#cb35-44" aria-hidden="true" tabindex="-1"></a><span class="at">                      ...</span></span>
-<span id="cb35-45"><a href="advanced-results-objects.html#cb35-45" aria-hidden="true" tabindex="-1"></a><span class="co">                      ## here the remaing of the columns as defined before</span></span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb35-1"><a href="advanced-results-objects.html#cb35-1" tabindex="-1"></a></span>
+<span id="cb35-2"><a href="advanced-results-objects.html#cb35-2" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb35-3"><a href="advanced-results-objects.html#cb35-3" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
+<span id="cb35-4"><a href="advanced-results-objects.html#cb35-4" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
+<span id="cb35-5"><a href="advanced-results-objects.html#cb35-5" tabindex="-1"></a><span class="fu">jrs</span><span class="kw">:</span><span class="at">   </span><span class="st">&#39;1.1&#39;</span></span>
+<span id="cb35-6"><a href="advanced-results-objects.html#cb35-6" tabindex="-1"></a></span>
+<span id="cb35-7"><a href="advanced-results-objects.html#cb35-7" tabindex="-1"></a><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb35-8"><a href="advanced-results-objects.html#cb35-8" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="advanced-results-objects.html#cb35-9" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> main</span></span>
+<span id="cb35-10"><a href="advanced-results-objects.html#cb35-10" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
+<span id="cb35-11"><a href="advanced-results-objects.html#cb35-11" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Main Results</span></span>
+<span id="cb35-12"><a href="advanced-results-objects.html#cb35-12" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb35-13"><a href="advanced-results-objects.html#cb35-13" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> coefficients</span></span>
+<span id="cb35-14"><a href="advanced-results-objects.html#cb35-14" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Parameter Estimates (Coefficients)</span></span>
+<span id="cb35-15"><a href="advanced-results-objects.html#cb35-15" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb35-16"><a href="advanced-results-objects.html#cb35-16" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb35-17"><a href="advanced-results-objects.html#cb35-17" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb35-18"><a href="advanced-results-objects.html#cb35-18" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb35-19"><a href="advanced-results-objects.html#cb35-19" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb35-20"><a href="advanced-results-objects.html#cb35-20" tabindex="-1"></a><span class="at">                      ...</span></span>
+<span id="cb35-21"><a href="advanced-results-objects.html#cb35-21" tabindex="-1"></a><span class="co">                      ## here the remaing of the columns as defined before</span></span>
+<span id="cb35-22"><a href="advanced-results-objects.html#cb35-22" tabindex="-1"></a></span>
+<span id="cb35-23"><a href="advanced-results-objects.html#cb35-23" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> anova</span></span>
+<span id="cb35-24"><a href="advanced-results-objects.html#cb35-24" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  ANOVA table</span></span>
+<span id="cb35-25"><a href="advanced-results-objects.html#cb35-25" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb35-26"><a href="advanced-results-objects.html#cb35-26" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb35-27"><a href="advanced-results-objects.html#cb35-27" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb35-28"><a href="advanced-results-objects.html#cb35-28" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb35-29"><a href="advanced-results-objects.html#cb35-29" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb35-30"><a href="advanced-results-objects.html#cb35-30" tabindex="-1"></a><span class="at">                      ...</span></span>
+<span id="cb35-31"><a href="advanced-results-objects.html#cb35-31" tabindex="-1"></a><span class="co">                      ## here the remaing of the columns as defined before</span></span>
+<span id="cb35-32"><a href="advanced-results-objects.html#cb35-32" tabindex="-1"></a></span>
+<span id="cb35-33"><a href="advanced-results-objects.html#cb35-33" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> additional</span></span>
+<span id="cb35-34"><a href="advanced-results-objects.html#cb35-34" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group              </span></span>
+<span id="cb35-35"><a href="advanced-results-objects.html#cb35-35" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Additional Results</span></span>
+<span id="cb35-36"><a href="advanced-results-objects.html#cb35-36" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb35-37"><a href="advanced-results-objects.html#cb35-37" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
+<span id="cb35-38"><a href="advanced-results-objects.html#cb35-38" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
+<span id="cb35-39"><a href="advanced-results-objects.html#cb35-39" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb35-40"><a href="advanced-results-objects.html#cb35-40" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb35-41"><a href="advanced-results-objects.html#cb35-41" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb35-42"><a href="advanced-results-objects.html#cb35-42" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb35-43"><a href="advanced-results-objects.html#cb35-43" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb35-44"><a href="advanced-results-objects.html#cb35-44" tabindex="-1"></a><span class="at">                      ...</span></span>
+<span id="cb35-45"><a href="advanced-results-objects.html#cb35-45" tabindex="-1"></a><span class="co">                      ## here the remaing of the columns as defined before</span></span></code></pre></div>
 <p>Notice that the definition of the tables has not changed, they are just organized under a <code>Group</code> with property <code>title</code> and <code>items</code>.</p>
 <p>The logic of interfacing R code with the tables via a <code>SmartTable</code> object in file <code>.b.R</code> does not change as well, the only difference is that we should change the name of the table. In the <code>self$results</code> list, tables are now referred to as <code>self$results$groupname$tablename</code>.</p>
 <div class="filename">
 <span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="advanced-results-objects.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="do">## same code as before here</span></span>
-<span id="cb36-2"><a href="advanced-results-objects.html#cb36-2" aria-hidden="true" tabindex="-1"></a>...</span>
-<span id="cb36-3"><a href="advanced-results-objects.html#cb36-3" aria-hidden="true" tabindex="-1"></a>        .init <span class="ot">=</span> <span class="cf">function</span>() {</span>
-<span id="cb36-4"><a href="advanced-results-objects.html#cb36-4" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-5"><a href="advanced-results-objects.html#cb36-5" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.something</span>(self<span class="sc">$</span>options<span class="sc">$</span>dep) <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.something</span>(self<span class="sc">$</span>options<span class="sc">$</span>covs))</span>
-<span id="cb36-6"><a href="advanced-results-objects.html#cb36-6" aria-hidden="true" tabindex="-1"></a>                <span class="fu">return</span>()</span>
-<span id="cb36-7"><a href="advanced-results-objects.html#cb36-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># define the runner</span></span>
-<span id="cb36-8"><a href="advanced-results-objects.html#cb36-8" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.runner<span class="ot">&lt;-</span>Runner<span class="sc">$</span><span class="fu">new</span>(self)</span>
-<span id="cb36-9"><a href="advanced-results-objects.html#cb36-9" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-10"><a href="advanced-results-objects.html#cb36-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set up the coefficients SmartTable</span></span>
-<span id="cb36-11"><a href="advanced-results-objects.html#cb36-11" aria-hidden="true" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>main<span class="sc">$</span>coefficients,private<span class="sc">$</span>.runner)</span>
-<span id="cb36-12"><a href="advanced-results-objects.html#cb36-12" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
-<span id="cb36-13"><a href="advanced-results-objects.html#cb36-13" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
-<span id="cb36-14"><a href="advanced-results-objects.html#cb36-14" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set up the anova SmartTable</span></span>
-<span id="cb36-15"><a href="advanced-results-objects.html#cb36-15" aria-hidden="true" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>main<span class="sc">$</span>anova,private<span class="sc">$</span>.runner)</span>
-<span id="cb36-16"><a href="advanced-results-objects.html#cb36-16" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
-<span id="cb36-17"><a href="advanced-results-objects.html#cb36-17" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
-<span id="cb36-18"><a href="advanced-results-objects.html#cb36-18" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-19"><a href="advanced-results-objects.html#cb36-19" aria-hidden="true" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
-<span id="cb36-20"><a href="advanced-results-objects.html#cb36-20" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
-<span id="cb36-21"><a href="advanced-results-objects.html#cb36-21" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
-<span id="cb36-22"><a href="advanced-results-objects.html#cb36-22" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb36-23"><a href="advanced-results-objects.html#cb36-23" aria-hidden="true" tabindex="-1"></a>            <span class="co"># the remaining code does not change</span></span>
-<span id="cb36-24"><a href="advanced-results-objects.html#cb36-24" aria-hidden="true" tabindex="-1"></a>            ...</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="advanced-results-objects.html#cb36-1" tabindex="-1"></a><span class="do">## same code as before here</span></span>
+<span id="cb36-2"><a href="advanced-results-objects.html#cb36-2" tabindex="-1"></a>...</span>
+<span id="cb36-3"><a href="advanced-results-objects.html#cb36-3" tabindex="-1"></a>        .init <span class="ot">=</span> <span class="cf">function</span>() {</span>
+<span id="cb36-4"><a href="advanced-results-objects.html#cb36-4" tabindex="-1"></a>            </span>
+<span id="cb36-5"><a href="advanced-results-objects.html#cb36-5" tabindex="-1"></a>            <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.something</span>(self<span class="sc">$</span>options<span class="sc">$</span>dep) <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.something</span>(self<span class="sc">$</span>options<span class="sc">$</span>covs))</span>
+<span id="cb36-6"><a href="advanced-results-objects.html#cb36-6" tabindex="-1"></a>                <span class="fu">return</span>()</span>
+<span id="cb36-7"><a href="advanced-results-objects.html#cb36-7" tabindex="-1"></a>            <span class="co"># define the runner</span></span>
+<span id="cb36-8"><a href="advanced-results-objects.html#cb36-8" tabindex="-1"></a>            private<span class="sc">$</span>.runner<span class="ot">&lt;-</span>Runner<span class="sc">$</span><span class="fu">new</span>(self)</span>
+<span id="cb36-9"><a href="advanced-results-objects.html#cb36-9" tabindex="-1"></a>            </span>
+<span id="cb36-10"><a href="advanced-results-objects.html#cb36-10" tabindex="-1"></a>            <span class="co"># set up the coefficients SmartTable</span></span>
+<span id="cb36-11"><a href="advanced-results-objects.html#cb36-11" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>main<span class="sc">$</span>coefficients,private<span class="sc">$</span>.runner)</span>
+<span id="cb36-12"><a href="advanced-results-objects.html#cb36-12" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
+<span id="cb36-13"><a href="advanced-results-objects.html#cb36-13" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
+<span id="cb36-14"><a href="advanced-results-objects.html#cb36-14" tabindex="-1"></a>            <span class="co"># set up the anova SmartTable</span></span>
+<span id="cb36-15"><a href="advanced-results-objects.html#cb36-15" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>main<span class="sc">$</span>anova,private<span class="sc">$</span>.runner)</span>
+<span id="cb36-16"><a href="advanced-results-objects.html#cb36-16" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
+<span id="cb36-17"><a href="advanced-results-objects.html#cb36-17" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
+<span id="cb36-18"><a href="advanced-results-objects.html#cb36-18" tabindex="-1"></a>            </span>
+<span id="cb36-19"><a href="advanced-results-objects.html#cb36-19" tabindex="-1"></a>            atable<span class="ot">&lt;-</span>SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
+<span id="cb36-20"><a href="advanced-results-objects.html#cb36-20" tabindex="-1"></a>            <span class="co"># put the SmartTable in the list</span></span>
+<span id="cb36-21"><a href="advanced-results-objects.html#cb36-21" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span>
+<span id="cb36-22"><a href="advanced-results-objects.html#cb36-22" tabindex="-1"></a>            </span>
+<span id="cb36-23"><a href="advanced-results-objects.html#cb36-23" tabindex="-1"></a>            <span class="co"># the remaining code does not change</span></span>
+<span id="cb36-24"><a href="advanced-results-objects.html#cb36-24" tabindex="-1"></a>            ...</span></code></pre></div>
 <p>Consequently, in the <code>Runner.R</code> file their associated function should be named <code>run_[groupname]_[tablename]</code>, because they <code>[groupname]_[tablename]</code> nickname uniquely identifies each table. In <code>Runner.R</code> code:</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="advanced-results-objects.html#cb37-1" aria-hidden="true" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb37-2"><a href="advanced-results-objects.html#cb37-2" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb37-3"><a href="advanced-results-objects.html#cb37-3" aria-hidden="true" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
-<span id="cb37-4"><a href="advanced-results-objects.html#cb37-4" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
-<span id="cb37-5"><a href="advanced-results-objects.html#cb37-5" aria-hidden="true" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
-<span id="cb37-6"><a href="advanced-results-objects.html#cb37-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb37-7"><a href="advanced-results-objects.html#cb37-7" aria-hidden="true" tabindex="-1"></a>      coeffs<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs) </span>
-<span id="cb37-8"><a href="advanced-results-objects.html#cb37-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
-<span id="cb37-9"><a href="advanced-results-objects.html#cb37-9" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb37-10"><a href="advanced-results-objects.html#cb37-10" aria-hidden="true" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb37-11"><a href="advanced-results-objects.html#cb37-11" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb37-12"><a href="advanced-results-objects.html#cb37-12" aria-hidden="true" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
-<span id="cb37-13"><a href="advanced-results-objects.html#cb37-13" aria-hidden="true" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
-<span id="cb37-14"><a href="advanced-results-objects.html#cb37-14" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
-<span id="cb37-15"><a href="advanced-results-objects.html#cb37-15" aria-hidden="true" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(.anova)</span>
-<span id="cb37-16"><a href="advanced-results-objects.html#cb37-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
-<span id="cb37-17"><a href="advanced-results-objects.html#cb37-17" aria-hidden="true" tabindex="-1"></a>      },</span>
-<span id="cb37-18"><a href="advanced-results-objects.html#cb37-18" aria-hidden="true" tabindex="-1"></a>    run_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb37-19"><a href="advanced-results-objects.html#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-20"><a href="advanced-results-objects.html#cb37-20" aria-hidden="true" tabindex="-1"></a>      eps       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">epsilon_squared</span>(self<span class="sc">$</span>model)</span>
-<span id="cb37-21"><a href="advanced-results-objects.html#cb37-21" aria-hidden="true" tabindex="-1"></a>      eps_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eps<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;Epsilon^2&quot;</span>,<span class="at">value=</span>eps<span class="sc">$</span>Epsilon2)</span>
-<span id="cb37-22"><a href="advanced-results-objects.html#cb37-22" aria-hidden="true" tabindex="-1"></a>      eta       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(self<span class="sc">$</span>model)</span>
-<span id="cb37-23"><a href="advanced-results-objects.html#cb37-23" aria-hidden="true" tabindex="-1"></a>      eta_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pEta^2&quot;</span>,<span class="at">value=</span>eta<span class="sc">$</span>Eta2)</span>
-<span id="cb37-24"><a href="advanced-results-objects.html#cb37-24" aria-hidden="true" tabindex="-1"></a>      omega     <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">omega_squared</span>(self<span class="sc">$</span>model)</span>
-<span id="cb37-25"><a href="advanced-results-objects.html#cb37-25" aria-hidden="true" tabindex="-1"></a>      omega_df  <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pOmega^2&quot;</span>,<span class="at">value=</span>omega<span class="sc">$</span>Omega2)</span>
-<span id="cb37-26"><a href="advanced-results-objects.html#cb37-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-27"><a href="advanced-results-objects.html#cb37-27" aria-hidden="true" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span>  <span class="fu">rbind</span>(eps_df,eta_df,omega_df)</span>
-<span id="cb37-28"><a href="advanced-results-objects.html#cb37-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
-<span id="cb37-29"><a href="advanced-results-objects.html#cb37-29" aria-hidden="true" tabindex="-1"></a>    },</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="advanced-results-objects.html#cb37-1" tabindex="-1"></a>    run_main_coefficients<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb37-2"><a href="advanced-results-objects.html#cb37-2" tabindex="-1"></a>      </span>
+<span id="cb37-3"><a href="advanced-results-objects.html#cb37-3" tabindex="-1"></a>      .summary         <span class="ot">&lt;-</span>   <span class="fu">summary</span>(self<span class="sc">$</span>model)</span>
+<span id="cb37-4"><a href="advanced-results-objects.html#cb37-4" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>  .summary<span class="sc">$</span>coefficients</span>
+<span id="cb37-5"><a href="advanced-results-objects.html#cb37-5" tabindex="-1"></a>      coeffs           <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(coeffs)</span>
+<span id="cb37-6"><a href="advanced-results-objects.html#cb37-6" tabindex="-1"></a>      <span class="fu">names</span>(coeffs)    <span class="ot">&lt;-</span>   <span class="fu">c</span>(<span class="st">&quot;coef&quot;</span>,<span class="st">&quot;se&quot;</span>,<span class="st">&quot;t&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb37-7"><a href="advanced-results-objects.html#cb37-7" tabindex="-1"></a>      coeffs<span class="sc">$</span>var       <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(coeffs) </span>
+<span id="cb37-8"><a href="advanced-results-objects.html#cb37-8" tabindex="-1"></a>      <span class="fu">return</span>(coeffs)</span>
+<span id="cb37-9"><a href="advanced-results-objects.html#cb37-9" tabindex="-1"></a>    },</span>
+<span id="cb37-10"><a href="advanced-results-objects.html#cb37-10" tabindex="-1"></a>    run_main_anova<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb37-11"><a href="advanced-results-objects.html#cb37-11" tabindex="-1"></a>      </span>
+<span id="cb37-12"><a href="advanced-results-objects.html#cb37-12" tabindex="-1"></a>      .anova          <span class="ot">&lt;-</span>  <span class="fu">as.data.frame</span>(car<span class="sc">::</span><span class="fu">Anova</span>(self<span class="sc">$</span>model,<span class="at">type=</span><span class="dv">3</span>))</span>
+<span id="cb37-13"><a href="advanced-results-objects.html#cb37-13" tabindex="-1"></a>       <span class="fu">names</span>(.anova)  <span class="ot">&lt;-</span>  <span class="fu">c</span>(<span class="st">&quot;nothing&quot;</span>,<span class="st">&quot;df1&quot;</span>,<span class="st">&quot;test&quot;</span>,<span class="st">&quot;p&quot;</span>)</span>
+<span id="cb37-14"><a href="advanced-results-objects.html#cb37-14" tabindex="-1"></a>      .anova<span class="sc">$</span>df2      <span class="ot">&lt;-</span>  self<span class="sc">$</span>model<span class="sc">$</span>df.residual</span>
+<span id="cb37-15"><a href="advanced-results-objects.html#cb37-15" tabindex="-1"></a>      .anova<span class="sc">$</span>var      <span class="ot">&lt;-</span>  <span class="fu">rownames</span>(.anova)</span>
+<span id="cb37-16"><a href="advanced-results-objects.html#cb37-16" tabindex="-1"></a>      <span class="fu">return</span>(.anova)</span>
+<span id="cb37-17"><a href="advanced-results-objects.html#cb37-17" tabindex="-1"></a>      },</span>
+<span id="cb37-18"><a href="advanced-results-objects.html#cb37-18" tabindex="-1"></a>    run_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb37-19"><a href="advanced-results-objects.html#cb37-19" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="advanced-results-objects.html#cb37-20" tabindex="-1"></a>      eps       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">epsilon_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb37-21"><a href="advanced-results-objects.html#cb37-21" tabindex="-1"></a>      eps_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eps<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;Epsilon^2&quot;</span>,<span class="at">value=</span>eps<span class="sc">$</span>Epsilon2)</span>
+<span id="cb37-22"><a href="advanced-results-objects.html#cb37-22" tabindex="-1"></a>      eta       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb37-23"><a href="advanced-results-objects.html#cb37-23" tabindex="-1"></a>      eta_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pEta^2&quot;</span>,<span class="at">value=</span>eta<span class="sc">$</span>Eta2)</span>
+<span id="cb37-24"><a href="advanced-results-objects.html#cb37-24" tabindex="-1"></a>      omega     <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">omega_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb37-25"><a href="advanced-results-objects.html#cb37-25" tabindex="-1"></a>      omega_df  <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pOmega^2&quot;</span>,<span class="at">value=</span>omega<span class="sc">$</span>Omega2)</span>
+<span id="cb37-26"><a href="advanced-results-objects.html#cb37-26" tabindex="-1"></a></span>
+<span id="cb37-27"><a href="advanced-results-objects.html#cb37-27" tabindex="-1"></a>      tab       <span class="ot">&lt;-</span>  <span class="fu">rbind</span>(eps_df,eta_df,omega_df)</span>
+<span id="cb37-28"><a href="advanced-results-objects.html#cb37-28" tabindex="-1"></a>      <span class="fu">return</span>(tab)</span>
+<span id="cb37-29"><a href="advanced-results-objects.html#cb37-29" tabindex="-1"></a>    },</span></code></pre></div>
 <p>You should now have your output organized in sections like this:</p>
 <p><img src="pics/c4_output1.png" width="499" /></p>
 </div>
@@ -366,25 +370,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb38-1"><a href="advanced-results-objects.html#cb38-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-2"><a href="advanced-results-objects.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb38-3"><a href="advanced-results-objects.html#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> means</span></span>
-<span id="cb38-4"><a href="advanced-results-objects.html#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Mean and Standard deviation</span></span>
-<span id="cb38-5"><a href="advanced-results-objects.html#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Array</span></span>
-<span id="cb38-6"><a href="advanced-results-objects.html#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span><span class="at"> (covs)</span></span>
-<span id="cb38-7"><a href="advanced-results-objects.html#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">template</span><span class="kw">:</span></span>
-<span id="cb38-8"><a href="advanced-results-objects.html#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Variable - $key</span></span>
-<span id="cb38-9"><a href="advanced-results-objects.html#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb38-10"><a href="advanced-results-objects.html#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb38-11"><a href="advanced-results-objects.html#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb38-12"><a href="advanced-results-objects.html#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb38-13"><a href="advanced-results-objects.html#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb38-14"><a href="advanced-results-objects.html#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mean</span></span>
-<span id="cb38-15"><a href="advanced-results-objects.html#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Mean&quot;</span></span>
-<span id="cb38-16"><a href="advanced-results-objects.html#cb38-16" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb38-17"><a href="advanced-results-objects.html#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sd</span></span>
-<span id="cb38-18"><a href="advanced-results-objects.html#cb38-18" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Sd&quot;</span></span>
-<span id="cb38-19"><a href="advanced-results-objects.html#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb38-1"><a href="advanced-results-objects.html#cb38-1" tabindex="-1"></a></span>
+<span id="cb38-2"><a href="advanced-results-objects.html#cb38-2" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb38-3"><a href="advanced-results-objects.html#cb38-3" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> means</span></span>
+<span id="cb38-4"><a href="advanced-results-objects.html#cb38-4" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Mean and Standard deviation</span></span>
+<span id="cb38-5"><a href="advanced-results-objects.html#cb38-5" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Array</span></span>
+<span id="cb38-6"><a href="advanced-results-objects.html#cb38-6" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span><span class="at"> (covs)</span></span>
+<span id="cb38-7"><a href="advanced-results-objects.html#cb38-7" tabindex="-1"></a><span class="at">         </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb38-8"><a href="advanced-results-objects.html#cb38-8" tabindex="-1"></a><span class="at">                </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Variable - $key</span></span>
+<span id="cb38-9"><a href="advanced-results-objects.html#cb38-9" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb38-10"><a href="advanced-results-objects.html#cb38-10" tabindex="-1"></a><span class="at">                </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb38-11"><a href="advanced-results-objects.html#cb38-11" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb38-12"><a href="advanced-results-objects.html#cb38-12" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb38-13"><a href="advanced-results-objects.html#cb38-13" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb38-14"><a href="advanced-results-objects.html#cb38-14" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mean</span></span>
+<span id="cb38-15"><a href="advanced-results-objects.html#cb38-15" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Mean&quot;</span></span>
+<span id="cb38-16"><a href="advanced-results-objects.html#cb38-16" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb38-17"><a href="advanced-results-objects.html#cb38-17" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sd</span></span>
+<span id="cb38-18"><a href="advanced-results-objects.html#cb38-18" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Sd&quot;</span></span>
+<span id="cb38-19"><a href="advanced-results-objects.html#cb38-19" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span></code></pre></div>
 <p>Notice the <code>items</code> property. We set it to <code>(covs)</code> to signal <code>jamovi</code> to take the contents of the option <code>covs</code> from the input, and create one table for each item found in <code>covs</code>. Thus, for each covariate selected by the user a <code>Table</code> is created as specified in the <code>template:</code> property. In the following example, I get two tables because I selected two covariates.</p>
 <p><img src="pics/c4_output2.png" width="917" /></p>
 <p>Notice the individual table title. It is set to the name of a covariate because in the <code>title:</code> property we use the special key <code>$key</code>, which means the name of the item found in <code>items:</code> variable. All this is done automatically by <code>jamovi</code> interpreter, so it is very easy and smooth to define arrays like this.</p>
@@ -392,40 +396,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="advanced-results-objects.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="do">## same code as before here</span></span>
-<span id="cb39-2"><a href="advanced-results-objects.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb39-3"><a href="advanced-results-objects.html#cb39-3" aria-hidden="true" tabindex="-1"></a>        .init <span class="ot">=</span> <span class="cf">function</span>() {</span>
-<span id="cb39-4"><a href="advanced-results-objects.html#cb39-4" aria-hidden="true" tabindex="-1"></a>              </span>
-<span id="cb39-5"><a href="advanced-results-objects.html#cb39-5" aria-hidden="true" tabindex="-1"></a>            <span class="do">## same code as before here</span></span>
-<span id="cb39-6"><a href="advanced-results-objects.html#cb39-6" aria-hidden="true" tabindex="-1"></a>            <span class="co">#...#</span></span>
-<span id="cb39-7"><a href="advanced-results-objects.html#cb39-7" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb39-8"><a href="advanced-results-objects.html#cb39-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set up the means SmartArray</span></span>
-<span id="cb39-9"><a href="advanced-results-objects.html#cb39-9" aria-hidden="true" tabindex="-1"></a>            obj<span class="ot">&lt;-</span>SmartArray<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>means,private<span class="sc">$</span>.runner)</span>
-<span id="cb39-10"><a href="advanced-results-objects.html#cb39-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartArray in the list</span></span>
-<span id="cb39-11"><a href="advanced-results-objects.html#cb39-11" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>obj</span>
-<span id="cb39-12"><a href="advanced-results-objects.html#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-13"><a href="advanced-results-objects.html#cb39-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># the remaining code does not change</span></span>
-<span id="cb39-14"><a href="advanced-results-objects.html#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="advanced-results-objects.html#cb39-1" tabindex="-1"></a><span class="do">## same code as before here</span></span>
+<span id="cb39-2"><a href="advanced-results-objects.html#cb39-2" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb39-3"><a href="advanced-results-objects.html#cb39-3" tabindex="-1"></a>        .init <span class="ot">=</span> <span class="cf">function</span>() {</span>
+<span id="cb39-4"><a href="advanced-results-objects.html#cb39-4" tabindex="-1"></a>              </span>
+<span id="cb39-5"><a href="advanced-results-objects.html#cb39-5" tabindex="-1"></a>            <span class="do">## same code as before here</span></span>
+<span id="cb39-6"><a href="advanced-results-objects.html#cb39-6" tabindex="-1"></a>            <span class="co">#...#</span></span>
+<span id="cb39-7"><a href="advanced-results-objects.html#cb39-7" tabindex="-1"></a>          </span>
+<span id="cb39-8"><a href="advanced-results-objects.html#cb39-8" tabindex="-1"></a>            <span class="co"># set up the means SmartArray</span></span>
+<span id="cb39-9"><a href="advanced-results-objects.html#cb39-9" tabindex="-1"></a>            obj<span class="ot">&lt;-</span>SmartArray<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>means,private<span class="sc">$</span>.runner)</span>
+<span id="cb39-10"><a href="advanced-results-objects.html#cb39-10" tabindex="-1"></a>            <span class="co"># put the SmartArray in the list</span></span>
+<span id="cb39-11"><a href="advanced-results-objects.html#cb39-11" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>obj</span>
+<span id="cb39-12"><a href="advanced-results-objects.html#cb39-12" tabindex="-1"></a></span>
+<span id="cb39-13"><a href="advanced-results-objects.html#cb39-13" tabindex="-1"></a>            <span class="co"># the remaining code does not change</span></span>
+<span id="cb39-14"><a href="advanced-results-objects.html#cb39-14" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>Here we use a different <code>jmvScaffold</code> object, called <a href='reference/SmartArray.html' target='_blank'>SmartArray</a>. Its API is equivalent to the one of a
 <a href='reference/SmartTable.html' target='_blank'>SmartTable</a>, but passes all the defined properties to the children tables.</p>
 <p>In the <code>Runner.R</code> file we should set up a function named <code>run_[arrayname]</code> to fill it. This function should return a list of data.frame, one for each item selected in the option associated with the array. In our example, the function should return a list of data.frame, one for each covariate selected by the users. Obviously, it is the developer responsibility to return a list of length equal to the number of items in the array.</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="advanced-results-objects.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ... #</span></span>
-<span id="cb40-2"><a href="advanced-results-objects.html#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-3"><a href="advanced-results-objects.html#cb40-3" aria-hidden="true" tabindex="-1"></a>run_means<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb40-4"><a href="advanced-results-objects.html#cb40-4" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb40-5"><a href="advanced-results-objects.html#cb40-5" aria-hidden="true" tabindex="-1"></a>  tabs  <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs, <span class="cf">function</span> (x) {</span>
-<span id="cb40-6"><a href="advanced-results-objects.html#cb40-6" aria-hidden="true" tabindex="-1"></a>                      m  <span class="ot">&lt;-</span> <span class="fu">mean</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb40-7"><a href="advanced-results-objects.html#cb40-7" aria-hidden="true" tabindex="-1"></a>                      s  <span class="ot">&lt;-</span> <span class="fu">sd</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb40-8"><a href="advanced-results-objects.html#cb40-8" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">data.frame</span>(<span class="at">var=</span>x,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
-<span id="cb40-9"><a href="advanced-results-objects.html#cb40-9" aria-hidden="true" tabindex="-1"></a>               })</span>
-<span id="cb40-10"><a href="advanced-results-objects.html#cb40-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-11"><a href="advanced-results-objects.html#cb40-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">return</span>(tabs)</span>
-<span id="cb40-12"><a href="advanced-results-objects.html#cb40-12" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb40-13"><a href="advanced-results-objects.html#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb40-14"><a href="advanced-results-objects.html#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ... #</span></span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="advanced-results-objects.html#cb40-1" tabindex="-1"></a><span class="co"># ... #</span></span>
+<span id="cb40-2"><a href="advanced-results-objects.html#cb40-2" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="advanced-results-objects.html#cb40-3" tabindex="-1"></a>run_means<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb40-4"><a href="advanced-results-objects.html#cb40-4" tabindex="-1"></a>      </span>
+<span id="cb40-5"><a href="advanced-results-objects.html#cb40-5" tabindex="-1"></a>  tabs  <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>options<span class="sc">$</span>covs, <span class="cf">function</span> (x) {</span>
+<span id="cb40-6"><a href="advanced-results-objects.html#cb40-6" tabindex="-1"></a>                      m  <span class="ot">&lt;-</span> <span class="fu">mean</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb40-7"><a href="advanced-results-objects.html#cb40-7" tabindex="-1"></a>                      s  <span class="ot">&lt;-</span> <span class="fu">sd</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb40-8"><a href="advanced-results-objects.html#cb40-8" tabindex="-1"></a>                     <span class="fu">data.frame</span>(<span class="at">var=</span>x,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
+<span id="cb40-9"><a href="advanced-results-objects.html#cb40-9" tabindex="-1"></a>               })</span>
+<span id="cb40-10"><a href="advanced-results-objects.html#cb40-10" tabindex="-1"></a></span>
+<span id="cb40-11"><a href="advanced-results-objects.html#cb40-11" tabindex="-1"></a> <span class="fu">return</span>(tabs)</span>
+<span id="cb40-12"><a href="advanced-results-objects.html#cb40-12" tabindex="-1"></a>    }</span>
+<span id="cb40-13"><a href="advanced-results-objects.html#cb40-13" tabindex="-1"></a></span>
+<span id="cb40-14"><a href="advanced-results-objects.html#cb40-14" tabindex="-1"></a><span class="co"># ... #</span></span></code></pre></div>
 <p>Results should now be nice as expected.</p>
 <p><img src="pics/c4_output3.png" width="333" /></p>
 </div>
@@ -438,96 +442,96 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb41"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb41-1"><a href="advanced-results-objects.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb41-2"><a href="advanced-results-objects.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sig</span></span>
-<span id="cb41-3"><a href="advanced-results-objects.html#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
-<span id="cb41-4"><a href="advanced-results-objects.html#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Significant covariates</span></span>
-<span id="cb41-5"><a href="advanced-results-objects.html#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb41-6"><a href="advanced-results-objects.html#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> means</span></span>
-<span id="cb41-7"><a href="advanced-results-objects.html#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;&quot;</span></span>
-<span id="cb41-8"><a href="advanced-results-objects.html#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Array</span></span>
-<span id="cb41-9"><a href="advanced-results-objects.html#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">template</span><span class="kw">:</span></span>
-<span id="cb41-10"><a href="advanced-results-objects.html#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Variable - $key</span></span>
-<span id="cb41-11"><a href="advanced-results-objects.html#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb41-12"><a href="advanced-results-objects.html#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">clearWith</span><span class="kw">:</span></span>
-<span id="cb41-13"><a href="advanced-results-objects.html#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="at">                   </span><span class="kw">-</span><span class="at"> dep</span></span>
-<span id="cb41-14"><a href="advanced-results-objects.html#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="at">                   </span><span class="kw">-</span><span class="at"> covs</span></span>
-<span id="cb41-15"><a href="advanced-results-objects.html#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-16"><a href="advanced-results-objects.html#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb41-17"><a href="advanced-results-objects.html#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb41-18"><a href="advanced-results-objects.html#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb41-19"><a href="advanced-results-objects.html#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb41-20"><a href="advanced-results-objects.html#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mean</span></span>
-<span id="cb41-21"><a href="advanced-results-objects.html#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Mean&quot;</span></span>
-<span id="cb41-22"><a href="advanced-results-objects.html#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb41-23"><a href="advanced-results-objects.html#cb41-23" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sd</span></span>
-<span id="cb41-24"><a href="advanced-results-objects.html#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Sd&quot;</span></span>
-<span id="cb41-25"><a href="advanced-results-objects.html#cb41-25" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb41-1"><a href="advanced-results-objects.html#cb41-1" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb41-2"><a href="advanced-results-objects.html#cb41-2" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sig</span></span>
+<span id="cb41-3"><a href="advanced-results-objects.html#cb41-3" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
+<span id="cb41-4"><a href="advanced-results-objects.html#cb41-4" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Significant covariates</span></span>
+<span id="cb41-5"><a href="advanced-results-objects.html#cb41-5" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb41-6"><a href="advanced-results-objects.html#cb41-6" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> means</span></span>
+<span id="cb41-7"><a href="advanced-results-objects.html#cb41-7" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;&quot;</span></span>
+<span id="cb41-8"><a href="advanced-results-objects.html#cb41-8" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Array</span></span>
+<span id="cb41-9"><a href="advanced-results-objects.html#cb41-9" tabindex="-1"></a><span class="at">             </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb41-10"><a href="advanced-results-objects.html#cb41-10" tabindex="-1"></a><span class="at">                </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Variable - $key</span></span>
+<span id="cb41-11"><a href="advanced-results-objects.html#cb41-11" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb41-12"><a href="advanced-results-objects.html#cb41-12" tabindex="-1"></a><span class="at">                </span><span class="fu">clearWith</span><span class="kw">:</span></span>
+<span id="cb41-13"><a href="advanced-results-objects.html#cb41-13" tabindex="-1"></a><span class="at">                   </span><span class="kw">-</span><span class="at"> dep</span></span>
+<span id="cb41-14"><a href="advanced-results-objects.html#cb41-14" tabindex="-1"></a><span class="at">                   </span><span class="kw">-</span><span class="at"> covs</span></span>
+<span id="cb41-15"><a href="advanced-results-objects.html#cb41-15" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="advanced-results-objects.html#cb41-16" tabindex="-1"></a><span class="at">                </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb41-17"><a href="advanced-results-objects.html#cb41-17" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb41-18"><a href="advanced-results-objects.html#cb41-18" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb41-19"><a href="advanced-results-objects.html#cb41-19" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb41-20"><a href="advanced-results-objects.html#cb41-20" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mean</span></span>
+<span id="cb41-21"><a href="advanced-results-objects.html#cb41-21" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Mean&quot;</span></span>
+<span id="cb41-22"><a href="advanced-results-objects.html#cb41-22" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb41-23"><a href="advanced-results-objects.html#cb41-23" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sd</span></span>
+<span id="cb41-24"><a href="advanced-results-objects.html#cb41-24" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Sd&quot;</span></span>
+<span id="cb41-25"><a href="advanced-results-objects.html#cb41-25" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span></code></pre></div>
 <p>In the <code>Runner.R</code> file, we simply need to define a <code>run_sig_means()</code> function to select the covariates that we want to display in the new tables.</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="advanced-results-objects.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb42-2"><a href="advanced-results-objects.html#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-3"><a href="advanced-results-objects.html#cb42-3" aria-hidden="true" tabindex="-1"></a>   run_sig_means<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb42-4"><a href="advanced-results-objects.html#cb42-4" aria-hidden="true" tabindex="-1"></a>      <span class="do">## select the covs ##</span></span>
-<span id="cb42-5"><a href="advanced-results-objects.html#cb42-5" aria-hidden="true" tabindex="-1"></a>      results      <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(self<span class="sc">$</span>model)<span class="sc">$</span>coefficients)</span>
-<span id="cb42-6"><a href="advanced-results-objects.html#cb42-6" aria-hidden="true" tabindex="-1"></a>      results      <span class="ot">&lt;-</span>   results[<span class="sc">-</span><span class="dv">1</span>,]</span>
-<span id="cb42-7"><a href="advanced-results-objects.html#cb42-7" aria-hidden="true" tabindex="-1"></a>      whichcovs    <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(results[results[,<span class="dv">4</span>]<span class="sc">&lt;</span>.<span class="dv">05</span>,])</span>
-<span id="cb42-8"><a href="advanced-results-objects.html#cb42-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-9"><a href="advanced-results-objects.html#cb42-9" aria-hidden="true" tabindex="-1"></a>      <span class="do">## make the tables</span></span>
-<span id="cb42-10"><a href="advanced-results-objects.html#cb42-10" aria-hidden="true" tabindex="-1"></a>      tabs     <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(whichcovs, <span class="cf">function</span> (x) {</span>
-<span id="cb42-11"><a href="advanced-results-objects.html#cb42-11" aria-hidden="true" tabindex="-1"></a>                   m  <span class="ot">&lt;-</span> <span class="fu">mean</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb42-12"><a href="advanced-results-objects.html#cb42-12" aria-hidden="true" tabindex="-1"></a>                   s  <span class="ot">&lt;-</span> <span class="fu">sd</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb42-13"><a href="advanced-results-objects.html#cb42-13" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">data.frame</span>(<span class="at">var=</span>x,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
-<span id="cb42-14"><a href="advanced-results-objects.html#cb42-14" aria-hidden="true" tabindex="-1"></a>      })</span>
-<span id="cb42-15"><a href="advanced-results-objects.html#cb42-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-16"><a href="advanced-results-objects.html#cb42-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(tabs)</span>
-<span id="cb42-17"><a href="advanced-results-objects.html#cb42-17" aria-hidden="true" tabindex="-1"></a>   }</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="advanced-results-objects.html#cb42-1" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb42-2"><a href="advanced-results-objects.html#cb42-2" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="advanced-results-objects.html#cb42-3" tabindex="-1"></a>   run_sig_means<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb42-4"><a href="advanced-results-objects.html#cb42-4" tabindex="-1"></a>      <span class="do">## select the covs ##</span></span>
+<span id="cb42-5"><a href="advanced-results-objects.html#cb42-5" tabindex="-1"></a>      results      <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(self<span class="sc">$</span>model)<span class="sc">$</span>coefficients)</span>
+<span id="cb42-6"><a href="advanced-results-objects.html#cb42-6" tabindex="-1"></a>      results      <span class="ot">&lt;-</span>   results[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb42-7"><a href="advanced-results-objects.html#cb42-7" tabindex="-1"></a>      whichcovs    <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(results[results[,<span class="dv">4</span>]<span class="sc">&lt;</span>.<span class="dv">05</span>,])</span>
+<span id="cb42-8"><a href="advanced-results-objects.html#cb42-8" tabindex="-1"></a></span>
+<span id="cb42-9"><a href="advanced-results-objects.html#cb42-9" tabindex="-1"></a>      <span class="do">## make the tables</span></span>
+<span id="cb42-10"><a href="advanced-results-objects.html#cb42-10" tabindex="-1"></a>      tabs     <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(whichcovs, <span class="cf">function</span> (x) {</span>
+<span id="cb42-11"><a href="advanced-results-objects.html#cb42-11" tabindex="-1"></a>                   m  <span class="ot">&lt;-</span> <span class="fu">mean</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb42-12"><a href="advanced-results-objects.html#cb42-12" tabindex="-1"></a>                   s  <span class="ot">&lt;-</span> <span class="fu">sd</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb42-13"><a href="advanced-results-objects.html#cb42-13" tabindex="-1"></a>                   <span class="fu">data.frame</span>(<span class="at">var=</span>x,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
+<span id="cb42-14"><a href="advanced-results-objects.html#cb42-14" tabindex="-1"></a>      })</span>
+<span id="cb42-15"><a href="advanced-results-objects.html#cb42-15" tabindex="-1"></a></span>
+<span id="cb42-16"><a href="advanced-results-objects.html#cb42-16" tabindex="-1"></a>      <span class="fu">return</span>(tabs)</span>
+<span id="cb42-17"><a href="advanced-results-objects.html#cb42-17" tabindex="-1"></a>   }</span></code></pre></div>
 <p>Finaly, we add the new array to the list of smart objects in the <code>.b.R</code> files.</p>
 <div class="filename">
 <span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="advanced-results-objects.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="do">## same code as before here</span></span>
-<span id="cb43-2"><a href="advanced-results-objects.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb43-3"><a href="advanced-results-objects.html#cb43-3" aria-hidden="true" tabindex="-1"></a>        .init <span class="ot">=</span> <span class="cf">function</span>() {</span>
-<span id="cb43-4"><a href="advanced-results-objects.html#cb43-4" aria-hidden="true" tabindex="-1"></a>              </span>
-<span id="cb43-5"><a href="advanced-results-objects.html#cb43-5" aria-hidden="true" tabindex="-1"></a>            <span class="do">## same code as before here</span></span>
-<span id="cb43-6"><a href="advanced-results-objects.html#cb43-6" aria-hidden="true" tabindex="-1"></a>            <span class="co">#...#</span></span>
-<span id="cb43-7"><a href="advanced-results-objects.html#cb43-7" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb43-8"><a href="advanced-results-objects.html#cb43-8" aria-hidden="true" tabindex="-1"></a>            <span class="co"># set up the sig_means SmartArray</span></span>
-<span id="cb43-9"><a href="advanced-results-objects.html#cb43-9" aria-hidden="true" tabindex="-1"></a>            obj<span class="ot">&lt;-</span>SmartArray<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>sig<span class="sc">$</span>means,private<span class="sc">$</span>.runner)</span>
-<span id="cb43-10"><a href="advanced-results-objects.html#cb43-10" aria-hidden="true" tabindex="-1"></a>            <span class="co"># put the SmartArray in the list</span></span>
-<span id="cb43-11"><a href="advanced-results-objects.html#cb43-11" aria-hidden="true" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>obj</span>
-<span id="cb43-12"><a href="advanced-results-objects.html#cb43-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-13"><a href="advanced-results-objects.html#cb43-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># the remaining code does not change</span></span>
-<span id="cb43-14"><a href="advanced-results-objects.html#cb43-14" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="advanced-results-objects.html#cb43-1" tabindex="-1"></a><span class="do">## same code as before here</span></span>
+<span id="cb43-2"><a href="advanced-results-objects.html#cb43-2" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb43-3"><a href="advanced-results-objects.html#cb43-3" tabindex="-1"></a>        .init <span class="ot">=</span> <span class="cf">function</span>() {</span>
+<span id="cb43-4"><a href="advanced-results-objects.html#cb43-4" tabindex="-1"></a>              </span>
+<span id="cb43-5"><a href="advanced-results-objects.html#cb43-5" tabindex="-1"></a>            <span class="do">## same code as before here</span></span>
+<span id="cb43-6"><a href="advanced-results-objects.html#cb43-6" tabindex="-1"></a>            <span class="co">#...#</span></span>
+<span id="cb43-7"><a href="advanced-results-objects.html#cb43-7" tabindex="-1"></a>          </span>
+<span id="cb43-8"><a href="advanced-results-objects.html#cb43-8" tabindex="-1"></a>            <span class="co"># set up the sig_means SmartArray</span></span>
+<span id="cb43-9"><a href="advanced-results-objects.html#cb43-9" tabindex="-1"></a>            obj<span class="ot">&lt;-</span>SmartArray<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>sig<span class="sc">$</span>means,private<span class="sc">$</span>.runner)</span>
+<span id="cb43-10"><a href="advanced-results-objects.html#cb43-10" tabindex="-1"></a>            <span class="co"># put the SmartArray in the list</span></span>
+<span id="cb43-11"><a href="advanced-results-objects.html#cb43-11" tabindex="-1"></a>            private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>obj</span>
+<span id="cb43-12"><a href="advanced-results-objects.html#cb43-12" tabindex="-1"></a></span>
+<span id="cb43-13"><a href="advanced-results-objects.html#cb43-13" tabindex="-1"></a>            <span class="co"># the remaining code does not change</span></span>
+<span id="cb43-14"><a href="advanced-results-objects.html#cb43-14" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>and we can check after re-installing that the module is working as intended.</p>
 <p><img src="pics/c4_output4.png" width="328" /></p>
 <p>Now pay attention to the tables titles. They are now <code>Variable - 1</code> and <code>Variable - 2</code> because we do not have any key defined. No problem, we can pass the keys to the <code>SmartArray</code> as an attribute of the data we pass to it. Just add to the <code>run_means()</code> function the line and you have your nice titles.</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.4/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="advanced-results-objects.html#cb44-1" aria-hidden="true" tabindex="-1"></a>      <span class="co"># ... #</span></span>
-<span id="cb44-2"><a href="advanced-results-objects.html#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="advanced-results-objects.html#cb44-3" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb44-4"><a href="advanced-results-objects.html#cb44-4" aria-hidden="true" tabindex="-1"></a>    run_sig_means<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb44-5"><a href="advanced-results-objects.html#cb44-5" aria-hidden="true" tabindex="-1"></a>        <span class="do">## select the covs ##</span></span>
-<span id="cb44-6"><a href="advanced-results-objects.html#cb44-6" aria-hidden="true" tabindex="-1"></a>        results      <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(self<span class="sc">$</span>model)<span class="sc">$</span>coefficients)</span>
-<span id="cb44-7"><a href="advanced-results-objects.html#cb44-7" aria-hidden="true" tabindex="-1"></a>        results      <span class="ot">&lt;-</span>   results[<span class="sc">-</span><span class="dv">1</span>,]</span>
-<span id="cb44-8"><a href="advanced-results-objects.html#cb44-8" aria-hidden="true" tabindex="-1"></a>        whichcovs    <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(results[results[,<span class="dv">4</span>]<span class="sc">&lt;</span>.<span class="dv">05</span>,])</span>
-<span id="cb44-9"><a href="advanced-results-objects.html#cb44-9" aria-hidden="true" tabindex="-1"></a>        </span>
-<span id="cb44-10"><a href="advanced-results-objects.html#cb44-10" aria-hidden="true" tabindex="-1"></a>        <span class="do">## make the tables</span></span>
-<span id="cb44-11"><a href="advanced-results-objects.html#cb44-11" aria-hidden="true" tabindex="-1"></a>        tabs     <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(whichcovs, <span class="cf">function</span> (x) {</span>
-<span id="cb44-12"><a href="advanced-results-objects.html#cb44-12" aria-hidden="true" tabindex="-1"></a>            m  <span class="ot">&lt;-</span> <span class="fu">mean</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb44-13"><a href="advanced-results-objects.html#cb44-13" aria-hidden="true" tabindex="-1"></a>            s  <span class="ot">&lt;-</span> <span class="fu">sd</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb44-14"><a href="advanced-results-objects.html#cb44-14" aria-hidden="true" tabindex="-1"></a>            <span class="fu">data.frame</span>(<span class="at">var=</span>x,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
-<span id="cb44-15"><a href="advanced-results-objects.html#cb44-15" aria-hidden="true" tabindex="-1"></a>        })</span>
-<span id="cb44-16"><a href="advanced-results-objects.html#cb44-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">attr</span>(tabs,<span class="st">&quot;keys&quot;</span>)<span class="ot">&lt;-</span>whichcovs <span class="do">## passing the keys to the jamovi table</span></span>
-<span id="cb44-17"><a href="advanced-results-objects.html#cb44-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span>(tabs)</span>
-<span id="cb44-18"><a href="advanced-results-objects.html#cb44-18" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb44-19"><a href="advanced-results-objects.html#cb44-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-20"><a href="advanced-results-objects.html#cb44-20" aria-hidden="true" tabindex="-1"></a>      <span class="co"># ... #</span></span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="advanced-results-objects.html#cb44-1" tabindex="-1"></a>      <span class="co"># ... #</span></span>
+<span id="cb44-2"><a href="advanced-results-objects.html#cb44-2" tabindex="-1"></a></span>
+<span id="cb44-3"><a href="advanced-results-objects.html#cb44-3" tabindex="-1"></a>      </span>
+<span id="cb44-4"><a href="advanced-results-objects.html#cb44-4" tabindex="-1"></a>    run_sig_means<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb44-5"><a href="advanced-results-objects.html#cb44-5" tabindex="-1"></a>        <span class="do">## select the covs ##</span></span>
+<span id="cb44-6"><a href="advanced-results-objects.html#cb44-6" tabindex="-1"></a>        results      <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(self<span class="sc">$</span>model)<span class="sc">$</span>coefficients)</span>
+<span id="cb44-7"><a href="advanced-results-objects.html#cb44-7" tabindex="-1"></a>        results      <span class="ot">&lt;-</span>   results[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb44-8"><a href="advanced-results-objects.html#cb44-8" tabindex="-1"></a>        whichcovs    <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(results[results[,<span class="dv">4</span>]<span class="sc">&lt;</span>.<span class="dv">05</span>,])</span>
+<span id="cb44-9"><a href="advanced-results-objects.html#cb44-9" tabindex="-1"></a>        </span>
+<span id="cb44-10"><a href="advanced-results-objects.html#cb44-10" tabindex="-1"></a>        <span class="do">## make the tables</span></span>
+<span id="cb44-11"><a href="advanced-results-objects.html#cb44-11" tabindex="-1"></a>        tabs     <span class="ot">&lt;-</span>  <span class="fu">lapply</span>(whichcovs, <span class="cf">function</span> (x) {</span>
+<span id="cb44-12"><a href="advanced-results-objects.html#cb44-12" tabindex="-1"></a>            m  <span class="ot">&lt;-</span> <span class="fu">mean</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb44-13"><a href="advanced-results-objects.html#cb44-13" tabindex="-1"></a>            s  <span class="ot">&lt;-</span> <span class="fu">sd</span>(self<span class="sc">$</span>analysis<span class="sc">$</span>data[[x]],<span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb44-14"><a href="advanced-results-objects.html#cb44-14" tabindex="-1"></a>            <span class="fu">data.frame</span>(<span class="at">var=</span>x,<span class="at">mean=</span>m,<span class="at">sd=</span>s)</span>
+<span id="cb44-15"><a href="advanced-results-objects.html#cb44-15" tabindex="-1"></a>        })</span>
+<span id="cb44-16"><a href="advanced-results-objects.html#cb44-16" tabindex="-1"></a>        <span class="fu">attr</span>(tabs,<span class="st">&quot;keys&quot;</span>)<span class="ot">&lt;-</span>whichcovs <span class="do">## passing the keys to the jamovi table</span></span>
+<span id="cb44-17"><a href="advanced-results-objects.html#cb44-17" tabindex="-1"></a>        <span class="fu">return</span>(tabs)</span>
+<span id="cb44-18"><a href="advanced-results-objects.html#cb44-18" tabindex="-1"></a>    }</span>
+<span id="cb44-19"><a href="advanced-results-objects.html#cb44-19" tabindex="-1"></a></span>
+<span id="cb44-20"><a href="advanced-results-objects.html#cb44-20" tabindex="-1"></a>      <span class="co"># ... #</span></span></code></pre></div>
 <p><img src="pics/c4_output5.png" width="342" /></p>
 </div>
 </div>

@@ -24,7 +24,7 @@ to the jamovi object. If option final=TRUE, a stop() is issued
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">jmvScaffold</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.9.2</span>
       </span>
     </div>
 
@@ -68,6 +68,10 @@ It accepts a list with fields:</p><ul><li><p><code>topic</code> the nickname of 
 </ul></li>
 <li><p><code>message</code> the message to broadcast</p></li>
 <li><p><code>init</code> (optional) <code>init=TRUE</code> makes the message transient (disappears after init)</p></li>
+<li><p><code>head</code> (optional)  it can be <code>info</code>, <code>warning</code>, and <code>error</code>. In jamovi, if <code>tablename</code>
+is a table, does not have an effect. If <code>tablename</code> is a <code>Htlm</code> obj, it gives
+the message a different format and color. In R, <code>warning</code> is issued as an R
+warning, the others are added as notes to the tables.</p></li>
 </ul></dd>
 
 

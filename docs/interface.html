@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 2 Interface | jmvScaffold: R functions to develop jamovi modules</title>
   <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 2 Interface | jmvScaffold: R functions to develop jamovi modules" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="mcstyle.css" type="text/css" />
@@ -244,64 +248,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.a.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="interface.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
-<span id="cb8-2"><a href="interface.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
-<span id="cb8-3"><a href="interface.html#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">menuGroup</span><span class="kw">:</span><span class="at"> COOLj</span></span>
-<span id="cb8-4"><a href="interface.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0.0&#39;</span></span>
-<span id="cb8-5"><a href="interface.html#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">jas</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.2&#39;</span></span>
-<span id="cb8-6"><a href="interface.html#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-7"><a href="interface.html#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span><span class="kw">:</span></span>
-<span id="cb8-8"><a href="interface.html#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> data</span></span>
-<span id="cb8-9"><a href="interface.html#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Data</span></span>
-<span id="cb8-10"><a href="interface.html#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="interface.html#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> dep</span></span>
-<span id="cb8-12"><a href="interface.html#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Dependent Variable</span></span>
-<span id="cb8-13"><a href="interface.html#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
-<span id="cb8-14"><a href="interface.html#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-15"><a href="interface.html#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> group</span></span>
-<span id="cb8-16"><a href="interface.html#cb8-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Grouping Variable</span></span>
-<span id="cb8-17"><a href="interface.html#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
-<span id="cb8-18"><a href="interface.html#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-19"><a href="interface.html#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> alt</span></span>
-<span id="cb8-20"><a href="interface.html#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Alternative hypothesis</span></span>
-<span id="cb8-21"><a href="interface.html#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> List</span></span>
-<span id="cb8-22"><a href="interface.html#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">options</span><span class="kw">:</span></span>
-<span id="cb8-23"><a href="interface.html#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Not equal</span></span>
-<span id="cb8-24"><a href="interface.html#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at">  notequal</span></span>
-<span id="cb8-25"><a href="interface.html#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> One greater</span></span>
-<span id="cb8-26"><a href="interface.html#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at">  onegreater</span></span>
-<span id="cb8-27"><a href="interface.html#cb8-27" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Two greater</span></span>
-<span id="cb8-28"><a href="interface.html#cb8-28" aria-hidden="true" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at">  twogreater</span></span>
-<span id="cb8-29"><a href="interface.html#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">default</span><span class="kw">:</span><span class="at"> notequal</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="interface.html#cb8-1" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
+<span id="cb8-2"><a href="interface.html#cb8-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
+<span id="cb8-3"><a href="interface.html#cb8-3" tabindex="-1"></a><span class="fu">menuGroup</span><span class="kw">:</span><span class="at"> COOLj</span></span>
+<span id="cb8-4"><a href="interface.html#cb8-4" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0.0&#39;</span></span>
+<span id="cb8-5"><a href="interface.html#cb8-5" tabindex="-1"></a><span class="fu">jas</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.2&#39;</span></span>
+<span id="cb8-6"><a href="interface.html#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="interface.html#cb8-7" tabindex="-1"></a><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb8-8"><a href="interface.html#cb8-8" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> data</span></span>
+<span id="cb8-9"><a href="interface.html#cb8-9" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Data</span></span>
+<span id="cb8-10"><a href="interface.html#cb8-10" tabindex="-1"></a></span>
+<span id="cb8-11"><a href="interface.html#cb8-11" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> dep</span></span>
+<span id="cb8-12"><a href="interface.html#cb8-12" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Dependent Variable</span></span>
+<span id="cb8-13"><a href="interface.html#cb8-13" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
+<span id="cb8-14"><a href="interface.html#cb8-14" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="interface.html#cb8-15" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> group</span></span>
+<span id="cb8-16"><a href="interface.html#cb8-16" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Grouping Variable</span></span>
+<span id="cb8-17"><a href="interface.html#cb8-17" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
+<span id="cb8-18"><a href="interface.html#cb8-18" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="interface.html#cb8-19" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> alt</span></span>
+<span id="cb8-20"><a href="interface.html#cb8-20" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Alternative hypothesis</span></span>
+<span id="cb8-21"><a href="interface.html#cb8-21" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> List</span></span>
+<span id="cb8-22"><a href="interface.html#cb8-22" tabindex="-1"></a><span class="at">      </span><span class="fu">options</span><span class="kw">:</span></span>
+<span id="cb8-23"><a href="interface.html#cb8-23" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Not equal</span></span>
+<span id="cb8-24"><a href="interface.html#cb8-24" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at">  notequal</span></span>
+<span id="cb8-25"><a href="interface.html#cb8-25" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> One greater</span></span>
+<span id="cb8-26"><a href="interface.html#cb8-26" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at">  onegreater</span></span>
+<span id="cb8-27"><a href="interface.html#cb8-27" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Two greater</span></span>
+<span id="cb8-28"><a href="interface.html#cb8-28" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at">  twogreater</span></span>
+<span id="cb8-29"><a href="interface.html#cb8-29" tabindex="-1"></a><span class="at">      </span><span class="fu">default</span><span class="kw">:</span><span class="at"> notequal</span></span></code></pre></div>
 <p>Each option should have a <code>name</code> and a <code>type</code>. Depending to the <code>type</code>, other properties can be defined. For our purposes,
 we need a <code>Variable</code> type to input the dependent variable and a <code>Variables</code> type to input independent variables, plus the <code>Data</code> type that will pass the spreadsheet data to the R package.</p>
 <div class="filename">
 <span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.a.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="interface.html#cb9-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-2"><a href="interface.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
-<span id="cb9-3"><a href="interface.html#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
-<span id="cb9-4"><a href="interface.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">menuGroup</span><span class="kw">:</span><span class="at"> COOLj</span></span>
-<span id="cb9-5"><a href="interface.html#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0.0&#39;</span></span>
-<span id="cb9-6"><a href="interface.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">jas</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.2&#39;</span></span>
-<span id="cb9-7"><a href="interface.html#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="interface.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> data</span></span>
-<span id="cb9-9"><a href="interface.html#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Data</span></span>
-<span id="cb9-10"><a href="interface.html#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
-<span id="cb9-11"><a href="interface.html#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> dep</span></span>
-<span id="cb9-12"><a href="interface.html#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Dependent Variable</span></span>
-<span id="cb9-13"><a href="interface.html#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
-<span id="cb9-14"><a href="interface.html#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
-<span id="cb9-15"><a href="interface.html#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span>
-<span id="cb9-16"><a href="interface.html#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="at">      </span></span>
-<span id="cb9-17"><a href="interface.html#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> covs</span></span>
-<span id="cb9-18"><a href="interface.html#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Covariates</span></span>
-<span id="cb9-19"><a href="interface.html#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variables</span></span>
-<span id="cb9-20"><a href="interface.html#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">suggested</span><span class="kw">:</span></span>
-<span id="cb9-21"><a href="interface.html#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> continuous</span></span>
-<span id="cb9-22"><a href="interface.html#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> ordinal</span></span>
-<span id="cb9-23"><a href="interface.html#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
-<span id="cb9-24"><a href="interface.html#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb9-1"><a href="interface.html#cb9-1" tabindex="-1"></a></span>
+<span id="cb9-2"><a href="interface.html#cb9-2" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at">  myRegression</span></span>
+<span id="cb9-3"><a href="interface.html#cb9-3" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
+<span id="cb9-4"><a href="interface.html#cb9-4" tabindex="-1"></a><span class="fu">menuGroup</span><span class="kw">:</span><span class="at"> COOLj</span></span>
+<span id="cb9-5"><a href="interface.html#cb9-5" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0.0&#39;</span></span>
+<span id="cb9-6"><a href="interface.html#cb9-6" tabindex="-1"></a><span class="fu">jas</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.2&#39;</span></span>
+<span id="cb9-7"><a href="interface.html#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="interface.html#cb9-8" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> data</span></span>
+<span id="cb9-9"><a href="interface.html#cb9-9" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Data</span></span>
+<span id="cb9-10"><a href="interface.html#cb9-10" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb9-11"><a href="interface.html#cb9-11" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> dep</span></span>
+<span id="cb9-12"><a href="interface.html#cb9-12" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Dependent Variable</span></span>
+<span id="cb9-13"><a href="interface.html#cb9-13" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variable</span></span>
+<span id="cb9-14"><a href="interface.html#cb9-14" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
+<span id="cb9-15"><a href="interface.html#cb9-15" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span>
+<span id="cb9-16"><a href="interface.html#cb9-16" tabindex="-1"></a><span class="at">      </span></span>
+<span id="cb9-17"><a href="interface.html#cb9-17" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> covs</span></span>
+<span id="cb9-18"><a href="interface.html#cb9-18" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Covariates</span></span>
+<span id="cb9-19"><a href="interface.html#cb9-19" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Variables</span></span>
+<span id="cb9-20"><a href="interface.html#cb9-20" tabindex="-1"></a><span class="at">      </span><span class="fu">suggested</span><span class="kw">:</span></span>
+<span id="cb9-21"><a href="interface.html#cb9-21" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> continuous</span></span>
+<span id="cb9-22"><a href="interface.html#cb9-22" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> ordinal</span></span>
+<span id="cb9-23"><a href="interface.html#cb9-23" tabindex="-1"></a><span class="at">      </span><span class="fu">permitted</span><span class="kw">:</span></span>
+<span id="cb9-24"><a href="interface.html#cb9-24" tabindex="-1"></a><span class="at">        </span><span class="kw">-</span><span class="at"> numeric</span></span></code></pre></div>
 <p>First, notice the <code>menuGroup</code> property. That says in which menu the analysis will appear in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>. Because the <code>COOLj</code> menu
 does not exist, the compiler will create one. Later we see how to put your module under pre-existing menus.</p>
 <p>Now, the <code>dep</code> option will contain the dependent variable, and the property <code>permitted</code> allows the user to input only numerical variables (see appendix <a href="appendixa.html#appendixa">A</a>) for more details about variables types in jamovi).
@@ -318,32 +322,32 @@ The layout is basically an HTML page, so one can think of a <code>LayoutBox</cod
 <div class="filename">
 <span class="filename">File: jamovi/myregression.u.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/myregression.u.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="interface.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="pp">---</span></span>
-<span id="cb10-2"><a href="interface.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
-<span id="cb10-3"><a href="interface.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> powerReg</span></span>
-<span id="cb10-4"><a href="interface.html#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jus</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;3.0&#39;</span></span>
-<span id="cb10-5"><a href="interface.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stage</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
-<span id="cb10-6"><a href="interface.html#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="fu">compilerMode</span><span class="kw">:</span><span class="at"> tame</span></span>
-<span id="cb10-7"><a href="interface.html#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="fu">children</span><span class="kw">:</span></span>
-<span id="cb10-8"><a href="interface.html#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> LayoutBox</span></span>
-<span id="cb10-9"><a href="interface.html#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span><span class="at"> large</span></span>
-<span id="cb10-10"><a href="interface.html#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">children</span><span class="kw">:</span></span>
-<span id="cb10-11"><a href="interface.html#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
-<span id="cb10-12"><a href="interface.html#cb10-12" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es</span></span>
-<span id="cb10-13"><a href="interface.html#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb10-14"><a href="interface.html#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
-<span id="cb10-15"><a href="interface.html#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> alpha</span></span>
-<span id="cb10-16"><a href="interface.html#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb10-17"><a href="interface.html#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
-<span id="cb10-18"><a href="interface.html#cb10-18" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> power</span></span>
-<span id="cb10-19"><a href="interface.html#cb10-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb10-20"><a href="interface.html#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb10-1"><a href="interface.html#cb10-1" tabindex="-1"></a><span class="pp">---</span></span>
+<span id="cb10-2"><a href="interface.html#cb10-2" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Regression analysis</span></span>
+<span id="cb10-3"><a href="interface.html#cb10-3" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> powerReg</span></span>
+<span id="cb10-4"><a href="interface.html#cb10-4" tabindex="-1"></a><span class="fu">jus</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;3.0&#39;</span></span>
+<span id="cb10-5"><a href="interface.html#cb10-5" tabindex="-1"></a><span class="fu">stage</span><span class="kw">:</span><span class="at"> </span><span class="dv">0</span></span>
+<span id="cb10-6"><a href="interface.html#cb10-6" tabindex="-1"></a><span class="fu">compilerMode</span><span class="kw">:</span><span class="at"> tame</span></span>
+<span id="cb10-7"><a href="interface.html#cb10-7" tabindex="-1"></a><span class="fu">children</span><span class="kw">:</span></span>
+<span id="cb10-8"><a href="interface.html#cb10-8" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> LayoutBox</span></span>
+<span id="cb10-9"><a href="interface.html#cb10-9" tabindex="-1"></a><span class="at">    </span><span class="fu">margin</span><span class="kw">:</span><span class="at"> large</span></span>
+<span id="cb10-10"><a href="interface.html#cb10-10" tabindex="-1"></a><span class="at">    </span><span class="fu">children</span><span class="kw">:</span></span>
+<span id="cb10-11"><a href="interface.html#cb10-11" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
+<span id="cb10-12"><a href="interface.html#cb10-12" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> es</span></span>
+<span id="cb10-13"><a href="interface.html#cb10-13" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb10-14"><a href="interface.html#cb10-14" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
+<span id="cb10-15"><a href="interface.html#cb10-15" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> alpha</span></span>
+<span id="cb10-16"><a href="interface.html#cb10-16" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb10-17"><a href="interface.html#cb10-17" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">type</span><span class="kw">:</span><span class="at"> TextBox</span></span>
+<span id="cb10-18"><a href="interface.html#cb10-18" tabindex="-1"></a><span class="at">        </span><span class="fu">name</span><span class="kw">:</span><span class="at"> power</span></span>
+<span id="cb10-19"><a href="interface.html#cb10-19" tabindex="-1"></a><span class="at">        </span><span class="fu">format</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb10-20"><a href="interface.html#cb10-20" tabindex="-1"></a><span class="co">...</span></span></code></pre></div>
 <p>Notice that we set <code>compiler:</code> to <code>tame</code>, because it tells the jamovi compiler not to override our layout.</p>
 </div>
 <div id="compile" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Compiling the jamovi module<a href="interface.html#compile" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>At this point we compile out module and see what happens.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="interface.html#cb11-1" aria-hidden="true" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="interface.html#cb11-1" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">install</span>()</span></code></pre></div>
 <p>If everything went as expected, you should see the <code>COOLj</code> module in <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>. You do not need to restart <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, the compiler would restart the internal engine automatically and you should see the new module.</p>
 <p><img src="pics/c2_menu.png" width="233" /></p>
 <p><img src="pics/c2_input1.png" width="592" /></p>

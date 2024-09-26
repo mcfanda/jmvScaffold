@@ -29,6 +29,10 @@ It accepts a list with fields:
 }
 \item \code{message} the message to broadcast
 \item \code{init} (optional) \code{init=TRUE} makes the message transient (disappears after init)
+\item \code{head} (optional)  it can be \code{info}, \code{warning}, and \code{error}. In jamovi, if \code{tablename}
+is a table, does not have an effect. If \code{tablename} is a \code{Htlm} obj, it gives
+the message a different format and color. In R, \code{warning} is issued as an R
+warning, the others are added as notes to the tables.
 }}
 
 \item{\code{errors}}{set an error message to a jamovi table

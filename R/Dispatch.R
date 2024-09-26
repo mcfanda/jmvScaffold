@@ -65,38 +65,14 @@ Dispatch <- R6::R6Class(
                         #' 
                         #' *   `message` the message to broadcast
                         #' *   `init` (optional) `init=TRUE` makes the message transient (disappears after init)
+                        #' *   `head` (optional)  it can be `info`, `warning`, and `error`. In jamovi, if `tablename`
+                        #'             is a table, does not have an effect. If `tablename` is a `Htlm` obj, it gives
+                        #'             the message a different format and color. In R, `warning` is issued as an R
+                        #'             warning, the others are added as notes to the tables. 
                         #' @md   
                         warnings=function(obj) {
 
-                                if (missing(obj)) return()
-                                if (is.null(obj$message)) return()
-                                if (isFALSE(obj$message)) return()
-                                if (is.null(obj$topic)) stop("SCAFFOLD:  a message should have a topic (a table path)")
-                                path<-stringr::str_split(obj$topic,"_")[[1]]
-                                
-                                table<-private$.find_table(path)
-                                
-                                if (!is.something(table)) stop("SCAFFOLD: a message was sent to a non-existing result object: ",obj$topic)
-                                state<-as.list(table$state)
-                                if (!hasName(obj,"id")) obj$id<-jmvcore::toB64(obj$message)
-                                
-                                obj$message<-private$.translate(obj$message)
-                                
-                                if (inherits(table,"Html")) {
-                                  content<-table$content
-                                  content<-table$setContent(paste(content,"<div><i>Note:</i>",obj$message,"</div>"))
-                                  table$setVisible(TRUE)
-                                  return()
-                                }
-                                     
-                                
-                                if (!inherits(table,"Table")) 
-                                     what<-obj$id
-                                else
-                                     what<-length(state$notes)+1
-                                
-                               state$notes[[what]]<-obj
-                               table$setState(state)
+                                ## some code
                                
                         },
                         #' @field errors

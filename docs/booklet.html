@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>jmvScaffold: R functions to develop jamovi modules</title>
   <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="jmvScaffold: R functions to develop jamovi modules" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="mcstyle.css" type="text/css" />
@@ -261,11 +265,11 @@ not make your coding easier than just using <span class="jamovi"><a href="http:/
 <li><p>To install <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span></p></li>
 <li><p>To install <code>jmvtools</code> R package, provided by the jamovi core developing group.</p></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="booklet.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;jmvtools&#39;</span>, <span class="at">repos=</span><span class="fu">c</span>(<span class="st">&#39;https://repo.jamovi.org&#39;</span>, <span class="st">&#39;https://cran.r-project.org&#39;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="booklet.html#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;jmvtools&#39;</span>, <span class="at">repos=</span><span class="fu">c</span>(<span class="st">&#39;https://repo.jamovi.org&#39;</span>, <span class="st">&#39;https://cran.r-project.org&#39;</span>))</span></code></pre></div>
 <ul>
 <li>To install <code>jmvScaffold</code> R package (check out if you need some dependency)</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="booklet.html#cb2-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;mcfanda/jmvScaffold&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="booklet.html#cb2-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;mcfanda/jmvScaffold&quot;</span>)</span></code></pre></div>
 <p>We will see that your module will not need to install <code>jmvScaffold</code> to work, you just need it to program. Thus, <strong>when you publish your module, <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> will not need to install <code>jmvScaffold</code> package</strong>. The necessary files to take advantage of the functions and classes provided by <code>jmvScaffold</code> will be part of your module, independently of <code>jmvScaffold</code> package. Thus, no change or update of <code>jmvScaffold</code> will affect your code in the future, nor any link to the package will bind your code to it.</p>
 </div>
 <div id="createmodule" class="section level2 hasAnchor" number="1.3">
@@ -275,7 +279,7 @@ of a R package, plus the additional information and coding required to interface
 to obtain a working module we need to make steps both for the R package and for the jamovi interface.</p>
 <p>We now create a new module, named <code>COOLj</code>. At the end of this material, the <code>COOLj</code> module will <a href='https://github.com/mcfanda/COOLj' target='_blank'>look like this</a>. For simplicity, we aim at producing a module that does a linear regression and some other simple statistics.</p>
 <p>First, we create its folder (so be sure you are in a parent folder) and the folders structure with <code>jmvtool</code></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="booklet.html#cb3-1" aria-hidden="true" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">create</span>(<span class="st">&#39;COOLj&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="booklet.html#cb3-1" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">create</span>(<span class="st">&#39;COOLj&#39;</span>)</span></code></pre></div>
 <p>This should produce, in the <code>COOLj</code> folder, this structure.</p>
 <p><img src="pics/c1_create_folders.png" width="345" /></p>
 <p>If you use <a href="https://posit.co/">RStudio</a>, it is a good idea to create a project in the <code>COOLj</code> folder, because working with
@@ -284,40 +288,40 @@ RStudio projects make our lives much easier.</p>
 <div class="filename">
 <span class="filename">File: DESCRIPTION (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/DESCRIPTION' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="booklet.html#cb4-1" aria-hidden="true" tabindex="-1"></a>Package<span class="sc">:</span> COOLj</span>
-<span id="cb4-2"><a href="booklet.html#cb4-2" aria-hidden="true" tabindex="-1"></a>Type<span class="sc">:</span> Package</span>
-<span id="cb4-3"><a href="booklet.html#cb4-3" aria-hidden="true" tabindex="-1"></a>Title<span class="sc">:</span> Simple example of jmvScaffold</span>
-<span id="cb4-4"><a href="booklet.html#cb4-4" aria-hidden="true" tabindex="-1"></a>Version<span class="sc">:</span> <span class="dv">0</span>.<span class="fl">0.1</span></span>
-<span id="cb4-5"><a href="booklet.html#cb4-5" aria-hidden="true" tabindex="-1"></a>Author<span class="sc">:</span> mcfanda</span>
-<span id="cb4-6"><a href="booklet.html#cb4-6" aria-hidden="true" tabindex="-1"></a>Maintainer<span class="sc">:</span> Mcfanda <span class="sc">&lt;</span>yourself<span class="sc">@</span>somewhere.net<span class="sc">&gt;</span></span>
-<span id="cb4-7"><a href="booklet.html#cb4-7" aria-hidden="true" tabindex="-1"></a>Description<span class="sc">:</span> This is an example of</span>
-<span id="cb4-8"><a href="booklet.html#cb4-8" aria-hidden="true" tabindex="-1"></a>    jmvScaffold</span>
-<span id="cb4-9"><a href="booklet.html#cb4-9" aria-hidden="true" tabindex="-1"></a>License<span class="sc">:</span> GPL</span>
-<span id="cb4-10"><a href="booklet.html#cb4-10" aria-hidden="true" tabindex="-1"></a>Encoding<span class="sc">:</span> UTF<span class="dv">-8</span></span>
-<span id="cb4-11"><a href="booklet.html#cb4-11" aria-hidden="true" tabindex="-1"></a>LazyData<span class="sc">:</span> true</span>
-<span id="cb4-12"><a href="booklet.html#cb4-12" aria-hidden="true" tabindex="-1"></a>Imports<span class="sc">:</span> <span class="fu">jmvcore</span> (<span class="sc">&gt;=</span> <span class="dv">0</span>.<span class="fl">8.5</span>), R6</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="booklet.html#cb4-1" tabindex="-1"></a>Package<span class="sc">:</span> COOLj</span>
+<span id="cb4-2"><a href="booklet.html#cb4-2" tabindex="-1"></a>Type<span class="sc">:</span> Package</span>
+<span id="cb4-3"><a href="booklet.html#cb4-3" tabindex="-1"></a>Title<span class="sc">:</span> Simple example of jmvScaffold</span>
+<span id="cb4-4"><a href="booklet.html#cb4-4" tabindex="-1"></a>Version<span class="sc">:</span> <span class="dv">0</span>.<span class="fl">0.1</span></span>
+<span id="cb4-5"><a href="booklet.html#cb4-5" tabindex="-1"></a>Author<span class="sc">:</span> mcfanda</span>
+<span id="cb4-6"><a href="booklet.html#cb4-6" tabindex="-1"></a>Maintainer<span class="sc">:</span> Mcfanda <span class="sc">&lt;</span>yourself<span class="sc">@</span>somewhere.net<span class="sc">&gt;</span></span>
+<span id="cb4-7"><a href="booklet.html#cb4-7" tabindex="-1"></a>Description<span class="sc">:</span> This is an example of</span>
+<span id="cb4-8"><a href="booklet.html#cb4-8" tabindex="-1"></a>    jmvScaffold</span>
+<span id="cb4-9"><a href="booklet.html#cb4-9" tabindex="-1"></a>License<span class="sc">:</span> GPL</span>
+<span id="cb4-10"><a href="booklet.html#cb4-10" tabindex="-1"></a>Encoding<span class="sc">:</span> UTF<span class="dv">-8</span></span>
+<span id="cb4-11"><a href="booklet.html#cb4-11" tabindex="-1"></a>LazyData<span class="sc">:</span> true</span>
+<span id="cb4-12"><a href="booklet.html#cb4-12" tabindex="-1"></a>Imports<span class="sc">:</span> <span class="fu">jmvcore</span> (<span class="sc">&gt;=</span> <span class="dv">0</span>.<span class="fl">8.5</span>), R6</span></code></pre></div>
 <p>This describes your package in R. Now we need to define a description for <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, filling the file
 <code>./jamovi/0000.yaml</code></p>
 <div class="filename">
 <span class="filename">File: jamovi/000.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.1/jamovi/000.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="booklet.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Simple example of jmvScaffold</span></span>
-<span id="cb5-2"><a href="booklet.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> COOLj</span></span>
-<span id="cb5-3"><a href="booklet.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.0.1</span></span>
-<span id="cb5-4"><a href="booklet.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">jms</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0&#39;</span></span>
-<span id="cb5-5"><a href="booklet.html#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">authors</span><span class="kw">:</span></span>
-<span id="cb5-6"><a href="booklet.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> Mcfanda</span></span>
-<span id="cb5-7"><a href="booklet.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">maintainer</span><span class="kw">:</span><span class="at"> mcfanda &lt;yourself@somewhere.net&gt;</span></span>
-<span id="cb5-8"><a href="booklet.html#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;2023-1-1&#39;</span></span>
-<span id="cb5-9"><a href="booklet.html#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> R</span></span>
-<span id="cb5-10"><a href="booklet.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">description</span><span class="kw">: </span><span class="ch">&gt;-</span></span>
-<span id="cb5-11"><a href="booklet.html#cb5-11" aria-hidden="true" tabindex="-1"></a>      This is an example of jmvScaffold</span>
-<span id="cb5-12"><a href="booklet.html#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">analyses</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
-<span id="cb5-13"><a href="booklet.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">usesNative</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb5-14"><a href="booklet.html#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">minApp</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0.8</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb5-1"><a href="booklet.html#cb5-1" tabindex="-1"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> Simple example of jmvScaffold</span></span>
+<span id="cb5-2"><a href="booklet.html#cb5-2" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> COOLj</span></span>
+<span id="cb5-3"><a href="booklet.html#cb5-3" tabindex="-1"></a><span class="fu">version</span><span class="kw">:</span><span class="at"> </span><span class="fl">0.0.1</span></span>
+<span id="cb5-4"><a href="booklet.html#cb5-4" tabindex="-1"></a><span class="fu">jms</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;1.0&#39;</span></span>
+<span id="cb5-5"><a href="booklet.html#cb5-5" tabindex="-1"></a><span class="fu">authors</span><span class="kw">:</span></span>
+<span id="cb5-6"><a href="booklet.html#cb5-6" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> Mcfanda</span></span>
+<span id="cb5-7"><a href="booklet.html#cb5-7" tabindex="-1"></a><span class="fu">maintainer</span><span class="kw">:</span><span class="at"> mcfanda &lt;yourself@somewhere.net&gt;</span></span>
+<span id="cb5-8"><a href="booklet.html#cb5-8" tabindex="-1"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">&#39;2023-1-1&#39;</span></span>
+<span id="cb5-9"><a href="booklet.html#cb5-9" tabindex="-1"></a><span class="fu">type</span><span class="kw">:</span><span class="at"> R</span></span>
+<span id="cb5-10"><a href="booklet.html#cb5-10" tabindex="-1"></a><span class="fu">description</span><span class="kw">: </span><span class="ch">&gt;-</span></span>
+<span id="cb5-11"><a href="booklet.html#cb5-11" tabindex="-1"></a>      This is an example of jmvScaffold</span>
+<span id="cb5-12"><a href="booklet.html#cb5-12" tabindex="-1"></a><span class="fu">analyses</span><span class="kw">:</span><span class="at"> </span><span class="kw">[]</span></span>
+<span id="cb5-13"><a href="booklet.html#cb5-13" tabindex="-1"></a><span class="fu">usesNative</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb5-14"><a href="booklet.html#cb5-14" tabindex="-1"></a><span class="fu">minApp</span><span class="kw">:</span><span class="at"> </span><span class="fl">1.0.8</span></span></code></pre></div>
 <p>We will get back to this file later on. For now, we happy.</p>
 <p>Finally, we copy the <code>jmvScaffold</code> classes in our module <code>./R</code> folder with</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="booklet.html#cb6-1" aria-hidden="true" tabindex="-1"></a>jmvScaffold<span class="sc">::</span><span class="fu">copy_files</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="booklet.html#cb6-1" tabindex="-1"></a>jmvScaffold<span class="sc">::</span><span class="fu">copy_files</span>()</span></code></pre></div>
 </div>
 <div id="defining-the-analysis" class="section level2 hasAnchor" number="1.4">
 <h2><span class="header-section-number">1.4</span> Defining the analysis<a href="booklet.html#defining-the-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -329,7 +333,7 @@ We make it more complex later on. This model will be useless, because <span clas
 <div id="jamovi-analysis" class="section level2 hasAnchor" number="1.5">
 <h2><span class="header-section-number">1.5</span> jamovi analysis<a href="booklet.html#jamovi-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We want to call this <code>analysis</code> <code>myRegression</code>. Thus, we create a file named <code>myRegression</code> in the <code>./jamovi/</code> folder.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="booklet.html#cb7-1" aria-hidden="true" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">addAnalysis</span>(<span class="at">name=</span><span class="st">&#39;myRegression&#39;</span>, <span class="at">title=</span><span class="st">&#39;Regression analysis&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="booklet.html#cb7-1" tabindex="-1"></a>jmvtools<span class="sc">::</span><span class="fu">addAnalysis</span>(<span class="at">name=</span><span class="st">&#39;myRegression&#39;</span>, <span class="at">title=</span><span class="st">&#39;Regression analysis&#39;</span>)</span></code></pre></div>
 <p>The option <code>name</code> decides the name of the R function that will be produced, and the option <code>title</code> decides how
 the function will be labelled in the <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span> menu (it can be changed later on if needed).</p>
 <p>Running the command produces several files. In the <code>./jamovi/</code> folder we have</p>
