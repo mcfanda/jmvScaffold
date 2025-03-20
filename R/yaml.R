@@ -72,7 +72,9 @@ preprocess_r_yaml <- function() {
 
       yaml[["items"]]<-pre
       say("Writing file ", file)
-      yaml::write_yaml(yaml,paste0("jamovi/",file),indent=8,handlers=list(logical=yaml::verbatim_logical))
+      root<-"jamovi/"
+      yaml::write_yaml(yaml,paste0(root,file),indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
+
     } #end of loop file
   say("\n...done\n")
   
@@ -154,7 +156,7 @@ preprocess_a_yaml <- function() {
       }
       file <- paste0("jamovi/",file)
       message("Writing file", file)
-      yaml::write_yaml(fix_some(yaml),file,indent=8,handlers=list(logical=yaml::verbatim_logical))
+      yaml::write_yaml(fix_some(yaml),file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
 
     } else
        say("No preprocessing file ",file,". Nothing to do")
@@ -209,7 +211,7 @@ preprocess_u_yaml <- function() {
       }
       file <- paste0("jamovi/",file)
       say("Writing file", file)
-      yaml::write_yaml(yaml,file,indent=8,handlers=list(logical=yaml::verbatim_logical))
+      yaml::write_yaml(yaml,file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
 
     } else
        say("No preprocessing file ",file,". Nothing to do")
@@ -292,7 +294,7 @@ rec_u<-function(alist) {
 fix_u<-function(file) {
   
   yaml <- yaml::read_yaml(file)
-  yaml::write_yaml(rec_u(yaml),file,indent=4,,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
+  yaml::write_yaml(rec_u(yaml),file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
   
 }
 

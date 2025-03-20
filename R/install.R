@@ -20,7 +20,9 @@ install_module_full<-function(what) {
     out<-preprocess_yaml()
     jmvtools::install(home = "flatpak")
     out<-postprocess_yaml()
+    jdebug(TRUE)
     jmvtools::install(home = "flatpak")
+    jdebug(FALSE)    
 
   }   else
     warning("versions mismatch")
@@ -60,7 +62,7 @@ install_module<-function(what) {
 
 jdebug<-function(value) {
     say("Setting debug to ", value)
-    file_path <- "R/jScafFunctions.R"  # specify your file path
+    file_path <- "R/jScafFunctions.R"  
     text_lines <- readLines(file_path)
     i  <- grep("j_DEBUG\\s*(=|<-)", text_lines)
     if (length(i)>0)
