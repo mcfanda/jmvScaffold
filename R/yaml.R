@@ -296,7 +296,8 @@ fix_u<-function(file) {
   
 }
 
-
+#' Formatting scaffold folder yaml files
+#' @export
 format_scaffold <- function() {
   
   say("Formatting scaffold folder")
@@ -307,12 +308,13 @@ format_scaffold <- function() {
     warn("No `jamovi/scaffolding` folder. Nothing to do in preprocessing yaml")
     return()
   }
-  files <- list.files("./jamovi/scaffold/", ".yaml")
+  root<-"./jamovi/scaffold/"
+  files <- list.files(root, ".yaml")
   for (file in files) {
     say("formatting ",file)
-    yaml <- yaml::read_yaml(file)
+    yaml <- yaml::read_yaml(paste0(root,file))
     say("Writing file", file)
-    yaml::write_yaml(yaml,file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
+    yaml::write_yaml(yaml,paste0(root,file),indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
   }
   say("...done")
 }
