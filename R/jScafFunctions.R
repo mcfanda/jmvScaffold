@@ -65,7 +65,7 @@ is.something <- function(x, ...) UseMethod(".is.something")
 is.there<-function(pattern,string) length(grep(pattern,string,fixed=T))>0
 
 #### This function run an expression and returns any warnings or errors without stopping the execution.
-#### It does not reterun the results, so the expr should assign a valut to the results
+#### It does not return the results, so the expr should assign a value to the results
 #### something like try_hard({a<-3^2}) and not a<-try_hard(3^2)
 
 try_hard<-function(exp,max_warn=5) {

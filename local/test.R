@@ -169,3 +169,11 @@ qq<-prop.table(table(dd$w))
 apply(dd,2,mean)
 qq*c(-100,0,100)
 2*e2*(1-p2)*(1-p2)-2*e2*p2*p2
+
+
+function(a,b) {
+  print(a,b)
+}
+dat<-yaml::read_yaml("local/ex.yaml")
+dat[[1]]$ciao$children[[1]]$suggested<-list("nomina")
+yaml::write_yaml(dat,"local/ex2.yaml",handlers=list(logical=yaml::verbatim_logical))

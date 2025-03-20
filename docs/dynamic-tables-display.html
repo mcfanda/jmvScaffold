@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 5 Dynamic Tables Display | jmvScaffold: R functions to develop jamovi modules</title>
   <meta name="description" content="It provise some explanations about using the package to develop jamovi modules" />
-  <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 5 Dynamic Tables Display | jmvScaffold: R functions to develop jamovi modules" />
   <meta property="og:type" content="book" />
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 <link rel="stylesheet" href="mcstyle.css" type="text/css" />
@@ -244,12 +248,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamovi/myregression.a.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.a.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb45-1"><a href="dynamic-tables-display.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb45-2"><a href="dynamic-tables-display.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> show_means</span></span>
-<span id="cb45-3"><a href="dynamic-tables-display.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Show Means for Sig.&quot;</span></span>
-<span id="cb45-4"><a href="dynamic-tables-display.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Bool</span></span>
-<span id="cb45-5"><a href="dynamic-tables-display.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">default</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb45-6"><a href="dynamic-tables-display.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb45-1"><a href="dynamic-tables-display.html#cb45-1" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb45-2"><a href="dynamic-tables-display.html#cb45-2" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> show_means</span></span>
+<span id="cb45-3"><a href="dynamic-tables-display.html#cb45-3" tabindex="-1"></a><span class="at">      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Show Means for Sig.&quot;</span></span>
+<span id="cb45-4"><a href="dynamic-tables-display.html#cb45-4" tabindex="-1"></a><span class="at">      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Bool</span></span>
+<span id="cb45-5"><a href="dynamic-tables-display.html#cb45-5" tabindex="-1"></a><span class="at">      </span><span class="fu">default</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb45-6"><a href="dynamic-tables-display.html#cb45-6" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p><img src="pics/c5_input1.png" width="589" /></p>
 </div>
 <div id="showing-table-on-options-change" class="section level2 hasAnchor" number="5.2">
@@ -258,32 +262,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb46"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb46-1"><a href="dynamic-tables-display.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span>
-<span id="cb46-2"><a href="dynamic-tables-display.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sig</span></span>
-<span id="cb46-3"><a href="dynamic-tables-display.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
-<span id="cb46-4"><a href="dynamic-tables-display.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Significant covariates</span></span>
-<span id="cb46-5"><a href="dynamic-tables-display.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_means)</span></span>
-<span id="cb46-6"><a href="dynamic-tables-display.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb46-7"><a href="dynamic-tables-display.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> means</span></span>
-<span id="cb46-8"><a href="dynamic-tables-display.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;&quot;</span></span>
-<span id="cb46-9"><a href="dynamic-tables-display.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Array</span></span>
-<span id="cb46-10"><a href="dynamic-tables-display.html#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_means)</span></span>
-<span id="cb46-11"><a href="dynamic-tables-display.html#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">template</span><span class="kw">:</span></span>
-<span id="cb46-12"><a href="dynamic-tables-display.html#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Variable - $key</span></span>
-<span id="cb46-13"><a href="dynamic-tables-display.html#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb46-14"><a href="dynamic-tables-display.html#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="at">                </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb46-15"><a href="dynamic-tables-display.html#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb46-16"><a href="dynamic-tables-display.html#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb46-17"><a href="dynamic-tables-display.html#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb46-18"><a href="dynamic-tables-display.html#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mean</span></span>
-<span id="cb46-19"><a href="dynamic-tables-display.html#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Mean&quot;</span></span>
-<span id="cb46-20"><a href="dynamic-tables-display.html#cb46-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb46-21"><a href="dynamic-tables-display.html#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sd</span></span>
-<span id="cb46-22"><a href="dynamic-tables-display.html#cb46-22" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Sd&quot;</span></span>
-<span id="cb46-23"><a href="dynamic-tables-display.html#cb46-23" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb46-24"><a href="dynamic-tables-display.html#cb46-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-25"><a href="dynamic-tables-display.html#cb46-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-26"><a href="dynamic-tables-display.html#cb46-26" aria-hidden="true" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb46-1"><a href="dynamic-tables-display.html#cb46-1" tabindex="-1"></a><span class="co">#...#</span></span>
+<span id="cb46-2"><a href="dynamic-tables-display.html#cb46-2" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sig</span></span>
+<span id="cb46-3"><a href="dynamic-tables-display.html#cb46-3" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
+<span id="cb46-4"><a href="dynamic-tables-display.html#cb46-4" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Significant covariates</span></span>
+<span id="cb46-5"><a href="dynamic-tables-display.html#cb46-5" tabindex="-1"></a><span class="at">         </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_means)</span></span>
+<span id="cb46-6"><a href="dynamic-tables-display.html#cb46-6" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb46-7"><a href="dynamic-tables-display.html#cb46-7" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> means</span></span>
+<span id="cb46-8"><a href="dynamic-tables-display.html#cb46-8" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;&quot;</span></span>
+<span id="cb46-9"><a href="dynamic-tables-display.html#cb46-9" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Array</span></span>
+<span id="cb46-10"><a href="dynamic-tables-display.html#cb46-10" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> (show_means)</span></span>
+<span id="cb46-11"><a href="dynamic-tables-display.html#cb46-11" tabindex="-1"></a><span class="at">             </span><span class="fu">template</span><span class="kw">:</span></span>
+<span id="cb46-12"><a href="dynamic-tables-display.html#cb46-12" tabindex="-1"></a><span class="at">                </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Variable - $key</span></span>
+<span id="cb46-13"><a href="dynamic-tables-display.html#cb46-13" tabindex="-1"></a><span class="at">                </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb46-14"><a href="dynamic-tables-display.html#cb46-14" tabindex="-1"></a><span class="at">                </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb46-15"><a href="dynamic-tables-display.html#cb46-15" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb46-16"><a href="dynamic-tables-display.html#cb46-16" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb46-17"><a href="dynamic-tables-display.html#cb46-17" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb46-18"><a href="dynamic-tables-display.html#cb46-18" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> mean</span></span>
+<span id="cb46-19"><a href="dynamic-tables-display.html#cb46-19" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Mean&quot;</span></span>
+<span id="cb46-20"><a href="dynamic-tables-display.html#cb46-20" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb46-21"><a href="dynamic-tables-display.html#cb46-21" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> sd</span></span>
+<span id="cb46-22"><a href="dynamic-tables-display.html#cb46-22" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Sd&quot;</span></span>
+<span id="cb46-23"><a href="dynamic-tables-display.html#cb46-23" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb46-24"><a href="dynamic-tables-display.html#cb46-24" tabindex="-1"></a></span>
+<span id="cb46-25"><a href="dynamic-tables-display.html#cb46-25" tabindex="-1"></a></span>
+<span id="cb46-26"><a href="dynamic-tables-display.html#cb46-26" tabindex="-1"></a><span class="co">#...#</span></span></code></pre></div>
 <p>Notice the <code>visible:</code> property. This means that the Array will be shown only if <code>show_means</code> is set to TRUE, thus when the user flags it. No other modification of the code is required. Notice, furthermore, that given the way <code>SmartArray</code> and <code>SmartTable</code> are implemented, if the table or the array is not visible, the functions to fill it are not run, so an advantage in performance is gained by not running computation that is not need.</p>
 <p>If you want a table or array to be visible by default by hidden by choice, just set the default of the associated option as true.</p>
 <p><img src="pics/c5_output1.png" width="966" /></p>
@@ -296,58 +300,58 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="filename">
 <span class="filename">File: jamovi/myregression.r.yaml (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/jamovi/myregression.r.yaml' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb47"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb47-1"><a href="dynamic-tables-display.html#cb47-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-2"><a href="dynamic-tables-display.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> additional</span></span>
-<span id="cb47-3"><a href="dynamic-tables-display.html#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
-<span id="cb47-4"><a href="dynamic-tables-display.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Additional Results</span></span>
-<span id="cb47-5"><a href="dynamic-tables-display.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
-<span id="cb47-6"><a href="dynamic-tables-display.html#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
-<span id="cb47-7"><a href="dynamic-tables-display.html#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
-<span id="cb47-8"><a href="dynamic-tables-display.html#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
-<span id="cb47-9"><a href="dynamic-tables-display.html#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">  ## here we set the default as not visible</span></span>
-<span id="cb47-10"><a href="dynamic-tables-display.html#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
-<span id="cb47-11"><a href="dynamic-tables-display.html#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
-<span id="cb47-12"><a href="dynamic-tables-display.html#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
-<span id="cb47-13"><a href="dynamic-tables-display.html#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb47-14"><a href="dynamic-tables-display.html#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> index</span></span>
-<span id="cb47-15"><a href="dynamic-tables-display.html#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Index&quot;</span></span>
-<span id="cb47-16"><a href="dynamic-tables-display.html#cb47-16" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
-<span id="cb47-17"><a href="dynamic-tables-display.html#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> value</span></span>
-<span id="cb47-18"><a href="dynamic-tables-display.html#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Value&quot;</span></span>
-<span id="cb47-19"><a href="dynamic-tables-display.html#cb47-19" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
-<span id="cb47-20"><a href="dynamic-tables-display.html#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb47-1"><a href="dynamic-tables-display.html#cb47-1" tabindex="-1"></a></span>
+<span id="cb47-2"><a href="dynamic-tables-display.html#cb47-2" tabindex="-1"></a><span class="at">       </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> additional</span></span>
+<span id="cb47-3"><a href="dynamic-tables-display.html#cb47-3" tabindex="-1"></a><span class="at">         </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Group</span></span>
+<span id="cb47-4"><a href="dynamic-tables-display.html#cb47-4" tabindex="-1"></a><span class="at">         </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Additional Results</span></span>
+<span id="cb47-5"><a href="dynamic-tables-display.html#cb47-5" tabindex="-1"></a><span class="at">         </span><span class="fu">items</span><span class="kw">:</span></span>
+<span id="cb47-6"><a href="dynamic-tables-display.html#cb47-6" tabindex="-1"></a><span class="at">           </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> effects</span></span>
+<span id="cb47-7"><a href="dynamic-tables-display.html#cb47-7" tabindex="-1"></a><span class="at">             </span><span class="fu">title</span><span class="kw">:</span><span class="at">  Effect Size Indices</span></span>
+<span id="cb47-8"><a href="dynamic-tables-display.html#cb47-8" tabindex="-1"></a><span class="at">             </span><span class="fu">type</span><span class="kw">:</span><span class="at"> Table</span></span>
+<span id="cb47-9"><a href="dynamic-tables-display.html#cb47-9" tabindex="-1"></a><span class="at">             </span><span class="fu">visible</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span><span class="co">  ## here we set the default as not visible</span></span>
+<span id="cb47-10"><a href="dynamic-tables-display.html#cb47-10" tabindex="-1"></a><span class="at">             </span><span class="fu">columns</span><span class="kw">:</span></span>
+<span id="cb47-11"><a href="dynamic-tables-display.html#cb47-11" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> var</span></span>
+<span id="cb47-12"><a href="dynamic-tables-display.html#cb47-12" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Variable&quot;</span></span>
+<span id="cb47-13"><a href="dynamic-tables-display.html#cb47-13" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb47-14"><a href="dynamic-tables-display.html#cb47-14" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> index</span></span>
+<span id="cb47-15"><a href="dynamic-tables-display.html#cb47-15" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Index&quot;</span></span>
+<span id="cb47-16"><a href="dynamic-tables-display.html#cb47-16" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> text</span></span>
+<span id="cb47-17"><a href="dynamic-tables-display.html#cb47-17" tabindex="-1"></a><span class="at">                    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> value</span></span>
+<span id="cb47-18"><a href="dynamic-tables-display.html#cb47-18" tabindex="-1"></a><span class="at">                      </span><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">&quot;Value&quot;</span></span>
+<span id="cb47-19"><a href="dynamic-tables-display.html#cb47-19" tabindex="-1"></a><span class="at">                      </span><span class="fu">type</span><span class="kw">:</span><span class="at"> number</span></span>
+<span id="cb47-20"><a href="dynamic-tables-display.html#cb47-20" tabindex="-1"></a><span class="at">                      </span><span class="fu">format</span><span class="kw">:</span><span class="at"> zto</span></span></code></pre></div>
 <p>Then go to the <code>.b.R</code> file, in the <code>.init()</code> function, and set the properties of the table as shown here.</p>
 <div class="filename">
 <span class="filename">File: R/myregression.b.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/myregression.b.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="dynamic-tables-display.html#cb48-1" aria-hidden="true" tabindex="-1"></a>    atable                <span class="ot">&lt;-</span> SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
-<span id="cb48-2"><a href="dynamic-tables-display.html#cb48-2" aria-hidden="true" tabindex="-1"></a>    atable<span class="sc">$</span>activateOnData <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
-<span id="cb48-3"><a href="dynamic-tables-display.html#cb48-3" aria-hidden="true" tabindex="-1"></a>    private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="dynamic-tables-display.html#cb48-1" tabindex="-1"></a>    atable                <span class="ot">&lt;-</span> SmartTable<span class="sc">$</span><span class="fu">new</span>(self<span class="sc">$</span>results<span class="sc">$</span>additional<span class="sc">$</span>effects,private<span class="sc">$</span>.runner)</span>
+<span id="cb48-2"><a href="dynamic-tables-display.html#cb48-2" tabindex="-1"></a>    atable<span class="sc">$</span>activateOnData <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb48-3"><a href="dynamic-tables-display.html#cb48-3" tabindex="-1"></a>    private<span class="sc">$</span>.tables[[<span class="fu">length</span>(private<span class="sc">$</span>.tables)<span class="sc">+</span><span class="dv">1</span>]]<span class="ot">&lt;-</span>atable</span></code></pre></div>
 <p>The <code>$activateOnData</code> property is crucial here: It tells the <code>SmartTable</code> to check its data source (i.e. <code>runner$run_additional_effects()</code>) and make itself visible only if it receives some data.</p>
 <p>Now we need to be sure that the <code>run_additional_effects()</code> returns something only if there is a significant result in the coefficients.
 In the <code>Runner.R</code> file, we change the function in:</p>
 <div class="filename">
 <span class="filename">File: R/Runner.R (<a href='https://github.com/mcfanda/COOLj/tree/Version.0.0.5/R/Runner.R' target='_blank'>Working version</a>)</span>
 </div>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dynamic-tables-display.html#cb49-1" aria-hidden="true" tabindex="-1"></a>run_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
-<span id="cb49-2"><a href="dynamic-tables-display.html#cb49-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb49-3"><a href="dynamic-tables-display.html#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="do">## check the covs ##</span></span>
-<span id="cb49-4"><a href="dynamic-tables-display.html#cb49-4" aria-hidden="true" tabindex="-1"></a>  results      <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(self<span class="sc">$</span>model)<span class="sc">$</span>coefficients)</span>
-<span id="cb49-5"><a href="dynamic-tables-display.html#cb49-5" aria-hidden="true" tabindex="-1"></a>  results      <span class="ot">&lt;-</span>   results[<span class="sc">-</span><span class="dv">1</span>,]</span>
-<span id="cb49-6"><a href="dynamic-tables-display.html#cb49-6" aria-hidden="true" tabindex="-1"></a>  whichcovs    <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(results[results[,<span class="dv">4</span>]<span class="sc">&lt;</span>.<span class="dv">05</span>,])</span>
-<span id="cb49-7"><a href="dynamic-tables-display.html#cb49-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(whichcovs)<span class="sc">==</span><span class="dv">0</span>) </span>
-<span id="cb49-8"><a href="dynamic-tables-display.html#cb49-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
-<span id="cb49-9"><a href="dynamic-tables-display.html#cb49-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb49-10"><a href="dynamic-tables-display.html#cb49-10" aria-hidden="true" tabindex="-1"></a>  eps       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">epsilon_squared</span>(self<span class="sc">$</span>model)</span>
-<span id="cb49-11"><a href="dynamic-tables-display.html#cb49-11" aria-hidden="true" tabindex="-1"></a>  eps_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eps<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;Epsilon^2&quot;</span>,<span class="at">value=</span>eps<span class="sc">$</span>Epsilon2)</span>
-<span id="cb49-12"><a href="dynamic-tables-display.html#cb49-12" aria-hidden="true" tabindex="-1"></a>  eta       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(self<span class="sc">$</span>model)</span>
-<span id="cb49-13"><a href="dynamic-tables-display.html#cb49-13" aria-hidden="true" tabindex="-1"></a>  eta_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pEta^2&quot;</span>,<span class="at">value=</span>eta<span class="sc">$</span>Eta2)</span>
-<span id="cb49-14"><a href="dynamic-tables-display.html#cb49-14" aria-hidden="true" tabindex="-1"></a>  omega     <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">omega_squared</span>(self<span class="sc">$</span>model)</span>
-<span id="cb49-15"><a href="dynamic-tables-display.html#cb49-15" aria-hidden="true" tabindex="-1"></a>  omega_df  <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pOmega^2&quot;</span>,<span class="at">value=</span>omega<span class="sc">$</span>Omega2)</span>
-<span id="cb49-16"><a href="dynamic-tables-display.html#cb49-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb49-17"><a href="dynamic-tables-display.html#cb49-17" aria-hidden="true" tabindex="-1"></a>  tab       <span class="ot">&lt;-</span>  <span class="fu">rbind</span>(eps_df,eta_df,omega_df)</span>
-<span id="cb49-18"><a href="dynamic-tables-display.html#cb49-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(tab)</span>
-<span id="cb49-19"><a href="dynamic-tables-display.html#cb49-19" aria-hidden="true" tabindex="-1"></a>},</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="dynamic-tables-display.html#cb49-1" tabindex="-1"></a>run_additional_effects<span class="ot">=</span><span class="cf">function</span>() {</span>
+<span id="cb49-2"><a href="dynamic-tables-display.html#cb49-2" tabindex="-1"></a>  </span>
+<span id="cb49-3"><a href="dynamic-tables-display.html#cb49-3" tabindex="-1"></a>  <span class="do">## check the covs ##</span></span>
+<span id="cb49-4"><a href="dynamic-tables-display.html#cb49-4" tabindex="-1"></a>  results      <span class="ot">&lt;-</span>   <span class="fu">as.data.frame</span>(<span class="fu">summary</span>(self<span class="sc">$</span>model)<span class="sc">$</span>coefficients)</span>
+<span id="cb49-5"><a href="dynamic-tables-display.html#cb49-5" tabindex="-1"></a>  results      <span class="ot">&lt;-</span>   results[<span class="sc">-</span><span class="dv">1</span>,]</span>
+<span id="cb49-6"><a href="dynamic-tables-display.html#cb49-6" tabindex="-1"></a>  whichcovs    <span class="ot">&lt;-</span>   <span class="fu">rownames</span>(results[results[,<span class="dv">4</span>]<span class="sc">&lt;</span>.<span class="dv">05</span>,])</span>
+<span id="cb49-7"><a href="dynamic-tables-display.html#cb49-7" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">length</span>(whichcovs)<span class="sc">==</span><span class="dv">0</span>) </span>
+<span id="cb49-8"><a href="dynamic-tables-display.html#cb49-8" tabindex="-1"></a>    <span class="fu">return</span>(<span class="cn">NULL</span>)</span>
+<span id="cb49-9"><a href="dynamic-tables-display.html#cb49-9" tabindex="-1"></a>  </span>
+<span id="cb49-10"><a href="dynamic-tables-display.html#cb49-10" tabindex="-1"></a>  eps       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">epsilon_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb49-11"><a href="dynamic-tables-display.html#cb49-11" tabindex="-1"></a>  eps_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eps<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;Epsilon^2&quot;</span>,<span class="at">value=</span>eps<span class="sc">$</span>Epsilon2)</span>
+<span id="cb49-12"><a href="dynamic-tables-display.html#cb49-12" tabindex="-1"></a>  eta       <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb49-13"><a href="dynamic-tables-display.html#cb49-13" tabindex="-1"></a>  eta_df    <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pEta^2&quot;</span>,<span class="at">value=</span>eta<span class="sc">$</span>Eta2)</span>
+<span id="cb49-14"><a href="dynamic-tables-display.html#cb49-14" tabindex="-1"></a>  omega     <span class="ot">&lt;-</span>  effectsize<span class="sc">::</span><span class="fu">omega_squared</span>(self<span class="sc">$</span>model)</span>
+<span id="cb49-15"><a href="dynamic-tables-display.html#cb49-15" tabindex="-1"></a>  omega_df  <span class="ot">&lt;-</span>  <span class="fu">data.frame</span>(<span class="at">var=</span>eta<span class="sc">$</span>Parameter,<span class="at">index=</span><span class="st">&quot;pOmega^2&quot;</span>,<span class="at">value=</span>omega<span class="sc">$</span>Omega2)</span>
+<span id="cb49-16"><a href="dynamic-tables-display.html#cb49-16" tabindex="-1"></a>  </span>
+<span id="cb49-17"><a href="dynamic-tables-display.html#cb49-17" tabindex="-1"></a>  tab       <span class="ot">&lt;-</span>  <span class="fu">rbind</span>(eps_df,eta_df,omega_df)</span>
+<span id="cb49-18"><a href="dynamic-tables-display.html#cb49-18" tabindex="-1"></a>  <span class="fu">return</span>(tab)</span>
+<span id="cb49-19"><a href="dynamic-tables-display.html#cb49-19" tabindex="-1"></a>},</span></code></pre></div>
 <p>If you are using the <code>Big 5</code> data buddled with <span class="jamovi"><a href="http://www.jamovi.org" target="_blank">jamovi</a></span>, you can try predicting <code>Neuroticism</code> with <code>Openess</code>, which will not show the table, and then with <code>Agreebleness</code>, which will show the table</p>
 <p><img src="pics/c5_output2.png" width="1073" /></p>
 <p><img src="pics/c5_output3.png" width="1022" /></p>

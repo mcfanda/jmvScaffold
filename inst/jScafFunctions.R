@@ -4,14 +4,14 @@ t_INFO  <- F
 
 #### Helper functions used by Scaffold (not exported)
 
-j_W0S   <- .Platform$OS.type=="windows"
+j_SYS   <- .Platform$OS.type=="windows"
 
 ## -- Note for Windows users
 ## If your OS is Windows, but feel free
 ## to change the path and name of the log file as you like.
 ## --
 wosjscaf<-"wosjscaf.log"
-if (j_WOS)
+if (j_SYS)
      wosjscaf <- paste0(base::Sys.getenv("TEMP"),paste0("\\",wosjscaf))
 
 
@@ -19,25 +19,25 @@ if (j_WOS)
 
 tinfo <- function(...) {
   if (t_INFO) {
-    if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+    if (j_SYS && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
     
     cat(paste(list(...)))
     cat("\n")
     
-    if (j_W0S && wosjscaf != "") base::sink()
+    if (j_SYS && wosjscaf != "") base::sink()
   }
 }
 
 
 jinfo <- function(...) {
   if (j_INFO) {
-    if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+    if (j_SYS && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
     
     cat("\n")
     cat(paste(list(...)))
     cat("\n")
     
-    if (j_W0S && wosjscaf != "") base::sink()
+    if (j_SYS && wosjscaf != "") base::sink()
   }
 }
 
@@ -46,7 +46,7 @@ mark <- function(...) {
   if (!j_DEBUG)
     return()
   
-  if (j_W0S && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
+  if (j_SYS && wosjscaf != "") base::sink(file=wosjscaf, append=TRUE)
   
   if (missing(...)) cat("Mark here\n")
   
@@ -62,7 +62,7 @@ mark <- function(...) {
   
   if (length(items)>1)  cat("_____end_______\n\n")
   
-  if (j_W0S && wosjscaf != "") base::sink()
+  if (j_SYS && wosjscaf != "") base::sink()
 }
 
 is.something <- function(x, ...) UseMethod(".is.something")
@@ -78,6 +78,14 @@ is.something <- function(x, ...) UseMethod(".is.something")
 .is.something.logical <- function(obj) !is.na(obj)
 
 is.there<-function(pattern,string) length(grep(pattern,string,fixed=T))>0
+
+
+### test whether something already coerced to numeric return a usable number
+
+is.number <- function(obj) (length(obj)>0 && is.numeric(obj) && !is.na(obj))
+
+
+
 
 #### This function run an expression and returns any warnings or errors without stopping the execution.
 try_hard<-function(exp,max_warn=5) {

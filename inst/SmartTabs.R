@@ -290,6 +290,10 @@ SmartTable <- R6::R6Class("SmartTable",
                                 if (!(fun %in% names(private$.estimator)))
                                     return(NULL)
                                 
+                                if ("ok" %in% names(private$.estimator))
+                                    if (isFALSE(private$.estimator$ok))
+                                        return(NULL)
+                                
                                 output<-try_hard(private$.estimator[[fun]]())
                                 rtable<-output$obj
                                 error<-output$error
@@ -348,8 +352,6 @@ SmartTable <- R6::R6Class("SmartTable",
                                   jtable$setRow(rowNo=i,w)
                               }
                               
-                              private$.setHideOn(rtable)
-                              
                               rlist <-private$.listify(rtable)
                               for (i in seq_along(rlist)) {
                                 t<-rlist[[i]]
@@ -361,13 +363,14 @@ SmartTable <- R6::R6Class("SmartTable",
                             .finalize=function() {
                               
                               private$.setColumnTitle()
+                              private$.setHideOn()
                               self$table$setVisible(TRUE)
 
                             },
-                            .setHideOn=function(rtable) {
+                            .setHideOn=function() {
                               
-                              rtable<-private$.framefy(rtable)
                               if (is.something(private$.hideOn)) {
+                                rtable<-self$table$asDF
                                 what<-names(rtable)
                                 for (col in names(private$.hideOn))
                                   if (col %in% what) {
@@ -383,14 +386,17 @@ SmartTable <- R6::R6Class("SmartTable",
                               
                               rtable<-private$.framefy(rtable)
                               .names    <-  names(rtable)
-                         
                               .types<-unlist(lapply(rtable,class))
+
                               .types<-gsub("numeric","number",.types)
                               .types<-gsub("integer","number",.types)
                               .types<-gsub("factor","text",.types)
                               .present<-names(self$table$columns)
                               .ncols<-length(.present)
                               .names<-setdiff(.names,.present)
+                              if (is.something(attr(rtable,"types")))
+                                .types<-attr(rtable,"types")
+
                               if (is.something(attr(rtable,"titles")))
                                 .titles<-attr(rtable,"titles")
                               else 
