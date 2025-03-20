@@ -2,8 +2,9 @@ Scaffold <- R6::R6Class("Scaffold",
                           cloneable=FALSE,
                           class=FALSE,
                           public=list(
-                            analysis=NULL,  
-                            options=NULL,
+                            analysis =NULL,  
+                            options  =NULL,
+                            ok       =TRUE,    # can be used to halt the process without calling stop() 
                             initialize=function(object) {
                                  
                               self$analysis<-object
@@ -12,7 +13,7 @@ Scaffold <- R6::R6Class("Scaffold",
                             },
                             option=function(val,spec=NULL) {
                               
-                              res<-utils::hasName(self$options,val)
+                              res<-is.joption(self$options,val)
                               if (res) {
                                 if (is.logical(self$options[[val]]))
                                   res<-self$options[[val]]
@@ -28,11 +29,27 @@ Scaffold <- R6::R6Class("Scaffold",
                             },
                             optionValue=function(val) {
                               
-                              test<-utils::hasName(self$options,val)
+                              test<-is.joption(self$options,val)
                               if (test) 
                                 return(self$options[[val]])
                               else
                                 return(NULL)
+                            },
+                            
+                            stop=function(msg, return=TRUE) {
+                            
+                                if (self$option(".interface","R")) stop(msg,call.=FALSE)
+                                    
+                                if (exists("ERROR_TABLE")) {
+                                 self$warning<-list(topic=ERROR_TABLE,message=msg,head="error")
+                                 self$ok <- FALSE
+                                 if (return) {
+                                       call <- rlang::expr(return()) 
+                                       rlang::eval_bare(call, env = parent.frame())
+                                 }
+                              } else
+                                 stop(msg,call.=FALSE)
+                              
                             }
                           ), ## end of public
                           active=list(

@@ -1,7 +1,7 @@
 
 say<-function(...) cat(crayon::blue(paste("\u2139 ", padstr(...),"\n")))
 
-warn<-function(...) cat(crayon:red(paste("\u26A0 ",padstr(...),"\n")))
+warn<-function(...) cat(crayon::red(paste("\u26A0 ",padstr(...),"\n")))
 
 
 padstr<-function(...) {

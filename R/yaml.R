@@ -22,7 +22,7 @@ postprocess_yaml<-function() {
 
 preprocess_r_yaml <- function() {
   
-  say("preprocessing u.yaml in jamovi folder")
+  say("preprocessing r.yaml in jamovi folder")
   if (!dir.exists("jamovi")) {
     stop("You need to be in the root of the projecs, where the `jamovi` folder is")
   }
@@ -292,6 +292,27 @@ rec_u<-function(alist) {
 fix_u<-function(file) {
   
   yaml <- yaml::read_yaml(file)
-  yaml::write_yaml(rec_u(yaml),file,indent=8,handlers=list(logical=yaml::verbatim_logical))
+  yaml::write_yaml(rec_u(yaml),file,indent=4,,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
   
+}
+
+
+format_scaffold <- function() {
+  
+  say("Formatting scaffold folder")
+  if (!dir.exists("jamovi")) {
+    stop("You need to be in the root of the projecs, where the `jamovi` folder is")
+  }
+  if (!dir.exists("jamovi/scaffold")) {
+    warn("No `jamovi/scaffolding` folder. Nothing to do in preprocessing yaml")
+    return()
+  }
+  files <- list.files("./jamovi/scaffold/", ".yaml")
+  for (file in files) {
+    say("formatting ",file)
+    yaml <- yaml::read_yaml(file)
+    say("Writing file", file)
+    yaml::write_yaml(yaml,file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
+  }
+  say("...done")
 }

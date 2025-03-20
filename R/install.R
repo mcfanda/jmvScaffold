@@ -82,7 +82,7 @@ processReadme<-function() {
     i  <- grep('<em id="version">', text_lines)
     if (length(i)>0) {
         say("Setting version in README.md to",zv)
-        text_lines[i] <- paste('<em id="version">Version ',zv,'</em>\n')
+        text_lines[i] <- paste('<em id="version">Version ',zv,'</em>')
     }
     writeLines(text_lines, file_path)
 }

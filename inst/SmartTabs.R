@@ -103,19 +103,11 @@ SmartTable <- R6::R6Class("SmartTable",
 
                               ### expand it if needed
                               if (self$expandOnInit) private$.expand(rtable)
-                              ## check if new columns titles have been passed
-                             .attr <- private$.getAttributes(rtable)
-                          
-                              if (utils::hasName(.attr,"titles"))
-                                  for (.name in names(.attr$titles)) {
-                                         self$setColumnTitle(.name,.attr$titles[[.name]])
-                                  }
-
                               private$.fill(self$table,rtable)
                               private$.indent()
                               private$.spaceBy()
                               ## in case is a go, the table may be invisible (if activatedOnData). turn visibility on
-                              private$.finalize()
+                              self$table$setVisible(TRUE)
                               private$.debug_msg("inited")
                             },
                             
@@ -298,6 +290,10 @@ SmartTable <- R6::R6Class("SmartTable",
                                 if (!(fun %in% names(private$.estimator)))
                                     return(NULL)
                                 
+                                if ("ok" %in% names(private$.estimator))
+                                    if (isFALSE(private$.estimator$ok))
+                                        return(NULL)
+                                
                                 output<-try_hard(private$.estimator[[fun]]())
                                 rtable<-output$obj
                                 error<-output$error
@@ -332,7 +328,6 @@ SmartTable <- R6::R6Class("SmartTable",
                                               obj$setNote(jmvcore::toB64(w),w,init=FALSE)
 
                                 }
-                                if (is.something(attr(rtable,"titles"))) self$columnTitles<-attr(rtable,"titles")
                                 return(rtable) 
                               }
                               if (inherits(fun,"function") ) {
@@ -357,8 +352,6 @@ SmartTable <- R6::R6Class("SmartTable",
                                   jtable$setRow(rowNo=i,w)
                               }
                               
-                              private$.setHideOn(rtable)
-                              
                               rlist <-private$.listify(rtable)
                               for (i in seq_along(rlist)) {
                                 t<-rlist[[i]]
@@ -370,13 +363,14 @@ SmartTable <- R6::R6Class("SmartTable",
                             .finalize=function() {
                               
                               private$.setColumnTitle()
+                              private$.setHideOn()
                               self$table$setVisible(TRUE)
 
                             },
-                            .setHideOn=function(rtable) {
+                            .setHideOn=function() {
                               
-                              rtable<-private$.framefy(rtable)
                               if (is.something(private$.hideOn)) {
+                                rtable<-self$table$asDF
                                 what<-names(rtable)
                                 for (col in names(private$.hideOn))
                                   if (col %in% what) {
@@ -392,14 +386,17 @@ SmartTable <- R6::R6Class("SmartTable",
                               
                               rtable<-private$.framefy(rtable)
                               .names    <-  names(rtable)
-                         
                               .types<-unlist(lapply(rtable,class))
+
                               .types<-gsub("numeric","number",.types)
                               .types<-gsub("integer","number",.types)
                               .types<-gsub("factor","text",.types)
                               .present<-names(self$table$columns)
                               .ncols<-length(.present)
                               .names<-setdiff(.names,.present)
+                              if (is.something(attr(rtable,"types")))
+                                .types<-attr(rtable,"types")
+
                               if (is.something(attr(rtable,"titles")))
                                 .titles<-attr(rtable,"titles")
                               else 
@@ -646,8 +643,9 @@ SmartArray <- R6::R6Class("SmartArray",
                                     .keys<-attr(rtables,"keys")
 
 
-                              if (!hasName(self$table,"items")) {
-
+                              if (!is.something(self$table$items)) {
+                                library(jmvcore)
+                                  
                                 for (i in seq_along(rtables)) {
                                 
                                   if (is.something(.keys))
@@ -657,7 +655,7 @@ SmartArray <- R6::R6Class("SmartArray",
 
                                   self$table$addItem(key = .key)
                                 }
-                         
+                                
                                 self$children<-seq_along(rtables)
                                 
                               }
@@ -706,7 +704,6 @@ SmartArray <- R6::R6Class("SmartArray",
                               rtables<-private$.getData()
                               self$cleanNotes()
                               nfound<-length(rtables)
-                              
                               for (i in seq_along(self$childrenObjs)) {
                                  obj<-self$childrenObjs[[i]]
                                  if (i<=nfound) {
@@ -746,7 +743,7 @@ SmartArray <- R6::R6Class("SmartArray",
                               } else {
                                 
                                 fun<-private$.run_source
-                                filled<-(self$table$isFilled() && hasName(self$table,"items") && is.something(self$table$items))
+                                filled<-(self$table$isFilled() && is.something(self$table$items))
                               }
                               
                               if (is.null(fun)) 
