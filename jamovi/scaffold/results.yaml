@@ -1,0 +1,37 @@
+            - name: anova
+              title: ANOVA for Simple Effects  of ___key___
+              type: Table
+              description: a table of ANOVA for simple effects
+              visible: false
+              clearWith:
+                 - ccm_value
+                 - ccp_value
+                 - covs_scale_labels
+                 - offset
+                 - type: scaffold
+                   name: opts_model
+                   file: clear.yaml
+              columns:
+                 - name: test
+                   title: X²
+                   type: number
+                 - name: df1
+                   title: df
+                   type: integer
+                 - name: p
+                   title: p
+                   type: number
+                   format: zto,pvalue
+
+            - name: anova2
+              type: Table
+              description: a table of ANOVA for simple effects
+              visible: false
+              clearWith:
+                 - type: scaffold
+                   name: opts_model
+                   file: clear.yaml
+              columns:
+                 - name: test
+                   title: X²
+                   type: number

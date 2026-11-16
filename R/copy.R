@@ -1,5 +1,5 @@
 
-#' Copy essential files to the jamovi module R 
+#' Copy essential files to the jamovi module R folder 
 #' @export
 copy_files<-function() {
     
@@ -15,11 +15,14 @@ copy_files<-function() {
     f<-system.file(fname, package="jmvScaffold")
     file.copy(f, file.path("R",fname), overwrite = TRUE)
     cat("File ",fname," copied into R folder.\n")
+    fname<-"SmartInfo.R"
+    f<-system.file(fname, package="jmvScaffold")
+    file.copy(f, file.path("R",fname), overwrite = TRUE)
+    cat("File ",fname," copied into R folder.\n")
     fname<-"Dispatch.R"
     f<-system.file(fname, package="jmvScaffold")
     file.copy(f, file.path("R",fname), overwrite = TRUE)
     cat("File ",fname," copied into R folder.\n")
-    
     
 }
 

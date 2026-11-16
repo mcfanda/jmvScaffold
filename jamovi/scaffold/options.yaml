@@ -1,0 +1,24 @@
+- name: modeloptions
+  type: clone
+  content:
+        - dep
+        - factors
+        - covs
+        - covs_scale
+        - dep_scale
+        - scale_missing
+        - contrasts
+        - model_terms
+        - fixed_intercept
+        - se_method
+        - robust_method
+        - mute
+        - contrast_custom_values
+
+- name: nestedoptions
+  type: clone
+  content:
+        - nested_terms
+        - nested_intercept
+        - comparison
+

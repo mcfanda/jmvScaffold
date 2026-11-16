@@ -453,9 +453,7 @@ SmartTable <- R6::R6Class("SmartTable",
                               
                               if (is.null(self$spaceBy))
                                    return()
-                              
-                              if (self$spaceBy==0)
-                                   return()
+                            
                               
                               try_hard({
                                 
@@ -532,12 +530,14 @@ SmartTable <- R6::R6Class("SmartTable",
                               .attr<-private$.getAttributes(adata)
                               .res<-NULL
                               if (inherits(adata,"data.frame")) {
+                                if (nrow(adata)==0)
+                                  return(NULL)
                                 
                                 for (var in names(adata))
                                     if (is.factor(adata[[var]])) 
                                          adata[[var]]<-as.character(adata[[var]])
                                 
-                                .res <- lapply(1:dim(adata)[1], function(a) {
+                                .res <- lapply(seq_len(nrow(adata)), function(a) {
                                   .al<-as.list(adata[a, ])
                                   names(.al)<-names(adata)
                                   .al
@@ -550,6 +550,7 @@ SmartTable <- R6::R6Class("SmartTable",
                                 .res<-adata
                                 if (!is.listOfList(.res))
                                   .res<-list(.res)
+                                .res<-lapply(.res,as.list)
                                 res<-private$.setAttributes(.res,.attr)
                                 return(res)
                               }
@@ -644,8 +645,7 @@ SmartArray <- R6::R6Class("SmartArray",
 
 
                               if (!is.something(self$table$items)) {
-                                library(jmvcore)
-                                  
+
                                 for (i in seq_along(rtables)) {
                                 
                                   if (is.something(.keys))

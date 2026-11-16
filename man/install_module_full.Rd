@@ -4,7 +4,7 @@
 \alias{install_module_full}
 \title{Installing a jamovi module}
 \usage{
-install_module_full(what)
+install_module_full(what, debug = TRUE)
 }
 \description{
 Installing a jamovi module

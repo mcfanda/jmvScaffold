@@ -2,10 +2,10 @@
 % Please edit documentation in R/copy.R
 \name{copy_files}
 \alias{copy_files}
-\title{Copy essential files to the jamovi module R}
+\title{Copy essential files to the jamovi module R folder}
 \usage{
 copy_files()
 }
 \description{
-Copy essential files to the jamovi module R
+Copy essential files to the jamovi module R folder
 }

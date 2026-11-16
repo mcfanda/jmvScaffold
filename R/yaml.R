@@ -1,12 +1,5 @@
-preprocess_yaml<-function() {
-  
-  preprocess_a_yaml()
-  preprocess_u_yaml()
-  preprocess_r_yaml()
-  
-
-}
-
+#' Formatting scaffold folder yaml files
+#' @export
 postprocess_yaml<-function() {
 
   say("postprocessing u.yaml in jamovi folder")
@@ -14,15 +7,16 @@ postprocess_yaml<-function() {
   files <- list.files("./jamovi/", "u.yaml")
   for (file in files) {
     file<-paste0("./jamovi/",file)
-    fix_u(file)
+    #\fix_u(file)
   }
   
 }
 
-
-preprocess_r_yaml <- function() {
-  
-  say("preprocessing r.yaml in jamovi folder")
+#' Formatting scaffold folder yaml files
+#' @export
+preprocess_yaml <- function() {
+  cat("\n\n")
+  say("preprocessing .yaml in jamovi folder")
   if (!dir.exists("jamovi")) {
     stop("You need to be in the root of the projecs, where the `jamovi` folder is")
   }
@@ -31,216 +25,83 @@ preprocess_r_yaml <- function() {
     return()
   }
 
-  files <- list.files("./jamovi/", "r.yaml")
-  for (file in files) {
-    mark<-FALSE
+    files <- list.files("./jamovi/", ".yaml")
+  
+    for (file in files) {
     say("check for preprocessing ",file)
-    root<-gsub("r.yaml","",file,fixed = T)
-    prepfile<-paste0(paste0("jamovi/scaffold/", root, "r.preprocess.yaml"))
-    say("file ",prepfile," found:",file.exists(prepfile))
-
-    if (file.exists(prepfile)) {
-      yaml <- yaml::read_yaml(prepfile)
-      pre<-yaml[["items"]]
-
-      for (p in seq_along(pre)) {
-         opt<-pre[[p]]
-         opt<-replace_tag_list(opt,"clearWith")
-         
-        if (utils::hasName(opt,"items") && (length(opt$items)>1) ) {
-         for (k in seq_along(opt$items)) {
-           opt$items[[k]]<-replace_tag_list( opt$items[[k]],"clearWith")
-         }
-        }
-          
-        if (utils::hasName(opt,"template")) {
-          
-           opt$template<-replace_tag_list( opt$template,"clearWith")
-           #  message("processing template for", opt$name)
-           
-           if (utils::hasName(opt$template,"items") && (is.list(opt$template$items)) ) {
-              for (k in seq_along(opt$template$items)) {
-               opt$template$items[[k]]<-replace_tag_list( opt$template$items[[k]],"clearWith")
-           }
-        
-         }
-        } ## end template
-        # done
-        pre[[p]]<-opt
-      }
-    }
-
-      yaml[["items"]]<-pre
-      say("Writing file ", file)
-      root<-"jamovi/"
-      yaml::write_yaml(yaml,paste0(root,file),indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
-
-    } #end of loop file
-  say("\n...done\n")
-  
-}
-
-replace_tag_list<-function(opt,tag, newtag="children") {
-  
-      if (utils::hasName(opt,tag)) {
-          results<-list()
-          for (j in seq_along(opt[[tag]])) {
-            cw<-opt[[tag]][[j]]
-            if (utils::hasName(cw,"type") && cw$type=="scaffold") {
-              results<-c(results,get_scaff_option(cw)[[newtag]])
-            } else {
-              results<-c(results,cw)
-            }
-          }
-          opt[[tag]]<-as.list(unique(unlist(results)))
-      }
-    return(opt)
-}
-
-get_scaff_option<-function(opt) {
-
-               ofile<-paste0("jamovi/scaffold/",opt$file)
-               if (file.exists(ofile)) {
-                    coptions<-yaml::read_yaml(ofile) 
-                    copt<-rlist::list.find(coptions, name == opt$name,n=1)
-                    if (length(copt)>0) {
-                           # message("found option ", opt$name, " in file ", ofile)
-                            return(copt[[1]])
-                     }
-                     else
-                        warn("Option ",opt$name," not found in file ",opt$file)
-         } else
-           warn("file ",opt$file," defined in option ",opt$name," does not exist")
-         
-         return(NULL)
-
-}
-
-
-
-preprocess_a_yaml <- function() {
-  
-  say("Preprocessing a.yaml in jamovi folder")
-  if (!dir.exists("jamovi")) {
-    stop("You need to be in the root of the projecs, where the `jamovi` folder is")
-  }
-  if (!dir.exists("jamovi/scaffold")) {
-    warn("No `jamovi/scaffolding` folder. Nothing to do in preprocessing yaml")
-    return()
-  }
-
-  files <- list.files("./jamovi/", "a.yaml")
-  for (file in files) {
-    say("check for preprocessing ",file)
-    root<-gsub("a.yaml","",file,fixed = T)
-    prefile<-paste0(paste0("jamovi/scaffold/", root, "a.preprocess.yaml"))
+    root<-gsub(".yaml","",file,fixed = T)
+    prefile<-paste0(paste0("jamovi/scaffold/", root, ".preprocess.yaml"))
     say("file ",prefile," found:",file.exists(prefile))
     if (file.exists(prefile)) {
       yaml <- yaml::read_yaml(prefile)
-      options <- yaml$options
-      soptions<-rlist::list.find(options, type == "scaffold",n=Inf)
-      for (opt in soptions) {
-         ofile<-paste0("jamovi/scaffold/",opt$file)
-         if (file.exists(ofile)) {
-           coptions<-yaml::read_yaml(ofile) 
-           copt<-rlist::list.find(coptions, name == opt$name,n=1)
-           if (length(copt)>0) {
-              i <- rlist::list.findi(yaml$options,name == opt$name,n=1)
-              yaml$options[[i]]<-copt[[1]]
-           }
-           else
-              warn("Option ",opt$name," not found in file ",opt$file)
-         } else
-           warn("file ",opt$file," defined in option ",opt$name," does not exist")
-
-      }
-      file <- paste0("jamovi/",file)
-      message("Writing file", file)
-      yaml::write_yaml(fix_some(yaml),file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
-
-    } else
-       say("No preprocessing file ",file,". Nothing to do")
-    
-  }
-  say("...done")
-}
-
-
-
-preprocess_u_yaml <- function() {
-  
-  say("Preprocessing u.yaml in jamovi folder")
-  if (!dir.exists("jamovi")) {
-    stop("You need to be in the root of the projecs, where the `jamovi` folder is")
-  }
-  if (!dir.exists("jamovi/scaffold")) {
-    warn("No `jamovi/scaffolding` folder. Nothing to do in preprocessing yaml")
-    return()
-  }
-
-    
-  files <- list.files("./jamovi/", "u.yaml")
-  for (file in files) {
-    say("check for preprocessing ",file)
-    root<-gsub("u.yaml","",file,fixed = T)
-    prefile<-paste0(paste0("jamovi/scaffold/", root, "u.preprocess.yaml"))
-
-    say("file ",prefile," found:",file.exists(prefile))
-    if (file.exists(prefile)) {
-      yaml <- yaml::read_yaml(prefile)
-      options <- yaml$children
-      soptions<-rlist::list.find(options, type == "scaffold",n=Inf)
-      for (opt in soptions) {
-         ofile<-paste0("jamovi/scaffold/",opt$file)
-         if (file.exists(ofile)) {
-           coptions<-yaml::read_yaml(ofile) 
-           copt<-rlist::list.find(coptions, name == opt$name,n=1)
-           if (length(copt)>0) {
-              i <- try(rlist::list.findi(yaml$children, name == opt$name,n=1))
-              if (class(i)=="try-error") {
-                 for (a in yaml$children)
-                      print(paste("type=",a$type,"name=",a$name))
-                stop("name not found")
-              }
-              yaml$children[[i]]<-copt[[1]]
-           }
-           else
-              warn("Option ",opt$name," not found in file ",opt$file)
-         } else
-           warn("file ",opt$file," defined in option ",opt$name," does not exist")
-      }
+      yaml<-process_one(yaml)
+      yaml<-fix_some(yaml)
       file <- paste0("jamovi/",file)
       say("Writing file", file)
       yaml::write_yaml(yaml,file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
-
+      
     } else
        say("No preprocessing file ",file,". Nothing to do")
     
   }
-  say("...done")
+
+  
+  
+  
+    say("\n...done\n")
+  
 }
 
 
 
-fix_some<-function(yaml) {
 
-  fix<-c("suggested","permitted")
-  for (i in seq_along(yaml$options)) {
-    for (f in fix) {
-    if (f %in% names(yaml$options[[i]])) {
-     if (length(yaml$options[[i]][[f]])==1)
-         yaml$options[[i]][[f]]<-list(yaml$options[[i]][[f]])
-    }
-    }
-    if (yaml$options[[i]]["type"] == "NMXList") {
-      say("found NML")
 
-       if ("default" %in% names(yaml$options[[i]]) && length(yaml$options[[i]][["default"]])==1)
-         yaml$options[[i]][["default"]]<-list(yaml$options[[i]][["default"]])
-    }  
+
+process_one <- function(node) {
+  if (is.list(node)) {
+    # Check if the list is named
+    if (!is.null(names(node))) {
+      # Named list: recurse on each element by name
+      for (n in names(node)) {
+        node[[n]] <- process_one(node[[n]])
+      }
+    } else {
+      # Unnamed list: treat like array
+      for (i in seq_along(node)) {
+        item <- node[[i]]
+        if (is.list(item) && !is.null(item$type) && item$type == "scaffold") {
+          item<-read_option(item$name,item$file)
+        }
+        node[[i]] <- process_one(item)
+      }
+    }
   }
-  return(yaml)
+  return(node)
 }
+
+find_one <- function(node, tag,fun) {
+  
+  if (is.list(node)) {
+    # Check if the list is named
+    if (!is.null(names(node))) {
+      # Named list: recurse on each element by name
+      for (n in names(node)) {
+        node[[n]] <- find_one(node[[n]], tag, fun)
+      }
+    } else {
+      # Unnamed list: treat like array
+      for (i in seq_along(node)) {
+        item <- node[[i]]
+        if (tag %in% names(item) ) {
+          item[[tag]]<-fun(item[[tag]])
+        }
+        node[[i]] <- find_one(item,tag,fun)
+      }
+    }
+  }
+  return(node)
+}
+
 
 
 read_option<-function(option,file) {
@@ -256,67 +117,106 @@ read_option<-function(option,file) {
         warn("Option ",option, " not found in ",file)
         return()
       }
+       if (hasName(q,"type") && q$type=="scaffold") {
+           if (hasName(q,"children")) {
+              return(q$children)
+           }
+       }
        return(q)
        
 }     
 
 
+fix_some<-function(yaml) {
 
-rec_u<-function(alist) {
+  fun<-function(alist) {
+    
+    if (length(unlist(alist))==1) {
+      alist<-list(alist)
+    }
+   alist
+  }
   
-      if (!is.list(alist)) 
-          return(alist)
-      if (hasName(alist,"type") && alist$type=="Label") {
-         if (length(alist$children)==0) {
-            say("Removing empty label")
-            return(NULL)
-         }
-      }
+  yaml<-find_one(yaml,"permitted",fun)
+  yaml<-find_one(yaml,"suggested",fun)
+  yaml<-find_one(yaml,"valueKey",fun)
+
+  for (i in seq_along(yaml$options)) {
+  if (yaml$options[[i]]["type"] == "NMXList") {
+      say("found NML")
+
+       if ("default" %in% names(yaml$options[[i]]) && length(yaml$options[[i]][["default"]])==1)
+         yaml$options[[i]][["default"]]<-list(yaml$options[[i]][["default"]])
+    }  
+    
+  }
   
-      if ("children" %in% names(alist)) {
-        j<-1
-        for (i in seq_along(alist[["children"]])) {
-           if (length(alist$children)<2)
-             next
-           item<-rec_u(alist$children[[j]])
-           if (is.null(item)) {
-               alist$children[[j]]<-NULL
-           } else {
-              alist$children[[j]]<-item
-              j<-j+1
-           }
+  yaml <- fix_clearWith(yaml)
+  yaml <- remove_empty_labels(yaml)
+  return(yaml)
+}
+
+
+fix_clearWith <- function(node) {
+  if (is.list(node)) {
+    if (!is.null(names(node))) {
+      for (n in names(node)) {
+        if (n == "clearWith") {
+          val <- node[[n]]
+
+          # Convert to list if it's just a single string
+          if (is.character(val) && length(val) == 1) {
+            node[[n]] <- list(val)
+
+          # If it's a list of character vectors (e.g., list of lists of strings), flatten
+          } else if (is.list(val) && all(sapply(val, is.character))) {
+            node[[n]] <- as.list(unlist(val))
+
+          # If it's a single character vector (not wrapped), wrap as list
+          } else if (is.character(val)) {
+            node[[n]] <- as.list(val)
+          }
+
+        } else {
+          # Recurse
+          node[[n]] <- fix_clearWith(node[[n]])
         }
       }
-       alist
+    } else {
+      # Recurse for unnamed lists
+      for (i in seq_along(node)) {
+        node[[i]] <- fix_clearWith(node[[i]])
+      }
+    }
+  }
+  return(node)
+}
+
+remove_empty_labels <- function(node) {
+  if (is.list(node)) {
+    # If unnamed list (e.g., list of items), clean it
+    if (is.null(names(node))) {
+      new_list <- list()
+      for (item in node) {
+        # Check for Label type with empty children
+        if (is.list(item) && 
+            !is.null(item$type) && item$type == "Label" &&
+            (is.null(item$children) || length(item$children) == 0)) {
+          next  # Skip this item
+        } else {
+          # Recurse into the item and keep it
+          new_list <- append(new_list, list(remove_empty_labels(item)))
+        }
+      }
+      return(new_list)
+    } else {
+      # For named lists, recurse into each element
+      for (n in names(node)) {
+        node[[n]] <- remove_empty_labels(node[[n]])
+      }
+    }
+  }
+  return(node)
 }
 
 
-fix_u<-function(file) {
-  
-  yaml <- yaml::read_yaml(file)
-  yaml::write_yaml(rec_u(yaml),file,indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
-  
-}
-
-#' Formatting scaffold folder yaml files
-#' @export
-format_scaffold <- function() {
-  
-  say("Formatting scaffold folder")
-  if (!dir.exists("jamovi")) {
-    stop("You need to be in the root of the projecs, where the `jamovi` folder is")
-  }
-  if (!dir.exists("jamovi/scaffold")) {
-    warn("No `jamovi/scaffolding` folder. Nothing to do in preprocessing yaml")
-    return()
-  }
-  root<-"./jamovi/scaffold/"
-  files <- list.files(root, ".yaml")
-  for (file in files) {
-    say("formatting ",file)
-    yaml <- yaml::read_yaml(paste0(root,file))
-    say("Writing file", file)
-    yaml::write_yaml(yaml,paste0(root,file),indent=4,indent.mapping.sequence=TRUE,handlers=list(logical=yaml::verbatim_logical))
-  }
-  say("...done")
-}

@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 local/*
 local
+^\.positai$
+^\.claude$

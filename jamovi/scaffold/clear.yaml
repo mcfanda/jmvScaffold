@@ -1,0 +1,11 @@
+-   name: opts_model
+    clone:
+        - model_type
+        - dep
+        - factors
+-   name: opts_model2
+    clone:
+        - model_type
+        - dep
+        - factors
+ 

@@ -4,6 +4,6 @@
 #jmvtools::version()
 #jmvtools::check()
 
-jmvtools::install(home = "flatpak")
+#jmvtools::install(home = "flatpak")
 
-
+install.packages(".", repos = NULL, type = "source")
