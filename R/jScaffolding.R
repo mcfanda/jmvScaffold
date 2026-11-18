@@ -37,12 +37,12 @@ Scaffold <- R6::R6Class("Scaffold",
                             },
                             
                             stop=function(msg, return=TRUE) {
-                            
-                                if (self$option(".interface","R")) stop(msg,call.=FALSE)
+
+                                if (self$option(".interface","R")) stop(gsub("<[^>]+>", "", msg),call.=FALSE)
                                     
-                                if (exists("ERROR_TABLE")) {
+                                self$ok <- FALSE
+                                if (exists("ERROR_TABLE") & ERROR_TABLE!="jamovi") {
                                  self$warning<-list(topic=ERROR_TABLE,message=msg,head="error")
-                                 self$ok <- FALSE
                                  if (return) {
                                        call <- rlang::expr(return()) 
                                        rlang::eval_bare(call, env = parent.frame())

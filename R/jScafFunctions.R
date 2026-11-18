@@ -1,6 +1,7 @@
-j_DEBUG <- TRUE
-j_INFO  <- TRUE
+j_DEBUG = FALSE
+j_INFO = FALSE
 t_INFO  <- FALSE
+
 
 #### Helper functions used by Scaffold (not exported)
 
@@ -12,40 +13,33 @@ tinfo <- function(...) {
 }
 
 
-ginfo <- function(...) {
+jinfo <- function(...) {
   if (j_INFO) {
+
     cat("\n")
     cat(paste(list(...)))
     cat("\n")
   }
 }
 
-gstart <- function(...) {
-  if (j_INFO) {
-    cat(paste(paste(list(...)),"..."))
-  }
-}
-gend <- function() {
-  if (j_INFO) {
-    cat(".......................................done\n")
-  }
-}
-
 
 mark <- function(...) {
-  if (!j_DEBUG) 
+  if (!j_DEBUG)
     return()
   
-  if (missing(...))
-    cat("Mark here\n")
+
+  if (missing(...)) cat("Mark here\n")
+  
   items<-list(...)
   
   if (length(items)>1)  cat("______begin________\n\n")
+  
   for (a in items)
     if (is.character(a))
       cat(a,"\n")
   else
     print(a)
+  
   if (length(items)>1)  cat("_____end_______\n\n")
   
 }
@@ -65,17 +59,14 @@ is.something <- function(x, ...) UseMethod(".is.something")
 is.there<-function(pattern,string) length(grep(pattern,string,fixed=T))>0
 
 #### This function run an expression and returns any warnings or errors without stopping the execution.
-#### It does not return the results, so the expr should assign a value to the results
-#### something like try_hard({a<-3^2}) and not a<-try_hard(3^2)
-
-try_hard<-function(exp,max_warn=5) {
+try_hard<-function(exp,max_warn=5, silent=FALSE) {
   
   .results<-list(error=FALSE,warning=list(),message=FALSE,obj=FALSE)
   
   .results$obj <- withCallingHandlers(
     tryCatch(exp, error=function(e) {
-      mark("SOURCE:")
-      mark(conditionCall(e))
+      if (!silent) mark("SOURCE:")
+      if (!silent) mark(conditionCall(e))
       .results$error<<-conditionMessage(e)
       NULL
     }), warning=function(w) {
@@ -93,7 +84,7 @@ try_hard<-function(exp,max_warn=5) {
     })
   
   
-  if (!isFALSE(.results$error)) {
+  if (!isFALSE(.results$error) && isFALSE(silent)) {
     mark("CALLER:")
     mark(rlang::enquo(exp))
     mark("ERROR:")
@@ -105,7 +96,6 @@ try_hard<-function(exp,max_warn=5) {
   
   return(.results)
 }
-
 
 #### handle b64
 
@@ -179,6 +169,8 @@ fromb64<- function(x,...) UseMethod(".fromb64")
 bogusfromb64<-function(obj,ref=NULL) fromb64(obj,ref=ref)
 
 ### end
+
+
 sourcifyOption<- function(x,...) UseMethod(".sourcifyOption")
 
 .sourcifyOption.default=function(option,def=NULL) {
@@ -216,15 +208,20 @@ sourcifyOption<- function(x,...) UseMethod(".sourcifyOption")
      .sourcifyOption.default(option,def)
   
 .sourcifyOption.OptionArray<-function(option,def=NULL) {
+  
   alist<-option$value
   if (length(alist)==0)
-      return('')
+    return('')
   if (is.something(def) & option$name %in% names(def)) {
     test<-all(sapply(alist,function(a) a$type)==def[[option$name]])
     if (test)
       return('')
   }
-  paste0(option$name,"=c(",paste(sapply(alist,function(a) paste0(sourcifyName(a$var),' = \"',a$type,'\"')),collapse=", "),")")
+  test<-all(sapply(alist,function(a) ("var" %in% names(a) & "type" %in% names(a))))
+  if (test)
+    return(paste0(option$name,"=c(",paste(sapply(alist,function(a) paste0(sourcifyName(a$var),' = \"',a$type,'\"')),collapse=", "),")"))
+  
+  return(option$value)
 }
 
 
@@ -265,7 +262,7 @@ smartTableName<-function(root,alist,end=NULL) {
 
 transnames<-function(original,ref) {
   unlist(lapply(original,function(x) {
-    i<-names(ref)[sapply(ref,function(y) any(y %in% x))]
+    i<-names(ref)[sapply(ref,function(y) any(y %in% trimws(x)))]
     ifelse(length(i)>0,i,x)
   }))
 }
@@ -313,86 +310,7 @@ ebind_square<-function(...) {
   
 }
 
-`ladd<-`<-function(x,value) {
-  x[[length(x)+1]]<-value
-  return(x)
-}
 
-`padd<-` <- function(x, value) {
-  x <- c(0, x)
-  x[[1]] <- value
-  x
-}
-
-###########
-
-
-sourcifyOption<- function(x,...) UseMethod(".sourcifyOption")
-
-.sourcifyOption.default=function(option,def=NULL) {
-  
-  if (option$name == 'data')
-    return('data = data')
-  
-  if (startsWith(option$name, 'results/'))
-    return('')
-  
-  value <- option$value
-  def <- option$default
-  
-  if ( ! ((is.numeric(value) && isTRUE(all.equal(value, def))) || base::identical(value, def))) {
-    valueAsSource <- option$valueAsSource
-    if ( ! identical(valueAsSource, ''))
-      return(paste0(option$name, ' = ', valueAsSource))
-  }
-  ''
-}
-.sourcifyOption.OptionVariables<-function(option,def=NULL) {
-  
-  if (is.null(option$value))
-    return('')
-  
-  values<-sourcifyName(option$value)
-  
-  if (length(values)==1)
-    return(paste0(option$name,"=",values))
-  else
-    return(paste0(option$name,"=c(",paste0(values,collapse = ","),")"))
-}
-
-.sourcifyOption.OptionTerms<-function(option,def=NULL)
-  .sourcifyOption.default(option,def)
-
-.sourcifyOption.OptionArray<-function(option,def=NULL) {
-  alist<-option$value
-  if (length(alist)==0)
-    return('')
-  if (is.something(def) & option$name %in% names(def)) {
-    test<-all(sapply(alist,function(a) a$type)==def[[option$name]])
-    if (test)
-      return('')
-  }
-  paste0(option$name,"=c(",paste(sapply(alist,function(a) paste0(sourcifyName(a$var),' = \"',a$type,'\"')),collapse=", "),")")
-}
-
-
-.sourcifyOption.OptionList<-function(option,def=NULL) {
-  
-  if (length(option$value)==0)
-    return('')
-  if (option$value==option$default)
-    return('')
-  paste0(option$name,"='",option$value,"'")
-}
-
-
-sourcifyName<-function(name) {
-  
-  what<-which(make.names(name)!=name)
-  for (i in what)
-    name[[i]]<-paste0('"',name[[i]],'"')
-  name
-}
 
 
 
@@ -410,3 +328,77 @@ clean_lol<-function(alist) {
   }
   il
 }
+
+### syntax functions
+
+`%+%`<-function(a,b) {
+  paste0(a,b)
+}
+
+`%<+%`<-function(a,b) {
+  sprintf(a, b)   
+}
+
+
+`ladd<-`<-function(x,value) {
+  x[[length(x)+1]]<-value
+  return(x)
+}
+
+`padd<-` <- function(x, value) {
+  x <- c(0, x)
+  x[[1]] <- value
+  x
+}
+
+
+is.joption <- function(obj, option) {
+  (option %in% obj$names)
+}
+
+###########
+
+### formatting and stuff ###
+
+format5<-function(x) format(x,digits=5)
+
+
+check_parameters <- function(values, fun=is.null, verbose = TRUE, head="Please fill in the required input:") {
+  
+      needed <- names(values)
+      what   <- unlist(sapply(values,fun))
+      needed <- needed[what]
+      
+      if (length(needed)>0) {
+            if (verbose) {
+            text <- "<p>" %+% head %+% "</p> <ul>" 
+            for (ned in needed) text <- text %+% "<li>" %+% ned %+% "</li>" 
+            text <-  text %+% "</ul>"
+            return(text)
+            } else 
+                return(needed)
+      }
+      return()
+}
+
+test_parameters <- function(obj,values, fun=is.null, verbose = TRUE, head="Please fill in the required input:") {
+  
+  test<-check_parameters(values,fun=fun,verbose=verbose,head=head) 
+ 
+  if (length(test)>0) {
+     obj$ok <-FALSE
+     obj$warning<-list(topic="issues",message=paste(test,collapse=", "), head="info") 
+     call <- rlang::expr(return()) 
+     rlang::eval_bare(call, env = parent.frame())
+     
+  }
+}
+
+## Escape user-supplied labels before using them as regular expressions.
+escape_regex <- function(x) {
+  special <- c("\\", ".", "|", "(", ")", "[", "]", "{", "}", "^", "$", "*", "+", "?")
+  for (char in special)
+    x <- gsub(char, paste0("\\", char), x, fixed=TRUE)
+  x
+}
+

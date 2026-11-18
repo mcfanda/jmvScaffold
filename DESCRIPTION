@@ -13,7 +13,10 @@ Encoding: UTF-8
 LazyData: true
 Imports: git2r, jmvtools, readr, stringr, yaml, crayon, styler
 Suggests: 
+    jmvcore,
     rmarkdown,
-    knitr
+    knitr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
 VignetteBuilder: knitr
 Config/roxygen2/version: 8.0.0

@@ -4,7 +4,7 @@
 \alias{copy_files}
 \title{Copy essential files to the jamovi module R folder}
 \usage{
-copy_files()
+copy_files(exclude = NULL)
 }
 \description{
 Copy essential files to the jamovi module R folder
